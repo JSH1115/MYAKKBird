@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.WishMapper">
+
+	<resultMap type="WishVO" id="wishResultMap">
+		<result property="w_num" column="w_num"/>
+		<result property="m_id" column="m_id"/>
+		<result property="b_num" column="b_num"/>
+		<result property="w_date" column="w_date"/>
+		<result property="w_state" column="w_state"/>
+	</resultMap>
+	
+	<select id="checkLike" resultType="int">
+		select count(*) FROM WISH
+		WHERE b_num = #{b_num}
+		AND m_id = #{m_id}
+	</select>
+</mapper>

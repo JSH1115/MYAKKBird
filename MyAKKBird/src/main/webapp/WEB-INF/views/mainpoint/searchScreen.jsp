@@ -4,7 +4,9 @@
 <%@page import="com.bit.myakkbird.mainpoint.*" %>
 <%
 	String addr = (String)request.getAttribute("b_address_road");
+	String m_id = (String)request.getAttribute("m_id");
 	System.out.println(addr);
+	System.out.println(m_id);
 %>
 <!DOCTYPE html>
 <html>
@@ -593,6 +595,12 @@
 			font-size: 13px;
 		}
 		
+		.favorites {
+			float: right;
+			margin-right: 33px;
+			cursor: pointer;
+		}
+		
 		.no_post {
 			width:520px; 
 			height:200px; 
@@ -955,16 +963,50 @@ function addmarker(index, listData) {
 	});
 }
 
-function list_index(index, item, startNo) {
+var gender = '';
+
+function list_index(index, item, startNo, se_id) {
 	var output = '';
 	var hot_b = '';
-	var gender = '';
 	
 	if(item.b_readcount > 800) {
 		hot_b = '<b class="hot_b">인기 게시글</b>';
 	} else if(item.b_readcount > 400) {
 		hot_b = '<b class="hot_b">관심 게시글</b>';
 	}
+	
+	if(item.m_gender === 'M') {
+		gender = '남';
+	} else if(item.m_gender === 'W') {
+		gender = '여';
+	}
+	
+	var b_num = item.b_num;
+	var bbb;
+	
+	$.ajax({
+		url: '/myakkbird/check_like.ak?b_num='+b_num+'&m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			var d = data;
+			
+			switch(data) {
+				case 0 :
+					bbb = '<b>가</b>';
+					$('#f_id').html(bbb);
+				break;
+				case 1 :
+					bbb = '<b>sk</b>';
+					$('#f_id').html(bbb);
+				break;
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
 	
 	var board_day = moment(item.b_date).format("M월 D일 작성");
 	
@@ -983,7 +1025,8 @@ function list_index(index, item, startNo) {
   	output += '    </div>'
   	output += '    <div class="post_right">'
   	output += '        <b class="post_r_sub">'+item.m_name.substr(0, 1)+'O'+item.m_name.substr(2, 3)+'</b>'
-  	output += '        <span class="post_r_span">'+item.m_gender+'</span><br>'
+  	output += '        <span class="post_r_span">'+gender+'</span>'
+  	output += '        <a class="favorites" id="f_id"></a><br>'
   	output += '        <span class="post_r_span">'+item.b_address_road+'</span><br>'
   	output += '        <span class="post_r_span">'+item.m_age+'세 | </span>'
   	output += '        <span class="post_r_span">희망시급 '+item.b_money+'원</span><br>'
@@ -1048,12 +1091,12 @@ function scroll_Map() {
 	});
 }
 
-
 $(document).ready(function(){
 	
 	timer();
 	
 	var addr = '<%=addr %>';
+	var se_id = '<%=m_id %>';
 	
 	newMap();
 	scroll_Map();
@@ -1081,7 +1124,7 @@ $(document).ready(function(){
 					} 
 					
 				    category_list(item);
-				    list_index(index, item, startNo);
+				    list_index(index, item, startNo, se_id);
 					count_txt(index, startNo);
 					
 				    var listData = new Array();
@@ -1089,7 +1132,7 @@ $(document).ready(function(){
 				    
 			       	data.num = item.b_num;
 			       	data.name = item.m_name;
-			       	data.gender = item.m_gender;
+			       	data.gender = gender;
 			       	data.addr = item.b_address_road;
 			       	data.category = category_d;
 			       	data.money = item.b_money;
@@ -1135,7 +1178,7 @@ $(document).ready(function(){
 				 $.each(data, function(index, item){
 					
 				    category_list(item);
-				    list_index(index, item, startNo);
+				    list_index(index, item, startNo, se_id);
 				    count_txt(index, startNo);
 				   	
 				    var listData = new Array();
@@ -1143,7 +1186,7 @@ $(document).ready(function(){
 				    
 			       	data.num = item.b_num;
 			       	data.name = item.m_name;
-			       	data.gender = item.m_gender;
+			       	data.gender = gender;
 			       	data.addr = item.b_address_road;
 			       	data.category = category_d;
 			       	data.money = item.b_money;
@@ -1208,7 +1251,7 @@ $(document).ready(function(){
 	
 			       	data.num = item.b_num;
 			       	data.name = item.m_name;
-			       	data.gender = item.m_gender;
+			       	data.gender = gender;
 			       	data.addr = item.b_address_road;
 			       	data.category = category_d;
 			       	data.money = item.b_money;
@@ -1265,7 +1308,7 @@ $(document).ready(function(){
 				    
 			       	data.num = item.b_num;
 			       	data.name = item.m_name;
-			       	data.gender = item.m_gender;
+			       	data.gender = gender;
 			       	data.addr = item.b_address_road;
 			       	data.category = category_d;
 			       	data.money = item.b_money;

@@ -105,6 +105,7 @@
                       AND B.b_type = 'A'
                       AND M.m_type = 'C'
                       AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
                       AND B.b_delete = 'N'
 					  AND B.b_address_road LIKE '%'||#{b_address_road}||'%'
                       ORDER BY B.b_date DESC
@@ -126,6 +127,7 @@
                       AND B.b_type = 'A'
                       AND M.m_type = 'C'
                       AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
                       AND B.b_delete = 'N'
 					  AND B.b_address_road LIKE '%'||#{b_address_road}||'%'
                       ORDER BY B.b_date DESC
@@ -147,6 +149,7 @@
                       AND B.b_type = 'A'
                       AND M.m_type = 'C'
                       AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
                       AND B.b_delete = 'N'
                       <if test="b_address_road != null">
 					  	AND B.b_address_road LIKE '%'||#{b_address_road}||'%'
@@ -181,6 +184,7 @@
                       AND B.b_type = 'A'
                       AND M.m_type = 'C'
                       AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
                       AND B.b_delete = 'N'
                       <if test="b_address_road != null">
 					  	AND B.b_address_road LIKE '%'||#{b_address_road}||'%'
