@@ -99,6 +99,9 @@ style="width:200px; height:20px;" ></div><br/>
 <div class="form-group">
 <input type="password" class="form-control" name="m_password"  placeholder="비밀번호를 입력해주세요."
 style="width:200px; height:20px;"></div>
+<label>
+            <input type="checkbox" name="useCookie"> 로그인유지
+</label>
 <br /><br />
 <input type="button" class="btn btn-default" value="로그인" style="width:200px; height:30px;background-color:#19CE60;"
 onclick="check_input()">

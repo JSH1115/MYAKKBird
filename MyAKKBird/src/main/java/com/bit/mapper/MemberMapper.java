@@ -4,13 +4,15 @@ import com.bit.myakkbird.member.MemberVO;
 
 public interface MemberMapper {
 	
-	public String memberType(String id);				//멤버타입(회원,근로자,관리자)체크
-	public MemberVO profile(String id);					//개인회원정보 (프로필내역)모두 조회
-	public int modifyProfile(MemberVO memberVO);		//개인회원정보 수정
+	public String memberType(String id);				//硫ㅻ쾭���엯(�쉶�썝,洹쇰줈�옄,愿�由ъ옄)泥댄겕
+	public MemberVO profile(String id);					//媛쒖씤�쉶�썝�젙蹂� (�봽濡쒗븘�궡�뿭)紐⑤몢 議고쉶
+	public int modifyProfile(MemberVO memberVO);		//媛쒖씤�쉶�썝�젙蹂� �닔�젙
 	
-	//호준님
+	//�샇以��떂
 	public int insertMember(MemberVO memberVO);
-	public int userCheck(MemberVO memberVO);
+	public MemberVO userCheck(MemberVO memberVO);
 	public MemberVO heartCheck(MemberVO memberVO);
+	public MemberVO keepLogin(MemberVO memberVO);
+	public MemberVO checkUserWithSessionKey(MemberVO memberVO);
 	
 }
