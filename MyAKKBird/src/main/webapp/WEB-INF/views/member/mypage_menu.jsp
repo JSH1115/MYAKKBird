@@ -62,7 +62,7 @@ a {
 		<a class="menu" href="BoardWrite.ak" >게시글 쓰기<span>> &nbsp;</span></a>
 	</section>
 	<section>
-		<a class="menu" href="">게시물 보기<span>> &nbsp;</span></a>
+		<a class="menu" href="BoardLoad.ak">게시물 보기<span>> &nbsp;</span></a>
 	</section>
 	<section>
 		<a href="pay.ak" class="menu">결제하기<span>> &nbsp;</span></a>

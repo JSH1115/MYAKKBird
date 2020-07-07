@@ -212,18 +212,20 @@ done_outline
 		<div id="total_count">현재까지 고객님들이 올린 게시물 수 &emsp; n 건</div>
 		<div id="search">
 			<h3>청소를 원하는 분이 기다리고 있습니다!</h3>
-			<div class="search_space">
-				<input type="text" placeholder="주소를 입력해주세요">
-			</div>
-			<div class="search_category"> 
-				<ul>
-					<li>역삼</li>
-					<li>서초</li>
-					<li>압구정</li>
-					<li>논현</li>
-					<li>삼성</li>
-				</ul>
-			</div>
+			<form name="selectForm" action="searchProcess.ak" >
+				<div class="search_space">
+					<input type="text" name="b_address_road" placeholder="주소를 입력하세요">
+				</div>
+				<div class="search_category"> 
+					<ul>
+						<li>역삼</li>
+						<li>서초</li>
+						<li>압구정</li>
+						<li>논현</li>
+						<li>삼성</li>
+					</ul>
+				</div>
+			</form>
 		</div>
 		<div id="hot_reviews">실시간 마이악어새 후기
 			<ul>

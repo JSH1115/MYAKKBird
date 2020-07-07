@@ -4,6 +4,7 @@
 <%@page import="com.bit.myakkbird.mainpoint.*" %>
 <%
 	String addr = (String)request.getAttribute("b_address_road");
+	System.out.println(addr);
 %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,12 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<!-- 시간 설정 API 시작 -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+  	<!-- 시간 설정 API 끝 -->
+  	<!-- alert창 API 시작 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- alert창 API 끝 -->
 	<style>
 		 /* 전체 적용 시작 */
 		html, body {
@@ -808,6 +814,35 @@ var isEmpty = function(val) {
 	}
 };
 
+function timer() {
+	let timerInterval
+	Swal.fire({
+	  title: '악어를 검색중입니다! ',
+	  html: '조금만 기달려주세요.',
+	  timer: 500,
+	  timerProgressBar: true,
+	  onBeforeOpen: () => {
+	    Swal.showLoading()
+	    timerInterval = setInterval(() => {
+	      const content = Swal.getContent()
+	      if (content) {
+	        const b = content.querySelector('b')
+	        if (b) {
+	          b.textContent = Swal.getTimerLeft()
+	        }
+	      }
+	    }, 100)
+	  },
+	  onClose: () => {
+	    clearInterval(timerInterval)
+	  }
+	}).then((result) => {
+	  if (result.dismiss === Swal.DismissReason.timer) {
+	    console.log('I was closed by the timer')
+	  }
+	})
+}
+
 function noDataOut() {
 	$('#data_insert').empty();
 	$('#list_count').empty();
@@ -923,6 +958,7 @@ function addmarker(index, listData) {
 function list_index(index, item, startNo) {
 	var output = '';
 	var hot_b = '';
+	var gender = '';
 	
 	if(item.b_readcount > 800) {
 		hot_b = '<b class="hot_b">인기 게시글</b>';
@@ -1012,8 +1048,11 @@ function scroll_Map() {
 	});
 }
 
-$(document).ready(function(){
 
+$(document).ready(function(){
+	
+	timer();
+	
 	var addr = '<%=addr %>';
 	
 	newMap();
@@ -1129,6 +1168,8 @@ $(document).ready(function(){
 	
 	$(document).on('click', '#search_data', function(event){
 		var params = $('#search_form').serialize();
+		
+		timer();
 		
        	$(window).unbind();
        	scroll_top();

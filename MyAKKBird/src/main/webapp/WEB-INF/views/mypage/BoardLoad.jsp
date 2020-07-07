@@ -43,10 +43,14 @@
 	<meta charset="UTF-8">
 	<title>마이 악어새</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!-- 시간 설정 API 시작 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+	<!-- 시간 설정 API 끝 -->
+	<!-- jquery 모달 API 시작 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<!-- jquery 모달 API 끝 -->
 	<style>
 		html, body {
 		 	width: 100%;
@@ -272,7 +276,7 @@
 		}
 		
 		.modal_txt_heart {
-			margin-right: 19px;
+			margin-right: 10px;
 			float: right;
 		}
 		
@@ -567,6 +571,40 @@ var m_id = '<%=m_id %>';
 var b_num;
 var d_b_num;
 
+var img_d = '';
+var category_d = '';
+var apply = '';
+
+function category_list(item) {
+	if(item.b_category === "A") {
+		img_d = 'vacuum.png';
+		category_d = '정기청소';
+	} else if(item.b_category === "B") {
+		img_d = 'cleaning-tools.png';
+		category_d = '특수조건청소';
+	} else if(item.b_category === "C") {
+		img_d = 'kitchen.png';
+		category_d = '입주청소(이사청소)';
+	} else if(item.b_category === "D") {
+		img_d = 'maid.png';
+		category_d = '상주청소';
+	} else if(item.b_category === "E") {
+		img_d = 'apartment.png';
+		category_d = '빌딩청소';
+	} else if(item.b_category === "F") {
+		img_d = 'coronavirus.png';
+		category_d = '방역';
+	}
+}
+
+function apply_list(item) {
+	if(item.b_apply === "N") {
+		apply = '매칭 대기중';
+	} else if(item.b_apply === "Y") {
+		apply = '매칭 완료';
+	}
+}
+
 $(document).ready(function(){
 	
 	var startNo;
@@ -591,13 +629,19 @@ $(document).ready(function(){
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8', 
 			success: function(data) {
 				var modal = '';
-				var m_type = '';
+				var type = '';
+				var gender = '';
 				$('#modal_content').empty();
 				
-				
 				if(data.m_type === "C") {
-					m_type = '악어';
+					type = '악어';
 				} 
+				
+				if(data.m_gender === "M") {
+					gender = '남자';
+				} else if(data.m_gender === "W") {
+					gender = '여자';
+				}
 				
 				modal += '<div class="modal_top">'
 				modal += '    <span class="modal_d_no">no.'+data.b_num+'</span><br>'
@@ -608,8 +652,8 @@ $(document).ready(function(){
 				modal += '        <img class="modal_myPhoto" src="./resources/image/crocodile_profile.png">'
 				modal += '    </div>'
 				modal += '    <div class="modal_p_right">'
-				modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+m_type+'</span><br>'
-				modal += '        <span><b>성별</b> '+data.m_gender+'</span><span class="modal_txt_heart"><b>하트개수</b> &nbsp;&nbsp;'+data.m_heart+'</span><br>'
+				modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+type+'</span><br>'
+				modal += '        <span><b>성별</b> '+gender+'</span><span class="modal_txt_heart"><b>하트개수</b> '+data.m_heart+'개</span><br>'
 				modal += '        <span><b>나이</b> '+data.m_age+'세</span><br>'
 				modal += '        <span><b>이메일</b> '+data.m_email+'</span><br>'
 				modal += '        <span><b>휴대전화</b> '+data.m_phone+'</span><br>'
@@ -679,36 +723,10 @@ $(document).ready(function(){
 			    });
 				
 				$.each(data, function(index, item){
-					var img_d = '';
-					var category_d = '';
-					var apply = '';
 					var output = '';
 					
-					if(item.b_category === "A") {
-						img_d = 'vacuum.png';
-						category_d = '정기청소';
-					} else if(item.b_category === "B") {
-						img_d = 'cleaning-tools.png';
-						category_d = '특수조건청소';
-					} else if(item.b_category === "C") {
-						img_d = 'kitchen.png';
-						category_d = '입주청소(이사청소)';
-					} else if(item.b_category === "D") {
-						img_d = 'maid.png';
-						category_d = '상주청소';
-					} else if(item.b_category === "E") {
-						img_d = 'apartment.png';
-						category_d = '빌딩청소';
-					} else if(item.b_category === "F") {
-						img_d = 'coronavirus.png';
-						category_d = '방역';
-					}
-					
-					if(item.b_apply === "N") {
-						apply = '매칭 대기중';
-					} else if(item.b_apply === "Y") {
-						apply = '매칭 완료';
-					}
+					category_list(item);
+					apply_list(item);
 					
 					totalCount = (index+startNo+1);
 					
