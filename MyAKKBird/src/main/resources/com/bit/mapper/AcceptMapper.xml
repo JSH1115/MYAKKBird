@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.AcceptMapper">
+
+	<!-- 회원과 근로자가 서로 매칭된 상태인지 체크 -->
+ 	<select id="isMatched" parameterType="String" resultType="String">
+		select c_id from accept where e_id=#{id} and a_apply='Y'
+	</select> 
+	
+</mapper>

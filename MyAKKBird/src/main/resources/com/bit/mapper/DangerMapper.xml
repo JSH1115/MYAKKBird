@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.DangerMapper">
+	
+	<resultMap type="com.bit.myakkbird.mypage.BoardVO" id="dangerResultMap">
+		<result property="m_name" column="m_name" />
+		<result property="m_name1" column="m_name1" />
+		<result property="m_name2" column="m_name2" />
+	</resultMap>
+	
+	<insert id="insertBoardDanger" parameterType="com.bit.mapper.DangerMapper">
+		<![CDATA[
+		INSERT INTO danger(b_num, m_id, d_id, d_con, d_type, d_date)
+		VALUES(#{b_num}, #{m_id}, (select m_id from board where b_num =#{b_num}), #{d_con}, #{d_type}, sysdate)
+		 ]]>
+	</insert>
+	
+	<insert id="insertCommentsDanger" parameterType="com.bit.mapper.DangerMapper">
+		<![CDATA[
+		INSERT INTO danger(c_num, m_id, d_id, d_con, d_type, d_date)
+		VALUES(#{c_num}, #{m_id}, (select m_id from board where c_num =#{c_num}), #{d_con}, #{d_type}, sysdate)
+		 ]]>
+	</insert>
+	
+	<select id="getname" parameterType="int" resultMap="dangerResultMap">
+		select substr(m.m_name, 1, 1) m_name1, substr(m.m_name, 3, 5) m_name2, m.m_name  
+		from board b, member m where b.b_num=#{b_num} and m.m_id=b.m_id
+	</select>
+</mapper>	

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.ReviewMapper">
+
+	<!-- 해당아이디에 달린모든 리뷰정보조회 -->
+ 	<select id="getReviewList" parameterType="String" resultType="com.bit.myakkbird.review.ReviewVO">
+		select * from review where r_id=#{r_id} order by r_num asc
+	</select> 
+	
+	<!-- 회원에 대한 리뷰작성하기 -->
+	<insert id="writeReview" parameterType="com.bit.myakkbird.review.ReviewVO">
+		insert into review(m_id, r_id, r_content, r_date, r_star, r_up_file) values(#{m_id}, #{r_id}, #{r_content}, #{r_date}, #{r_star}, #{r_up_file})
+	</insert> 
+	
+	<!-- 해당회원의 총 별☆점 평균 구하기 -->
+  	<select id="getAvgStar" parameterType="String" resultType="double">
+		select avg(r_star) from review where r_id=#{id}
+	</select>  
+	
+	<!-- 회원에게 달린 총 리뷰개수 구하기 -->
+	<select id="hasWritten" parameterType="HashMap" resultType="int">
+		select count(r_num) from review where r_id=#{r_id} and m_id=#{m_id}
+	</select> 
+	
+	<!-- 특정리뷰(리뷰번호) 정보 조회 -->
+ 	<select id="getReview" parameterType="int" resultType="com.bit.myakkbird.review.ReviewVO">
+		select * from review where r_num = #{r_num}
+	</select> 
+	
+	<!-- 리뷰수정 -->
+	<update id="modifyReview" parameterType="com.bit.myakkbird.review.ReviewVO">
+		update review set
+		r_content = #{r_content},
+		r_star = #{r_star}
+		where r_num = #{r_num}
+	</update> 
+	
+	<!-- 리뷰삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		delete from review where r_num = #{r_num}
+	</delete> 
+
+</mapper>

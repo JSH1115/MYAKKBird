@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.PayMapper">
+	
+	<insert id="insertPay" parameterType="hashMap">
+		INSERT INTO pay (m_id,p_date,p_price) VALUES 
+			(#{m_id},sysdate,#{p_price})
+	</insert>
+	
+	<update id="updateHeart" parameterType="hashMap">
+		update member a set m_heart = m_heart+#{m_heart} where m_id=#{m_id}
+	</update>
+	
+</mapper>

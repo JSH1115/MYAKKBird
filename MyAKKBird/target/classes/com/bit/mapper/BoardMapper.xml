@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.bit.mapper.BoardMapper">	
+
+	<resultMap type="com.bit.myakkbird.mypage.BoardVO" id="boardResultMap">
+		<result property="b_num" column="b_num" />
+		<result property="m_id" column="m_id" />
+		<result property="b_type" column="b_type" />
+		<result property="b_category" column="b_category" />
+		<result property="b_money" column="b_money" />
+		<result property="b_start" column="b_start" />
+		<result property="b_end" column="b_end" />
+		<result property="b_address_road" column="b_address_road" />
+		<result property="b_address_detail" column="b_address_detail" />
+		<result property="b_subject" column="b_subject" />
+		<result property="b_content" column="b_content" />
+		<result property="b_org_file" column="b_org_file" />
+		<result property="b_up_file" column="b_up_file" />
+		<result property="b_readcount" column="b_readcount" />
+		<result property="b_date" column="b_date" />
+		<result property="b_apply" column="b_apply" />
+		<result property="b_delete" column="b_delete" />
+		<result property="m_name" column="m_name" />
+		<result property="m_name1" column="m_name1" />
+		<result property="m_name2" column="m_name2" />
+		<result property="apply_cnt" column="apply_cnt" />
+	</resultMap>
+	
+	<!-- 게시판: 회원정보불러오기  -->
+	<resultMap type="MemberVO" id="memberResultMap">
+		<result property="m_id" column="m_id"/>
+		<result property="m_password" column="m_password" />
+		<result property="m_photo" column="m_photo"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_age" column="m_age"/>
+		<result property="m_gender" column="m_gender"/>
+		<result property="m_address_road" column="m_address_road" />
+		<result property="m_address_detail" column="m_address_detail" />
+		<result property="m_email" column="m_email" />
+		<result property="m_phone" column="m_phone" />
+		<result property="m_category" column="m_category" />
+		<result property="m_type" column="m_type" />
+		<result property="m_heart" column="m_heart" />
+		<result property="m_status" column="m_status"/>
+	</resultMap>
+	
+	<!-- 게시글 검색 -->
+	<resultMap type="MasterVO" id="masterResultMap">
+		<result property="m_id" column="m_id"/>
+		<result property="m_photo" column="m_photo"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_age" column="m_age"/>
+		<result property="m_gender" column="m_gender"/>
+		<result property="b_num" column="b_num"/>
+		<result property="b_category" column="b_category"/>
+		<result property="b_money" column="b_money"/>
+		<result property="b_address_road" column="b_address_road"/>
+		<result property="b_subject" column="b_subject"/>
+		<result property="b_date" column="b_date"/>
+		<result property="b_type" column="b_type"/>
+		<result property="m_type" column="m_type"/>
+		<result property="m_status" column="m_status"/>
+		<result property="b_apply" column="b_apply"/>
+		<result property="b_delete" column="b_delete"/>
+	</resultMap>
+	
+	<!-- 게시글 자세히보기 -->
+	<select id="getDetail" parameterType="int" resultMap="boardResultMap">
+		select b.*, substr(m.m_name, 1, 1) m_name1, substr(m.m_name, 3, 5) m_name2, m.m_name  
+		from board b, member m where b.b_num=#{b_num} and m.m_id=b.m_id
+	</select>
+	
+	<!-- 게시글 지원자 수구하기 -->	
+	<select id="applyCount" resultMap="boardResultMap" parameterType="int">
+		select count(a_num) apply_cnt from accept where b_num=#{b_num}
+	</select>
+	
+	<!-- 게시글 조회수 업데이트 -->
+	<update id="setReadCountUpdate" parameterType="int">
+		update board set b_readcount=b_readcount+1 where b_num=#{b_num}
+	</update>
+	
+	<!-- 게시글작성시 회원아이디 불러오기 -->
+	<select id="memberLookUp" parameterType="MemberVO" resultMap="memberResultMap">
+		SELECT * FROM MEMBER 
+	    WHERE m_id = #{m_id}
+	</select>
+
+	<!-- 게시글 작성시 하트차감 -->
+	<update id="UpdateHeart" parameterType="MemberVO">
+		UPDATE MEMBER
+		SET m_heart = m_heart-1
+		WHERE m_id = #{m_id}
+	</update>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO BOARD(m_id, b_category, b_money, b_start, b_end, b_d_detail, b_address_road, 
+		                  b_address_detail, b_subject, b_content, b_org_file, b_up_file)
+		VALUES(#{m_id}, #{b_category}, #{b_money}, #{b_start}, #{b_end}, #{b_d_detail}, #{b_address_road},
+		       #{b_address_detail}, #{b_subject}, #{b_content}, #{b_org_file}, #{b_up_file})
+	</insert>
+	
+	<!-- 게시글 수정전 기본정보 불러오기 -->
+	<select id="updateCall" parameterType="BoardVO" resultMap="boardResultMap">
+		SELECT * FROM BOARD
+		WHERE b_num = #{b_num}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="BoardVO">
+		
+	</update>
+	
+	<!-- 게시글 불러올때 5개만 미리 뿌리기 -->
+	<select id="clientBoardList" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                             M.m_gender, B.b_num, B.b_category, B.b_money, B.b_start,
+                             B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply 
+                      FROM MEMBER M, BOARD B
+                      WHERE M.m_id = B.m_id
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_delete = 'N'
+					  AND B.m_id = #{m_id}
+                      ORDER BY B.b_date DESC) AA ) A
+        <![CDATA[
+        WHERE RNUM1 >= 1
+        AND RNUM1 <= 5
+        ]]>
+	</select>
+	
+</mapper> 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.CommentsMapper">
+	
+	<!-- 댓글리스트 -->
+	<select id="commentsList" resultType="com.bit.myakkbird.comments.CommentsVO" parameterType="java.util.HashMap">
+		<![CDATA[
+		select (select count(c_num) comment_cnt from comments where b_num=#{b_num}) comment_cnt,c_num, b_num, m_id, c_content, to_char(c_date,'YY-MM-DD hh:mm') c_date, c_re_ref, c_re_lev, c_re_seq 
+        from (select rownum rnum,c_num, b_num, m_id, c_content, c_date, c_re_ref, c_re_lev, c_re_seq
+        	 from (select * from comments order by c_re_ref asc,c_re_seq asc))
+        where b_num = #{b_num} 
+     	]]>
+	</select>
+	
+	<!-- 댓글개수구하기 -->
+	<select id="commentsCount" resultType="com.bit.myakkbird.comments.CommentsVO" parameterType="java.util.HashMap">
+		select count(c_num) comment_cnt from comments where b_num=#{b_num}
+	</select>
+	
+	<!-- 댓글등록 -->
+	<insert id="commentsInsert" parameterType="com.bit.myakkbird.comments.CommentsVO" >
+		<selectKey keyProperty="c_re_ref" order="BEFORE" resultType="int">
+			select nvl(max(c_re_ref), 0)+1 from comments
+		</selectKey>
+		INSERT INTO comments (b_num, m_id, c_content, c_date, c_re_ref, c_re_lev, c_re_seq) VALUES (#{b_num},#{m_id},#{c_content},sysdate,#{c_re_ref},0,1)
+	</insert>
+	
+	<!-- 대댓글등록 -->
+	<insert id="commentsReplyInsert" parameterType="com.bit.myakkbird.comments.CommentsVO" >
+		<![CDATA[
+		INSERT INTO comments (b_num, m_id, c_content, c_date, c_re_ref, c_re_lev, c_re_seq) 
+		VALUES (#{b_num},#{m_id},#{c_content},sysdate,(select c_re_ref from comments where c_num = #{c_num}),((select c_re_lev from comments where c_num = #{c_num})+1),((select MAX(c_re_seq) from comments where c_re_ref =(select c_re_ref from comments where c_num = #{c_num}))+1))
+		]]>
+	</insert>
+	
+	<!-- 댓글수정 -->
+	<update id="commentsUpdate" parameterType="com.bit.myakkbird.comments.CommentsVO">
+		UPDATE comments SET c_content = #{c_content} WHERE c_num = #{c_num}
+	</update>
+	
+	<!-- 댓글삭제 -->
+	<delete id="commentsDelete" parameterType="int">
+		DELETE FROM comments WHERE c_num = #{c_num}
+	</delete>
+	
+	
+</mapper>

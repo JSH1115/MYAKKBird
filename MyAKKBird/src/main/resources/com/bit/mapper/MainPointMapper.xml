@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.bit.mapper.MainPointMapper">	
+	
+	<resultMap type="com.bit.myakkbird.mypage.BoardVO" id="boardResultMap">
+		<result property="b_num" column="b_num"/>
+		<result property="m_id" column="m_id"/>
+		<result property="b_type" column="b_type"/>
+		<result property="b_category" column="b_category"/>
+		<result property="b_money" column="b_money"/>
+		<result property="b_start" column="b_start"/>
+		<result property="b_end" column="b_end"/>
+		<result property="b_address_road" column="b_address_road"/>
+		<result property="b_address_detail" column="b_address_detail"/>
+		<result property="b_subject" column="b_subject"/>
+		<result property="b_content" column="b_content"/>
+		<result property="b_org_file" column="b_org_file"/>
+		<result property="b_up_file" column="b_up_file"/>
+		<result property="b_readcount" column="b_readcount"/>
+		<result property="b_date" column="b_date"/>
+		<result property="b_apply" column="b_apply"/>
+		<result property="b_delete" column="b_delete"/>
+	</resultMap>
+	
+	<resultMap type="MasterVO" id="masterResultMap">
+		<result property="m_id" column="m_id"/>
+		<result property="m_photo" column="m_photo"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_age" column="m_age"/>
+		<result property="m_gender" column="m_gender"/>
+		<result property="b_num" column="b_num"/>
+		<result property="b_category" column="b_category"/>
+		<result property="b_money" column="b_money"/>
+		<result property="b_address_road" column="b_address_road"/>
+		<result property="b_subject" column="b_subject"/>
+		<result property="b_date" column="b_date"/>
+		<result property="b_type" column="b_type"/>
+		<result property="m_type" column="m_type"/>
+		<result property="m_status" column="m_status"/>
+		<result property="b_apply" column="b_apply"/>
+		<result property="b_delete" column="b_delete"/>
+	</resultMap>
+	
+	<select id="selectBoard" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                      M.m_gender, B.b_num, B.b_category, B.b_money,
+                      B.b_address_road, B.b_subject, B.b_date FROM MEMBER M, BOARD B
+                      WHERE M.m_id = B.m_id
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
+                      AND B.b_delete = 'N'
+					  AND B.b_address_road LIKE '%'||#{b_address_road}||'%'
+                      ORDER BY B.b_date DESC) AA ) A
+        <![CDATA[
+        WHERE RNUM1 >= 1
+        AND RNUM1 <= 50
+        ]]>
+	</select>
+</mapper>	 
