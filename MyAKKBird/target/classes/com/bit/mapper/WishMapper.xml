@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.WishMapper">
+
+	<resultMap type="MemberVO" id="memberResultMap">
+		<result property="m_id" column="m_id"/>
+		<result property="m_password" column="m_password" />
+		<result property="m_photo" column="m_photo"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_age" column="m_age"/>
+		<result property="m_gender" column="m_gender"/>
+		<result property="m_address_road" column="m_address_road" />
+		<result property="m_address_detail" column="m_address_detail" />
+		<result property="m_email" column="m_email" />
+		<result property="m_phone" column="m_phone" />
+		<result property="m_category" column="m_category" />
+		<result property="m_type" column="m_type" />
+		<result property="m_heart" column="m_heart" />
+		<result property="m_status" column="m_status"/>
+	</resultMap>
+	
+	<resultMap type="WishVO" id="wishResultMap">
+		<result property="w_num" column="w_num"/>
+		<result property="m_id" column="m_id"/>
+		<result property="b_num" column="b_num"/>
+		<result property="w_date" column="w_date"/>
+		<result property="w_state" column="w_state"/>
+	</resultMap>
+	
+	<select id="checkLike" resultType="int">
+		SELECT COUNT(*) FROM WISH
+		WHERE b_num = #{b_num}
+		AND m_id = #{m_id}
+	</select>
+	
+	<select id="checkMember" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_id = #{m_id}
+	</select>
+	
+	<select id="checkWorker" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_type = 'E'
+		AND m_id = #{m_id}
+	</select>
+	
+	<select id="checkLikeRe" resultType="int">
+		SELECT COUNT(*) FROM WISH
+		WHERE b_num = #{b_num}
+		AND m_id = #{m_id}
+	</select>
+	
+	<insert id="insertLike" parameterType="WishVO">
+		INSERT INTO WISH (m_id, b_num, w_date)
+		VALUES (#{m_id}, #{b_num}, SYSDATE)
+	</insert>	
+	
+	<delete id="deleteLike" parameterType="WishVO">
+		DELETE FROM WISH
+		WHERE b_num = #{b_num}
+		AND m_id = #{m_id}
+	</delete>
+	
+</mapper>

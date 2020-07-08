@@ -2,6 +2,8 @@ package com.bit.myakkbird.mainpoint;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +24,13 @@ public class MainPointController {
 	}
 	
 	@RequestMapping(value="/searchProcess.ak")
-	public String searchProcess(String b_address_road, Model model) {
+	public String searchProcess(HttpSession session, String b_address_road, Model model) {
 		
+		String m_id = (String)session.getAttribute("m_id");
 		ArrayList<MasterVO> masterList = mainPointService.selectBoardService(b_address_road);
 		model.addAttribute("masterList", masterList);
 		model.addAttribute("b_address_road", b_address_road);
+		model.addAttribute("m_id", m_id);
 		
 		return "mainpoint/searchScreen";
 	}

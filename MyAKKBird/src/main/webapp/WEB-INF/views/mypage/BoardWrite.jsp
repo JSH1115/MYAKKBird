@@ -10,16 +10,37 @@
 	<meta charset="UTF-8">
 	<title>마이 악어새</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<!-- 유효성 검사 jquery API -->
+	<!-- alert창 API 시작 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- alert창 API 끝 -->
+	<!-- 유효성 검사 jquery API 시작 -->
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js" ></script>
-	<!-- 유효성 검사 jquery API -->
+	<!-- 유효성 검사 jquery API 끝 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
+			
+			var heart = <%=memberVO.getM_heart() %>;
+			
 			$('#submit_btn').click(function (event) {
+				
+				if(heart == 0) {
+					 
+					Swal.fire({
+						  title: '하트가 부족해요..ㅠㅠ',
+						  html:
+						    '<span>하트♡를 충전해야만 게시글을 쓸 수 있어요!</span><br>',
+						  confirmButtonColor : '#37B04B',
+						  confirmButtonText:
+							'<a href="./pay.ak" style="color:white; text-decoration: none; padding: 20px;">하트충전</a>',
+					})
+					
+					return false;
+				} 
+				
 				var vaildator = $('#board_form_id').validate({
 					rules: {
 						b_category: { 
-							required: true 
+							required: true
 						},
 						b_address_road: { 
 							required: true 
@@ -87,19 +108,6 @@
 			});
 		});
 		
-		$(document).ready(function(){ 
-			var fileTarget = $('#img_input'); 
-			
-			fileTarget.on('change', function(){ 
-				if(window.FileReader){ 
-					var filename = $(this)[0].files[0].name; 
-				} else { 
-					var filename = $(this).val().split('/').pop().split('\\').pop(); 
-				}
-				$(this).siblings('.upload_name').val(filename); 
-			}); 
-		});
-
 		$(document).ready(function() {
 			
 			$('.btn_default_addr').click(function() {
@@ -126,15 +134,6 @@
 				$('#sample6_detailAddress').attr('disabled', false);
 			})
 		})
-		
-		function oneCheckbox(check){
-			var obj = document.getElementsByName("b_category");
-		    for(var i=0; i<obj.length; i++){
-		    	if(obj[i] != check){
-		        	obj[i].checked = false;
-		        }
-		    }
-		}
 	</script>
 	<style>
 	
@@ -229,7 +228,7 @@
 		
 		.category_img_div {
 			margin-left: -45px;
-			margin-top: 30px;
+			margin-top: -20px;
 		}
 		
 		.category_img_div ul {
@@ -240,9 +239,9 @@
 			display: inline-table;
 		}
 		
-		input[type="checkbox"] { display:none; }
+		input[type="radio"] { visibility: hidden;  }
 		
-		input[type="checkbox"] + label .b_category1 { 
+		input[type="radio"] + label .b_category1 { 
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
@@ -251,7 +250,7 @@
 			background-size: 50px 50px;
 		}
 
-		input[type="checkbox"]:checked + label .b_category1 { 
+		input[type="radio"]:checked + label .b_category1 { 
 			width: 50px;
 			height: 50px;
 			background: url("./resources/image/vacuum_check1.png");
@@ -259,7 +258,7 @@
 			background-size: 50px 50px;
 		}
 		
-		input[type="checkbox"] + label .b_category2 { 
+		input[type="radio"] + label .b_category2 { 
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
@@ -269,7 +268,7 @@
 			background-size: 50px 50px;
 		}
 
-		input[type="checkbox"]:checked + label .b_category2 { 
+		input[type="radio"]:checked + label .b_category2 { 
 			width: 50px;
 			height: 50px;
 			background: url("./resources/image/cleaning-tools_check.png");
@@ -277,7 +276,7 @@
 			background-size: 50px 50px;
 		}
 		
-		input[type="checkbox"] + label .b_category3 { 
+		input[type="radio"] + label .b_category3 { 
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
@@ -288,7 +287,7 @@
 			background-size: 50px 50px;
 		}
 
-		input[type="checkbox"]:checked + label .b_category3 { 
+		input[type="radio"]:checked + label .b_category3 { 
 			width: 50px;
 			height: 50px;
 			background: url("./resources/image/kitchen_check.png");
@@ -296,7 +295,7 @@
 			background-size: 50px 50px;
 		}
 		
-		input[type="checkbox"] + label .b_category4 { 
+		input[type="radio"] + label .b_category4 { 
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
@@ -307,7 +306,7 @@
 			background-size: 50px 50px;
 		}
 
-		input[type="checkbox"]:checked + label .b_category4 { 
+		input[type="radio"]:checked + label .b_category4 { 
 			width: 50px;
 			height: 50px;
 			background: url("./resources/image/maid_check.png");
@@ -315,7 +314,7 @@
 			background-size: 50px 50px;
 		}
 		
-		input[type="checkbox"] + label .b_category5 { 
+		input[type="radio"] + label .b_category5 { 
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
@@ -326,7 +325,7 @@
 			background-size: 50px 50px;
 		}
 
-		input[type="checkbox"]:checked + label .b_category5 { 
+		input[type="radio"]:checked + label .b_category5 { 
 			width: 50px;
 			height: 50px;
 			background: url("./resources/image/apartment_check.png");
@@ -334,7 +333,7 @@
 			background-size: 50px 50px;
 		}
 		
-		input[type="checkbox"] + label .b_category6 { 
+		input[type="radio"] + label .b_category6 { 
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
@@ -344,7 +343,7 @@
 			background-size: 50px 50px;
 		}
 
-		input[type="checkbox"]:checked + label .b_category6 { 
+		input[type="radio"]:checked + label .b_category6 { 
 			width: 50px;
 			height: 50px;
 			background: url("./resources/image/coronavirus_check.png");
@@ -376,6 +375,10 @@
 			padding-left: 15px;
 		}
 		
+		.category_e_zone {
+			margin-top: -10px;
+		}
+		
 		.address_div {
 			margin-top: 30px;
 			margin-bottom: 30px;
@@ -387,6 +390,7 @@
 			float: left;
 			width: 300px;
 			margin-left: -15px;
+			margin-top: 20px;
 		}
 		
 		.address_input {
@@ -492,7 +496,7 @@
 			height: 150px;
 			border: 1px solid #37B04B;
 			border-radius: 10px;
-			background-image: url("./resources/image/adver_long.png");
+			background-image: url("./resources/image/advr_l.png");
 			background-repeat: no-repeat;
 			background-size: 800px 150px;
 			cursor: pointer;
@@ -657,48 +661,48 @@
 							<div class="category_img_div">
 								<ul>
 									<li>
-										<input type="checkbox" name="b_category" id="b_category_id1" 
-									           value="A" onclick="oneCheckbox(this);">
+										<input type="radio" name="b_category" class="b_cate" 
+										       id="b_category_id1" value="A" checked="checked">
 										<label for="b_category_id1">
 											<div class="b_category1">
 											</div>
 										</label>
 									</li>
 									<li>
-										<input type="checkbox" name="b_category" id="b_category_id2" 
-										       value="B" onclick="oneCheckbox(this);">
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id2" value="B">
 										<label for="b_category_id2">
 											<div class="b_category2">
 											</div>
 										</label>
 									</li>
 									<li>
-										<input type="checkbox" name="b_category" id="b_category_id3" 
-										       value="C" onclick="oneCheckbox(this);">
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id3" value="C">
 										<label for="b_category_id3">
 											<div class="b_category3">
 											</div>
 										</label>
 									</li>
 									<li>
-										<input type="checkbox" name="b_category" id="b_category_id4" 
-										       value="D" onclick="oneCheckbox(this);">
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id4" value="D">
 										<label for="b_category_id4">
 											<div class="b_category4">
 											</div>
 										</label>       
 									</li>
 									<li>
-										<input type="checkbox" name="b_category" id="b_category_id5" 
-										       value="E" onclick="oneCheckbox(this);">
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id5" value="E">
 										<label for="b_category_id5">
 											<div class="b_category5">
 											</div>
 										</label>
 									</li>
 									<li>
-										<input type="checkbox" name="b_category" id="b_category_id6" 
-										       value="F" onclick="oneCheckbox(this);">
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id6" value="F">
 										<label for="b_category_id6">
 											<div class="b_category6">
 											</div>
@@ -739,7 +743,9 @@
 										</label>
 									</li>
 								</ul>
-								<label class="error" for="b_category"></label>
+								<div class="category_e_zone">
+									<label class="error" for="b_category" style="margin-top: -5px;"></label>
+								</div>
 							</div>
 						</div>
 					</td>
@@ -913,9 +919,6 @@
 		</div>
 	</form>
 </div>
-<div class="Top_div">
-		<button class="top">Top</button>
-</div>
 <!-- 다음 주소 API 시작 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- 다음 주소 API 끝 -->
@@ -1021,6 +1024,18 @@
 		
 </script>
 <script> 
+
+var fileTarget = $('#img_input'); 
+
+fileTarget.on('change', function(){ 
+	if(window.FileReader){ 
+		var filename = $(this)[0].files[0].name; 
+	} else { 
+		var filename = $(this).val().split('/').pop().split('\\').pop(); 
+	}
+	$(this).siblings('.upload_name').val(filename); 
+});
+
 function readURL(input) {
 	 if (input.files && input.files[0]) {
 	  var reader = new FileReader();

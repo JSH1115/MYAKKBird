@@ -13,7 +13,8 @@ public interface BoardService {
 	public MemberVO memberLookUpService(MemberVO memberVO);
 	public int UpdateHeartServiec(String m_id);
 	public int insertBoardService(BoardVO boardVO);
-	public BoardVO updateCallService(int b_num);
+	public MasterVO updateCallService(int b_num, String m_id);
+	public int updateBoardService(BoardVO boardVO);
 	public ArrayList<MasterVO> clientBoardListService(String m_id);
 	
 }

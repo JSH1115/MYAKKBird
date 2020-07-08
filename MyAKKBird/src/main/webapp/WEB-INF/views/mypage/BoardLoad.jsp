@@ -43,10 +43,14 @@
 	<meta charset="UTF-8">
 	<title>마이 악어새</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!-- 시간 설정 API 시작 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+	<!-- 시간 설정 API 끝 -->
+	<!-- jquery 모달 API 시작 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<!-- jquery 모달 API 끝 -->
 	<style>
 		html, body {
 		 	width: 100%;
@@ -247,6 +251,7 @@
 			height: 100px;
 			float: left;
 			border-right: 0.5px solid #E6E6E6;
+			background-color: #89DF8F;
 		}
 		
 		.modal_myPhoto {
@@ -256,6 +261,7 @@
 			margin-left: 25px;
 			border-radius: 25px;
 			border: 1px solid #d3d3d3;
+			background-color: white;
 		}
 		
 		.modal_p_right {
@@ -272,7 +278,7 @@
 		}
 		
 		.modal_txt_heart {
-			margin-right: 19px;
+			margin-right: 10px;
 			float: right;
 		}
 		
@@ -286,6 +292,51 @@
 			box-shadow: -1px -1px 7px -3px #d3d3d3,
 		                1px 1px 7px -3px #d3d3d3;
 			clear: both;
+		}
+		
+		.modal_c_top {
+			width: 360px;
+			height: 80px;
+			font-size: 13px;
+			margin-top: 15px;
+			margin-left: 15px;
+		}
+		
+		.modal_cate_txt{
+			float: right;
+			margin-top: 1px;
+			margin-right: 3px;
+		}
+		
+		.modal_cate_img {
+			float: right;
+			width: 25px;
+			height: 25px;
+			margin-top: -3px;
+			margin-right: 30px;
+		}
+		
+		.modal_c_center {
+			width: 360px;
+			height: 200px;
+			font-size: 13px;
+			margin-top: 10px;
+			margin-left: 15px;
+		}
+		
+		.modal_cc_content {
+			width: 330px;
+			height: 200px;
+			border-radius: 5px;
+			margin-top: -5px;
+			background-color: #E6E6E6;
+		}
+		
+		.modal_cc_content p {
+			width: 330px;
+			height: 200px;
+			text-align: justify;
+			overflow: auto;
 		}
 		
 		.modal_btn {
@@ -428,6 +479,8 @@
   			border: 0;
   			text-decoration: none;
   			margin-left: 1800px;
+  			box-shadow: -3px -3px 7px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
 		}
 		
 		.top:hover {
@@ -567,6 +620,40 @@ var m_id = '<%=m_id %>';
 var b_num;
 var d_b_num;
 
+var img_d = '';
+var category_d = '';
+var apply = '';
+
+function category_list(item) {
+	if(item.b_category === "A") {
+		img_d = 'vacuum.png';
+		category_d = '정기청소';
+	} else if(item.b_category === "B") {
+		img_d = 'cleaning-tools.png';
+		category_d = '특수조건청소';
+	} else if(item.b_category === "C") {
+		img_d = 'kitchen.png';
+		category_d = '입주청소(이사청소)';
+	} else if(item.b_category === "D") {
+		img_d = 'maid.png';
+		category_d = '상주청소';
+	} else if(item.b_category === "E") {
+		img_d = 'apartment.png';
+		category_d = '빌딩청소';
+	} else if(item.b_category === "F") {
+		img_d = 'coronavirus.png';
+		category_d = '방역';
+	}
+}
+
+function apply_list(item) {
+	if(item.b_apply === "N") {
+		apply = '매칭 대기중';
+	} else if(item.b_apply === "Y") {
+		apply = '매칭 완료';
+	}
+}
+
 $(document).ready(function(){
 	
 	var startNo;
@@ -591,13 +678,25 @@ $(document).ready(function(){
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8', 
 			success: function(data) {
 				var modal = '';
-				var m_type = '';
+				var type = '';
+				var gender = '';
 				$('#modal_content').empty();
 				
-				
 				if(data.m_type === "C") {
-					m_type = '악어';
+					type = '고객';
 				} 
+				
+				if(data.m_gender === "M") {
+					gender = '남자';
+				} else if(data.m_gender === "W") {
+					gender = '여자';
+				}
+				
+				var start_day = moment(data.b_start).format("YY년 M월 D일");
+				var end_day = moment(data.b_end).format("YY년 M월 D일");
+				var write_day = moment(data.b_date).format("YY년 M월 D일 작성");
+				
+				category_list(data);
 				
 				modal += '<div class="modal_top">'
 				modal += '    <span class="modal_d_no">no.'+data.b_num+'</span><br>'
@@ -608,14 +707,28 @@ $(document).ready(function(){
 				modal += '        <img class="modal_myPhoto" src="./resources/image/crocodile_profile.png">'
 				modal += '    </div>'
 				modal += '    <div class="modal_p_right">'
-				modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+m_type+'</span><br>'
-				modal += '        <span><b>성별</b> '+data.m_gender+'</span><span class="modal_txt_heart"><b>하트개수</b> &nbsp;&nbsp;'+data.m_heart+'</span><br>'
+				modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+type+'</span><br>'
+				modal += '        <span><b>성별</b> '+gender+'</span><span class="modal_txt_heart"><b>하트개수</b> '+data.m_heart+'개</span><br>'
 				modal += '        <span><b>나이</b> '+data.m_age+'세</span><br>'
 				modal += '        <span><b>이메일</b> '+data.m_email+'</span><br>'
 				modal += '        <span><b>휴대전화</b> '+data.m_phone+'</span><br>'
 				modal += '    </div>'
 				modal += '</div>'
 				modal += '<div class="modal_center">'
+				modal += '    <div class="modal_c_top">'
+				modal += '        <b>주소(지번)</b><span> '+data.b_address_road+'</span>'
+				modal += '        <img class="modal_cate_img" src="./resources/image/'+img_d+'"><span class="modal_cate_txt">'+category_d+'</span><br>'
+				modal += '        <b>주소(상세)</b><span> '+data.b_address_detail+'</span><br>'
+				modal += '        <b>청소시작날짜</b><span> '+start_day+'</span><br>'
+				modal += '        <b>청소종료날짜</b><span> '+end_day+'</span><br>'
+				modal += '        <b>시급</b><span> '+data.b_money+'원</span>'
+				modal += '    </div>'
+				modal += '    <div class="modal_c_center">'
+				modal += '        <b>상세내용</b>'
+				modal += '        <div class="modal_cc_content">'
+				modal += '            <p>'+data.b_content+'</p>'
+				modal += '        </div>'
+				modal += '    </div>'
 				modal += '</div>'
 				modal += '<div modal_btn_div>'
 				modal += '    <a class="modal_btn" href="./searchDetail.ak?b_num='+data.b_num+'">자세히 보러 가기</a>'
@@ -679,36 +792,10 @@ $(document).ready(function(){
 			    });
 				
 				$.each(data, function(index, item){
-					var img_d = '';
-					var category_d = '';
-					var apply = '';
 					var output = '';
 					
-					if(item.b_category === "A") {
-						img_d = 'vacuum.png';
-						category_d = '정기청소';
-					} else if(item.b_category === "B") {
-						img_d = 'cleaning-tools.png';
-						category_d = '특수조건청소';
-					} else if(item.b_category === "C") {
-						img_d = 'kitchen.png';
-						category_d = '입주청소(이사청소)';
-					} else if(item.b_category === "D") {
-						img_d = 'maid.png';
-						category_d = '상주청소';
-					} else if(item.b_category === "E") {
-						img_d = 'apartment.png';
-						category_d = '빌딩청소';
-					} else if(item.b_category === "F") {
-						img_d = 'coronavirus.png';
-						category_d = '방역';
-					}
-					
-					if(item.b_apply === "N") {
-						apply = '매칭 대기중';
-					} else if(item.b_apply === "Y") {
-						apply = '매칭 완료';
-					}
+					category_list(item);
+					apply_list(item);
 					
 					totalCount = (index+startNo+1);
 					
@@ -738,7 +825,7 @@ $(document).ready(function(){
 					output += '                    <a href="#modal_id" rel="modal:open" class="detail_btn" id="a_btn" value="'+item.b_num+'">게시글 보기</a>'
 					output += '                </li>'
 					output += '                <li id="check_li">'
-					output += '                    <a href="#" id="a_btn">게시글 수정</a>'
+					output += '                    <a href="./boardUpdate.ak?b_num='+item.b_num+'" id="a_btn">게시글 수정</a>'
 					output += '                </li>'
 					output += '                <li id="check_li">'
 					output += '                    <a id="a_btn_delete" class="delete_a'+item.b_num+'" onclick="delete_icon('+item.b_num+')">게시글 삭제</a>'

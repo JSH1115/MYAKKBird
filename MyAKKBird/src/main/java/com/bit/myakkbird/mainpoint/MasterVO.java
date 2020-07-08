@@ -14,7 +14,7 @@ public class MasterVO {
 	private String m_address_detail;
 	private String m_email;
 	private String m_phone;
-	private int m_category;
+	private String m_category;
 	private String m_type;
 	private int m_heart;
 	private String m_status;
@@ -94,10 +94,10 @@ public class MasterVO {
 	public void setM_phone(String m_phone) {
 		this.m_phone = m_phone;
 	}
-	public int getM_category() {
+	public String getM_category() {
 		return m_category;
 	}
-	public void setM_category(int m_category) {
+	public void setM_category(String m_category) {
 		this.m_category = m_category;
 	}
 	public String getM_type() {
