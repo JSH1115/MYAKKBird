@@ -251,6 +251,7 @@
 			height: 100px;
 			float: left;
 			border-right: 0.5px solid #E6E6E6;
+			background-color: #89DF8F;
 		}
 		
 		.modal_myPhoto {
@@ -260,6 +261,7 @@
 			margin-left: 25px;
 			border-radius: 25px;
 			border: 1px solid #d3d3d3;
+			background-color: white;
 		}
 		
 		.modal_p_right {
@@ -290,6 +292,51 @@
 			box-shadow: -1px -1px 7px -3px #d3d3d3,
 		                1px 1px 7px -3px #d3d3d3;
 			clear: both;
+		}
+		
+		.modal_c_top {
+			width: 360px;
+			height: 80px;
+			font-size: 13px;
+			margin-top: 15px;
+			margin-left: 15px;
+		}
+		
+		.modal_cate_txt{
+			float: right;
+			margin-top: 1px;
+			margin-right: 3px;
+		}
+		
+		.modal_cate_img {
+			float: right;
+			width: 25px;
+			height: 25px;
+			margin-top: -3px;
+			margin-right: 30px;
+		}
+		
+		.modal_c_center {
+			width: 360px;
+			height: 200px;
+			font-size: 13px;
+			margin-top: 10px;
+			margin-left: 15px;
+		}
+		
+		.modal_cc_content {
+			width: 330px;
+			height: 200px;
+			border-radius: 5px;
+			margin-top: -5px;
+			background-color: #E6E6E6;
+		}
+		
+		.modal_cc_content p {
+			width: 330px;
+			height: 200px;
+			text-align: justify;
+			overflow: auto;
 		}
 		
 		.modal_btn {
@@ -432,6 +479,8 @@
   			border: 0;
   			text-decoration: none;
   			margin-left: 1800px;
+  			box-shadow: -3px -3px 7px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
 		}
 		
 		.top:hover {
@@ -634,7 +683,7 @@ $(document).ready(function(){
 				$('#modal_content').empty();
 				
 				if(data.m_type === "C") {
-					type = '악어';
+					type = '고객';
 				} 
 				
 				if(data.m_gender === "M") {
@@ -642,6 +691,12 @@ $(document).ready(function(){
 				} else if(data.m_gender === "W") {
 					gender = '여자';
 				}
+				
+				var start_day = moment(data.b_start).format("YY년 M월 D일");
+				var end_day = moment(data.b_end).format("YY년 M월 D일");
+				var write_day = moment(data.b_date).format("YY년 M월 D일 작성");
+				
+				category_list(data);
 				
 				modal += '<div class="modal_top">'
 				modal += '    <span class="modal_d_no">no.'+data.b_num+'</span><br>'
@@ -660,6 +715,20 @@ $(document).ready(function(){
 				modal += '    </div>'
 				modal += '</div>'
 				modal += '<div class="modal_center">'
+				modal += '    <div class="modal_c_top">'
+				modal += '        <b>주소(지번)</b><span> '+data.b_address_road+'</span>'
+				modal += '        <img class="modal_cate_img" src="./resources/image/'+img_d+'"><span class="modal_cate_txt">'+category_d+'</span><br>'
+				modal += '        <b>주소(상세)</b><span> '+data.b_address_detail+'</span><br>'
+				modal += '        <b>청소시작날짜</b><span> '+start_day+'</span><br>'
+				modal += '        <b>청소종료날짜</b><span> '+end_day+'</span><br>'
+				modal += '        <b>시급</b><span> '+data.b_money+'원</span>'
+				modal += '    </div>'
+				modal += '    <div class="modal_c_center">'
+				modal += '        <b>상세내용</b>'
+				modal += '        <div class="modal_cc_content">'
+				modal += '            <p>'+data.b_content+'</p>'
+				modal += '        </div>'
+				modal += '    </div>'
 				modal += '</div>'
 				modal += '<div modal_btn_div>'
 				modal += '    <a class="modal_btn" href="./searchDetail.ak?b_num='+data.b_num+'">자세히 보러 가기</a>'
@@ -756,7 +825,7 @@ $(document).ready(function(){
 					output += '                    <a href="#modal_id" rel="modal:open" class="detail_btn" id="a_btn" value="'+item.b_num+'">게시글 보기</a>'
 					output += '                </li>'
 					output += '                <li id="check_li">'
-					output += '                    <a href="#" id="a_btn">게시글 수정</a>'
+					output += '                    <a href="./boardUpdate.ak?b_num='+item.b_num+'" id="a_btn">게시글 수정</a>'
 					output += '                </li>'
 					output += '                <li id="check_li">'
 					output += '                    <a id="a_btn_delete" class="delete_a'+item.b_num+'" onclick="delete_icon('+item.b_num+')">게시글 삭제</a>'

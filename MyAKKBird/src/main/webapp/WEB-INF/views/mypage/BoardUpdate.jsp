@@ -1,26 +1,31 @@
-<%@page import="com.bit.myakkbird.member.MemberVO"%>
-<%@page import="com.bit.myakkbird.mypage.BoardVO"%>
+<%@page import="com.bit.myakkbird.mainpoint.MasterVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	BoardVO boardVO = (BoardVO)request.getAttribute("boardVO");
+	MasterVO masterVO = (MasterVO)request.getAttribute("masterVO");
+
 %>
 <!DOCTYPE html>
 <html> 
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 	<title>마이 악어새</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<!-- 유효성 검사 jquery API -->
+	<!-- alert창 API 시작 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- alert창 API 끝 -->
+	<!-- 유효성 검사 jquery API 시작 -->
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js" ></script>
-	<!-- 유효성 검사 jquery API -->
+	<!-- 유효성 검사 jquery API 끝 -->
 	<script type="text/javascript">
 		$(document).ready(function () {
+			
 			$('#submit_btn').click(function (event) {
+				
 				var vaildator = $('#board_form_id').validate({
 					rules: {
 						b_category: { 
-							required: true 
+							required: true
 						},
 						b_address_road: { 
 							required: true 
@@ -88,37 +93,11 @@
 			});
 		});
 		
-		$(document).ready(function(){ 
-			
-			$(window).scroll(function() {
-				if($( this).scrollTop() > 200 ) {
-					$('.top').fadeIn();
-				} else {
-					$('.top').fadeOut();
-				}
-			});
-
-			$('.top').click(function() {
-				$('html, body').animate({ scrollTop : 0 }, 400);
-				return false;
-			});
-			
-		});
-		
-		$(document).ready(function(){ 
-			var fileTarget = $('#img_input'); 
-			
-			fileTarget.on('change', function(){ 
-				if(window.FileReader){ 
-					var filename = $(this)[0].files[0].name; 
-				} else { 
-					var filename = $(this).val().split('/').pop().split('\\').pop(); 
-				}
-				$(this).siblings('.upload_name').val(filename); 
-			}); 
-		});
-
 		$(document).ready(function() {
+			
+			var check_c = '<%=masterVO.getB_category() %>';
+			
+			$('input:radio[name="b_category"]:radio[value="'+check_c+'"]').prop('checked', true); 
 			
 			$('.btn_default_addr').click(function() {
 				$('.address_div_left').hide();
@@ -156,6 +135,8 @@
 			border-radius: 30px;
 			background-color: white;
 			color: #444444;
+			box-shadow: -3px -3px 7px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
 		}
 		
 		table thead th {
@@ -235,49 +216,156 @@
 		}
 		
 		.category_img_div {
-			margin-left: -40px;
-			margin-top: 30px;
+			margin-left: -45px;
+			margin-top: -20px;
 		}
 		
-		.category_img {
+		.category_img_div ul {
+			padding-left: 45px;
+		}
+		
+		.category_img_div ul li {
+			display: inline-table;
+		}
+		
+		input[type="radio"] { visibility: hidden;  }
+		
+		input[type="radio"] + label .b_category1 { 
+			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			padding-left: 7px;
-			cursor: pointer;
+			background: url("./resources/image/vacuum.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
 		}
-		
-		input[type=radio] {  
-			visibility:hidden; 
-		}
-		
-		input[type=radio]:checked + label .category_img { 
-			border: 1px solid #268F38;
+
+		input[type="radio"]:checked + label .b_category1 { 
 			width: 50px;
 			height: 50px;
+			background: url("./resources/image/vacuum_check1.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+		
+		input[type="radio"] + label .b_category2 { 
+			cursor: pointer; 
+			width: 50px;
+			height: 50px;
+			margin-left: 30px;
+			background: url("./resources/image/cleaning-tools.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+
+		input[type="radio"]:checked + label .b_category2 { 
+			width: 50px;
+			height: 50px;
+			background: url("./resources/image/cleaning-tools_check.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+		
+		input[type="radio"] + label .b_category3 { 
+			cursor: pointer; 
+			width: 50px;
+			height: 50px;
+			margin-left: 30px;
+			padding-left: 5px;
+			background: url("./resources/image/kitchen.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+
+		input[type="radio"]:checked + label .b_category3 { 
+			width: 50px;
+			height: 50px;
+			background: url("./resources/image/kitchen_check.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+		
+		input[type="radio"] + label .b_category4 { 
+			cursor: pointer; 
+			width: 50px;
+			height: 50px;
+			margin-left: 30px;
+			padding-left: 5px;
+			background: url("./resources/image/maid.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+
+		input[type="radio"]:checked + label .b_category4 { 
+			width: 50px;
+			height: 50px;
+			background: url("./resources/image/maid_check.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+		
+		input[type="radio"] + label .b_category5 { 
+			cursor: pointer; 
+			width: 50px;
+			height: 50px;
+			margin-left: 28px;
+			padding-left: 5px;
+			background: url("./resources/image/apartment.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+
+		input[type="radio"]:checked + label .b_category5 { 
+			width: 50px;
+			height: 50px;
+			background: url("./resources/image/apartment_check.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+		
+		input[type="radio"] + label .b_category6 { 
+			cursor: pointer; 
+			width: 50px;
+			height: 50px;
+			margin-left: 25px;
+			background: url("./resources/image/coronavirus.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
+		}
+
+		input[type="radio"]:checked + label .b_category6 { 
+			width: 50px;
+			height: 50px;
+			background: url("./resources/image/coronavirus_check.png");
+			background-repeat: no-repeat;
+			background-size: 50px 50px;
 		}
 		
 		.category_text_div {
-			margin-left: -46px;
+			margin-left: -60px;
 		}
 		
-		.category_text_div span {
+		.category_text_div b {
 			cursor: pointer; 
-			border: 1px solid #d3d3d3;
+			border: 1px solid #37B04B;
 			padding: 5px;
 			border-radius: 15px;
 			font-size: 14px;
 			background-color: white;
-			color: #424242;
 		}
 		
-		.category_text_div span:hover {
-			background-color: #f1f3f5;
+		.category_text_div b:hover {
+			background-color: #37B04B;
+			color: white;
 		}
 		
-		ul li {
+		.category_text_div ul li {
 			list-style-type: none;
 			display: inline;
 			padding-left: 15px;
+		}
+		
+		.category_e_zone {
+			margin-top: -10px;
 		}
 		
 		.address_div {
@@ -291,6 +379,7 @@
 			float: left;
 			width: 300px;
 			margin-left: -15px;
+			margin-top: 20px;
 		}
 		
 		.address_input {
@@ -396,40 +485,10 @@
 			height: 150px;
 			border: 1px solid #37B04B;
 			border-radius: 10px;
-			background-image: url("./resources/image/adver_long.png");
+			background-image: url("./resources/image/advr_l.png");
 			background-repeat: no-repeat;
 			background-size: 800px 150px;
 			cursor: pointer;
-		}
-		
-		.Top_div {
-			clear: both;
-		}
-		
-		.top {
-  			position: fixed;
-  			bottom: 70px;
-  			display: none;
-  			border-radius: 50px;
-  			width: 50px;
-  			height: 50px;
-  			color: white;
-  			background-color: #37B04B;
-  			border: 0;
-  			text-decoration: none;
-  			margin-left: 1790px;
-  			font-size: 15px;
-		}
-		
-		.top:hover {
-			background-color: #268F38;
-			font-weight: bold;
-			cursor: pointer;
-		}
-		
-		.top:focus {
-			border: 0;
-			outline: none;
 		}
 		
 		.img_div {
@@ -518,22 +577,25 @@
 		
 		.address_div_default_left {
 			display: none;
-			margin-top: 52px; 
 			float: left;
 			width: 300px;
 			margin-left: -15px;
 		}
 		
 		.address_div_default_left b {
-			font-size: 15px;
+			font-size: 13px;
 			margin-left: -210px;
 		}
 		
-		.address_div_default_left input {
+		.post_my {
+			width:155px; 
+			height:40px;
+			margin-left: -103px;
+		}
+		
+		.post_my_addr {
 			width:260px; 
 			height:40px;
-			margin-top: 5px;
-			margin-bottom: 20px;
 		}
 		
 		.btn_addr_div {
@@ -574,10 +636,10 @@
 	<form name="board_form" id="board_form_id" action="board_updateProcess.ak" 
 	      method="post" enctype="multipart/form-data">
 	    <!-- 아이디 hidden -->
-	    <input type="hidden" name="m_id" value="">
-	    <input type="hidden" name="m_heart" value="">
+	    <input type="hidden" name="m_id" value="<%=masterVO.getM_id() %>">
+	    <input type="hidden" name="b_num" value="<%=masterVO.getB_num() %>">
 		<!-- 아이디 hidden -->
-		<h1 style="text-align: center; color: #212121;"><b style="color: #37B04B;">악어</b>새 구하기</h1>
+		<h1 style="text-align: center; color: #212121;"><%=masterVO.getM_id() %>님 게시글 수정</h1>
 		<div class="board_out">
 			<b class="head_text">청소 종류</b>
 			<table>
@@ -586,78 +648,93 @@
 					<td align="center">
 						<div class="category_div">
 							<div class="category_img_div">
-								<input type="radio" name="b_category" id="b_category1" 
-									   value="A">
-								<label for="b_category1">
-									<img class="category_img" src="./resources/image/vacuum.png"
-									     style="margin-left: 5px;">
-								</label>
-								<input type="radio" name="b_category" id="b_category2" 
-								       value="B">
-								<label for="b_category2">
-									<img class="category_img" src="./resources/image/cleaning-tools.png"
-										 style="margin-left: 12px;">
-								</label>
-								<input type="radio" name="b_category" id="b_category3" 
-								       value="C">
-								<label for="b_category3">
-									<img class="category_img" src="./resources/image/kitchen.png"
-									     style="margin-left: 15px;">
-								</label>
-								<input type="radio" name="b_category" id="b_category4" 
-								       value="D">
-								<label for="b_category4">
-									<img class="category_img" src="./resources/image/maid.png"
-										 style="margin-left: 7px;">
-								</label>       
-								<input type="radio" name="b_category" id="b_category5" 
-								       value="E">
-								<label for="b_category5">
-									<img class="category_img" src="./resources/image/apartment.png"
-										  style="margin-left: 5px;">
-								</label>
-								<input type="radio" name="b_category" id="b_category6" 
-								       value="F">
-								<label for="b_category6">
-									<img class="category_img" src="./resources/image/coronavirus.png"
-									     style="margin-left: -10px;">
-								</label>
-								
+								<ul>
+									<li>
+										<input type="radio" name="b_category" class="b_cate" 
+										       id="b_category_id1" value="A">
+										<label for="b_category_id1">
+											<div class="b_category1">
+											</div>
+										</label>
+									</li>
+									<li>
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id2" value="B">
+										<label for="b_category_id2">
+											<div class="b_category2">
+											</div>
+										</label>
+									</li>
+									<li>
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id3" value="C">
+										<label for="b_category_id3">
+											<div class="b_category3">
+											</div>
+										</label>
+									</li>
+									<li>
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id4" value="D">
+										<label for="b_category_id4">
+											<div class="b_category4">
+											</div>
+										</label>       
+									</li>
+									<li>
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id5" value="E">
+										<label for="b_category_id5">
+											<div class="b_category5">
+											</div>
+										</label>
+									</li>
+									<li>
+										<input type="radio" name="b_category" class="b_cate"
+										       id="b_category_id6" value="F">
+										<label for="b_category_id6">
+											<div class="b_category6">
+											</div>
+										</label>
+									</li>
+								</ul>
 							</div>
 							<div class="category_text_div">
 								<ul>
 									<li>
-										<label for="b_category1" style="margin-left: -20px;">
-											<span>정기청소</span>
+										<label for="b_category_id1">
+											<b>정기청소</b>
 										</label>
 									</li>
 									<li>
-										<label for="b_category2" style="margin-left: -5px;">
-											<span>특수조건청소</span>
+										<label for="b_category_id2">
+											<b>특수청소</b>
 										</label>
 									</li>
 									<li>
-										<label for="b_category3" style="margin-left: 5px;">
-											<span>입주청소</span>
+										<label for="b_category_id3">
+											<b>입주청소</b>
 										</label>
 									</li>
 									<li>
-										<label for="b_category4" style="margin-left: 5px;">
-											<span>상주청소</span>
+										<label for="b_category_id4">
+											<b>상주청소</b>
 										</label>
 									</li>
 									<li>
-										<label for="b_category5" style="margin-left: 7px;">
-											<span>빌딩청소</span>
+										<label for="b_category_id5">
+											<b>빌딩청소</b>
 										</label>
 									</li>
 									<li>
-										<label for="b_category6" style="margin-left: 8px;">
-											<span>방역</span>
+										<label for="b_category_id6">
+											<b>방역청소</b>
 										</label>
 									</li>
 								</ul>
-								<label class="error" for="b_category"></label>
+								<div class="category_e_zone">
+									<label class="error" for="b_category" style="margin-top: -5px;"></label>
+								</div>
 							</div>
 						</div>
 					</td>
@@ -677,22 +754,28 @@
 								<input type="button" class="post_button" onclick="sample6_execDaumPostcode()" 
 								       value="우편번호 찾기"><br>
 								<input type="text" name="b_address_road" id="sample6_address" class="address_input"  
-								       placeholder=" 지번주소로 꼭 선택해주세요!" value="<%=boardVO.getB_address_road() %>" style="margin-top:22px;"><br>
+								       placeholder=" 지번주소로 꼭 선택해주세요!" style="margin-top:22px;" 
+								       value="<%=masterVO.getB_address_road() %>"><br>
 								<label class="error" id="addr" for="sample6_address" style="margin-left: -110px;"></label><br>
 								<input type="text" name="b_address_detail" id="sample6_detailAddress"  
-								       class="address_input" value="<%=boardVO.getB_address_detail() %>" placeholder=" 상세주소"><br>
+								       class="address_input" placeholder=" 상세주소"
+								       value="<%=masterVO.getB_address_detail() %>"><br>
 								<label class="error" id="d_addr" for="sample6_detailAddress" style="margin-left: -100px;"></label><br>
 								<input type="text" id="sample6_extraAddress" class="address_input"
 									   placeholder=" 참고항목">
 								<!-- 다음 주소 API 끝 -->
 							</div>
 							<div class="address_div_default_left">
+								<b>우편번호</b><br>
+								<input type="text" class="post_my" value="01806" readonly="readonly"><br>
 								<b>지번주소</b><br>
-								<input type="text" name="b_address_road" id="customer_addr_road"
-								       value="" readonly="readonly" disabled="disabled"><br>
+								<input type="text" class="post_my_addr" name="b_address_road" id="customer_addr_road"
+								       value="<%=masterVO.getM_address_road() %>" readonly="readonly" disabled="disabled"><br>
 								<b>상세주소</b><br>
-								<input type="text" name="b_address_detail" id="customer_addr_detail"
-								       value="" readonly="readonly" disabled="disabled">
+								<input type="text" class="post_my_addr" name="b_address_detail" id="customer_addr_detail"
+								       value="<%=masterVO.getM_address_detail() %>" readonly="readonly" disabled="disabled"><br>
+								<b>참고항목</b><br>
+								<input type="text" class="post_my_addr" id="customer_addr_detail" value="단독 1층" readonly="readonly">      
 							</div>
 							<div class="address_div_right">
 								<div class="kakao_map" id="map"></div>
@@ -715,7 +798,8 @@
 					</th>
 					<td align="center">
 						<div class="money_div">
-							<input type="number" name="b_money" id="b_money_id" placeholder=" 예) 10000, 숫자만 입력"/>
+							<input type="number" name="b_money" id="b_money_id" placeholder=" 예) 10000, 숫자만 입력"
+							       value="<%=masterVO.getB_money() %>"/>
 							<b style="font-size: 20px;">원</b><br>
 							<label class="error" for="b_money_id" style="margin-left: -420px;"></label>
 						</div>
@@ -730,7 +814,7 @@
 					<th>청소 시작일*</th>
 					<td align="center">
 						<div class="start_div">
-							<input type="date" name="b_start" id="b_start_id"/><br>
+							<input type="date" name="b_start" id="b_start_id" value="<%=masterVO.getB_start()%>"/><br>
 							<label class="error" for="b_start_id" style="margin-left: -428px;"></label>
 						</div>
 					</td>
@@ -739,7 +823,7 @@
 					<th>청소 종료일*</th>
 					<td align="center">
 						<div class="end_div">
-							<input type="date" name="b_end" id="b_end_id"/><br>
+							<input type="date" name="b_end" id="b_end_id" value="<%=masterVO.getB_end()%>"/><br>
 							<label class="error" for="b_end_id" style="margin-left: -428px;"></label>
 						</div>
 					</td>
@@ -749,7 +833,8 @@
 					<td align="center">
 						<div class="detail_div">
 							<input type="text" name="b_d_detail" id="b_d_detail_id" 
-							       placeholder=" 예) 13시 ~ 15시, 정확한 시간은 매칭 후 협의"/><br>
+							       placeholder=" 예) 13시 ~ 15시, 정확한 시간은 매칭 후 협의"
+							       value="<%=masterVO.getB_d_detail() %>" /><br>
 							<label class="error" for="b_d_detail_id" style="margin-left: -345px;"></label>
 						</div>
 					</td>
@@ -764,7 +849,8 @@
 					<td align="center">
 						<div class="subject_div">
 							<input type="text" name="b_subject" id="b_subject_id" 
-							       placeholder=" 예) 다음주 이사로 인해 입주청소가 필요합니다!"/><br>
+							       placeholder=" 예) 다음주 이사로 인해 입주청소가 필요합니다!"
+							       value="<%=masterVO.getB_subject() %>" /><br>
 							<label class="error" for="b_subject_id" style="margin-left: -100px;"></label>
 						</div>
 					</td>
@@ -780,7 +866,7 @@
 							                            (홈페이지 주소,블로그,SNS,전화번호,이메일 등)
 							                          - 욕설이나 음란성 언어를 절대로 적지 마세요!
 							                             
-							                          * 위반시 게시글 삭제나 이용 제한이 있을 수 있습니다."></textarea><br>
+							                          * 위반시 게시글 삭제나 이용 제한이 있을 수 있습니다."><%=masterVO.getB_content()%></textarea><br>
 							<label class="error" for="textarea_id" style="margin-left: -100px;"></label>
 						</div>
 					</td>
@@ -827,16 +913,11 @@
 		</div>
 	</form>
 </div>
-<div class="Top_div">
-		<button class="top">Top</button>
-</div>
 <!-- 다음 주소 API 시작 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- 다음 주소 API 끝 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3cbd93568d5ed61c52a1851035124ae3&libraries=services"></script>
 <script>
-	var default_addr = '<%=boardVO.getB_address_road() %>';
-	
 	function sample6_execDaumPostcode() {
 	    new daum.Postcode({
 	        oncomplete: function(data) {
@@ -927,49 +1008,28 @@
 		        }
 		    }).open();
 		}
-	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new kakao.maps.LatLng(37.505287, 127.023993), // 지도의 중심좌표 (강남구 기준)
 	        level: 3 // 지도의 확대 레벨
 	    };  
 		
-		// 지도를 생성합니다    
-    	var map = new kakao.maps.Map(mapContainer, mapOption); 
-    	
-    	// 주소-좌표 변환 객체를 생성합니다
-    	var geocoder = new kakao.maps.services.Geocoder();
-    	
-    	// 주소로 좌표를 검색합니다
-    	geocoder.addressSearch(default_addr, function(result, status) {
-    	
-    	    // 정상적으로 검색이 완료됐으면 
-    	     if (status === kakao.maps.services.Status.OK) {
-    	
-    	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-    	
-    	        // 결과값으로 받은 위치를 마커로 표시합니다
-    	        var marker = new kakao.maps.Marker({
-    	            map: map,
-    	            position: coords
-    	        });
-    			
-    	        var iwContent = '';
-    	        	iwContent += '<div class="info"><b>여기가 맞나요?</b></div>' 
-			    
-			    	var infowindow = new kakao.maps.InfoWindow({
-			      		map: map, 
-			       		content : iwContent
-			    	});
-    	        
-    	        infowindow.open(map, marker);
-    	        	
-    	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    	        map.setCenter(coords);
-    	    } 
-    	});
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
 </script>
 <script> 
+
+var fileTarget = $('#img_input'); 
+
+fileTarget.on('change', function(){ 
+	if(window.FileReader){ 
+		var filename = $(this)[0].files[0].name; 
+	} else { 
+		var filename = $(this).val().split('/').pop().split('\\').pop(); 
+	}
+	$(this).siblings('.upload_name').val(filename); 
+}); 
+
 function readURL(input) {
 	 if (input.files && input.files[0]) {
 	  var reader = new FileReader();

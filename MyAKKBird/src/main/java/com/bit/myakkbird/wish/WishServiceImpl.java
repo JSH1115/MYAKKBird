@@ -19,5 +19,45 @@ public class WishServiceImpl implements WishService {
 		
 		return result;
 	}
+
+	@Override
+	public int checkMemberService(String m_id) {
+		WishMapper wishMapper = sqlSession.getMapper(WishMapper.class);
+		int result = wishMapper.checkMember(m_id);
+		
+		return result;
+	}
+
+	@Override
+	public int checkWorkerService(String m_id) {
+		WishMapper wishMapper = sqlSession.getMapper(WishMapper.class);
+		int result = wishMapper.checkWorker(m_id);
+		
+		return result;
+	}
+
+	@Override
+	public int checkLikeReService(int b_num, String m_id) {
+		WishMapper wishMapper = sqlSession.getMapper(WishMapper.class);
+		int result = wishMapper.checkLikeRe(b_num, m_id);
+		
+		return result;
+	}
+
+	@Override
+	public int insertLikeService(int b_num, String m_id) {
+		WishMapper wishMapper = sqlSession.getMapper(WishMapper.class);
+		int result = wishMapper.insertLike(b_num, m_id);
+		
+		return result;
+	}
+
+	@Override
+	public int deleteLikeService(int b_num, String m_id) {
+		WishMapper wishMapper = sqlSession.getMapper(WishMapper.class);
+		int result = wishMapper.deleteLike(b_num, m_id);
+		
+		return result;
+	}
 	
 }

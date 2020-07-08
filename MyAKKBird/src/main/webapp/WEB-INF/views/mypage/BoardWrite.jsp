@@ -23,19 +23,19 @@
 			
 			$('#submit_btn').click(function (event) {
 				
-				if(heart == 48) {
+				if(heart == 0) {
 					 
 					Swal.fire({
-						  title: '<strong>하트가 부족해요..ㅠㅠ</strong>',
+						  title: '하트가 부족해요..ㅠㅠ',
 						  html:
-						    '<span>하트♡를 충전해야만 게시글을 쓸 수 있어요!</span>',
-						  confirmButtonColor: '#37B04B',
+						    '<span>하트♡를 충전해야만 게시글을 쓸 수 있어요!</span><br>',
+						  confirmButtonColor : '#37B04B',
 						  confirmButtonText:
-						    '<a href="./pay.ak" style="color:white; text-decoration: none; padding: 20px;">하트충전</a>',
+							'<a href="./pay.ak" style="color:white; text-decoration: none; padding: 20px;">하트충전</a>',
 					})
 					
 					return false;
-				}
+				} 
 				
 				var vaildator = $('#board_form_id').validate({
 					rules: {
@@ -108,19 +108,6 @@
 			});
 		});
 		
-		$(document).ready(function(){ 
-			var fileTarget = $('#img_input'); 
-			
-			fileTarget.on('change', function(){ 
-				if(window.FileReader){ 
-					var filename = $(this)[0].files[0].name; 
-				} else { 
-					var filename = $(this).val().split('/').pop().split('\\').pop(); 
-				}
-				$(this).siblings('.upload_name').val(filename); 
-			}); 
-		});
-
 		$(document).ready(function() {
 			
 			$('.btn_default_addr').click(function() {
@@ -675,7 +662,7 @@
 								<ul>
 									<li>
 										<input type="radio" name="b_category" class="b_cate" 
-										       id="b_category_id1" value="A">
+										       id="b_category_id1" value="A" checked="checked">
 										<label for="b_category_id1">
 											<div class="b_category1">
 											</div>
@@ -1037,6 +1024,18 @@
 		
 </script>
 <script> 
+
+var fileTarget = $('#img_input'); 
+
+fileTarget.on('change', function(){ 
+	if(window.FileReader){ 
+		var filename = $(this)[0].files[0].name; 
+	} else { 
+		var filename = $(this).val().split('/').pop().split('\\').pop(); 
+	}
+	$(this).siblings('.upload_name').val(filename); 
+});
+
 function readURL(input) {
 	 if (input.files && input.files[0]) {
 	  var reader = new FileReader();

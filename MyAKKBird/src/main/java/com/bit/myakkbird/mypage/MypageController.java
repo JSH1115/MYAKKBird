@@ -83,7 +83,7 @@ public class MypageController {
 	public String BoardLoad(HttpSession session, MemberVO memberVO, Model model) {
 		
 		String m_id = (String)session.getAttribute("m_id");
-		System.out.println(m_id);
+		System.out.println("BoardLoad 세션 아이디 : " + m_id);
 		ArrayList<MasterVO> boardList = 
 				boardService.clientBoardListService(m_id);
 		model.addAttribute("boardList", boardList);
@@ -94,13 +94,44 @@ public class MypageController {
 	
 	//게시물 수정 전 기본정보 불러오기
 	@RequestMapping(value="/boardUpdate.ak")
-	public String boardUpdate(int b_num, Model model) {
+	public String boardUpdate(HttpSession session, int b_num, Model model) {
 		
-		BoardVO boardVO = boardService.updateCallService(b_num);
-		model.addAttribute("boardVO", boardVO);
+		String m_id = (String)session.getAttribute("m_id");
+		MasterVO masterVO = 
+				boardService.updateCallService(b_num, m_id);
+		
+		model.addAttribute("masterVO", masterVO);
 		
 		return "mypage/BoardUpdate";
 	}
+	
+	//게시물 수정하기
+	@RequestMapping(value="/board_updateProcess.ak")
+	public String boardUpdateProcess(BoardVO boardVO) throws Exception {
+		MultipartFile mf = boardVO.getFile();
+		String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
+		//지정한 위치에 파일 저장        
+        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
+            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
+			String originalFileExtension = 
+					mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+			String storedFileName = 
+					UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+        	
+			mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
+			boardVO.setB_org_file(mf.getOriginalFilename());
+			boardVO.setB_up_file(storedFileName);
+        } else { // 첨부된 파일이 없을때
+			boardVO.setB_org_file("");
+			boardVO.setB_up_file("");
+		}
+        
+        boardService.updateBoardService(boardVO);
+        
+        return "home";
+		
+	}
+	
 	
 	//게시글 자세히 보기
 	@RequestMapping(value="/BoardDetail.ak") 

@@ -676,6 +676,33 @@
 		.end_icon {
 			margin-top: 10px;
 		}
+		
+		.modal_join {
+			font-size: 15px;
+			text-align: center;
+		}
+		
+		.mj_icon1 {
+			margin-left: -5px;
+		}
+		
+		.mj_icon3 {
+			margin-left: -11px;
+		}
+		
+		.mj_txt {
+			margin-left: 10px;
+		}
+		
+		.mw_img {
+			width: 60px;
+			height: 60px;
+		}
+		
+		.mw_txt {
+			font-size: 20px;
+			margin-left: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -846,7 +873,7 @@ function timer() {
 	  }
 	}).then((result) => {
 	  if (result.dismiss === Swal.DismissReason.timer) {
-	    console.log('I was closed by the timer')
+	    console.log('로딩 완료')
 	  }
 	})
 }
@@ -965,7 +992,7 @@ function addmarker(index, listData) {
 
 var gender = '';
 
-function list_index(index, item, startNo, se_id) {
+function list_index(index, item, startNo) {
 	var output = '';
 	var hot_b = '';
 	
@@ -981,37 +1008,10 @@ function list_index(index, item, startNo, se_id) {
 		gender = '여';
 	}
 	
-	var b_num = item.b_num;
-	var bbb;
-	
-	$.ajax({
-		url: '/myakkbird/check_like.ak?b_num='+b_num+'&m_id='+se_id+'',
-		type: 'GET',
-		dataType: "json",
-		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-		success: function(data) {
-			var d = data;
-			
-			switch(data) {
-				case 0 :
-					bbb = '<b>가</b>';
-					$('#f_id').html(bbb);
-				break;
-				case 1 :
-					bbb = '<b>sk</b>';
-					$('#f_id').html(bbb);
-				break;
-			}
-		},
-		error:function(){
-	        alert("ajax통신 실패!!!");
-	    }
-	});
-	
 	var board_day = moment(item.b_date).format("M월 D일 작성");
 	
-	output += '<li data-no='+(index+startNo+1)+' class="list_li">'
-	output += '<div class="post" id="post_id">'
+	output += '<li data-no='+(index+startNo+1)+'>'
+	output += '<div class="post" id="post_id'+item.b_num+'">'
 	output += '    <div class="post_top">'
 	output += '        <strong>'+item.b_subject+'</strong>'
   	output += '            <span class="post_top_span">'+category_d+''	
@@ -1026,7 +1026,7 @@ function list_index(index, item, startNo, se_id) {
   	output += '    <div class="post_right">'
   	output += '        <b class="post_r_sub">'+item.m_name.substr(0, 1)+'O'+item.m_name.substr(2, 3)+'</b>'
   	output += '        <span class="post_r_span">'+gender+'</span>'
-  	output += '        <a class="favorites" id="f_id"></a><br>'
+  	output += '        <a class="favorites" id="f_id'+item.b_num+'" onclick="check_member('+item.b_num+')"></a><br>'
   	output += '        <span class="post_r_span">'+item.b_address_road+'</span><br>'
   	output += '        <span class="post_r_span">'+item.m_age+'세 | </span>'
   	output += '        <span class="post_r_span">희망시급 '+item.b_money+'원</span><br>'
@@ -1091,12 +1091,171 @@ function scroll_Map() {
 	});
 }
 
+var se_id = '<%=m_id %>';
+
+function like_check(item, se_id) {
+	
+	var b_num = item.b_num;
+	var c_heart = '';
+	
+	$.ajax({
+		url: '/myakkbird/check_like.ak?b_num='+b_num+'&m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			
+			if(data === 0) {
+				c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
+			} else {
+				c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
+			}
+			
+			$('#f_id'+item.b_num).html(c_heart);
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+	
+}
+
+function check_member(b_num) {
+	
+	$.ajax({
+		url: '/myakkbird/check_member.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data === 0) {
+				
+				Swal.fire({
+					  title: '<strong>5분안에 회원가입하고</strong>',
+					  html:
+					    '<div class="modal_join">' +
+					    '    <svg class="mj_icon1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>' +
+					    '    <b class="mj_txt">고객의 다양한 게시물을 확인!</b><br>' +
+					    '    <svg class="mj_icon2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>' +
+					    '    <b class="mj_txt">회원이 작성한 리얼 후기 확인!</b><br>' +
+					    '    <svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
+					    '</div>',
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '<a href="./joinselect.ak" style="color:white; text-decoration: none; padding: 20px;">회원가입</a>',
+				})
+				
+			} else {
+				
+				check_worker(b_num);
+				
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+	
+}
+
+function check_worker(b_num) {
+	
+	$.ajax({
+		url: '/myakkbird/check_worker.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data === 0) {
+				Swal.fire({
+					  html: 
+				        '<img class="mw_img" src="./resources/image/bird_profile.png">' +
+				        '<b class="mw_txt">근로자만 찜하기를 할 수 있어요!</b>',
+					  timer: 1000,
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '<span style="color:white">확인</span>'
+				})
+			} else {
+				
+				like_check_re(b_num);
+				
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function like_check_re(b_num) {
+	
+	$.ajax({
+		url: '/myakkbird/check_likeRe.ak?b_num='+b_num+'&m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data === 0) {
+				
+				insert_like(b_num);
+				
+			} else {
+
+				delete_like(b_num);
+				
+			}
+			
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function insert_like(b_num) {
+	
+	$.ajax({
+		url: '/myakkbird/insert_like.ak?b_num='+b_num+'&m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			$('#f_id'+b_num).empty();
+			var c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+			$('#f_id'+b_num).html(c_heart);
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function delete_like(b_num) {
+	
+	$.ajax({
+		url: '/myakkbird/delete_like.ak?b_num='+b_num+'&m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			$('#f_id'+b_num).empty();
+			var c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
+			$('#f_id'+b_num).html(c_heart);
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+
 $(document).ready(function(){
 	
 	timer();
 	
 	var addr = '<%=addr %>';
-	var se_id = '<%=m_id %>';
 	
 	newMap();
 	scroll_Map();
@@ -1124,7 +1283,8 @@ $(document).ready(function(){
 					} 
 					
 				    category_list(item);
-				    list_index(index, item, startNo, se_id);
+				    list_index(index, item, startNo);
+				    like_check(item, se_id);
 					count_txt(index, startNo);
 					
 				    var listData = new Array();
@@ -1179,6 +1339,7 @@ $(document).ready(function(){
 					
 				    category_list(item);
 				    list_index(index, item, startNo, se_id);
+				    like_check(item, se_id);
 				    count_txt(index, startNo);
 				   	
 				    var listData = new Array();
@@ -1205,9 +1366,6 @@ $(document).ready(function(){
 		});
 		event.preventDefault();
 	}
-});
-	
-$(document).ready(function(){	
 	
 	$(document).on('click', '#search_data', function(event){
 		var params = $('#search_form').serialize();
@@ -1243,6 +1401,7 @@ $(document).ready(function(){
 			    	
 			    	category_list(item);
 				    list_index(index, item, startNo);
+				    like_check(item, se_id);
 				    count_txt(index, startNo);
 				    
 			       	var listData = new Array();
@@ -1301,6 +1460,7 @@ $(document).ready(function(){
 					
 				    category_list(item);
 				    list_index(index, item, startNo);
+				    like_check(item, se_id);
 				    count_txt(index, startNo);
 				    
 				    var listData = new Array();
