@@ -33,7 +33,7 @@
 	    <property name="host" value="smtp.naver.com" />
         <property name="port" value="465" />
         <property name="username" value="ccomajun@naver.com" />
-        <property name="password" value="wjsghwns2@" />
+        <property name="password" value="1925ghwnswjs1!" />
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.starttls.enable">true</prop>

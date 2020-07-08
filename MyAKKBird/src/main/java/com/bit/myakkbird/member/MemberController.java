@@ -208,36 +208,35 @@ public class MemberController {
 		
 		//�쉶�썝媛��엯
 		@RequestMapping(value = "/joininput.ak") 
-		public String insertMember(MemberVO memberVO, HttpServletResponse response) throws Exception { 
+		public String insertMember(MemberVO memberVO, HttpServletResponse response) 
+			throws Exception { 
 			String cs = "C";
 			String wk = "E";
-			System.out.println("vo.getFile()=" + memberVO.getFile());
-			if(memberVO.getFile() == null) {
-				if(memberVO.getM_type()== cs) {
-				
-					String dfimg = "./resources/image/crocodile_logo.png";
-					memberVO.setM_photo(dfimg);
-				}else if(memberVO.getM_type() == wk) {
-					String dfimg = "./resources/image/bird_logo.png";
-					memberVO.setM_photo(dfimg);
-					
-				}
-			
-			}else {
-			MultipartFile mf = memberVO.getFile();
-			String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
-			System.out.println("mf=" + mf);
-			String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-			//吏��젙�븳 二쇱냼�뿉 �뙆�씪 ���옣    
-	        if(mf.getSize() != 0) {            
-	            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));     
-	        	mf.transferTo(new File(uploadPath+storedFileName)); //�삁�쇅泥섎━ 湲곕뒫
-	        }
-			memberVO.setM_photo(storedFileName);
 
-			}
+
+			MultipartFile mf = memberVO.getFile();
+			String uploadPath = "C:\\Project156\\upload\\";
+			System.out.println(memberVO.getM_type());
+			//지정한 위치에 파일 저장        
+	        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
+	            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
+				String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+				String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	        	mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
+	        	memberVO.setOrg_file(mf.getOriginalFilename());
+	        	memberVO.setM_photo(storedFileName);
+	        }
+			else { // 첨부된 파일이 없을때
 		
+				if(memberVO.getM_type().equals(cs)) {
+					String m_photo = "./resources/image/crocodile_profile.png";
+					memberVO.setM_photo(m_photo);
+				}else if(memberVO.getM_type().equals(wk)) {
+					String m_photo = "./resources/image/bird_profile.png";
+					memberVO.setM_photo(m_photo);
+				}
+			}
+	        System.out.println(memberVO.getM_photo());
 			
 			int res = memberService.insertMember(memberVO);
 		

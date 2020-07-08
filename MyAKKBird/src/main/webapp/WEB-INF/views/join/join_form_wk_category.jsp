@@ -123,39 +123,39 @@
 <br/>
 <div>
 <div class="ccheck">
-	<input type="checkbox" id="check_test" name="m_category" value="a">
+	<input type="checkbox" id="check_test" name="m_category" value="A">
 	<label for="check_test">
 		<div class="chk_img">정기 청소</div>
 	</label>
 	
 	</div>
 <div class="ccheck">
-	<input type="checkbox" id="check_test2" name="m_category" value="b">
+	<input type="checkbox" id="check_test2" name="m_category" value="B">
 	<label for="check_test2">
 		<div class="chk2_img">특수 장비 청소</div>
 	</label>
 </div>
 <div class="ccheck">
-	<input type="checkbox" id="check_test3" name="m_category" value="c">
+	<input type="checkbox" id="check_test3" name="m_category" value="C">
 	<label for="check_test3">
 		<div class="chk3_img">입주 청소</div>
 	</label>
 </div>
 <br>
 <div class="ccheck">
-	<input type="checkbox" id="check_test4" name="m_category"value="d">
+	<input type="checkbox" id="check_test4" name="m_category"value="D">
 	<label for="check_test4">
 		<div class="chk4_img">상주 청소</div> 
 	</label>
 </div>
 <div class="ccheck">
-	<input type="checkbox" id="check_test5" name="m_category"value="e">
+	<input type="checkbox" id="check_test5" name="m_category"value="E">
 	<label for="check_test5">
 		<div class="chk5_img">빌딩 청소</div>
 	</label>
 </div>
 <div class="ccheck">
-	<input type="checkbox" id="check_test6" name="m_category"value="f">
+	<input type="checkbox" id="check_test6" name="m_category"value="F">
 	<label for="check_test6">
 		<div class="chk6_img">방역</div>
 	</label>

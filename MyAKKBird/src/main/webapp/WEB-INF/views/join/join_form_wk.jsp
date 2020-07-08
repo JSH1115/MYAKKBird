@@ -39,6 +39,67 @@ for(int i=0;i<str.length;i++){
   border-spacing: 0 10px;
 }
 	input:focus {outline:none;}
+	.tex{
+		    height: 50px;
+    padding: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #37b04b;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 13px;
+
+    font-weight: 500;
+    color: #000;
+    width: 80%;
+    -webkit-transition: border .3s ease;
+    -o-transition: border .3s ease;
+    transition: border .3s ease;
+	}
+	
+	﻿﻿
+.fileUploadBtn {
+   display: inline-block;
+   padding: 0px 2px;
+   vertical-align: middle;
+   background-color: #e5e5e5;
+   cursor: pointer;
+   border: 1px solid #4f4f4f;
+   border-radius: 2px;
+ }
+
+ .fileNmBox {
+   width: calc(100% - 70px);
+   height: 20px;
+   display: inline-block;
+   vertical-align: middle;
+   background-color: #e6e6e6;
+   border: 1px solid #CCCCCC;
+ }
+
+ .btnn{
+ 	margin:5px; 
+	padding: 10px; 
+	border-radius:5px;
+	border:0px;
+	background: #37b04b;
+	text-decoration: none;
+	color:white;
+	}
+	 .btn1{
+ 	margin:5px; 
+	padding: 5px; 
+	border-radius:5px;
+	border:0px;
+	background: #37b04b;
+	text-decoration: none;
+	color:white;
+	}
+ 	.addrborder{
+ 	border: 1px solid #37b04b;
+ 	border-radius:5px;
+ 	margin:1px; 
+ 	}
 </style>
 
 <script type="text/javascript">
@@ -131,6 +192,25 @@ $(document).ready(function(){
 	});
 
 })
+$(document).ready(function() {
+
+   var strData = $('input[name=va]').val();
+
+    var arrDay = strData.split(',');
+
+   
+
+    $('.m_category').prop('checked', false); // 일단 모두 uncheck
+
+   
+
+    for (var nArrCnt in arrDay) {
+
+                    $("input[name=m_category][value="+arrDay[nArrCnt]+"]").prop("checked",true);
+
+    }    
+
+});
 
 
 </script>
@@ -154,47 +234,50 @@ $(document).ready(function(){
 <tr>
 <td>
 <img class="img-responsive center-block" src="resources/image/bird_profile.png"
-	style="height:100px;width:100px">
+	style="height:100px;width:100px" >
 </td>
 </tr>
 <tr>
-	<td><input type="file" name="file" style=" margin-left: auto;
+	<td><b>프로필 사진</b></td>
+</tr>
+<tr>
+    	<td><input type="file" name="file" style=" margin-left: auto;
     margin-right: auto;"/></td>
 </tr>
 <tr>
 	<td><b>아이디</b></td>
 </tr>
 <tr>
-	<td><input type="text" id="m_id" name="m_id" placeholder="내용을 입력해주세요"></td>
+	<td><input class="tex" type="text" id="m_id" name="m_id" placeholder="아이디를 입력해주세요"></td>
 </tr>
 <tr>
 	<td><b>비밀번호</b></td>
 </tr>
 <tr>
-	<td><input type="password" id="m_password"name="m_password" placeholder="내용을 입력해주세요"></td>
+	<td><input class="tex" type="password" id="m_password"name="m_password" placeholder="비밀번호를 입력해주세요"></td>
 </tr>
 <tr>
-	<td><b>비밀번호 재입력</b></td>
+	<td><b>비밀번호 확인</b></td>
 </tr>
 <tr>
-	<td><input type="password" id="m_password2" name="m_password2" placeholder="내용을 입력해주세요">
-		<div class="alert alert-success" id="alert-success" 
-		>비밀번호가 일치합니다.</div> 
-		<div class="alert alert-danger" id="alert-danger"
-		>비밀번호가 일치하지 않습니다.</div>
+	<td><input class="tex" type="password" id="m_password2" name="m_password2" placeholder="비밀번호룰 입력해주세요">
+		<div id="alert-success"  
+		><input type="text" style="border:0px;color:green;"size="17px" readonly value="비밀번호가 일치합니다"></div> 
+		<div id="alert-danger">
+		<input type="text" style="border:0px;color:red;"size="23px" readonly value="비밀번호가 일치하지 않습니다"></div>
 	</td>
 </tr>
 <tr>
 	<td><b>이름</b></td>
 </tr>
 <tr>
-	<td><input type="text"  id="m_name" name="m_name" placeholder="내용을 입력해주세요"></td>
+	<td><input class="tex" type="text"  id="m_name" name="m_name" placeholder="이름을 입력해주세요"></td>
 </tr>
 <tr>
 	<td><b>나이</b></td>
 </tr>
 <tr>
-	<td><input type="text" name="m_age" placeholder="내용을 입력해주세요"></td>
+	<td><input class="tex" type="text" name="m_age" placeholder="나이을 입력해주세요"></td>
 </tr>
 <tr>
 	<td><b>성별</b></td>
@@ -207,16 +290,16 @@ $(document).ready(function(){
 	<td><b>이메일</b></td>
 </tr>
 <tr>
-	<td><input type="text"  id="m_email" name="m_email" placeholder="내용을 입력해주세요">
-		<input type="button" value="이메일인증" onClick='mail_check()'>
-		<input type="text" id="mailCheck" value="인증안됌" style="background-color:transparent;border:0;width:70px;" readonly>
+	<td><input class="tex" type="text"  id="m_email" name="m_email" placeholder="이메일을 입력해주세요">
+		<br/><input class="btn1" type="button" value="이메일인증" onClick='mail_check()'>
+		<input type="text" id="mailCheck" value="인증필요" style="background-color:transparent;border:0;width:70px;color:red;" readonly>
 	</td>
 </tr>
 <tr>
 	<td><b>핸드폰</b></td>
 </tr>
 <tr>
-	<td><input type="text"  id="m_phone" name="m_phone" placeholder="내용을 입력해주세요"></td>
+	<td><input class="tex" type="text"  id="m_phone" name="m_phone" placeholder="번호를 입력해주세요"></td>
 </tr>
 <tr>
 	<td><b>카테고리</b></td>
@@ -230,20 +313,30 @@ $(document).ready(function(){
 		<input type="checkbox"  name="m_category" value="F">방역</td>
 </tr>
 <tr>
+	<td><b>주소</b></td>
+</tr>
+<tr>
 	<td>
-		<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="m_postcode" placeholder="우편번호"><br>
-		<input type="text" id="m_address_road" name="m_address_road"placeholder="주소"><br>
-		<input type="text" id="m_address_detail" name="m_address_detail" placeholder="상세주소"><br>
-		<input type="text" id="m_extraAddress" placeholder="참고항목">
+		<input type="text"class="addrborder" id="m_postcode" placeholder="우편번호">
+		<input type="text"class="addrborder" id="m_address_road" name="m_address_road"placeholder="주소"><br>
+		<input type="text"class="addrborder" id="m_address_detail" name="m_address_detail" placeholder="상세주소">
+		<input type="text"class="addrborder" id="m_extraAddress" placeholder="참고항목"><br/>
+		<input type="button" class="btn1"onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
 	</td>
 </tr>
 
 
 </table>
 <br/>
-<input type="button" id="join" value="회원가입" >
-
+<input type="button" id="join" class="btnn"value="회원가입" >
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 </form>
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">

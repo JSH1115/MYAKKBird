@@ -43,6 +43,7 @@ public class MemberServiceImpl implements MemberService{
 		int res = memberMapper.insertMember(memberVO);
 		
 		return res;
+	
 	}
 
 	@Override

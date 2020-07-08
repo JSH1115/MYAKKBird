@@ -26,7 +26,7 @@
 	</update>
 	
 	<!-- 회원가입 -->
-	<insert id="insertMember" parameterType="com.bit.myakkbird.member.MemberVO">
+	<insert id="insertMember" parameterType="MemberVO">
 		INSERT INTO member (m_id,m_password,m_photo,m_name,m_age,m_gender,m_address_road,m_address_detail,m_email,m_phone,m_category,m_type) VALUES 
 			(#{m_id},#{m_password},#{m_photo},#{m_name},#{m_age},#{m_gender},#{m_address_road},#{m_address_detail},#{m_email},#{m_phone},#{m_category},#{m_type})
 	</insert>
