@@ -50,51 +50,51 @@ public class MemberController {
 	}
 	
 	// parameter로 받은 id의 프로필창으로 이동
-		@RequestMapping("/profile.ak")
-		public String profile(String id, Model model, HttpSession session) throws Exception {
-			// 해당 id에 대한 모든 정보
-			MemberVO memberVO = memberService.profile(id);
-			// 해당 id에 대한 리뷰
-			List<ReviewVO> reviewList = reviewService.getReviewList(id);
-			
-			if (reviewList.size() > 0) {
-				String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); // 총 평점
-				model.addAttribute("avgStar", avgStar);
-			}
-			model.addAttribute("memberVO", memberVO);
-			model.addAttribute("reviewList", reviewList);
-			
+	@RequestMapping("/profile.ak")
+	public String profile(String id, Model model, HttpSession session) throws Exception {
+		// 해당 id에 대한 모든 정보
+		MemberVO memberVO = memberService.profile(id);
+		// 해당 id에 대한 리뷰
+		List<ReviewVO> reviewList = reviewService.getReviewList(id);
 		
-			// 리뷰작성 버튼을 위한 해당 id와 매칭된 적 있는 id 찾기
-			if (memberVO.getM_type().equals("C")) {
-				String matchedPpl = acceptService.isMatched(id);
-				model.addAttribute("matchedPpl", matchedPpl);
-				
-				// 현재 사용자가 리뷰 작성한 적 있는지 체크하기 (한사람당 한번만 작성가능하도록) 
-				String m_id = (String) session.getAttribute("id");
-				HashMap<String, String> hashmap = new HashMap<String, String>();
-				hashmap.put("r_id", id);
-				hashmap.put("m_id", m_id);
-				int hasWritten = reviewService.hasWritten(hashmap);
-				model.addAttribute("hasWritten", hasWritten);			
-			} else if (memberVO.getM_type().equals("E")){
-				System.out.println("여기 더 해야돼");
-				
-				//여기서부터 >>> 07.03 조승주.
-				String matchedPpl = acceptService.isMatched(id);
-				model.addAttribute("matchedPpl", matchedPpl);
-				// 현재 사용자가 리뷰 작성한 적 있는지 체크하기 (한사람당 한번만 작성가능하도록) 
-				String m_id = (String) session.getAttribute("id");
-				HashMap<String, String> hashmap = new HashMap<String, String>();
-				hashmap.put("r_id", id);
-				hashmap.put("m_id", m_id);
-				int hasWritten = reviewService.hasWritten(hashmap);
-				model.addAttribute("hasWritten", hasWritten);
-				//<<여기까지 에러때매 임시로 집어 넣어둔 코드 
-			}
-
-			return "member/mypage_profile3";
+		if (reviewList.size() > 0) {
+			String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); // 총 평점
+			model.addAttribute("avgStar", avgStar);
 		}
+		model.addAttribute("memberVO", memberVO);
+		model.addAttribute("reviewList", reviewList);
+		
+	
+		// 리뷰작성 버튼을 위한 해당 id와 매칭된 적 있는 id 찾기
+		if (memberVO.getM_type().equals("C")) {
+			String matchedPpl = acceptService.isMatched(id);
+			model.addAttribute("matchedPpl", matchedPpl);
+			
+			// 현재 사용자가 리뷰 작성한 적 있는지 체크하기 (한사람당 한번만 작성가능하도록) 
+			String m_id = (String) session.getAttribute("id");
+			HashMap<String, String> hashmap = new HashMap<String, String>();
+			hashmap.put("r_id", id);
+			hashmap.put("m_id", m_id);
+			int hasWritten = reviewService.hasWritten(hashmap);
+			model.addAttribute("hasWritten", hasWritten);			
+		} else if (memberVO.getM_type().equals("E")){
+			System.out.println("여기 더 해야돼");
+			
+			//여기서부터 >>> 07.03 조승주.
+			String matchedPpl = acceptService.isMatched(id);
+			model.addAttribute("matchedPpl", matchedPpl);
+			// 현재 사용자가 리뷰 작성한 적 있는지 체크하기 (한사람당 한번만 작성가능하도록) 
+			String m_id = (String) session.getAttribute("id");
+			HashMap<String, String> hashmap = new HashMap<String, String>();
+			hashmap.put("r_id", id);
+			hashmap.put("m_id", m_id);
+			int hasWritten = reviewService.hasWritten(hashmap);
+			model.addAttribute("hasWritten", hasWritten);
+			//<<여기까지 에러때매 임시로 집어 넣어둔 코드 
+		}
+
+		return "member/mypage_profile3";
+	}
 		
 		// 프로필 수정 (ajax)
 		@RequestMapping(value = "modifyProfileProcess.ak", produces = "application/json;charset=UTF-8")

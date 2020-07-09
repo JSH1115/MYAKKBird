@@ -107,7 +107,8 @@
 	<insert id="insertBoard" parameterType="BoardVO">
 		INSERT INTO BOARD(m_id, b_category, b_money, b_start, b_end, b_d_detail, b_address_road, 
 		                  b_address_detail, b_subject, b_content, b_org_file, b_up_file)
-		VALUES(#{m_id}, #{b_category}, #{b_money}, #{b_start}, #{b_end}, #{b_d_detail}, #{b_address_road},
+		VALUES(#{m_id
+		}, #{b_category}, #{b_money}, #{b_start}, #{b_end}, #{b_d_detail}, #{b_address_road},
 		       #{b_address_detail}, #{b_subject}, #{b_content}, #{b_org_file}, #{b_up_file})
 	</insert>
 	

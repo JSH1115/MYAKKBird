@@ -15,7 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.myakkbird.accept.AcceptService;
+import com.bit.myakkbird.accept.AcceptVO;
 import com.bit.myakkbird.mainpoint.MasterVO;
+import com.bit.myakkbird.member.MemberService;
 import com.bit.myakkbird.member.MemberVO;
 
 @Controller
@@ -23,6 +26,10 @@ public class MypageController {
 	
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private AcceptService acceptService;
 	
 	//글쓰기양식
 	@RequestMapping(value="/BoardWrite.ak") 
@@ -135,14 +142,37 @@ public class MypageController {
 	
 	//게시글 자세히 보기
 	@RequestMapping(value="/BoardDetail.ak") 
-	public String BoardDetail(int b_num, Model model, HttpSession session) throws Exception {
+	public String BoardDetail(int b_num, Model model, HttpSession session, AcceptVO acceptVO) throws Exception {
 		
-		BoardVO vo = boardService.getDetail(b_num);		//게시글
+		//게시글 내용 불러오기
+		BoardVO vo = boardService.getDetail(b_num);		
 		model.addAttribute("board", vo);
 		
-		BoardVO apply_count = boardService.applyCount(b_num);	//지원자 수
+		//지원자 수 구하기
+		BoardVO apply_count = boardService.applyCount(b_num);	
 		session.setAttribute("apply_cnt",apply_count.getApply_cnt());
 		model.addAttribute("apply_count", apply_count);
+		
+		//프로필사진불러오기
+		String id = vo.getM_id().toString();
+		MemberVO memberVO = memberService.profile(id);
+		String m_img;
+		if(memberVO.getM_photo() == null) {
+			m_img = "no_img";
+		}else {
+			m_img = memberVO.getM_photo().toString();
+		}
+		session.setAttribute("m_img", m_img);
+		
+		
+		//지원자 수 구하기
+//		AcceptVO apply_chk = acceptService.applyChk(acceptVO);
+//		
+//		String abc = Integer.toString(apply_chk.getApply_chk());
+//		session.setAttribute("apply_chk",abc);
+//		
+//		System.out.println(apply_chk.getApply_chk()+"22지원횟수");
+//		System.out.println(abc+"22이거야");
 
 		return "mypage/BoardDetail";
 	}

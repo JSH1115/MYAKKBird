@@ -47,7 +47,6 @@ public class CommentsController {
 	@RequestMapping(value="/comments_reply_insert.ak", produces="application/json;charset=UTF-8")
 	private int mCommentsReplyInsert(CommentsVO comments, HttpSession session)throws Exception{
 		comments.setM_id((String)session.getAttribute("m_id"));
-
 		return mCommentsService.commentsReplyInsert(comments);
 	}
 	

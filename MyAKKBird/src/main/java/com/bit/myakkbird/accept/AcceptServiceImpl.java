@@ -19,4 +19,18 @@ public class AcceptServiceImpl implements AcceptService{
 		return matchedPpl;
 	}
 
+	@Override
+	public int applyInsert(AcceptVO acceptVO) {	//요청하기(근로자 > 회원)에게 신청
+		AcceptMapper acceptMapper = sqlSession.getMapper(AcceptMapper.class);
+		int res = acceptMapper.applyInsert(acceptVO);
+		return res;
+	}
+
+	@Override
+	public AcceptVO applyChk(AcceptVO acceptVO) {//요청 전 신청내역 체크
+		AcceptMapper acceptMapper = sqlSession.getMapper(AcceptMapper.class);
+		AcceptVO apply_chk = acceptMapper.applyChk(acceptVO);
+		return apply_chk;
+	}
+
 }
