@@ -130,9 +130,24 @@
 		}
 		
 		.screen_t_sub2 {
-			 font-size: 18px; 
-			 margin-left: 77px; 
-			 color: #424242;
+			font-size: 18px; 
+			margin-left: 77px; 
+			color: #424242;
+		}
+		
+		.screen_t_rogo_img {
+			width: 110px;
+			height: 100px;
+			float:right;
+			margin-top: -40px;
+			margin-right: 10px;
+		}
+		
+		.screen_t_rogo_txt {
+			font-size: 15px;
+			float: right;
+			margin-top: -4px;
+			margin-right: 100px;
 		}
 		
 		.screen_Top_form {
@@ -548,8 +563,8 @@
 		}
 		
 		.hot_b {
-			color: white;
-			background-color: #37B04B;
+			color: #37B04B;
+			border: 1px solid #37B04B;
     		border-radius: 15px;
     		font-size: 10px;
     		padding: 5px;
@@ -709,7 +724,9 @@
 	<div class="screen_Top" style="float: none;">
 		<div class="screen_Top_text">
 			<b class="screen_t_sub"><strong>악어</strong>를 찾고 싶은 지역,</b><br>
-			<span class="screen_t_sub2">위치와 청소 종류를  찾아 검색하세요.</span><br>
+			<span class="screen_t_sub2">위치와 청소 종류를  찾아 검색하세요.</span>
+			<b class="screen_t_rogo_txt">청소는 마이 악어새</b>
+			<img class="screen_t_rogo_img" src="./resources/image/crocodile_logo.png">
 		</div>
 		<hr>
 		<div class="screen_Top_form">
@@ -860,12 +877,6 @@ function timer() {
 	    Swal.showLoading()
 	    timerInterval = setInterval(() => {
 	      const content = Swal.getContent()
-	      if (content) {
-	        const b = content.querySelector('b')
-	        if (b) {
-	          b.textContent = Swal.getTimerLeft()
-	        }
-	      }
 	    }, 100)
 	  },
 	  onClose: () => {
@@ -1487,60 +1498,60 @@ $(document).ready(function(){
 	
 });
 	
-	function selectData(){
-		var availableTags = [];
-		
-		$.ajax({
-	        url:'/myakkbird/autoText.ak',
-	        type:'POST',
-	        dataType : "json", // 서버에서 보내줄 데이터 타입
-	        contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-	        success:function(data){
-	        	$.each(data, function(index, item){
-	        		availableTags.push(item.b_address_road);
-	        		
-	        		$("#autoText").autocomplete({
-	        			source: availableTags,
-	        			minLength: 1
-	        		});
-	       	  	});
-	    	},
-	    	error:function(){
-	        alert("ajax통신 실패!!!");
-	    	}
-		}); 
-	}
+function selectData(){
+	var availableTags = [];
 	
-	function oneCheckbox(check){
-		var obj = document.getElementsByName("b_category");
-	    for(var i=0; i<obj.length; i++){
-	    	if(obj[i] != check){
-	        	obj[i].checked = false;
-	        }
-	    }
-	}
-	
-	function scroll_top() {
-		$(window).scroll(function() {
-			if($( this).scrollTop() > 200 ) {
-				$('.top').fadeIn();
-			} else {
-				$('.top').fadeOut();
-			}
-		});
-		
-		$('.top').click(function() {
-			$('html, body').animate({ scrollTop : 0 }, 400);
-			return false;
-		});
-	};
-	
-	$(document).ready(function(){ 
-		
-		selectData();
-		scroll_top();
-	
+	$.ajax({
+        url:'/myakkbird/autoText.ak',
+        type:'POST',
+        dataType : "json", // 서버에서 보내줄 데이터 타입
+        contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+        success:function(data){
+        	$.each(data, function(index, item){
+        		availableTags.push(item.b_address_road);
+        		
+        		$("#autoText").autocomplete({
+        			source: availableTags,
+        			minLength: 1
+        		});
+       	  	});
+    	},
+    	error:function(){
+        alert("ajax통신 실패!!!");
+    	}
+	}); 
+}
+
+function oneCheckbox(check){
+	var obj = document.getElementsByName("b_category");
+    for(var i=0; i<obj.length; i++){
+    	if(obj[i] != check){
+        	obj[i].checked = false;
+        }
+    }
+}
+
+function scroll_top() {
+	$(window).scroll(function() {
+		if($( this).scrollTop() > 200 ) {
+			$('.top').fadeIn();
+		} else {
+			$('.top').fadeOut();
+		}
 	});
+	
+	$('.top').click(function() {
+		$('html, body').animate({ scrollTop : 0 }, 400);
+		return false;
+	});
+};
+
+$(document).ready(function(){ 
+	
+	selectData();
+	scroll_top();
+
+});
 	
 </script>
 </body>

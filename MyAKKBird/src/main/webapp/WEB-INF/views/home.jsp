@@ -218,11 +218,11 @@ done_outline
 				</div>
 				<div class="search_category"> 
 					<ul>
-						<li>역삼</li>
-						<li>서초</li>
-						<li>압구정</li>
-						<li>논현</li>
-						<li>삼성</li>
+						<li><a href="searchProcess.ak?b_address_road=역삼">역삼</a></li>
+						<li><a href="searchProcess.ak?b_address_road=서초">서초</a></li>
+						<li><a href="searchProcess.ak?b_address_road=압구정">압구정</a></li>
+						<li><a href="searchProcess.ak?b_address_road=논현">논현</a></li>
+						<li><a href="searchProcess.ak?b_address_road=삼성">삼성</a></li>
 					</ul>
 				</div>
 			</form>
