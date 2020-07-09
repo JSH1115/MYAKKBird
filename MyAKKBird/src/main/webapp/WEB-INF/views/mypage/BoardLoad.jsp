@@ -35,6 +35,8 @@
 		} else if(boardList.get(i).getB_apply().equals("Y")) {
 			boardList.get(i).setB_apply("매칭 완료");
 		}
+		
+		System.out.println(boardList.get(i).getM_phone());
 	}
 %>
 <!DOCTYPE html>
@@ -302,9 +304,12 @@
 			margin-left: 15px;
 		}
 		
+		.modal_c_top b {
+			line-height: 18px;
+		}
+		
 		.modal_cate_txt{
 			float: right;
-			margin-top: 1px;
 			margin-right: 3px;
 		}
 		
@@ -320,7 +325,7 @@
 			width: 360px;
 			height: 200px;
 			font-size: 13px;
-			margin-top: 10px;
+			margin-top: 14px;
 			margin-left: 15px;
 		}
 		
@@ -540,7 +545,17 @@
 				<div class="post" id="post_id">
 					<div class="post_main">
 						<span class="post_no">no.<%=boardList.get(i).getB_num() %></span>
-						<img class="post_photo" src="./resources/image/crocodile_profile.png"><br>
+						<%
+							if(boardList.get(i).getM_phone() == null) {
+						%>
+								<img class="post_photo" src="./resources/image/crocodile_profile.png"><br>
+						<%
+							} else {
+						%>
+								<img class="post_photo" src="/myakkbird/myakkbirdUpload/<%=boardList.get(i).getM_phone()%>">
+						<%
+							}
+						%>
 						<span class="photo_span">0명 지원</span>
 					</div>
 					<div class="post_center">
@@ -731,7 +746,7 @@ $(document).ready(function(){
 				modal += '    </div>'
 				modal += '</div>'
 				modal += '<div modal_btn_div>'
-				modal += '    <a class="modal_btn" href="./searchDetail.ak?b_num='+data.b_num+'">자세히 보러 가기</a>'
+				modal += '    <a class="modal_btn" href="./BoardDetail.ak?b_num='+data.b_num+'&e_id='+m_id+'">자세히 보러 가기</a>'
 				modal += '</div>'
 				
 				$('#modal_content').append(modal);

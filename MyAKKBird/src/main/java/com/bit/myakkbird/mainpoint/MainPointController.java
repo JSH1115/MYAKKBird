@@ -35,10 +35,4 @@ public class MainPointController {
 		return "mainpoint/searchScreen";
 	}
 	
-	@RequestMapping(value="/searchDetail.ak")
-	public String searchDetail() {
-		
-		return "mainpoint/searchDetail";
-	}
-	
 }
