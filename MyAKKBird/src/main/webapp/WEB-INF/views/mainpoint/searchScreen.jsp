@@ -1006,6 +1006,7 @@ var gender = '';
 function list_index(index, item, startNo) {
 	var output = '';
 	var hot_b = '';
+	var photo = '';
 	
 	if(item.b_readcount > 800) {
 		hot_b = '<b class="hot_b">인기 게시글</b>';
@@ -1017,6 +1018,12 @@ function list_index(index, item, startNo) {
 		gender = '남';
 	} else if(item.m_gender === 'W') {
 		gender = '여';
+	}
+	
+	if(item.m_photo === null) {
+		photo = 'crocodile_profile.png';
+	} else {
+		photo = item.m_photo;
 	}
 	
 	var board_day = moment(item.b_date).format("M월 D일 작성");
@@ -1031,7 +1038,7 @@ function list_index(index, item, startNo) {
   	output += '	       <hr class="post_hr">'
   	output += '    </div>'
   	output += '    <div class="post_img">'
-  	output += '        <img class="profile" src="./resources/image/crocodile_profile.png">'
+  	output += '        <img class="profile" src="/myakkbird/myakkbirdUpload/'+photo+'">'
   	output += '        <div class="readcount_zone">'+hot_b+'</div>'
   	output += '    </div>'
   	output += '    <div class="post_right">'
