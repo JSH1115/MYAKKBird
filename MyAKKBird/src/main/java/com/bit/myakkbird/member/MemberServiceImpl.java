@@ -1,5 +1,7 @@
 package com.bit.myakkbird.member;
 
+import java.util.Date;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private SqlSession sqlSession;
+	@Autowired
+	MemberDAO dao;
 	
 	@Override
 	public String mypage_menu(String id) {	 //멤버타입(회원,근로자,관리자)체크
@@ -42,10 +46,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int userCheck(MemberVO memberVO) {		//로그인체크
-		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		int res = memberMapper.userCheck(memberVO);
-		return res;
+	public MemberVO userCheck(MemberVO memberVO) {		//로그인체크
+		return dao.login(memberVO);
 	}
 
 	@Override
@@ -54,5 +56,16 @@ public class MemberServiceImpl implements MemberService{
 		MemberVO vo = memberMapper.heartCheck(memberVO);
 		return vo;
 	}
+	
+	@Override
+    public void keepLogin(String uid, String sessionId, Date next) {
+ 
+        dao.keepLogin(uid, sessionId, next);
+    }
+ 
+    @Override
+    public MemberVO checkUserWithSessionKey(String sessionId) {
+        return dao.checkUserWithSessionKey(sessionId);
+    }
 
 }

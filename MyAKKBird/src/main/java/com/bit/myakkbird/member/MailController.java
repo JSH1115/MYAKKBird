@@ -36,9 +36,9 @@ public class MailController {
 		
 		String setfrom = "ccomajun@naver.com";
 		String tomail = request.getParameter("m_email");// 받는사람 이메일
-		String title = "회원가입 인증 이메일 입니다."; //제목
+		String title = "MyAkkbird 회원가입 인증 이메일 입니다."; //제목
 		String content = System.getProperty("line.separator")
-				+"안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다."
+				+"안녕하세요 회원님 MyAkkbird를 찾아주셔서 감사합니다."
 				+System.getProperty("line.separator")
 				+"인증번호는"+num+"입니다."
 				+System.getProperty("line.separator")

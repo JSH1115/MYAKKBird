@@ -18,7 +18,8 @@ public class MemberVO {
 	private int m_heart;				//하트 개수		//디폴트3개
 	private String m_status;			//회원 탈퇴여부		//N:탈퇴안함(디폴트) Y:탈퇴회원
 	private MultipartFile file;			//input타입에서 프로필사진을 저장하기위한 변수
-	
+	private String org_file;            //원본 파일 이름 저장
+	private boolean useCookie;          //쿠키 사용
 	
 	public String getM_id() {
 		return m_id;
@@ -110,5 +111,18 @@ public class MemberVO {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	public String getOrg_file() {
+		return org_file;
+	}
+	public void setOrg_file(String org_file) {
+		this.org_file = org_file;
+	}
+	public boolean isUseCookie() {
+		return useCookie;
+	}
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
+	}
+	
 
 }

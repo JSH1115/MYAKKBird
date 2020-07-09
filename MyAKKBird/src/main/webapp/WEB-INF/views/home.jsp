@@ -191,17 +191,17 @@
 		<div class="header_member_img">프로필<br><span class="material-icons">
 done_outline
 </span> </div>
-		<c:if test="${m_id == null}">
+		<c:if test="${login.m_id == null}">
 			<ul class="header_btn">
 				<li><a href="joinselect.ak" id="header_btn_1">회원가입</a></li>
 				<li><a href="loginform.ak" id="header_btn_2">로그인 </a></li>
 			</ul>
 		</c:if>
 
-		<c:if test="${m_id != null}">
-			<div>${m_id }님 환영합니다.</div>
+		<c:if test="${login.m_id != null}">
+			<div>${login.m_id }님 환영합니다.</div>
 			<ul class="header_btn">
-				<li><a href="mypage_menu.ak?id=${m_id }" id="header_btn_1">마이페이지</a></li>
+				<li><a href="mypage_menu.ak?id=${login.m_id }" id="header_btn_1">마이페이지</a></li>
 				<li><a href="logOut.ak" id="header_btn_2">로그아웃 </a></li>
 			</ul>
 		</c:if>

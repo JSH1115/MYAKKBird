@@ -1,5 +1,7 @@
 package com.bit.myakkbird.member;
 
+import java.util.Date;
+
 public interface MemberService {
 
 	public String mypage_menu(String id);						//멤버타입(회원,근로자,관리자)체크
@@ -8,7 +10,10 @@ public interface MemberService {
 	
 	//호준님
 	public int insertMember(MemberVO memberVO);					//회원가입
-	public int userCheck(MemberVO memberVO) ;					//로그인체크
+	public MemberVO userCheck(MemberVO memberVO);					//로그인체크
 	public MemberVO heartCheck(MemberVO memberVO);				//결제하기
-
+	
+	public void keepLogin(String uid, String sessionId, Date next);
+    public MemberVO checkUserWithSessionKey(String sessionId);
+	
 }

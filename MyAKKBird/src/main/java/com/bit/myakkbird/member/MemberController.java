@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -207,37 +208,34 @@ public class MemberController {
 		
 		//회원가입
 		@RequestMapping(value = "/joininput.ak") 
-		public String insertMember(MemberVO memberVO, HttpServletResponse response) throws Exception { 
+		public String insertMember(MemberVO memberVO, HttpServletResponse response) 
+			throws Exception { 
 			String cs = "C";
 			String wk = "E";
-			System.out.println("vo.getFile()=" + memberVO.getFile());
-			if(memberVO.getFile() == null) {
-				if(memberVO.getM_type()== cs) {
-				
-					String dfimg = "./resources/image/crocodile_logo.png";
-					memberVO.setM_photo(dfimg);
-				}else if(memberVO.getM_type() == wk) {
-					String dfimg = "./resources/image/bird_logo.png";
-					memberVO.setM_photo(dfimg);
-					
-				}
-			
-			}else {
-			MultipartFile mf = memberVO.getFile();
-			String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
-			System.out.println("mf=" + mf);
-			String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-			//지정한 주소에 파일 저장    
-	        if(mf.getSize() != 0) {            
-	            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));     
-	        	mf.transferTo(new File(uploadPath+storedFileName)); //예외처리 기능
-	        }
-			memberVO.setM_photo(storedFileName);
 
-			}
-			System.out.println("dd");
+			MultipartFile mf = memberVO.getFile();
+
+			String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
+			System.out.println(memberVO.getM_type());
+			//지정한 위치에 파일 저장        
+	        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
+	            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
+				String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+				String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	        	mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
+	        	memberVO.setOrg_file(mf.getOriginalFilename());
+	        	memberVO.setM_photo(storedFileName);
+	        } else { // 첨부된 파일이 없을때
 		
+				if(memberVO.getM_type().equals(cs)) {
+					String m_photo = "./resources/image/crocodile_profile.png";
+					memberVO.setM_photo(m_photo);
+				} else if(memberVO.getM_type().equals(wk)) {
+					String m_photo = "./resources/image/bird_profile.png";
+					memberVO.setM_photo(m_photo);
+				}
+			}
+	        System.out.println(memberVO.getM_photo());
 			
 			int res = memberService.insertMember(memberVO);
 		
@@ -259,15 +257,39 @@ public class MemberController {
 		
 		//로그인
 		@RequestMapping(value = "/login.ak", method = RequestMethod.POST)
-		public String userCheck(MemberVO memberVO, HttpSession session,	HttpServletResponse response) throws Exception { 
-			int res = memberService.userCheck(memberVO);
+		public String userCheck(MemberVO memberVO, HttpSession session, 
+				HttpServletResponse response) throws Exception { 
+			if ( session.getAttribute("login") !=null ){
+	            // 기존에 login이란 세션 값이 존재한다면
+	            session.removeAttribute("login");// 기존값을 제거해 준다.
+	        }
+			MemberVO vo = memberService.userCheck(memberVO);
 			
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter writer = response.getWriter();
-			if (res == 1)
+			if (vo != null)
 			{
 				session.setAttribute("m_id",memberVO.getM_id());
+				session.setAttribute("login", vo);
+				// 1. 로그인이 성공하면, 그 다음으로 로그인 폼에서 쿠키가 체크된 상태로 로그인 요청이 왔는지를 확인한다.
+	            if ( memberVO.isUseCookie() ){// dto 클래스 안에 useCookie 항목에 폼에서 넘어온 쿠키사용 여부(true/false)가 들어있을 것임
+	                // 쿠키 사용한다는게 체크되어 있으면...
+	                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션의 id를 쿠키에 저장한다.
+	                Cookie cookie =new Cookie("loginCookie", session.getId());
+	                // 쿠키를 찾을 경로를 컨텍스트 경로로 변경해 주고...
+	                cookie.setPath("/");
+	                int amount =60 *60 *24 *7;
+	                cookie.setMaxAge(amount);// 단위는 (초)임으로 7일정도로 유효시간을 설정해 준다.
+	                // 쿠키를 적용해 준다.
+	                response.addCookie(cookie);
+	             // currentTimeMills()가 1/1000초 단위임으로 1000곱해서 더해야함
+	                Date sessionLimit =new Date(System.currentTimeMillis() + (1000*amount));
+	                // 현재 세션 id와 유효시간을 사용자 테이블에 저장한다.
+	                memberService.keepLogin(memberVO.getM_id(), session.getId(), sessionLimit);
+
+	            }
+
 				writer.write("<script>location.href='./home.ak';</script>");
 			}
 			else 

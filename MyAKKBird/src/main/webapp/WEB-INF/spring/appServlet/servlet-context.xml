@@ -35,6 +35,20 @@
 		<!-- 업로드할때 임시로 저장되는 공간 -->
 	</beans:bean>	
 	
+	<!-- 인터셉터 객체 생성 -->
+    <beans:bean id="authenticationInterceptor" class="com.bit.myakkbird.member.AuthenticationInterceptor">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/pay"/>
+      		<mapping path="/mypage"/>
+      		<mapping path="/mainpoint"/>
+      		<mapping path="/member"/>
+            <beans:ref bean="authenticationInterceptor"/>
+        </interceptor>
+    </interceptors>
+	
 	<context:component-scan base-package="com.bit.myakkbird" />
 
 </beans:beans>
