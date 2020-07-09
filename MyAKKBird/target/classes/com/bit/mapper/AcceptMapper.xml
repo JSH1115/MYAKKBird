@@ -9,4 +9,16 @@
 		select c_id from accept where e_id=#{id} and a_apply='Y'
 	</select> 
 	
+	<!-- 매칭 요청 전 신청내역 체크 -->
+	<select id="applyChk" parameterType="com.bit.myakkbird.accept.AcceptVO" resultType="com.bit.myakkbird.accept.AcceptVO">
+		select count(a_num) apply_chk from accept where b_num=#{b_num} and e_id=#{e_id}
+	</select>
+	
+	<!-- 매칭 요청(신청)하기 -->
+	<insert id="applyInsert" parameterType="com.bit.myakkbird.accept.AcceptVO">
+		INSERT INTO accept (b_num, c_id, e_id, a_date) 
+		VALUES (#{b_num},#{c_id},#{e_id},sysdate)
+	</insert>
+	
+	
 </mapper>

@@ -58,6 +58,12 @@
 	._E1GMZ1{font-weight:700}
 	._E1mdUo{color:#37B04B}
 	
+	.EXIc6g_ard,._E2zw1T{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:center;align-items:center}
+	.EXIc6g_ard{padding:20px 30px}
+	._E1Y9r0_ard{text-align:left;margin-left:15px}
+	._E3TIsb_ard{font-weight:400}
+	
+	
 	._2zw1T{-ms-flex-pack:distribute;justify-content:space-around;border-top:1px solid #e6e6e6}
 	.XIc6g,._2zw1T{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:center;align-items:center}
 	.XIc6g{padding:20px 30px}
@@ -84,3 +90,6 @@
 	
 	.commentsList{background-color: #f1f1f1;}
 	[class*='maincomm']{background-color: white;position: relative;padding: 5px;border-radius: 5px;margin: 5px;}
+	
+	
+	.post_top_img {width:45px; height:45px;float: right;margin-top: -3px;margin-right: 0px;}

@@ -170,7 +170,6 @@
 	//대댓글 등록
 	 function commentsReplyInsert(b_num, c_num) {
 		var replyContent = $('[name=reply_c_content_'+c_num+']').val();
-		
 		$.ajax({
 			url : '/myakkbird/comments_reply_insert.ak',
 			type : 'POST',

@@ -7,6 +7,7 @@ public class AcceptVO {
 	private String e_id;		//요청한사람(근로자ID)
 	private String a_date;		//요청일
 	private String a_apply;		//수락여부 N:Default Y:매칭완료
+	private int apply_chk;		//게시글에 지원한 이력 체크용
 	
 	public int getA_num() {
 		return a_num;
@@ -43,6 +44,12 @@ public class AcceptVO {
 	}
 	public void setA_apply(String a_apply) {
 		this.a_apply = a_apply;
+	}
+	public int getApply_chk() {
+		return apply_chk;
+	}
+	public void setApply_chk(int apply_chk) {
+		this.apply_chk = apply_chk;
 	}
 	
 	
