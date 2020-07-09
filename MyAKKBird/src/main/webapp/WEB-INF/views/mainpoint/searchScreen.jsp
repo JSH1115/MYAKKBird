@@ -972,7 +972,7 @@ function addmarker(index, listData) {
 				    iwContent += '	<span>'+result[0].address_name+'</span><br>'
 				    iwContent += '	<span>'+listData[index].category+'</span><br>'
 				    iwContent += '  <span>시급 '+listData[index].money+'원</span><br>'
-				    iwContent += '	<a href="./searchDetail.ak?b_num='+listData[index].num+'">자세히보기</a>'
+				    iwContent += '	<a href="./BoardDetail.ak?b_num='+listData[index].num+'&e_id='+se_id+'">자세히보기</a>'
 				    iwContent += '</div>'; 
 			    
 			    var infowindow = new kakao.maps.InfoWindow({
@@ -1032,7 +1032,7 @@ function list_index(index, item, startNo) {
   	output += '        <span class="post_r_span">희망시급 '+item.b_money+'원</span><br>'
   	output += '        <span class="post_r_span">'+moment(item.b_start).format("M월 D일")+' 청소시작</span>'
   	output += '        <span class="post_r_id"><b>ID </b>'+item.m_id+'</span><br>'
-  	output += '        <a class="post_r_detail" href="./searchDetail.ak?b_num='+item.b_num+'">자세히보기</a>'
+  	output += '        <a class="post_r_detail" href="./BoardDetail.ak?b_num='+item.b_num+'&e_id='+se_id+'">자세히보기</a>'
   	output += '        <span class="time_zone">'+board_day+'</span><br>'
   	output += '    </div>'
   	output += '</div>'
