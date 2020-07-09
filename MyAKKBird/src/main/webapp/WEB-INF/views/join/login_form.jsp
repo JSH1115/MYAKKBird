@@ -15,14 +15,43 @@
 	body {margin:0;padding:0;}
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 #webView[data-show-memo='true'] {overflow:visible}
-	a {
-		text-decoration:none;
+	div > a {
+		text-decoration: none;
 	}
 	#logo{
 		height:100px;
 		float:right;
 	}
+	 .btn1{
+ 	margin:5px; 
+	padding: 5px; 
+	border-radius:5px;
+	border:0px;
+	background: #37b04b;
+	text-decoration: none;
+	color:white;
+	}
+	
+	.tex{
+		    height: 50px;
+    padding: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #37b04b;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 13px;
 
+    font-weight: 500;
+    color: #000;
+    width: 80%;
+    -webkit-transition: border .3s ease;
+    -o-transition: border .3s ease;
+    transition: border .3s ease;
+	}
+	h1{
+	 color:#37b04b;
+	}
 	</style>
 	
 	
@@ -92,18 +121,18 @@ function check_input()
 <div class="login-box">
 <center>
 <form name="loginform" action="./login.ak" method="post">
-<h1>로그인</h1></b>
+<h1><b>로그인</b></h1></b>
 <div class="form-group">
-<input type="text" class="form-control" name="m_id"  placeholder="아이디를 입력해주세요."
+<input type="text" class="tex" name="m_id"  placeholder="아이디를 입력해주세요."
 style="width:200px; height:20px;" ></div><br/>
 <div class="form-group">
-<input type="password" class="form-control" name="m_password"  placeholder="비밀번호를 입력해주세요."
+<input type="password" class="tex" name="m_password"  placeholder="비밀번호를 입력해주세요."
 style="width:200px; height:20px;"></div>
 <label>
             <input type="checkbox" name="useCookie"> 로그인유지
 </label>
 <br /><br />
-<input type="button" class="btn btn-default" value="로그인" style="width:200px; height:30px;background-color:#19CE60;"
+<input type="button" class="btn1" value="로그인" style="width:200px; height:30px;background-color:#19CE60;"
 onclick="check_input()">
 <br />
 <br>

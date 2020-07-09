@@ -47,70 +47,102 @@
 .ccheck input[type="checkbox"] + label .chk_img {
 	padding:0 0 0 100px;
 	height:150px;
-	background:url("./resources/image/vacuum_off.png")no-repeat;
+	background:url("./resources/image/vacuum.png")no-repeat;
 	background-size:100px 100px;
 	cursor:pointer;  
 }
 .ccheck input[type="checkbox"]:checked + label .chk_img {
-	background:url("./resources/image/vacuum_on.png")no-repeat;
+	background:url("./resources/image/vacuum_check1.png")no-repeat;
 	background-size:100px 100px;
 } 
 .ccheck input[type="checkbox"] + label .chk2_img {
 	padding:0 0 0 100px;
 	height:150px;
-	background:url("./resources/image/cleaning-tools_off.png")no-repeat;
+	background:url("./resources/image/cleaning-tools.png")no-repeat;
 	background-size:100px 100px;
 	cursor:pointer;  
 }
 .ccheck input[type="checkbox"]:checked + label .chk2_img {
-	background:url("./resources/image/cleaning-tools_on.png")no-repeat;
+	background:url("./resources/image/cleaning-tools_check.png")no-repeat;
 	background-size:100px 100px;
 } 
 .ccheck input[type="checkbox"] + label .chk3_img {
 	padding:0 0 0 100px;
 	height:150px;
-	background:url("./resources/image/kitchen_off.png")no-repeat;
+	background:url("./resources/image/kitchen.png")no-repeat;
 	background-size:100px 100px;
 	cursor:pointer;  
 }
 .ccheck input[type="checkbox"]:checked + label .chk3_img {
-	background:url("./resources/image/kitchen_on.png")no-repeat;
+	background:url("./resources/image/kitchen_check.png")no-repeat;
 	background-size:100px 100px;
 } 
 .ccheck input[type="checkbox"] + label .chk4_img {
 	padding:0 0 0 100px;
 	height:150px;
-	background:url("./resources/image/maid_off.png")no-repeat;
+	background:url("./resources/image/maid.png")no-repeat;
 	background-size:100px 100px;
 	cursor:pointer;  
 }
 .ccheck input[type="checkbox"]:checked + label .chk4_img {
-	background:url("./resources/image/maid_on.png")no-repeat;
+	background:url("./resources/image/maid_check.png")no-repeat;
 	background-size:100px 100px; 
 } 
 .ccheck input[type="checkbox"] + label .chk5_img {
 	padding:0 0 0 100px;
 	height:150px;
-	background:url("./resources/image/apartment_off.png")no-repeat;
+	background:url("./resources/image/apartment.png")no-repeat;
 	background-size:100px 100px;
 	cursor:pointer;  
 }
 .ccheck input[type="checkbox"]:checked + label .chk5_img {
-	background:url("./resources/image/apartment_on.png")no-repeat;
+	background:url("./resources/image/apartment_check.png")no-repeat;
 	background-size:100px 100px; 
 } 
 .ccheck input[type="checkbox"] + label .chk6_img {
 	padding:0 0 0 100px;
 	height:150px;
-	background:url("./resources/image/coronavirus_off.png")no-repeat;
+	background:url("./resources/image/coronavirus.png")no-repeat;
 	background-size:100px 100px;
 	cursor:pointer;  
 }
 .ccheck input[type="checkbox"]:checked + label .chk6_img {
-	background:url("./resources/image/coronavirus_on.png")no-repeat;
+	background:url("./resources/image/coronavirus_check.png")no-repeat;
 	background-size:100px 100px; 
 } 
+	 .btn1{
+ 	margin:5px; 
+	padding: 5px; 
+	border-radius:5px;
+	border:0px;
+	background: #37b04b;
+	text-decoration: none;
+	color:white;
+	}
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	   //빈칸
+		$("#select").on("click", function(){
+
+			 var isSeasonChk = $("input:checkbox[name='m_category']").is(":checked");
+		    
+		      if(!isSeasonChk){
+		            alert("카테고리를 한개 이상 선택해주세요.");
+		            return false;
+		      }
+		     	document.catefrm.target = '_self';
+				document.catefrm.action="./joinformcs.ak";
+				document.catefrm.submit();
+		});
+
+	})
+
+	
+ 
+
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -166,7 +198,7 @@
 
 
 </div>
-<input type="submit" value="다음">
+<input type="button" class="btn1" id="select" value="다음">
 
 </div>
 </form>

@@ -213,8 +213,10 @@ public class MemberController {
 			String cs = "C";
 			String wk = "E";
 
+		
 
 			MultipartFile mf = memberVO.getFile();
+
 			String uploadPath = "C:\\Project156\\upload\\";
 			System.out.println(memberVO.getM_type());
 			//지정한 위치에 파일 저장        

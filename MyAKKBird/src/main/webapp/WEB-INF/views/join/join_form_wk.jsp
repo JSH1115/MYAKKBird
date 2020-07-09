@@ -100,6 +100,41 @@ for(int i=0;i<str.length;i++){
  	border-radius:5px;
  	margin:1px; 
  	}
+ 	
+ 	 	input > file-upload-button{
+ 	background-color:#37b04b;
+ 	}
+
+
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Open';
+
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #37b04b;
+  border-radius:5px;
+  margin:5px; 
+  padding: 5px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 10pt;
+  color:white;
+  background-color:#37b04b;
+}
+.custom-file-input:hover::before {
+  border-color: #37b04b;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+ 	
 </style>
 
 <script type="text/javascript">
@@ -174,16 +209,16 @@ $(document).ready(function(){
 			$("#m_phone").focus();
 			return false;
 		}
-		if($("#m_category").val()==""){
-			alert("카테고리를 입력해주세요.");
-			$("#m_category").focus();
-			return false;
-		}
 		if($("#m_address_road").val()==""){
 			alert("도로명주소를 입력해주세요.");
 			$("#m_address_road").focus();
 			return false;
 		}
+		 var isSeasonChk = $("input:checkbox[name='m_category']").is(":checked");
+	      if(!isSeasonChk){
+	            alert("카테고리를 한개 이상 선택해주세요.");
+	            return false;
+	      }
 		
 		document.joinformcs.target = '_self';
 		document.joinformcs.action="./joininput.ak";
@@ -241,7 +276,7 @@ $(document).ready(function() {
 	<td><b>프로필 사진</b></td>
 </tr>
 <tr>
-    	<td><input type="file" name="file" style=" margin-left: auto;
+	 <td><input type="file" name="file" class="tex custom-file-input"style="margin-left: auto;
     margin-right: auto;"/></td>
 </tr>
 <tr>
