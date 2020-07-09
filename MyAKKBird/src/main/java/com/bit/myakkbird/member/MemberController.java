@@ -228,10 +228,10 @@ public class MemberController {
 	        } else { // 첨부된 파일이 없을때
 		
 				if(memberVO.getM_type().equals(cs)) {
-					String m_photo = "./resources/image/crocodile_profile.png";
+					String m_photo = "";
 					memberVO.setM_photo(m_photo);
 				} else if(memberVO.getM_type().equals(wk)) {
-					String m_photo = "./resources/image/bird_profile.png";
+					String m_photo = "";
 					memberVO.setM_photo(m_photo);
 				}
 			}

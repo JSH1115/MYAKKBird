@@ -546,13 +546,13 @@
 					<div class="post_main">
 						<span class="post_no">no.<%=boardList.get(i).getB_num() %></span>
 						<%
-							if(boardList.get(i).getM_phone() == null) {
+							if(boardList.get(i).getM_photo() == null) {
 						%>
 								<img class="post_photo" src="./resources/image/crocodile_profile.png"><br>
 						<%
 							} else {
 						%>
-								<img class="post_photo" src="/myakkbird/myakkbirdUpload/<%=boardList.get(i).getM_phone()%>">
+								<img class="post_photo" src="/myakkbird/myakkbirdUpload/<%=boardList.get(i).getM_photo()%>">
 						<%
 							}
 						%>
@@ -695,6 +695,8 @@ $(document).ready(function(){
 				var modal = '';
 				var type = '';
 				var gender = '';
+				var photo = '';
+				
 				$('#modal_content').empty();
 				
 				if(data.m_type === "C") {
@@ -705,6 +707,12 @@ $(document).ready(function(){
 					gender = '남자';
 				} else if(data.m_gender === "W") {
 					gender = '여자';
+				}
+				
+				if(data.m_photo === null) {
+					photo = 'crocodile_profile.png';
+				} else {
+					photo = data.m_photo;
 				}
 				
 				var start_day = moment(data.b_start).format("YY년 M월 D일");
@@ -719,7 +727,7 @@ $(document).ready(function(){
 				modal += '</div>'
 				modal += '<div class="modal_profile">'
 				modal += '    <div class="modal_p_left">'
-				modal += '        <img class="modal_myPhoto" src="./resources/image/crocodile_profile.png">'
+				modal += '        <img class="modal_myPhoto" src="/myakkbird/myakkbirdUpload/'+photo+'">'
 				modal += '    </div>'
 				modal += '    <div class="modal_p_right">'
 				modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+type+'</span><br>'
@@ -808,17 +816,24 @@ $(document).ready(function(){
 				
 				$.each(data, function(index, item){
 					var output = '';
+					var photo = '';
 					
 					category_list(item);
 					apply_list(item);
 					
 					totalCount = (index+startNo+1);
 					
+					if(item.m_photo === null) {
+						photo = 'crocodile_profile.png';
+					} else {
+						photo = item.m_photo;
+					}
+					
 					output += '<li id="list_id" data-no='+totalCount+'>'
 					output += '    <div class="post" id="post_id">'
 					output += '	       <div class="post_main">'
 					output += '            <span class="post_no">no.'+item.b_num+'</span>'
-					output += '            <img class="post_photo" src="./resources/image/crocodile_profile.png"><br>'
+					output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
 					output += '            <span class="photo_span">0명 지원</span>'
 					output += '        </div>'
 					output += '            <div class="post_center">'
