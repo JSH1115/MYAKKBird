@@ -5,19 +5,23 @@
 <%
 	String addr = (String)request.getAttribute("b_address_road");
 	String m_id = (String)request.getAttribute("m_id");
-	System.out.println(addr);
-	System.out.println(m_id);
+	System.out.println("검색한 주소 : " + addr);
+	System.out.println("현재 세션 아이디 : " + m_id);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>마이 악어새</title>
+	<!-- 스타일 조정 -->
   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  	<!-- 스타일 조정 -->
+  	<!-- jQuery 자동 완성 -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<!-- jQuery 자동 완성 -->
   	<!-- 시간 설정 API 시작 -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
   	<!-- 시간 설정 API 끝 -->
@@ -54,7 +58,7 @@
 		
 		/* 전체 적용 끝 */
 		 
-		/* 지도 스타일 꾸미기 시작 */
+		/* 지도 style 시작 */
 		.map_wrap {
 			position:relative;
 			overflow:hidden;
@@ -88,9 +92,9 @@
 		.bAddr a {
 			font-size: 13px;
 		}
-		/* 지도 스타일 꾸미기 끝 */
+		/* 지도 style 끝 */
 		
-		/* 자동완성 시작 */
+		/* 자동완성 style 시작 */
 		.ui-autocomplete {
 			width: 100px;
 		    max-height: 200px;
@@ -102,11 +106,13 @@
 	   	* html .ui-autocomplete {
 	   		height: 200px;
 	   	}
-	   	/* 자동완성 끝 */
+	   	/* 자동완성 style 끝 */
 	   	
+	   	/* 검색 스크린 창 style */
 		.screen_Top {
 			width: 1100px;
 			height: 320px;
+			float: none;
 			margin: 25px auto;
 			border:1px solid #d3d3d3; 
 			background-color: white;
@@ -136,7 +142,7 @@
 		}
 		
 		.screen_t_rogo_img {
-			width: 110px;
+			width: 95px;
 			height: 100px;
 			float:right;
 			margin-top: -40px;
@@ -144,10 +150,14 @@
 		}
 		
 		.screen_t_rogo_txt {
-			font-size: 15px;
+			font-size: 16px;
 			float: right;
-			margin-top: -4px;
+			margin-top: 6px;
 			margin-right: 100px;
+		}
+		
+		.screen_t_rogo_txt b {
+			color: #37B04B;
 		}
 		
 		.screen_Top_form {
@@ -207,6 +217,119 @@
 		
 		.search_form_text input:focus {
 			outline-color: #268F38;
+		}
+		
+		/* 지번 검색 조건 style */
+		.input_div {
+			width: 100%;
+			margin-top: 10px;
+			margin-left: 80px;
+		}
+		
+		.input_div span {
+			margin-left: 3px; 
+			color: #424242;
+		}
+		/* 지번 검색 조건 style */
+		
+		/* 최신, 조회, 시급 검색 조건 style */
+		.choice_div {
+			width: 100%;
+			height: 60px;
+			margin-top: 20px;
+			margin-left: 31px;
+		}
+		
+		.choice_div ul li {
+			display: inline-block;		
+			padding-left: 1px;	
+		}
+		
+		input[type="radio"] { display:none; }
+		
+		input[type="radio"] + label .c1 { 
+			cursor: pointer; 
+			width: 80px;
+			height: 30px;
+			background: url("./resources/image/radio_s.png");
+			background-repeat: no-repeat;
+			background-size: 80px 30px;
+		}
+
+		input[type="radio"]:checked + label .c1 { 
+			cursor: pointer;
+			width: 80px;
+			height: 30px;
+			background: url("./resources/image/radio_c_s.png");
+			background-repeat: no-repeat;
+			background-size: 80px 30px;
+		}
+		
+		input[type="radio"] + label .c2 { 
+			cursor: pointer; 
+			width: 115px;
+			height: 30px;
+			background: url("./resources/image/radio_m.png");
+			background-repeat: no-repeat;
+			background-size: 115px 30px;
+		}
+
+		input[type="radio"]:checked + label .c2 { 
+			cursor: pointer;
+			width: 115px;
+			height: 30px;
+			background: url("./resources/image/radio_c_m.png");
+			background-repeat: no-repeat;
+			background-size: 115px 30px;
+		}
+		
+		input[type="radio"] + label .c3 { 
+			cursor: pointer; 
+			width: 115px;
+			height: 30px;
+			background: url("./resources/image/radio_d.png");
+			background-repeat: no-repeat;
+			background-size: 115px 30px;
+		}
+
+		input[type="radio"]:checked + label .c3 { 
+			cursor: pointer;
+			width: 115px;
+			height: 30px;
+			background: url("./resources/image/radio_c_d.png");
+			background-repeat: no-repeat;
+			background-size: 115px 30px;
+		}
+		/* 최신, 조회, 시급 검색 조건 style */
+		
+		/* 카테고리 검색 조건 style */
+		.chk_list {
+			width: 100%;
+			height: 80px;
+			padding-left: 50px;
+			margin-top: 20px;
+			margin-left: -5px;
+		}
+		
+		.chk_text {
+			width: 100%;
+			height: 50px;
+			margin-top: -10px;
+			margin-left: 25px;
+		}
+		
+		.chk_text b {
+			cursor: pointer; 
+			border: 1px solid #37B04B;
+			padding: 5px;
+			border-radius: 15px;
+			font-size: 14px;
+			background-color: white;
+		}
+		
+		.chk_text b:hover {
+			background-color: #37B04B;
+			color: white;
 		}
 		
 		input[type="checkbox"] { display:none; }
@@ -318,7 +441,9 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		/* 카테고리 검색 조건 style */
 		
+		/* 검색 조건 창 버튼 */
 		.search_Top_btn {
 			margin-top: -110px;
 			width: 100%;
@@ -363,7 +488,10 @@
 			background-color: #f1f3f5;
 			border: 1px solid #d3d3d3;
 		}
+		/* 검색 조건 창 버튼 */
+		/* 검색 스크린 창 style */
 		
+		/* 스크린 중간 창 style */
 		.screen_middle {
 			width: 1100px;
 			height: 30px;
@@ -374,7 +502,9 @@
 			margin-left: 1010px;
 			font-size: 13px;
 		}
+		/* 스크린 중간 창 style */
 		
+		/* 스크린 메인 창 style */
 		.screen_main {
 			width: 1100px;
 			height: auto;
@@ -392,115 +522,9 @@
 			height: auto;
 			float: right;
 		}
+		/* 스크린 메인 창 style */
 		
-		.chk_list {
-			width: 100%;
-			height: 80px;
-			padding-left: 50px;
-			margin-top: 20px;
-			margin-left: -5px;
-		}
-		
-		.chk_text {
-			width: 100%;
-			height: 50px;
-			margin-top: -10px;
-			margin-left: 25px;
-		}
-		
-		.chk_text b {
-			cursor: pointer; 
-			border: 1px solid #37B04B;
-			padding: 5px;
-			border-radius: 15px;
-			font-size: 14px;
-			background-color: white;
-		}
-		
-		.chk_text b:hover {
-			background-color: #37B04B;
-			color: white;
-		}
-		
-		.input_div {
-			width: 100%;
-			margin-top: 10px;
-			margin-left: 80px;
-		}
-		
-		.input_div span {
-			margin-left: 3px; 
-			color: #424242;
-		}
-		
-		.choice_div {
-			width: 100%;
-			height: 60px;
-			margin-top: 20px;
-			margin-left: 31px;
-		}
-		
-		.choice_div ul li {
-			display: inline-block;		
-			padding-left: 1px;	
-		}
-		
-		input[type="radio"] { display:none; }
-		
-		input[type="radio"] + label .c1 { 
-			cursor: pointer; 
-			width: 80px;
-			height: 30px;
-			background: url("./resources/image/radio_s.png");
-			background-repeat: no-repeat;
-			background-size: 80px 30px;
-		}
-
-		input[type="radio"]:checked + label .c1 { 
-			cursor: pointer;
-			width: 80px;
-			height: 30px;
-			background: url("./resources/image/radio_c_s.png");
-			background-repeat: no-repeat;
-			background-size: 80px 30px;
-		}
-		
-		input[type="radio"] + label .c2 { 
-			cursor: pointer; 
-			width: 115px;
-			height: 30px;
-			background: url("./resources/image/radio_m.png");
-			background-repeat: no-repeat;
-			background-size: 115px 30px;
-		}
-
-		input[type="radio"]:checked + label .c2 { 
-			cursor: pointer;
-			width: 115px;
-			height: 30px;
-			background: url("./resources/image/radio_c_m.png");
-			background-repeat: no-repeat;
-			background-size: 115px 30px;
-		}
-		
-		input[type="radio"] + label .c3 { 
-			cursor: pointer; 
-			width: 115px;
-			height: 30px;
-			background: url("./resources/image/radio_d.png");
-			background-repeat: no-repeat;
-			background-size: 115px 30px;
-		}
-
-		input[type="radio"]:checked + label .c3 { 
-			cursor: pointer;
-			width: 115px;
-			height: 30px;
-			background: url("./resources/image/radio_c_d.png");
-			background-repeat: no-repeat;
-			background-size: 115px 30px;
-		}
-		
+		/* 게시글 style */
 		.post {
 			width:520px; 
 			height:200px; 
@@ -615,7 +639,9 @@
 			margin-right: 33px;
 			cursor: pointer;
 		}
+		/* 게시글 style */
 		
+		/* 검색 후 데이터가 없을때 style */
 		.no_post {
 			width:520px; 
 			height:200px; 
@@ -627,7 +653,18 @@
 			background-color: white;
 		}
 		
-		.Advertising {
+		.no_post b {
+			font-size:20px; 
+			margin-top:20px;
+		}
+		
+		.no_post span {
+			font-size:15px;
+		}
+		/* 검색 후 데이터가 없을때 style */
+		
+		/* 광고 style */
+		.Banner {
 			width:520px; 
 			height:150px;
 			margin-left:-10px;
@@ -637,8 +674,11 @@
 			background-image: url("./resources/image/advr_s.png");
 			background-repeat: no-repeat;
 			background-size: 520px 150px;
+			cursor: pointer;
 		}
+		/* 광고 style */
 		
+		/* Top 스크롤 버튼 style */
 		.top {
   			position: fixed;
   			bottom: 70px;
@@ -674,7 +714,9 @@
     		position: fixed;
     		top: 0px;
 		}
+		/* Top 스크롤 버튼 style  */
 		
+		/* 데이터 없을 시 출력 style */
 		.end_title {
 			margin: 0 auto;
 			padding: 0;
@@ -691,7 +733,9 @@
 		.end_icon {
 			margin-top: 10px;
 		}
+		/* 데이터 없을 시 출력 style */
 		
+		/* 찜 관련 style */
 		.modal_join {
 			font-size: 15px;
 			text-align: center;
@@ -718,14 +762,15 @@
 			font-size: 20px;
 			margin-left: 10px;
 		}
+		/* 찜 관련 style */
 	</style>
 </head>
 <body>
-	<div class="screen_Top" style="float: none;">
+	<div class="screen_Top">
 		<div class="screen_Top_text">
 			<b class="screen_t_sub"><strong>악어</strong>를 찾고 싶은 지역,</b><br>
 			<span class="screen_t_sub2">위치와 청소 종류를  찾아 검색하세요.</span>
-			<b class="screen_t_rogo_txt">청소는 마이 악어새</b>
+			<b class="screen_t_rogo_txt">청소는 마이 <b>악어새</b></b>
 			<img class="screen_t_rogo_img" src="./resources/image/crocodile_logo.png">
 		</div>
 		<hr>
@@ -734,11 +779,14 @@
 				<div class="search_form_text">
 					<b class="search_f_sub">청소 지역</b><br>
 					<div class="input_div">
+						<!-- 주소 검색 input -->
 						<span>* 지번 주소로 검색</span>
 						<input type="text" class="search_input" name="b_address_road" id="autoText"
 						       placeholder="  주소를 입력해주세요."/>
+						<!-- 주소 검색 input -->
 					</div>
 					<div class="choice_div">
+						<!-- 검색 조건 버튼 -->
 						<ul>
 							<li>
 								<input type="radio" class="choice" id="choice1" name="choice" value="ND">
@@ -753,11 +801,13 @@
 								<label for="choice3"><div class="c3"></div></label>
 							</li>
 						</ul>
+						<!-- 검색 조건 버튼 -->
 					</div>
 				</div>
 				<div class="search_form_check" >
 				<b class="search_fc_sub">청소 종류</b><br>
 					<div class="chk_list">
+						<!-- 카테고리 이미지 버튼 -->
 						<input type="checkbox" name="b_category" id="b_category_id1" onclick="oneCheckbox(this);" value="A">
 						<label for="b_category_id1">
 							<div class="b_category1">
@@ -788,8 +838,10 @@
 							<div class="b_category6">
 							</div>
 						</label>
+						<!-- 카테고리 이미지 버튼 -->
 					</div>
 					<div class="chk_text">
+						<!-- 카테고리 텍스트 버튼 -->
 						<ul>
 							<li>
 								<label for="b_category_id1">
@@ -822,18 +874,21 @@
 								</label>
 							</li>
 						</ul>
+						<!-- 카테고리 텍스트 버튼 -->
 					</div>
 				</div>
 				<div class="search_Top_btn">
-					<!-- 편집 금지 -->
+					<!-- 검색 버튼(편집 금지) -->
 					<input type="button" class="search_button" value="악어 검색" id="search_data"><input type="reset" class="reset_button" value="&orarr; 필터 초기화">
-					<!-- 편집 금지 -->
+					<!-- 검색 버튼(편집 금지) -->
 				</div>
 			</form>
 		</div>
 	</div>
+	<!-- 게시글 개수 출력 -->
 	<div class="screen_middle">
 	</div>
+	<!-- 게시글 개수 출력 -->
 	<div class="screen_main">
 		<div class="screen_left">
 			<div class="map_wrap" id="map_div">
@@ -843,19 +898,39 @@
 			</div>
 		</div>
 		<div class="screen_right" id="screen_data">
+			<!-- 게시글 출력 -->
 			<ul id="data_insert">
-			
 			</ul>
+			<!-- 게시글 출력 -->
+			<!-- 게시글 데이터 없을때 -->
 			<div id="end">
 			</div>
+			<!-- 게시글 데이터 없을때 -->
 		</div>
 	</div>
+	<!-- Top 버튼 -->
 	<div class="Top_div">
 		<button class="top">Top</button>
 	</div>
+	<!-- Top 버튼 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3cbd93568d5ed61c52a1851035124ae3&libraries=services"></script>
 <script>
 
+// 전역 변수
+var se_id = '<%=m_id %>'; // 세션 아이디
+var addr = '<%=addr %>';  // 검색한 주소
+var img_d = '';           // 카테고리 이미지
+var category_d = '';      // 카테고리 txt
+var gender = '';          // 성별
+// 맵 생성 관련
+var mapContainer;         
+var map;
+var mapTypeControl;
+var zoomControl;
+//맵 생성 관련
+// 전역 변수
+
+// 데이터 체크
 var isEmpty = function(val) {
 	if(val === "" || val === null || val === undefined 
 		||(val !== null && typeof val === "object" && !Object.keys(val).length)
@@ -866,6 +941,58 @@ var isEmpty = function(val) {
 	}
 };
 
+// 자동 완성
+function selectData() {
+	var availableTags = [];
+	
+	$.ajax({
+        url:'/myakkbird/autoText.ak',
+        type:'POST',
+        dataType : "json", // 서버에서 보내줄 데이터 타입
+        contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+        success:function(data){
+        	$.each(data, function(index, item){
+        		availableTags.push(item.b_address_road);
+        		
+        		$("#autoText").autocomplete({
+        			source: availableTags,
+        			minLength: 1
+        		});
+       	  	});
+    	},
+    	error:function(){
+        alert("ajax통신 실패!!!");
+    	}
+	}); 
+}
+
+// 체크박스 하나만 선택
+function oneCheckbox(check){
+	var obj = document.getElementsByName("b_category");
+    for(var i=0; i<obj.length; i++){
+    	if(obj[i] != check){
+        	obj[i].checked = false;
+        }
+    }
+}
+
+// 스크롤 Top 기능
+function scroll_top() {
+	$(window).scroll(function() {
+		if($( this).scrollTop() > 200 ) {
+			$('.top').fadeIn();
+		} else {
+			$('.top').fadeOut();
+		}
+	});
+	
+	$('.top').click(function() {
+		$('html, body').animate({ scrollTop : 0 }, 400);
+		return false;
+	});
+};
+
+// 검색 후 로딩 모달 창
 function timer() {
 	let timerInterval
 	Swal.fire({
@@ -889,6 +1016,7 @@ function timer() {
 	})
 }
 
+// 검색 후 데이터 없을 때
 function noDataOut() {
 	$('#data_insert').empty();
 	$('#list_count').empty();
@@ -898,17 +1026,15 @@ function noDataOut() {
 	output += '<li>'
 	output += '<div class="no_post"><br><br><br>'
 	output += '    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="black" width="40px" height="40px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>'
-	output += '    <b style="font-size:20px; margin-top:20px;">검색 결과가 없습니다...</b><br>'
-	output += '    <span style="font-size:15px;">다시 검색해주세요!</span>'
+	output += '    <b>검색 결과가 없습니다...</b><br>'
+	output += '    <span>다시 검색해주세요!</span>'
 	output += '</div>'
 	output += '</li>'
 	$('#autoText').focus();
 	$('#data_insert').append(output);
 }
 
-var img_d = '';
-var category_d = '';
-
+// 카테고리, 이미지 설정
 function category_list(item) {
 	
 	if(item.b_category === "A") {
@@ -932,16 +1058,12 @@ function category_list(item) {
 	}
 }
 
-var mapContainer;
-var map;
-var mapTypeControl;
-var zoomControl;
-
+// 맵 생성
 function newMap() {
 	
 	mapContainer = document.getElementById('map'), 
 	mapOption = {
-		center: new kakao.maps.LatLng(37.505287, 127.023993), 
+		center: new kakao.maps.LatLng(37.505287, 127.023993), // 강남구 기준
 		level: 7 
 	};  
 	
@@ -956,6 +1078,7 @@ function newMap() {
 	
 }
 
+// 맵에 마커 추가
 function addmarker(index, listData) {
 	var geocoder = new kakao.maps.services.Geocoder();
 	
@@ -1001,31 +1124,35 @@ function addmarker(index, listData) {
 	});
 }
 
-var gender = '';
 
+// 게시글 출력
 function list_index(index, item, startNo) {
 	var output = '';
 	var hot_b = '';
 	var photo = '';
 	
+	// 조회 수 체크
 	if(item.b_readcount > 800) {
 		hot_b = '<b class="hot_b">인기 게시글</b>';
 	} else if(item.b_readcount > 400) {
 		hot_b = '<b class="hot_b">관심 게시글</b>';
 	}
 	
+	// 성별 체크
 	if(item.m_gender === 'M') {
 		gender = '남';
 	} else if(item.m_gender === 'W') {
 		gender = '여';
 	}
 	
+	// 프로필 사진 체크
 	if(item.m_photo === null) {
 		photo = 'crocodile_profile.png';
 	} else {
 		photo = item.m_photo;
 	}
 	
+	// 게시글 작성 날짜 포맷
 	var board_day = moment(item.b_date).format("M월 D일 작성");
 	
 	output += '<li data-no='+(index+startNo+1)+'>'
@@ -1060,6 +1187,7 @@ function list_index(index, item, startNo) {
   	
 }
 
+// 게시글 개수 출력
 function count_txt(index, startNo) {
 	var listCount = '';
 	var listNum = (index+startNo+1);
@@ -1071,16 +1199,18 @@ function count_txt(index, startNo) {
 	$('.screen_middle').html(listCount);
 }
 
+// 광고 출력
 function advr_list() {
 	var advr = '';
 	
 	advr += '<li>'
-	advr += '	<div class="Advertising">'
+	advr += '	<div class="Banner" onclick="freeHeart()">'
 	advr += '	</div>'
 	advr += '</li>'
 	$('#data_insert').append(advr);
 }
 
+// 스크롤 끝에 도달하면 출력 
 function end_title() {
 	 var end_div = '';
 		
@@ -1096,6 +1226,7 @@ function end_title() {
      $('#end').html(end_div);
 }
 
+// 스크롤 시 맵도 같이 따라오게
 function scroll_Map() {
 	var scrollOffset = $('#map_div').offset();
 	
@@ -1109,8 +1240,7 @@ function scroll_Map() {
 	});
 }
 
-var se_id = '<%=m_id %>';
-
+// 게시물 찜하기 체크
 function like_check(item, se_id) {
 	
 	var b_num = item.b_num;
@@ -1138,6 +1268,7 @@ function like_check(item, se_id) {
 	
 }
 
+// 게시물 찜하기 로그인 여부 체크
 function check_member(b_num) {
 	
 	$.ajax({
@@ -1177,6 +1308,7 @@ function check_member(b_num) {
 	
 }
 
+// 게시글 찜하기 근로자인지 체크
 function check_worker(b_num) {
 	
 	$.ajax({
@@ -1193,7 +1325,7 @@ function check_worker(b_num) {
 					  timer: 1000,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '<span style="color:white">확인</span>'
+					    '확인'
 				})
 			} else {
 				
@@ -1207,6 +1339,7 @@ function check_worker(b_num) {
 	});
 }
 
+// 게시글 찜하기 눌렀는지 안눌렀는지 체크
 function like_check_re(b_num) {
 	
 	$.ajax({
@@ -1216,15 +1349,10 @@ function like_check_re(b_num) {
 		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 		success: function(data) {
 			if(data === 0) {
-				
 				insert_like(b_num);
-				
 			} else {
-
 				delete_like(b_num);
-				
 			}
-			
 		},
 		error:function(){
 	        alert("ajax통신 실패!!!");
@@ -1232,6 +1360,7 @@ function like_check_re(b_num) {
 	});
 }
 
+// 게시글 찜하기 추가
 function insert_like(b_num) {
 	
 	$.ajax({
@@ -1250,6 +1379,7 @@ function insert_like(b_num) {
 	});
 }
 
+// 게시글 찜하기 삭제
 function delete_like(b_num) {
 	
 	$.ajax({
@@ -1268,18 +1398,54 @@ function delete_like(b_num) {
 	});
 }
 
+function freeHeart() {
+	$.ajax({
+		url: '/myakkbird/check_member.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data === 0) {
+				
+				Swal.fire({
+					  title: '<strong>5분안에 회원가입하고</strong>',
+					  html:
+					    '<div class="modal_join">' +
+					    '    <svg class="mj_icon1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>' +
+					    '    <b class="mj_txt">고객의 다양한 게시물을 확인!</b><br>' +
+					    '    <svg class="mj_icon2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>' +
+					    '    <b class="mj_txt">회원이 작성한 리얼 후기 확인!</b><br>' +
+					    '    <svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
+					    '</div>',
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '<a href="./joinselect.ak" style="color:white; text-decoration: none; padding: 20px;">회원가입</a>',
+				})
+				
+			} else {
+				alert('체크 완료!');
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
 
 $(document).ready(function(){
 	
 	timer();
 	
-	var addr = '<%=addr %>';
+	selectData();
+	scroll_top();
 	
 	newMap();
 	scroll_Map();
 	
 	onload();
 	
+	// 검색 후 게시글 5개 출력
 	function onload() {
 		
 		$.ajax({
@@ -1339,6 +1505,7 @@ $(document).ready(function(){
 		event.preventDefault();
 	}
 	
+	// 무한스크롤(게시글 있을시 데이터 추가)
 	function appendDocument() {
 		
 		var startNo = $("#data_insert li").last().data("no") || 0;
@@ -1385,6 +1552,7 @@ $(document).ready(function(){
 		event.preventDefault();
 	}
 	
+	// 조건 검색 후 게시글 5개 출력 
 	$(document).on('click', '#search_data', function(event){
 		var params = $('#search_form').serialize();
 		
@@ -1459,6 +1627,7 @@ $(document).ready(function(){
 		event.preventDefault();
 	});
 	
+	// 조건 검색 후 게시글 무한스크롤(게시글 있을시 데이터 추가)
 	function appendDocument2(params) {
 		
 		var startNo = $("#data_insert li").last().data("no");
@@ -1503,61 +1672,6 @@ $(document).ready(function(){
 		event.preventDefault();
 	}
 	
-});
-	
-function selectData(){
-	var availableTags = [];
-	
-	$.ajax({
-        url:'/myakkbird/autoText.ak',
-        type:'POST',
-        dataType : "json", // 서버에서 보내줄 데이터 타입
-        contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-        success:function(data){
-        	$.each(data, function(index, item){
-        		availableTags.push(item.b_address_road);
-        		
-        		$("#autoText").autocomplete({
-        			source: availableTags,
-        			minLength: 1
-        		});
-       	  	});
-    	},
-    	error:function(){
-        alert("ajax통신 실패!!!");
-    	}
-	}); 
-}
-
-function oneCheckbox(check){
-	var obj = document.getElementsByName("b_category");
-    for(var i=0; i<obj.length; i++){
-    	if(obj[i] != check){
-        	obj[i].checked = false;
-        }
-    }
-}
-
-function scroll_top() {
-	$(window).scroll(function() {
-		if($( this).scrollTop() > 200 ) {
-			$('.top').fadeIn();
-		} else {
-			$('.top').fadeOut();
-		}
-	});
-	
-	$('.top').click(function() {
-		$('html, body').animate({ scrollTop : 0 }, 400);
-		return false;
-	});
-};
-
-$(document).ready(function(){ 
-	
-	selectData();
-	scroll_top();
-
 });
 	
 </script>

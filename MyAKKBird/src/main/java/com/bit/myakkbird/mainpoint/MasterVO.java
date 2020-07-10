@@ -5,19 +5,19 @@ import java.sql.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MasterVO {
-	private String m_password;
-	private String m_photo;
-	private String m_name;
-	private int m_age;
-	private String m_gender;
-	private String m_address_road;
-	private String m_address_detail;
-	private String m_email;
-	private String m_phone;
-	private String m_category;
-	private String m_type;
-	private int m_heart;
-	private String m_status;
+	private String m_password;        //회원 비밀번호
+	private String m_photo;           //회원 사진
+	private String m_name;            //회원 이름
+	private int m_age;                //회원 나이
+	private String m_gender;          //회원 성별
+	private String m_address_road;    //회원 지번주소
+	private String m_address_detail;  //회원 상세주소
+	private String m_email;           //회원 이메일
+	private String m_phone;           //회원 전화번호
+	private String m_category;        //회원 하위선택 카테고리
+	private String m_type;            //회원 타입
+	private int m_heart;              //회원 하트 개수
+	private String m_status;          //회원 탈퇴 여부
 	
 	private int b_num;                //게시글 번호 
 	private String m_id;              //회원 아이디 
@@ -226,7 +226,6 @@ public class MasterVO {
 	public void setB_delete(String b_delete) {
 		this.b_delete = b_delete;
 	}
-	
 	public String getImg() {
 		return img;
 	}

@@ -6,6 +6,7 @@
 <%
 	ArrayList<MasterVO> boardList = (ArrayList<MasterVO>)request.getAttribute("boardList");
 	String m_id = (String)request.getAttribute("m_id");
+	
 	int boardCount = boardList.size();
 	
 	for(int i = 0; i < boardList.size(); i++) {
@@ -36,8 +37,9 @@
 			boardList.get(i).setB_apply("매칭 완료");
 		}
 		
-		System.out.println(boardList.get(i).getM_phone());
 	}
+	
+	System.out.println("현재 세션 아이디 : " + m_id);
 %>
 <!DOCTYPE html>
 <html>
@@ -472,6 +474,7 @@
 			cursor: pointer;
 		}
 		
+		/* Top 스크롤 버튼 style */
 		.top {
   			position: fixed;
   			bottom: 70px;
@@ -502,7 +505,9 @@
 		.Top_div {
 			clear: both;
 		}
+		/* Top 스크롤 버튼 style */
 		
+		/* 데이터 없을 시 출력 style */
 		.end_title {
 			margin: -41px auto;
 			padding: 0;
@@ -519,7 +524,9 @@
 		.end_icon {
 			margin-top: 10px;
 		}
+		/* 데이터 없을 시 출력 style */
 		
+		/* 기타 style */
 		.div_plus {
 			margin: 0 auto;
 			width: 600px;
@@ -571,7 +578,7 @@
 					<div class="post_bottom">
 						<ul id="check_ul">
 							<li id="check_li">
-								<a href="./searchDetail.ak?b_num=<%=boardList.get(i).getB_num() %>" id="a_btn">신청내역보기</a>
+								<a href="./applyDetail.ak?b_num=<%=boardList.get(i).getB_num() %>" id="a_btn">신청내역보기</a>
 							</li>
 							<li id="check_li">
 								<a href="#modal_id" rel="modal:open" class="detail_btn" id="a_btn" value="<%=boardList.get(i).getB_num() %>">게시글 보기</a>
@@ -629,16 +636,17 @@
 	</div>
 </div>
 <script type="text/javascript">
-var boardCount = <%=boardCount %>;
-var totalCount;
-var m_id = '<%=m_id %>';
-var b_num;
-var d_b_num;
+//전역 변수
+var boardCount = <%=boardCount %>; // 게시글 개수
+var totalCount;                    // 총 게시글 개수
+var m_id = '<%=m_id %>';           // 현재 아이디
+var b_num;                         // 게시글 번호
+var img_d = '';                    // 카테고리 이미지
+var category_d = '';               // 카테고리 텍스트
+var apply = '';                    // 매칭 여부
+//전역 변수
 
-var img_d = '';
-var category_d = '';
-var apply = '';
-
+// 카테고리, 이미지 설정
 function category_list(item) {
 	if(item.b_category === "A") {
 		img_d = 'vacuum.png';
@@ -661,6 +669,7 @@ function category_list(item) {
 	}
 }
 
+// 매칭 여부
 function apply_list(item) {
 	if(item.b_apply === "N") {
 		apply = '매칭 대기중';
@@ -671,12 +680,14 @@ function apply_list(item) {
 
 $(document).ready(function(){
 	
-	var startNo;
+	scroll_top();
 	
+	// 게시글 개수가 0일 경우
 	if(boardCount === 0) {
 		$('#board_count').empty();
 	}
 	
+	// 게시글 자세히 보기
 	$(document).on("click",'.detail_btn',function() {
 		b_num = $(this).attr('value');
 		$(this).modal({
@@ -761,8 +772,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-
-	let isEnd = false;	
 	
 	$(function(){
 		
@@ -777,11 +786,10 @@ $(document).ready(function(){
 		
 	})
 	
-	var appendDocument = function() {
-		
-		if(isEnd == true){
-	           return;
-	    }
+	var startNo;
+	
+	// 무한 스크롤(내가 쓴 게시글)
+	function appendDocument() {
 		
 		startNo = $("#boardList #list_id").last().data("no") || 0;
 		
@@ -791,11 +799,6 @@ $(document).ready(function(){
 			dataType : "json",
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 			success: function(data) {
-				var length = data.length;
-				 
-	            if( length < 5 ){
-	            	isEnd = true;
-	            } 
 	            
 	            var end_div = '';
 				
@@ -882,6 +885,10 @@ $(document).ready(function(){
 		event.preventDefault();
 	}
 	
+});
+
+//스크롤 Top 기능
+function scroll_top() {
 	$(window).scroll(function() {
 		if($( this).scrollTop() > 200 ) {
 			$('.top').fadeIn();
@@ -889,13 +896,14 @@ $(document).ready(function(){
 			$('.top').fadeOut();
 		}
 	});
+	
 	$('.top').click(function() {
 		$('html, body').animate({ scrollTop : 0 }, 400);
 		return false;
 	});
-	
-});
+};
 
+// 게시물 삭제
 function delete_icon(b_num) {
 	
 	var output = '';
