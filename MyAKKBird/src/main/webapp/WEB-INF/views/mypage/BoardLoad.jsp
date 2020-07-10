@@ -46,15 +46,56 @@
 			font-weight: bold;
 		}
 		
+		.scroll-fixed {
+    		position: fixed;
+    		top: 45px;
+		}
+		
 		.board_search {
 			width: 550px;
-			height: 100px;
-			margin: 18px auto;
+			height: 160px;
+			position: fixed;
+			margin-top: 19px;
+			margin-left: 630px; 
 			border: 0.1px solid #d3d3d3; 
 			border-radius: 5px;
 			background-color: white;
 			box-shadow: -3px -3px 7px -3px #d3d3d3,
 		                3px 3px 7px -3px #d3d3d3;
+		}
+		
+		.board_search ul li {
+			display: inline-block;
+		}
+		
+		.board_search b {
+			text-align: center;
+		}
+		
+		.search_1_div {
+			width: 550px;
+			height: 30px;
+			margin-top: 10px;
+		}
+		
+		.search_1 {
+			margin-top: 3px;
+			margin-left: -17px;
+		}
+		
+		.search_2_div {
+			width: 550px;
+			height: 30px;
+			margin-top: 20px;
+		}
+		
+		.search_2 {
+			margin-top: 3px;
+			margin-left: -31px;
+		}
+		
+		.search_btn {
+			text-align: center;
 		}
 		
 		.board_count_div {
@@ -527,7 +568,59 @@
 		<!-- 게시물 개수 -->
 		<!-- 게시물 검색 -->
 		<div class="board_search">
-			
+			<form name="search_form_name" id="search_form" method="post">
+				<div class="search_1_div">
+					<b>선택 조건</b>
+					<ul class="search_1">
+						<li>
+							<input type="radio" class="choice" id="choice1" name="choice" value="ND">최신순
+							<label for="choice1"><div class="c1"></div></label>
+						</li>
+						<li>
+							<input type="radio" class="choice" id="choice2" name="choice" value="MM">시급 높은순
+							<label for="choice2"><div class="c2"></div></label>
+						</li>
+						<li>
+							<input type="radio" class="choice" id="choice3" name="choice" value="MS">조회 높은순
+							<label for="choice3"><div class="c3"></div></label>
+						</li>
+						<li>
+							<input type="radio" id="apply_id_y" name="b_apply" value="Y">매칭 완료
+							<label for="apply_id_y"><div class="a1"></div></label>
+						</li>
+						<li>
+							<input type="radio" id="apply_id_n" name="b_apply" value="N">매칭 대기중
+							<label for="apply_id_n"><div class="a2"></div></label>
+						</li>
+					</ul>
+				</div>
+				<div class="search_2_div">
+					<b>청소종류</b>
+					<ul class="search_2">
+						<li>
+							<input type="checkbox" id="b_category_id1" name="b_category" value="A">정기청소
+						</li>
+						<li>
+							<input type="checkbox" id="b_category_id2" name="b_category" value="B">특수청소
+						</li>
+						<li>
+							<input type="checkbox" id="b_category_id3" name="b_category" value="C">입주청소
+						</li>
+						<li>
+							<input type="checkbox" id="b_category_id4" name="b_category" value="D">상주청소
+						</li>
+						<li>
+							<input type="checkbox" id="b_category_id5" name="b_category" value="E">빌딩청소
+						</li>
+						<li>
+							<input type="checkbox" id="b_category_id6" name="b_category" value="F">방역청소
+						</li>
+					</ul>
+				</div>
+				<div class="search_btn">
+					<input type="button" value="검색"><input type="reset" value="초기화">
+				</div>
+			</form>
 		</div>
 		<!-- 게시물 검색 -->
 		<!-- 게시물 출력 -->
@@ -565,6 +658,20 @@ var isEmpty = function(val) {
 		return false
 	}
 };
+
+//스크롤 시 검색조건도 같이 따라오게
+function scroll_search() {
+	var scrollOffset = $('.board_search').offset();
+	
+	$(window).scroll(function() {
+    	if ($(document).scrollTop() > scrollOffset.top) {
+    		$('.board_search').addClass('scroll-fixed');
+        }
+        else {
+        	$('.board_search').removeClass('scroll-fixed');
+        }
+	});
+}
 
 function noData() {
 	var output = '';
@@ -720,6 +827,7 @@ $(document).ready(function(){
 	
 	scroll_top();
 	onload();
+	scroll_search();
 	
 	function onload() {
 		
