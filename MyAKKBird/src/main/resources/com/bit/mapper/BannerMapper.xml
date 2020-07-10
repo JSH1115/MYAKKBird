@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.BannerMapper">
+	
+	<resultMap type="BannerVO" id="bannerResultMap">
+		<result property="ba_num" column="ba_num"/>
+		<result property="m_id" column="m_id"/>
+		<result property="ba_got" column="ba_got"/>
+		<result property="ba_date" column="ba_date"/>
+	</resultMap>
+	
+	<select id="checkGotHeart" resultType="int">
+		SELECT COUNT(*) FROM BANNER
+		WHERE m_id = #{m_id}
+		AND ba_got = 'Y'
+	</select>
+	
+	<insert id="insertGotHeart" parameterType="BannerVO">
+		INSERT INTO BANNER (m_id, ba_got, ba_date)
+		VALUES (#{m_id}, 'Y', SYSDATE)
+	</insert>
+	
+	<update id="updateGotHeart" parameterType="MemberVO">
+		UPDATE MEMBER
+		SET m_heart = m_heart+5
+		WHERE m_id = #{m_id}
+	</update>
+</mapper>

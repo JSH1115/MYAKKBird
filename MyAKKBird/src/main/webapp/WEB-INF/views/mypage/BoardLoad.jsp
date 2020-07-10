@@ -364,6 +364,7 @@
 			color: white;
 		}
 		
+		/* 게시물 등록하러가기 style */
 		#noDataZone {
 			margin: 0 auto;
 			width: 600px;
@@ -414,7 +415,9 @@
 			margin-top: 15px;
 			float:left;
 		}
+		/* 게시물 등록하러가기 style */
 		
+		/* 삭제 다이얼로그 style */
 		.dialog {
 		    width: 100px;
 		    height: 60px;
@@ -473,6 +476,7 @@
 			float:right; 
 			cursor: pointer;
 		}
+		/* 삭제 다이얼로그 style */
 		
 		/* Top 스크롤 버튼 style */
 		.top {
@@ -533,7 +537,7 @@
 			height: 20px;
 			background-color: white;
 		}
-		
+		/* 기타 style */
 	</style>
 </head>
 <body>
@@ -599,13 +603,13 @@
 				}
 			%>
 		</ul>
-			<%
-				if(boardCount == boardList.size()) {
-			%>
-					<div class="div_plus"></div>
-			<%
-				} 
-			%>
+		<%
+			if(boardCount == boardList.size()) {
+		%>
+				<div class="div_plus"></div>
+		<%
+			} 
+		%>
 	</div>
 	<div id="end">
 	</div>

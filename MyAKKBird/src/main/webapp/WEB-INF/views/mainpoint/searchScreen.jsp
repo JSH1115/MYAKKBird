@@ -587,11 +587,14 @@
 		}
 		
 		.hot_b {
-			color: #37B04B;
+			color: white;
+			background-color: #37B04B;
 			border: 1px solid #37B04B;
     		border-radius: 15px;
     		font-size: 10px;
     		padding: 5px;
+    		box-shadow: -1px -1px 7px -3px #d3d3d3,
+		                1px 1px 7px -3px #d3d3d3;
 		}
 		
 		.post_right {
@@ -762,6 +765,7 @@
 			font-size: 20px;
 			margin-left: 10px;
 		}
+		
 		/* 찜 관련 style */
 	</style>
 </head>
@@ -1199,17 +1203,6 @@ function count_txt(index, startNo) {
 	$('.screen_middle').html(listCount);
 }
 
-// 광고 출력
-function advr_list() {
-	var advr = '';
-	
-	advr += '<li>'
-	advr += '	<div class="Banner" onclick="freeHeart()">'
-	advr += '	</div>'
-	advr += '</li>'
-	$('#data_insert').append(advr);
-}
-
 // 스크롤 끝에 도달하면 출력 
 function end_title() {
 	 var end_div = '';
@@ -1292,7 +1285,7 @@ function check_member(b_num) {
 					    '</div>',
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '<a href="./joinselect.ak" style="color:white; text-decoration: none; padding: 20px;">회원가입</a>',
+						  '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
 				})
 				
 			} else {
@@ -1398,7 +1391,21 @@ function delete_like(b_num) {
 	});
 }
 
-function freeHeart() {
+// 광고 출력
+function banner() {
+	var banner = '';
+	
+	banner += '<li>'
+	banner += '    <div class="Banner" onclick="banner_check()">'
+	banner += '    </div>'
+	banner += '</li>'
+	
+	$('#data_insert').append(banner);
+}
+
+// 광고 로그인 여부 검사
+function banner_check() {
+	
 	$.ajax({
 		url: '/myakkbird/check_member.ak?m_id='+se_id+'',
 		type: 'GET',
@@ -1420,11 +1427,92 @@ function freeHeart() {
 					    '</div>',
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '<a href="./joinselect.ak" style="color:white; text-decoration: none; padding: 20px;">회원가입</a>',
+					    '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
 				})
 				
 			} else {
-				alert('체크 완료!');
+				banner_got_check(se_id);
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function banner_got_check(se_id) {
+	
+	$.ajax({
+		url: '/myakkbird/check_hgot.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data == 1) {
+				Swal.fire({
+					  html: 
+						'<svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+				        '<b class="mw_txt">무료 하트를 지급 받은 회원입니다!</b>',
+					  timer: 1000,
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
+			} else {
+				banner_got(se_id);
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function banner_got(se_id) {
+	
+	$.ajax({
+		url: '/myakkbird/heart_got.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data == 1) {
+				heart_got(se_id);
+			} else {
+				Swal.fire({
+					  html: 
+				        '<b class="mw_txt">하트 지급 실패..ㅠㅠ</b>' + 
+				        '<span>운영자에게 문의주세요!</span>',
+					  timer: 1000,
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function heart_got(se_id) {
+	
+	$.ajax({
+		url: '/myakkbird/heart_success.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data == 1) {
+				Swal.fire({
+					  html:
+						'<svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+				        '<b class="mw_txt">하트 5개 지급 완료!</b>',
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
 			}
 		},
 		error:function(){
@@ -1463,7 +1551,7 @@ $(document).ready(function(){
 					var startNo = 0;
 					
 					if(index == 2) {
-						advr_list();
+						banner();
 					} 
 					
 				    category_list(item);
@@ -1582,7 +1670,7 @@ $(document).ready(function(){
 			    	var startNo = 0;
 			    	
 			    	if(index == 2) {
-						advr_list();
+						banner();
 					} 
 			    	
 			    	category_list(item);

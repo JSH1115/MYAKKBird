@@ -18,6 +18,9 @@
 	<!-- jquery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<!-- jquery -->
+	<!-- alert창 API 시작 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- alert창 API 끝 -->
 	<!-- 유효성 검사 jquery API 시작 -->
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js" ></script>
 	<!-- 유효성 검사 jquery API 끝 -->
@@ -838,7 +841,7 @@
 		</div>
 		<div class="board_out">
 			<!-- 아직 미완성 -->
-			<div class="advr" onclick="location.href='move.ak'">
+			<div class="advr" onclick="banner_check()">
 			</div>
 		</div>
 		<div class="board_out">
@@ -936,10 +939,11 @@ $(document).ready(function () {
 	});
 });
 
-// 맵 생성 관련 전역 변수
+//세션 아이디, 맵 생성 관련 전역 변수
+var se_id = '<%=m_id %>';
 var mapContainer;
 var map;
-//맵 생성 관련 전역 변수
+// 세션 아이디, 맵 생성 관련 전역 변수
 
 //맵 생성
 function newMap() {
@@ -1104,6 +1108,124 @@ $("#img_input").change(function(){
    $('#comment').append(output);
    readURL(this);
 });
+
+//광고 로그인 여부 검사
+function banner_check() {
+	
+	$.ajax({
+		url: '/myakkbird/check_member.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data === 0) {
+				
+				Swal.fire({
+					  title: '<strong>5분안에 회원가입하고</strong>',
+					  html:
+					    '<div class="modal_join">' +
+					    '    <svg class="mj_icon1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>' +
+					    '    <b class="mj_txt">고객의 다양한 게시물을 확인!</b><br>' +
+					    '    <svg class="mj_icon2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>' +
+					    '    <b class="mj_txt">회원이 작성한 리얼 후기 확인!</b><br>' +
+					    '    <svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
+					    '</div>',
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
+				})
+				
+			} else {
+				banner_got_check(se_id);
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function banner_got_check(se_id) {
+	
+	$.ajax({
+		url: '/myakkbird/check_hgot.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data == 1) {
+				Swal.fire({
+					  html: 
+						'<svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+				        '<b class="mw_txt">무료 하트를 지급 받은 회원입니다!</b>',
+					  timer: 1000,
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
+			} else {
+				banner_got(se_id);
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function banner_got(se_id) {
+	
+	$.ajax({
+		url: '/myakkbird/heart_got.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data == 1) {
+				heart_got(se_id);
+			} else {
+				Swal.fire({
+					  html: 
+				        '<b class="mw_txt">하트 지급 실패..ㅠㅠ</b>' + 
+				        '<span>운영자에게 문의주세요!</span>',
+					  timer: 1000,
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
+
+function heart_got(se_id) {
+	
+	$.ajax({
+		url: '/myakkbird/heart_success.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data == 1) {
+				Swal.fire({
+					  html:
+						'<svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+				        '<b class="mw_txt">하트 5개 지급 완료!</b>',
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
 </script>
 </body>
 </html>
