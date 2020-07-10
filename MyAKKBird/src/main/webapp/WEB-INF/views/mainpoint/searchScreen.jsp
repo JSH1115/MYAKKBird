@@ -738,7 +738,7 @@
 		}
 		/* 데이터 없을 시 출력 style */
 		
-		/* 찜 관련 style */
+		/* 광고, 찜 관련 style */
 		.modal_join {
 			font-size: 15px;
 			text-align: center;
@@ -765,8 +765,7 @@
 			font-size: 20px;
 			margin-left: 10px;
 		}
-		
-		/* 찜 관련 style */
+		/* 광고, 찜 관련 style */
 	</style>
 </head>
 <body>
