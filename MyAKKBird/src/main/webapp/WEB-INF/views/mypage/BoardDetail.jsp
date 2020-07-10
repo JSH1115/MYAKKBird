@@ -11,11 +11,7 @@
 	String b_num= request.getParameter("b_num");			//게시글번호
 	String e_id = (String)session.getAttribute("m_id");		//현재로그인한 아이디(요청하는사람.근로자)
 	String c_id = board.getM_id();							//게시글 작성한 아이디(요청받는사람.회원)
-	
-	String apply_chk = (String)session.getAttribute("apply_chk");	//현재 게시글에 근로자가 신청한 이력이 있는지 체크 카운팅한 변수
-	System.out.println(apply_chk+"문서에서 체크");
-
-	
+	String apply_chk = (String)request.getAttribute("apply_chk");	//현재 게시글에 근로자가 신청한 이력이 있는지 체크 카운팅한 변수
 	//A:정기청소 B:특수청소 C:입주청소(이사청소) D:상주청소 E:빌딩청소 F:방역청소
 	//카테고리 이미지도 같이 처리해주기
 	String str = board.getB_category();
@@ -192,19 +188,18 @@
 				</div>
 				<div class="_E1gHH2"></div>	<!-- 구분선 -->
 				
-				<%-- <%if(apply_chk.equals("0")) {%> --%>
-				<%if(apply_chk == null) {%>
+			 	<%if(apply_chk.equals("0")) {%> 
 				<div class="EXIc6g">
 					<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="#37B04B" width="48px" height="48px"><g><rect fill="none" height="24" width="24" x="0"/></g><g><g><g><path d="M9,11.24V7.5C9,6.12,10.12,5,11.5,5S14,6.12,14,7.5v3.74c1.21-0.81,2-2.18,2-3.74C16,5.01,13.99,3,11.5,3S7,5.01,7,7.5 C7,9.06,7.79,10.43,9,11.24z M18.84,15.87l-4.54-2.26c-0.17-0.07-0.35-0.11-0.54-0.11H13v-6C13,6.67,12.33,6,11.5,6 S10,6.67,10,7.5v10.74c-3.6-0.76-3.54-0.75-3.67-0.75c-0.31,0-0.59,0.13-0.79,0.33l-0.79,0.8l4.94,4.94 C9.96,23.83,10.34,24,10.75,24h6.79c0.75,0,1.33-0.55,1.44-1.28l0.75-5.27c0.01-0.07,0.02-0.14,0.02-0.2 C19.75,16.63,19.37,16.09,18.84,15.87z"/></g></g></g></svg>
 					<div class="_E1Y9r0">
-						<div class="_E3TIsb">처음신청하기</div>
+						<div class="_E3TIsb">신청하기</div>
 					</div>
 				</div>
 				<%}else{ %>
 				<div class="EXIc6g_ard">
 					<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="#37B04B" width="48px" height="48px"><g><rect fill="none" height="24" width="24" x="0"/></g><g><g><g><path d="M9,11.24V7.5C9,6.12,10.12,5,11.5,5S14,6.12,14,7.5v3.74c1.21-0.81,2-2.18,2-3.74C16,5.01,13.99,3,11.5,3S7,5.01,7,7.5 C7,9.06,7.79,10.43,9,11.24z M18.84,15.87l-4.54-2.26c-0.17-0.07-0.35-0.11-0.54-0.11H13v-6C13,6.67,12.33,6,11.5,6 S10,6.67,10,7.5v10.74c-3.6-0.76-3.54-0.75-3.67-0.75c-0.31,0-0.59,0.13-0.79,0.33l-0.79,0.8l4.94,4.94 C9.96,23.83,10.34,24,10.75,24h6.79c0.75,0,1.33-0.55,1.44-1.28l0.75-5.27c0.01-0.07,0.02-0.14,0.02-0.2 C19.75,16.63,19.37,16.09,18.84,15.87z"/></g></g></g></svg>
 					<div class="_E1Y9r0_ard">
-						<div class="_E3TIsb_ard">이미신청했지</div>
+						<div class="_E3TIsb_ard">신청하기</div>
 					</div>
 				</div>
 				<%} %>
@@ -222,10 +217,6 @@
 	
 	
 	<script>
-		$(document).ready(function() {
-			apply_match_chk();
-		});
-	
 		//이미지 띄우는 모달창
 		function big_img(up_img) {
 			Swal.fire({
@@ -238,7 +229,7 @@
 				  confirmButtonText:'OK'
 			})  
 		}
-		//신청하기 모달창
+		//신청하기 모달창(신청전)
 		$('.EXIc6g:nth-last-child(1)').click(function (event) {
 			Swal.fire({
 				  title: '매칭을 원해요!',
@@ -252,7 +243,7 @@
 				  cancelButtonText:'다음에 할게요',
 				})
 		});	
-
+		//신청하기 모달창(이미신청한경우)
 		$('.EXIc6g_ard').click(function (event) {
 			Swal.fire({
 				  title: 'Aleady applied?',
@@ -262,32 +253,14 @@
 				  showCancelButton: true,
 				  confirmButtonColor: '#37B04B',
 				  cancelButtonColor: '#E6E6E6',
-				  confirmButtonText: '<div onclick="">신청내역보기</div>',
+				  confirmButtonText: '<div onclick="allowListE.ak">신청내역보기</div>',
 				  cancelButtonText:'Close',
 				})
 		});	
-
 		
 		var b_num = $('[name=b_num]').val();
 		var c_id = $('[name=c_id]').val();
 		var e_id = $('[name=e_id]').val();
-		
-		//매칭 신청전 신청내역 체크
-		function apply_match_chk() {
-   			$.ajax({
-				url : '/myakkbird/apply_match_chk.ak',
-				type : 'POST',
-				data : {'b_num':b_num,'e_id':e_id },
-				dataType : 'json',
-				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-				success : function(data) {
-					alert("싱청내역체크성공");
-				},
-				error:function() {
-					alert("ajax 통신 실패(매칭 신청전 체크 통신)!!!");
-				}
-			}); 
-		}
 		
 		//매칭 신청하기 통신
 		function apply_match() {
@@ -298,6 +271,7 @@
 				dataType : 'json',
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success : function(data) {
+					var a = '';
 					if(data == 1){
 					    Swal.fire({
 					    	icon: 'success',
@@ -306,6 +280,7 @@
 					    	showConfirmButton: false
 					    })
 					}
+					location.reload();
 				},
 				error:function() {
 					alert("ajax 통신 실패(매칭 신청하기 통신)!!!");
@@ -324,7 +299,6 @@
         level: 3 // 지도의 확대 레벨
     };  
 	
-
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	

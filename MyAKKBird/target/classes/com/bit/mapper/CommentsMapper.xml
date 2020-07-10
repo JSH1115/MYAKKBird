@@ -40,9 +40,12 @@
 	</update>
 	
 	<!-- 댓글삭제 -->
-	<delete id="commentsDelete" parameterType="int">
-		DELETE FROM comments WHERE c_num = #{c_num}
+	<delete id="commentsDelete" parameterType="map">
+		<!-- DELETE FROM comments WHERE c_num = #{c_num} -->
+		<![CDATA[
+		DELETE FROM (select c_re_ref, c_re_lev FROM comments WHERE c_re_ref=#{c_re_ref} and m_id=#{m_id})
+		WHERE c_re_lev >= (select c_re_lev FROM comments WHERE c_num=#{c_num})
+		]]>
 	</delete>
-	
 	
 </mapper>

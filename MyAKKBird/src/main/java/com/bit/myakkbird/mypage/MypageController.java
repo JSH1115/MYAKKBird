@@ -2,11 +2,9 @@ package com.bit.myakkbird.mypage;
 
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -160,20 +158,15 @@ public class MypageController {
 		String m_img;
 		if(memberVO.getM_photo() == null) {
 			m_img = "no_img";
-		}else {
+		} else {
 			m_img = memberVO.getM_photo().toString();
 		}
 		session.setAttribute("m_img", m_img);
 		
-		
-		//지원자 수 구하기
-//		AcceptVO apply_chk = acceptService.applyChk(acceptVO);
-//		
-//		String abc = Integer.toString(apply_chk.getApply_chk());
-//		session.setAttribute("apply_chk",abc);
-//		
-//		System.out.println(apply_chk.getApply_chk()+"22지원횟수");
-//		System.out.println(abc+"22이거야");
+		//해당게시글에 대한 신청이력 체크하기
+		AcceptVO apply_chk = acceptService.applyChk(acceptVO);
+		String abc = Integer.toString(apply_chk.getApply_chk());
+		model.addAttribute("apply_chk",abc);
 
 		return "mypage/BoardDetail";
 	}

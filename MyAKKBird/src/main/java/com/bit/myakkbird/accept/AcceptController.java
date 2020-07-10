@@ -1,10 +1,7 @@
 package com.bit.myakkbird.accept;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,28 +12,18 @@ public class AcceptController {
 	@Autowired
 	AcceptService acceptService;
 	
-	//수락한 내역
-	@RequestMapping(value="/allowList.ak")
-	public String AllowList() {
+	//수락한 내역(고객)
+	@RequestMapping(value="/allowListC.ak")
+	public String AllowListC() {
 		
-		return "mypage/AllowList";
+		return "mypage/AllowListC";
 	}
 	
-	//매칭 요청전 신청내역 체크
-	@RequestMapping(value="/apply_match_chk.ak", produces="application/json;charset=UTF-8")
-	@ResponseBody
-	private int applyInsertChk(AcceptVO acceptVO, HttpSession session)throws Exception{
+	//수락한 내역(근로자)
+	@RequestMapping(value="/allowListE.ak")
+	public String AllowListE() {
 		
-		//지원자 수 구하기
-		AcceptVO apply_chk = acceptService.applyChk(acceptVO);
-		
-		String abc = Integer.toString(apply_chk.getApply_chk());
-		session.setAttribute("apply_chk",abc);
-		
-		System.out.println(apply_chk.getApply_chk()+"지원횟수");
-		System.out.println(abc+"이거야");
-		
-		return apply_chk.getApply_chk();
+		return "mypage/AllowListE";
 	}
 	
 	//매칭 요청하기

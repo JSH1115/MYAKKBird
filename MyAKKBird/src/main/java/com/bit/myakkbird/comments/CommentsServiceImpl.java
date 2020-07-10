@@ -56,9 +56,9 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 	//댓글삭제
 	@Override
-	public int commentsDelete(int c_num) {
+	public int commentsDelete(CommentsVO commentsVO) {
 		CommentsMapper mCommentsMapper = sqlSession.getMapper(CommentsMapper.class);
-		int res = mCommentsMapper.commentsDelete(c_num);
+		int res = mCommentsMapper.commentsDelete(commentsVO);
 		
 		return res;
 	}

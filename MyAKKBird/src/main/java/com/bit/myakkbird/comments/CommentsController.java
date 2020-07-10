@@ -3,6 +3,7 @@ package com.bit.myakkbird.comments;
 
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +62,15 @@ public class CommentsController {
 	}
 	
 	// 댓글 삭제
-	@RequestMapping(value="/comments_delete.ak",	produces="application/json;charset=UTF-8") 
-	private int mCommentsServiceDelete(@RequestParam(value="c_num") int c_num) throws Exception {
+	@RequestMapping(value="/comments_delete.ak", produces="application/json;charset=UTF-8") 
+	private int mCommentsServiceDelete(@RequestParam(value="c_num") int c_num, 
+			@RequestParam(value="c_re_ref") int c_re_ref, 
+			HttpSession session) throws Exception {
+		CommentsVO commentsVO = new CommentsVO();
+		commentsVO.setM_id((String)session.getAttribute("m_id"));
+		commentsVO.setC_num(c_num);
+		commentsVO.setC_re_ref(c_re_ref);
 		
-		return mCommentsService.commentsDelete(c_num);
+		return mCommentsService.commentsDelete(commentsVO);
 	}
 }
