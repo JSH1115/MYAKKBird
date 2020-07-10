@@ -11,9 +11,13 @@ import com.bit.myakkbird.mypage.BoardVO;
 public interface SearchMapper {
 	public List<BoardVO> autoText();
 	
+	public ArrayList<MasterVO> CBList(String m_id);
+	
 	public ArrayList<MasterVO> CBListInfinite(
 			@Param("m_id") String m_id,
 			@Param("startNo") int startNo);
+	
+	public int chkApplyCount(int b_num);
 	
 	public MasterVO CBdetail(
 			@Param("m_id") String m_id,

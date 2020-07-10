@@ -23,12 +23,27 @@ public class SearchController {
         return list;
 	}
 	
+	@RequestMapping(value="/cb_load.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> cbLoad(String m_id) {
+		ArrayList<MasterVO> cb_Load =
+				searchService.CBListService(m_id);
+		
+		return cb_Load;
+	}
+	
 	@RequestMapping(value="/cb_infinite.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> cbInfinite(String m_id, int startNo) {
 		ArrayList<MasterVO> cb_infinite = 
 				searchService.CBListInfiniteService(m_id, startNo);
 		
 		return cb_infinite;
+	}
+	
+	@RequestMapping(value="/chk_applyCount.ak", produces="application/json;charset=UTF-8")
+	public int chkApplyCount(int b_num) {
+		int result = searchService.chkApplyCountService(b_num);
+		
+		return result;
 	}
 	
 	@RequestMapping(value="/cb_detail.ak", produces="application/json;charset=UTF-8")

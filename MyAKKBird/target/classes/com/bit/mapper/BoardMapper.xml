@@ -130,25 +130,4 @@
 		AND m_id = #{m_id}
 	</update>
 	
-	<!-- 게시글 불러올때 5개만 미리 뿌리기 -->
-	<select id="clientBoardList" parameterType="MasterVO" resultMap="masterResultMap">
-		SELECT A.*
-    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
-                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
-                             M.m_gender, B.b_num, B.b_category, B.b_money, B.b_start,
-                             B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply 
-                      FROM MEMBER M, BOARD B
-                      WHERE M.m_id = B.m_id
-                      AND B.b_type = 'A'
-                      AND M.m_type = 'C'
-                      AND M.m_status = 'N'
-                      AND B.b_delete = 'N'
-					  AND B.m_id = #{m_id}
-                      ORDER BY B.b_date DESC) AA ) A
-        <![CDATA[
-        WHERE RNUM1 >= 1
-        AND RNUM1 <= 5
-        ]]>
-	</select>
-	
 </mapper> 

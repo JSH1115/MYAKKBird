@@ -20,6 +20,5 @@ public interface BoardMapper {
 			@Param("b_num") int b_num, 
 			@Param("m_id") String m_id);	            //게시글 수정 전 기본정보 불러오기
 	public int updateBoard(BoardVO boardVO);			//게시글 수정
-	public ArrayList<MasterVO> clientBoardList(String m_id);	//5개 본인게시물 미리 불러오기
 
 }

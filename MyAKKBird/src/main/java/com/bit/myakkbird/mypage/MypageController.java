@@ -93,17 +93,12 @@ public class MypageController {
 		return null;
 	}
 	
-	//본인 게시물 5개 미리 불러오기
+	//본인 게시물 이동하기
 	@RequestMapping(value="/BoardLoad.ak")
 	public String BoardLoad(HttpSession session, MemberVO memberVO, Model model) {
 		
 		String m_id = (String)session.getAttribute("m_id");
-		System.out.println("BoardLoad 세션 아이디 : " + m_id);
 		
-		ArrayList<MasterVO> boardList = 
-				boardService.clientBoardListService(m_id);
-		
-		model.addAttribute("boardList", boardList);
 		model.addAttribute("m_id", m_id);
 		
 		return "mypage/BoardLoad";
