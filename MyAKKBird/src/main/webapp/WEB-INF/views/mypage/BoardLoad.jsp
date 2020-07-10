@@ -48,12 +48,12 @@
 		
 		.scroll-fixed {
     		position: fixed;
-    		top: 45px;
+    		top: 47px;
 		}
 		
 		.board_search {
-			width: 550px;
-			height: 160px;
+			width: 190px;
+			height: 250px;
 			position: fixed;
 			margin-top: 19px;
 			margin-left: 630px; 
@@ -65,7 +65,7 @@
 		}
 		
 		.board_search ul li {
-			display: inline-block;
+			display: inline;
 		}
 		
 		.board_search b {
@@ -73,28 +73,27 @@
 		}
 		
 		.search_1_div {
-			width: 550px;
 			height: 30px;
 			margin-top: 10px;
 		}
 		
 		.search_1 {
-			margin-top: 3px;
-			margin-left: -17px;
+			margin-top: 5px;
 		}
 		
 		.search_2_div {
-			width: 550px;
 			height: 30px;
-			margin-top: 20px;
+			margin-top: 60px;
 		}
 		
 		.search_2 {
-			margin-top: 3px;
-			margin-left: -31px;
+			width: 190px;
+			margin-top: 5px;
+			margin-left: -32px;
 		}
 		
 		.search_btn {
+			margin-top: 70px;
 			text-align: center;
 		}
 		
@@ -570,20 +569,8 @@
 		<div class="board_search">
 			<form name="search_form_name" id="search_form" method="post">
 				<div class="search_1_div">
-					<b>선택 조건</b>
+					<b>매칭여부</b>
 					<ul class="search_1">
-						<li>
-							<input type="radio" class="choice" id="choice1" name="choice" value="ND">최신순
-							<label for="choice1"><div class="c1"></div></label>
-						</li>
-						<li>
-							<input type="radio" class="choice" id="choice2" name="choice" value="MM">시급 높은순
-							<label for="choice2"><div class="c2"></div></label>
-						</li>
-						<li>
-							<input type="radio" class="choice" id="choice3" name="choice" value="MS">조회 높은순
-							<label for="choice3"><div class="c3"></div></label>
-						</li>
 						<li>
 							<input type="radio" id="apply_id_y" name="b_apply" value="Y">매칭 완료
 							<label for="apply_id_y"><div class="a1"></div></label>
