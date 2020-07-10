@@ -65,6 +65,9 @@ a {
 		<a class="menu" href="BoardLoad.ak">게시물 보기<span>> &nbsp;</span></a>
 	</section>
 	<section>
+		<a class="menu" href="allowListE.ak">매칭 게시물 목록<span>> &nbsp;</span></a>
+	</section>
+	<section>
 		<a href="pay.ak" class="menu">결제하기<span>> &nbsp;</span></a>
 	</section>
 <% }else if(m_type.equals("E")){ %>
@@ -73,6 +76,12 @@ a {
 	</section>
 	<section>
 		<a class="menu">구인현황<span>> &nbsp;</span></a>
+	</section>
+	<section>
+		<a class="menu" href="likeBoard.ak">찜한 게시물<span>> &nbsp;</span></a>
+	</section>
+	<section>
+		<a class="menu" href="allowListC.ak">매칭 게시물 목록<span>> &nbsp;</span></a>
 	</section>
 	<section>
 		<a href="pay.ak" class="menu">결제하기<span>> &nbsp;</span></a>

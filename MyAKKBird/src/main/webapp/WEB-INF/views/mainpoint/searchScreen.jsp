@@ -142,7 +142,7 @@
 		}
 		
 		.screen_t_rogo_img {
-			width: 110px;
+			width: 95px;
 			height: 100px;
 			float:right;
 			margin-top: -40px;
@@ -150,10 +150,14 @@
 		}
 		
 		.screen_t_rogo_txt {
-			font-size: 15px;
+			font-size: 16px;
 			float: right;
-			margin-top: -4px;
+			margin-top: 6px;
 			margin-right: 100px;
+		}
+		
+		.screen_t_rogo_txt b {
+			color: #37B04B;
 		}
 		
 		.screen_Top_form {
@@ -660,7 +664,7 @@
 		/* 검색 후 데이터가 없을때 style */
 		
 		/* 광고 style */
-		.Advertising {
+		.Banner {
 			width:520px; 
 			height:150px;
 			margin-left:-10px;
@@ -670,10 +674,11 @@
 			background-image: url("./resources/image/advr_s.png");
 			background-repeat: no-repeat;
 			background-size: 520px 150px;
+			cursor: pointer;
 		}
 		/* 광고 style */
 		
-		/* Top 스크롤 버튼 style  */
+		/* Top 스크롤 버튼 style */
 		.top {
   			position: fixed;
   			bottom: 70px;
@@ -765,7 +770,7 @@
 		<div class="screen_Top_text">
 			<b class="screen_t_sub"><strong>악어</strong>를 찾고 싶은 지역,</b><br>
 			<span class="screen_t_sub2">위치와 청소 종류를  찾아 검색하세요.</span>
-			<b class="screen_t_rogo_txt">청소는 마이 악어새</b>
+			<b class="screen_t_rogo_txt">청소는 마이 <b>악어새</b></b>
 			<img class="screen_t_rogo_img" src="./resources/image/crocodile_logo.png">
 		</div>
 		<hr>
@@ -1199,7 +1204,7 @@ function advr_list() {
 	var advr = '';
 	
 	advr += '<li>'
-	advr += '	<div class="Advertising">'
+	advr += '	<div class="Banner" onclick="freeHeart()">'
 	advr += '	</div>'
 	advr += '</li>'
 	$('#data_insert').append(advr);
@@ -1393,6 +1398,40 @@ function delete_like(b_num) {
 	});
 }
 
+function freeHeart() {
+	$.ajax({
+		url: '/myakkbird/check_member.ak?m_id='+se_id+'',
+		type: 'GET',
+		dataType: "json",
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			if(data === 0) {
+				
+				Swal.fire({
+					  title: '<strong>5분안에 회원가입하고</strong>',
+					  html:
+					    '<div class="modal_join">' +
+					    '    <svg class="mj_icon1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>' +
+					    '    <b class="mj_txt">고객의 다양한 게시물을 확인!</b><br>' +
+					    '    <svg class="mj_icon2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>' +
+					    '    <b class="mj_txt">회원이 작성한 리얼 후기 확인!</b><br>' +
+					    '    <svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
+					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
+					    '</div>',
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '<a href="./joinselect.ak" style="color:white; text-decoration: none; padding: 20px;">회원가입</a>',
+				})
+				
+			} else {
+				alert('체크 완료!');
+			}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+}
 
 $(document).ready(function(){
 	

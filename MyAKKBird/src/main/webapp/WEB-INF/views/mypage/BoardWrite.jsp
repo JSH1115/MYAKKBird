@@ -710,8 +710,7 @@
 								<input type="text" name="b_address_detail" id="sample6_detailAddress"  
 								       class="address_input" placeholder=" 상세주소"><br>
 								<label class="error" id="d_addr" for="sample6_detailAddress" style="margin-left: -100px;"></label><br>
-								<input type="text" id="sample6_extraAddress" class="address_input"
-									   placeholder=" 참고항목">
+								<input type="text" id="sample6_extraAddress" class="address_input" placeholder=" 참고항목">
 								<!-- 다음 주소 API 끝 -->
 							</div>
 							<div class="address_div_default_left">

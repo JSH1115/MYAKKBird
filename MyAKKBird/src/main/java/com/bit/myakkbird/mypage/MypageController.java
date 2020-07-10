@@ -46,40 +46,37 @@ public class MypageController {
 	
 	//글쓰기등록
 	@RequestMapping(value="/board_insertProcess.ak")
-	public String BoardInsertProcess(String m_id, int m_heart, BoardVO boardVO, 
-			HttpServletResponse response) throws Exception {
+	public String BoardInsertProcess(HttpSession session, String m_id, 
+			BoardVO boardVO, Model model) throws Exception {
 		
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		
-		if(m_heart == 0) {
-			writer.write("<script>alert('하트가 부족합니다!');location.href='./heart.ak';</script>");
-		} else {
-			int result = boardService.UpdateHeartServiec(m_id);
+		int result = boardService.UpdateHeartServiec(m_id);
 			
-			if(result == 1) {
-				MultipartFile mf = boardVO.getFile();
-				String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
-				//지정한 위치에 파일 저장        
-		        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
-		            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
-					String originalFileExtension = 
-							mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-					String storedFileName = 
-							UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-		        	
-					mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
-					boardVO.setB_org_file(mf.getOriginalFilename());
-					boardVO.setB_up_file(storedFileName);
-		        } else { // 첨부된 파일이 없을때
-					boardVO.setB_org_file("");
-					boardVO.setB_up_file("");
-				}
+		if(result == 1) {
+			MultipartFile mf = boardVO.getFile();
+			String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
+			//지정한 위치에 파일 저장        
+	        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
+	            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
+				String originalFileExtension = 
+						mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
+				String storedFileName = 
+						UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+	        	
+				mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
+				boardVO.setB_org_file(mf.getOriginalFilename());
+				boardVO.setB_up_file(storedFileName);
+	        } else { // 첨부된 파일이 없을때
+				boardVO.setB_org_file("");
+				boardVO.setB_up_file("");
+			}
 		        
-				boardService.insertBoardService(boardVO);
-				return "home";
-			} 
+			boardService.insertBoardService(boardVO);
+			
+			session.setAttribute("id", m_id);
+			String m_type = memberService.mypage_menu(m_id);
+			model.addAttribute("m_type", m_type);
+			
+			return "member/mypage_menu";
 		}
 		
 		return null;
@@ -114,7 +111,8 @@ public class MypageController {
 	
 	//게시물 수정하기
 	@RequestMapping(value="/board_updateProcess.ak")
-	public String boardUpdateProcess(BoardVO boardVO) throws Exception {
+	public String boardUpdateProcess(HttpSession session, String m_id, 
+			BoardVO boardVO, Model model) throws Exception {
 		MultipartFile mf = boardVO.getFile();
 		String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
 		//지정한 위치에 파일 저장        
@@ -135,10 +133,13 @@ public class MypageController {
         
         boardService.updateBoardService(boardVO);
         
-        return "home";
+        session.setAttribute("id", m_id);
+		String m_type = memberService.mypage_menu(m_id);
+		model.addAttribute("m_type", m_type);
+        
+        return "member/mypage_menu";
 		
 	}
-	
 	
 	//게시글 자세히 보기
 	@RequestMapping(value="/BoardDetail.ak") 
