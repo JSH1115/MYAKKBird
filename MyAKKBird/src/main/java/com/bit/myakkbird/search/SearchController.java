@@ -61,6 +61,24 @@ public class SearchController {
 		return result;
 	}
 	
+	@RequestMapping(value="/cb_sload.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> cbSearchLoad(String m_id, String choice,
+			String b_apply) {
+		ArrayList<MasterVO> cb_SearchLoad =
+				searchService.CBSearchListService(m_id, choice, b_apply);
+		
+		return cb_SearchLoad;
+	}
+	
+	@RequestMapping(value="/cb_sinfinite.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> cbSInfinite(String m_id, String choice,
+			String b_apply, int startNo) {
+		ArrayList<MasterVO> cb_SInfinite =
+				searchService.CBSListInfiniteService(m_id, choice, b_apply, startNo);
+		
+		return cb_SInfinite;
+	}
+	
 	@RequestMapping(value="/board_search.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> boardSearch(String b_address_road) {
 		ArrayList<MasterVO> board_search =

@@ -16,6 +16,10 @@ public interface SearchService {
 	public MasterVO CBdetailService(String m_id, int b_num);
 	public int chkApplyCountService(int b_num);
 	public int BoardDeleteService(int b_num);
+	public ArrayList<MasterVO> CBSearchListService(String m_id, String choice, 
+			String b_apply);
+	public ArrayList<MasterVO> CBSListInfiniteService(String m_id, String choice, 
+			String b_apply, int startNo);
 	
 	public ArrayList<MasterVO> boardSearchService(String b_address_road);
 	public ArrayList<MasterVO> boardInfiniteService(String b_address_road, 

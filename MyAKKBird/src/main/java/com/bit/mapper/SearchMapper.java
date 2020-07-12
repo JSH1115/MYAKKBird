@@ -25,6 +25,17 @@ public interface SearchMapper {
 	
 	public int BoardDelete(int b_num);
 	
+	public ArrayList<MasterVO> CBSearchList(
+			@Param("m_id") String m_id,
+			@Param("choice") String choice,
+			@Param("b_apply") String b_apply);
+	
+	public ArrayList<MasterVO> CBSInfinite(
+			@Param("m_id") String m_id,
+			@Param("choice") String choice,
+			@Param("b_apply") String b_apply,
+			@Param("startNo") int startNo);
+	
 	public ArrayList<MasterVO> boardSearch(String b_address_road);
 	
 	public ArrayList<MasterVO> boardInfinite(

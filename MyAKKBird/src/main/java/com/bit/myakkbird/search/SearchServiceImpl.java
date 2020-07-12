@@ -70,6 +70,26 @@ public class SearchServiceImpl implements SearchService {
 		
 		return result;
 	}
+	
+	@Override
+	public ArrayList<MasterVO> CBSearchListService(String m_id, String choice,
+			String b_apply) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		ArrayList<MasterVO> cbSearch = 
+				searchMapper.CBSearchList(m_id, choice, b_apply);
+		
+		return cbSearch;
+	}
+	
+	@Override
+	public ArrayList<MasterVO> CBSListInfiniteService(String m_id, String choice, 
+			String b_apply, int startNo) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		ArrayList<MasterVO> cbSInfinite =
+				searchMapper.CBSInfinite(m_id, choice, b_apply, startNo);
+		
+		return cbSInfinite;
+	}
 
 	@Override
 	public ArrayList<MasterVO> boardSearchService(String b_address_road) {

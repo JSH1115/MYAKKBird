@@ -46,17 +46,13 @@
 			font-weight: bold;
 		}
 		
-		.scroll-fixed {
-    		position: fixed;
-    		top: 47px;
-		}
-		
 		.board_search {
-			width: 190px;
+			display: none;
+			width: 140px;
 			height: 250px;
-			position: fixed;
-			margin-top: 19px;
-			margin-left: 630px; 
+			position: absolute;
+			margin-top: -5px;
+			margin-left: 550px; 
 			border: 0.1px solid #d3d3d3; 
 			border-radius: 5px;
 			background-color: white;
@@ -69,44 +65,66 @@
 		}
 		
 		.board_search b {
-			text-align: center;
+			margin-left: 15px;
+			font-size: 14px;
 		}
 		
 		.search_1_div {
-			height: 30px;
+			height: 100px;
 			margin-top: 10px;
 		}
 		
-		.search_1 {
-			margin-top: 5px;
-		}
-		
 		.search_2_div {
-			height: 30px;
-			margin-top: 60px;
-		}
-		
-		.search_2 {
-			width: 190px;
-			margin-top: 5px;
-			margin-left: -32px;
+			height: 90px;
+			margin-top: 10px;
 		}
 		
 		.search_btn {
-			margin-top: 70px;
 			text-align: center;
+		}
+		
+		.s_btn {
+			background-color: #37B04B;
+			border: 0;
+			color: white;
+			border-radius: 2px;
+			font-size: 12px;
+			cursor: pointer;
+		}
+		
+		.r_btn {
+			background-color: #37B04B;
+			border: 0;
+			color: white;
+			border-radius: 2px;
+			margin-left: 5px;
+			font-size: 12px;
+			cursor: pointer;
+		}
+		
+		input:focus {outline:none;}
+		
+		.s_btn:hover, .r_btn:hover {
+			font-weight: bold;
 		}
 		
 		.board_count_div {
 			margin-top: 10px;
 			width: 600px;
-			height: 10px;
+			height: 30px;
 		}
 		
-		.board_count_div b {
-			margin-right: 24px;
+		#count_b {
 			font-size: 14px;
+			margin-left: 24px;
+			float: left;
+		}
+		
+		#search_a {
 			float: right;
+			margin-right: 20px;
+			margin-top: -5px;
+			cursor: pointer;
 		}
 		
 		.post {
@@ -143,9 +161,14 @@
 		
 		.photo_span {
 			margin-left: 36px;
-			font-size: 12px;
-			color: #37B04B;
-			padding: 3px;
+			font-size: 11px;
+			border: 1px solid #37B04B;
+    		border-radius: 15px;
+    		background-color: #37B04B; 
+			color: white;
+			padding: 4px;
+    		box-shadow: -1px -1px 7px -3px #d3d3d3,
+		                1px 1px 7px -3px #d3d3d3;
 		}
 		
 		.post_center {
@@ -158,6 +181,7 @@
 		
 		.post_subject {
 			font-size: 14.5px;
+			margin-top: -6px;
 		}
 		
 		.post_center span {
@@ -209,7 +233,7 @@
 			float: left;
 		}
 		
-		#a_btn, #a_btn_delete { 
+		#a_btn, .delete_a { 
 		 	text-decoration: none;
 		 	font-size: 12px;
 		 	background-color: white;
@@ -220,7 +244,7 @@
 			cursor: pointer;
 		} 
 		 
-		#a_btn:hover, #a_btn_delete:hover {
+		#a_btn:hover, .delete_a:hover {
 			color: white;
 			background-color: #37B04B;
 			font-weight: bold;
@@ -434,6 +458,10 @@
 		/* 게시물 등록하러가기 style */
 		
 		/* 삭제 다이얼로그 style */
+		.delete_list {
+			display: none;
+		}
+		
 		.dialog {
 		    width: 100px;
 		    height: 60px;
@@ -459,7 +487,7 @@
 		}
 		
 		.dialog:after {
-		    margin-top: -41.6px;
+		    margin-top: -17.6px;
 		    margin-left: -30px;
 		    border-color: transparent transparent white transparent ;
 		    border-width: 9px;
@@ -472,22 +500,16 @@
 		    border-width: 10px;
 		}
 		
-		.cancel_div {
-			margin-top: 3px;
-			margin-left: 70px;
-			cursor: pointer;
-		}
-		
 		.delete_icon {
 			float: right;
-			margin-top: -9px;
+			margin-top: 13px;
 			cursor: pointer;
 		}
 		
 		.delete_txt {
 			font-size: 12px; 
 			font-weight: bold; 
-			margin-top: -1px; 
+			margin-top: 20px; 
 			margin-right: 27px;
 			float:right; 
 			cursor: pointer;
@@ -529,7 +551,7 @@
 		
 		/* 데이터 없을 시 출력 style */
 		.end_title {
-			margin: -41px auto;
+			margin: -20px auto;
 			padding: 0;
 			width: 600px;
 			height: 100px;
@@ -550,10 +572,105 @@
 		.div_plus {
 			margin: 0 auto;
 			width: 600px;
-			height: 20px;
-			background-color: white;
+			height: 5px;
+			background-color: #E6E6E6;
 		}
 		/* 기타 style */
+		
+		input[type="radio"] { display:none; }
+		
+		input[type="radio"] + label .c1 { 
+			cursor: pointer; 
+			width: 70px;
+			height: 25px;
+			margin-top: 10px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_s.png");
+			background-repeat: no-repeat;
+			background-size: 70px 25px;
+		}
+
+		input[type="radio"]:checked + label .c1 { 
+			width: 70px;
+			height: 25px;
+			background: url("./resources/image/radio_c_s.png");
+			background-repeat: no-repeat;
+			background-size: 70px 25px;
+		}
+		
+		input[type="radio"] + label .c2 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_m.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .c2 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_m.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+		
+		input[type="radio"] + label .c3 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_d.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .c3 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_d.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+		
+		input[type="radio"] + label .a1 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-top: 10px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_match.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .a1 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_match.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+		
+		input[type="radio"] + label .a2 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_nomatch.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .a2 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_nomatch.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+		
 	</style>
 </head>
 <body>
@@ -563,49 +680,32 @@
 		</div>
 		<!-- 게시물 개수 -->
 		<div id="board_count" class="board_count_div">
+			<b id="count_b"></b>
+			<a id="search_a"><svg class="search_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="35px" height="35px"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></a>
 		</div>
 		<!-- 게시물 개수 -->
 		<!-- 게시물 검색 -->
 		<div class="board_search">
 			<form name="search_form_name" id="search_form" method="post">
+				<input type="hidden" name="m_id" value="<%=m_id %>">
 				<div class="search_1_div">
-					<b>매칭여부</b>
-					<ul class="search_1">
-						<li>
-							<input type="radio" id="apply_id_y" name="b_apply" value="Y">매칭 완료
-							<label for="apply_id_y"><div class="a1"></div></label>
-						</li>
-						<li>
-							<input type="radio" id="apply_id_n" name="b_apply" value="N">매칭 대기중
-							<label for="apply_id_n"><div class="a2"></div></label>
-						</li>
-					</ul>
+					<b>* 조건검색</b>
+					<input type="radio" id="choice1" name="choice" value="ND">
+					<label for="choice1"><div class="c1"></div></label>
+					<input type="radio" id="choice2" name="choice" value="MM">
+					<label for="choice2"><div class="c2"></div></label>
+					<input type="radio" id="choice3" name="choice" value="MS">
+					<label for="choice3"><div class="c3"></div></label>
 				</div>
 				<div class="search_2_div">
-					<b>청소종류</b>
-					<ul class="search_2">
-						<li>
-							<input type="checkbox" id="b_category_id1" name="b_category" value="A">정기청소
-						</li>
-						<li>
-							<input type="checkbox" id="b_category_id2" name="b_category" value="B">특수청소
-						</li>
-						<li>
-							<input type="checkbox" id="b_category_id3" name="b_category" value="C">입주청소
-						</li>
-						<li>
-							<input type="checkbox" id="b_category_id4" name="b_category" value="D">상주청소
-						</li>
-						<li>
-							<input type="checkbox" id="b_category_id5" name="b_category" value="E">빌딩청소
-						</li>
-						<li>
-							<input type="checkbox" id="b_category_id6" name="b_category" value="F">방역청소
-						</li>
-					</ul>
+					<b>* 매칭여부</b>
+					<input type="radio" id="apply_id_y" name="b_apply" value="Y">
+					<label for="apply_id_y"><div class="a1"></div></label>
+					<input type="radio" id="apply_id_n" name="b_apply" value="N">
+					<label for="apply_id_n"><div class="a2"></div></label>
 				</div>
 				<div class="search_btn">
-					<input type="button" value="검색"><input type="reset" value="초기화">
+					<input type="button" class="s_btn" id="s_btn_id" value="검색"><input type="reset" class="r_btn" value="초기화">
 				</div>
 			</form>
 		</div>
@@ -614,8 +714,9 @@
 		<ul id="boardList">
 		</ul>
 		<!-- 게시물 출력 -->
-	</div>
-	<div id="end">
+		<div class="div_plus"></div>
+		<div id="end">
+		</div>
 	</div>
 	<div id="noDataZone">
 	</div>
@@ -646,20 +747,7 @@ var isEmpty = function(val) {
 	}
 };
 
-//스크롤 시 검색조건도 같이 따라오게
-function scroll_search() {
-	var scrollOffset = $('.board_search').offset();
-	
-	$(window).scroll(function() {
-    	if ($(document).scrollTop() > scrollOffset.top) {
-    		$('.board_search').addClass('scroll-fixed');
-        }
-        else {
-        	$('.board_search').removeClass('scroll-fixed');
-        }
-	});
-}
-
+// 내가 쓴 게시글이 없을 경우 
 function noData() {
 	var output = '';
 	
@@ -705,9 +793,9 @@ function board_count(index, startNo) {
 	var count = '';
 	var listNum = (index+startNo+1);
 	
-	count += '<b id="count_b">총 게시글 '+listNum+'개</b>'
+	count += '총 게시글 '+listNum+'개'
 	
-	$('#board_count').html(count);
+	$('#count_b').html(count);
 }
 
 // 게시글 출력 
@@ -732,22 +820,7 @@ function board_list(index, item, startNo) {
 	var writeDay = moment(item.b_date).format("YY년 M월 D일");
 	
 	var b_num = item.b_num;
-	var apply_chk;
-	
-	$.ajax({
-		url: '/myakkbird/chk_applyCount.ak?b_num='+b_num+'',
-		type : 'GET',
-		dataType : "json",
-		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-		success: function(data) {
-			var count = data+'명 지원'
-			
-			$('#count'+b_num).html(count);
-		},
-		error:function(){
-	        alert("ajax통신 실패!!!");
-	    }
-	});
+	apply_conunt(b_num);
 	
 	output += '<li id="list_id" data-no='+(index+startNo+1)+'>'
 	output += '    <div class="post" id="post_id">'
@@ -778,8 +851,16 @@ function board_list(index, item, startNo) {
 	output += '                    <a href="./boardUpdate.ak?b_num='+item.b_num+'" id="a_btn">게시글 수정</a>'
 	output += '                </li>'
 	output += '                <li id="check_li">'
-	output += '                    <a id="a_btn_delete" class="delete_a'+item.b_num+'" onclick="delete_icon('+item.b_num+')">게시글 삭제</a>'
+	output += '                    <a id="a_btn_delete'+item.b_num+'" class="delete_a">게시글 삭제</a>'
 	output += '                    <div id="delete_id'+item.b_num+'" class="delete_list">'
+	output += '                        <div id="dia'+item.b_num+'">'
+	output += '                            <div class="dialog">'
+	output += '                                <a id="deleteB'+item.b_num+'">'
+	output += '                                    <span class="delete_txt">삭제</span>'
+	output += '                                    <svg class="delete_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#212121;" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>'
+	output += '                                </a>'
+	output += '                            </div>'
+	output += '                        </div>'
 	output += '     	           </div>'
 	output += '                </li>'
 	output += '            </ul>'
@@ -788,10 +869,55 @@ function board_list(index, item, startNo) {
 	output += '</li>'
 	
 	$('#boardList').append(output);
+	
+	$('#a_btn_delete'+item.b_num).on('click', function() {
+		
+		$('#delete_id'+item.b_num).toggle();
+	});
+	
+	// 게시글 삭제
+	$(document).on("click", '#deleteB'+item.b_num, function() {
+		
+		$.ajax({
+			url : '/myakkbird/board_delete.ak?b_num='+item.b_num+'',
+			type : 'GET',
+			dataType : "json",
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			success: function(data) {
+				
+				location.reload();
+				
+			},
+			error:function(){
+		        alert("ajax통신 실패!!!");
+		    }
+		})
+		
+	});
 }
 
-// 스크롤 마지막 진입시
-function end_scroll() {
+// 게시글 지원 인원 카운트
+function apply_conunt(b_num) {
+	
+	$.ajax({
+		url: '/myakkbird/chk_applyCount.ak?b_num='+b_num+'',
+		type : 'GET',
+		dataType : "json",
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			var count = data+'명 지원'
+			
+			$('#count'+b_num).html(count);
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+	
+}
+
+// 무한 스크롤 후 데이터 없을시
+function end_board() {
 	var end_div = '';
 	
 	end_div += '<div class="end_title">'
@@ -803,19 +929,95 @@ function end_scroll() {
 	end_div += '	</div>'
 	end_div += '</div>'
 	
-	$(window).scroll(function() {
-		if($(window).scrollTop() == $(document).height() - $(window).height()) {
-	    	$('#end').html(end_div);
+	$('#end').html(end_div);
+}
+
+// 조건 검색 창 보이기, 숨기기
+$('#search_a').on('click', function() {
+	$('.board_search').toggle();
+});
+
+// 조건 검색 클릭 후 게시물 5개 출력
+$(document).on('click', '#s_btn_id', function(event){
+	var params = $('#search_form').serialize();
+	
+	$(window).unbind();
+	scroll_top();
+	
+	$.ajax({
+		url: '/myakkbird/cb_sload.ak',
+		type : 'POST',
+		data : params,
+		dataType : "json",
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			$('#boardList').empty();
+			$('#end').empty();
+			$('#noDataZone').empty();
+			
+			if(isEmpty(data)) {
+				noData();
+			}
+			
+			$.each(data, function(index, item){
+				var startNo = 0;
+				
+				category_list(item);
+				board_list(index, item, startNo);
+				board_count(index, startNo);
+			})
+			
+			$(window).scroll(function () {
+				var scrollHeight = $(window).scrollTop() + $(window).height(); 
+				var documentHeight = $(document).height();
+		
+				if(scrollHeight >= documentHeight) {
+					appendDocument2(params);
+				}
+			})
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
 	    }
 	});
+});
+
+function appendDocument2(params) {
+	
+	var startNo = $("#boardList #list_id").last().data("no") || 0;
+	$.ajax({
+		url : '/myakkbird/cb_sinfinite.ak?startNo='+startNo+'',
+		type : 'POST',
+		data : params,
+		dataType : "json",
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+            
+			if(isEmpty(data)) {
+				end_board();
+			}
+			
+			$.each(data, function(index, item){
+				
+				category_list(item);
+				board_list(index, item, startNo);
+				board_count(index, startNo);
+				
+			})
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
+	});
+	event.preventDefault();
 }
 
 $(document).ready(function(){
 	
 	scroll_top();
 	onload();
-	scroll_search();
 	
+	// 내가 쓴 게시글 5개 출력
 	function onload() {
 		
 		$.ajax({
@@ -864,7 +1066,9 @@ $(document).ready(function(){
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 			success: function(data) {
 	            
-				//end_scroll();
+				if(isEmpty(data)) {
+					end_board();
+				}
 				
 				$.each(data, function(index, item){
 					
@@ -891,7 +1095,8 @@ $(document).on("click",'.detail_btn',function() {
     });
 	
 	$('body').css("overflow-y", "scroll");
-	$('.delete_list').empty();
+	$('.board_search').hide();
+	$('.delete_list').hide();
 	
 	$.ajax({
 		url : '/myakkbird/cb_detail.ak?m_id='+m_id+'&b_num='+b_num+'',
@@ -968,52 +1173,6 @@ $(document).on("click",'.detail_btn',function() {
 		}
 	});
 });
-
-// 게시물 삭제
-function delete_icon(b_num) {
-	
-	var output = '';
-	
-	output += '<div class="dia'+b_num+'">'
-	output += '    <div class="dialog">'
-	output += '	       <div class="cancel_div">'
-	output += '            <a class="cancel'+b_num+'">'
-	output += '                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#212121;" width="15px" height="15px"><path d="M0 0h24v24H0z" fill="none"/><path d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>'
-	output += '            </a>'
-	output += '        </div>'
-	output += '        <a class="deleteB'+b_num+'">'
-	output += '            <span class="delete_txt">삭제</span>'
-	output += '            <svg class="delete_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#212121;" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>'
-	output += '        </a>'
-	output += '    </div>'
-	output += '</div>'
-	
-	$('#delete_id'+b_num).html(output);
-	
-	$(document).on("click", '.cancel'+b_num, function() {
-		$('.dia'+b_num).empty();
-	});
-	
-	$(document).on("click", '.deleteB'+b_num, function() {
-		
-		$.ajax({
-			url : '/myakkbird/board_delete.ak?b_num='+b_num+'',
-			type : 'GET',
-			dataType : "json",
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(data) {
-				$('.dia'+b_num).empty();
-				
-				location.reload();
-				
-			},
-			error:function(){
-		        alert("ajax통신 실패!!!");
-		    }
-		})
-		
-	});
-}
 
 //스크롤 Top 기능
 function scroll_top() {
