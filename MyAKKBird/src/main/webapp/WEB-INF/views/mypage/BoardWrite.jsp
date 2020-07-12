@@ -560,7 +560,7 @@
 		}
 		/* submit, reset 버튼 */
 		
-		/* 광고 테이블 */
+		/* 광고, 찜 관련 style */
 		.advr {
 			margin-left: 50px;
 			width: 800px;
@@ -572,7 +572,34 @@
 			background-size: 800px 150px;
 			cursor: pointer;
 		}
-		/* 광고 테이블 */
+		
+		.modal_join {
+			font-size: 15px;
+			text-align: center;
+		}
+		
+		.mj_icon1 {
+			margin-left: -5px;
+		}
+		
+		.mj_icon3 {
+			margin-left: -11px;
+		}
+		
+		.mj_txt {
+			margin-left: 10px;
+		}
+		
+		.mw_img {
+			width: 60px;
+			height: 60px;
+		}
+		
+		.mw_txt {
+			font-size: 20px;
+			margin-left: 10px;
+		}
+		/* 광고, 찜 관련 style */
 		
 		/* 결제화면으로 이동하는 버튼  */
 		.pay_btn {
@@ -844,7 +871,6 @@
 			</table>
 		</div>
 		<div class="board_out">
-			<!-- 아직 미완성 -->
 			<div class="advr" onclick="banner_check()">
 			</div>
 		</div>
@@ -1074,10 +1100,10 @@ function sample6_execDaumPostcode() {
 	    	        var iwContent = '';
 	    	        	iwContent += '<div class="info"><b>여기가 맞나요?</b></div>' 
 				    
-				    	var infowindow = new kakao.maps.InfoWindow({
-				      		map: map, 
-				       		content : iwContent
-				    	});
+			    	var infowindow = new kakao.maps.InfoWindow({
+			      		map: map, 
+			       		content : iwContent
+			    	});
 	    	        
 	    	        infowindow.open(map, marker);
 	    	        	

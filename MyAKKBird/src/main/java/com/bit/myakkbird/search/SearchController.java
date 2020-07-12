@@ -23,12 +23,27 @@ public class SearchController {
         return list;
 	}
 	
+	@RequestMapping(value="/cb_load.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> cbLoad(String m_id) {
+		ArrayList<MasterVO> cb_Load =
+				searchService.CBListService(m_id);
+		
+		return cb_Load;
+	}
+	
 	@RequestMapping(value="/cb_infinite.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> cbInfinite(String m_id, int startNo) {
 		ArrayList<MasterVO> cb_infinite = 
 				searchService.CBListInfiniteService(m_id, startNo);
 		
 		return cb_infinite;
+	}
+	
+	@RequestMapping(value="/chk_applyCount.ak", produces="application/json;charset=UTF-8")
+	public int chkApplyCount(int b_num) {
+		int result = searchService.chkApplyCountService(b_num);
+		
+		return result;
 	}
 	
 	@RequestMapping(value="/cb_detail.ak", produces="application/json;charset=UTF-8")
@@ -44,6 +59,24 @@ public class SearchController {
 		int result = searchService.BoardDeleteService(b_num);
 		
 		return result;
+	}
+	
+	@RequestMapping(value="/cb_sload.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> cbSearchLoad(String m_id, String choice,
+			String b_apply) {
+		ArrayList<MasterVO> cb_SearchLoad =
+				searchService.CBSearchListService(m_id, choice, b_apply);
+		
+		return cb_SearchLoad;
+	}
+	
+	@RequestMapping(value="/cb_sinfinite.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> cbSInfinite(String m_id, String choice,
+			String b_apply, int startNo) {
+		ArrayList<MasterVO> cb_SInfinite =
+				searchService.CBSListInfiniteService(m_id, choice, b_apply, startNo);
+		
+		return cb_SInfinite;
 	}
 	
 	@RequestMapping(value="/board_search.ak", produces="application/json;charset=UTF-8")

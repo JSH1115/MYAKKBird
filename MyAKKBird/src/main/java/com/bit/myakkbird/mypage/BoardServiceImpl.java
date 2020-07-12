@@ -66,13 +66,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<MasterVO> clientBoardListService(String m_id) {
-		BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
-		
-		return boardMapper.clientBoardList(m_id);
-	}
-
-	@Override
 	public MasterVO updateCallService(int b_num, String m_id) {
 		BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
 		

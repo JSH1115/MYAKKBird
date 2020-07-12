@@ -11,15 +11,30 @@ import com.bit.myakkbird.mypage.BoardVO;
 public interface SearchMapper {
 	public List<BoardVO> autoText();
 	
+	public ArrayList<MasterVO> CBList(String m_id);
+	
 	public ArrayList<MasterVO> CBListInfinite(
 			@Param("m_id") String m_id,
 			@Param("startNo") int startNo);
+	
+	public int chkApplyCount(int b_num);
 	
 	public MasterVO CBdetail(
 			@Param("m_id") String m_id,
 			@Param("b_num") int b_num);
 	
 	public int BoardDelete(int b_num);
+	
+	public ArrayList<MasterVO> CBSearchList(
+			@Param("m_id") String m_id,
+			@Param("choice") String choice,
+			@Param("b_apply") String b_apply);
+	
+	public ArrayList<MasterVO> CBSInfinite(
+			@Param("m_id") String m_id,
+			@Param("choice") String choice,
+			@Param("b_apply") String b_apply,
+			@Param("startNo") int startNo);
 	
 	public ArrayList<MasterVO> boardSearch(String b_address_road);
 	

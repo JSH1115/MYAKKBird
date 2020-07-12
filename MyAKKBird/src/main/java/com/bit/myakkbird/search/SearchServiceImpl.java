@@ -27,6 +27,14 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
+	public ArrayList<MasterVO> CBListService(String m_id) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		ArrayList<MasterVO> cbList = searchMapper.CBList(m_id);
+		
+		return cbList;
+	}
+	
+	@Override
 	public ArrayList<MasterVO> CBListInfiniteService(String m_id, int startNo) {
 		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
 		ArrayList<MasterVO> cbInfinite = 
@@ -43,6 +51,14 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
+	public int chkApplyCountService(int b_num) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		int result = searchMapper.chkApplyCount(b_num);
+		
+		return result;
+	}
+	
+	@Override
 	public int BoardDeleteService(int b_num) {
 		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
 		int result = searchMapper.BoardDelete(b_num);
@@ -53,6 +69,26 @@ public class SearchServiceImpl implements SearchService {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public ArrayList<MasterVO> CBSearchListService(String m_id, String choice,
+			String b_apply) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		ArrayList<MasterVO> cbSearch = 
+				searchMapper.CBSearchList(m_id, choice, b_apply);
+		
+		return cbSearch;
+	}
+	
+	@Override
+	public ArrayList<MasterVO> CBSListInfiniteService(String m_id, String choice, 
+			String b_apply, int startNo) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		ArrayList<MasterVO> cbSInfinite =
+				searchMapper.CBSInfinite(m_id, choice, b_apply, startNo);
+		
+		return cbSInfinite;
 	}
 
 	@Override

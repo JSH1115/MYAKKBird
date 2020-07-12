@@ -2,9 +2,11 @@ package com.bit.myakkbird.mypage;
 
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +33,20 @@ public class MypageController {
 	
 	//글쓰기양식
 	@RequestMapping(value="/BoardWrite.ak") 
-	public String BoardWrite(HttpSession session, MemberVO memberVO, Model model) {
+	public String BoardWrite(HttpSession session, HttpServletResponse response,
+			MemberVO memberVO, Model model) throws Exception {
+		
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter writer = response.getWriter();
 		
 		String id = (String)session.getAttribute("m_id");
+		
+		if(id == null) {
+			writer.write("<script>alert('로그인 필요!');"
+					+ "location.href='./loginform.ak';</script>");
+		}
+		
 		memberVO.setM_id(id);
 		memberVO = boardService.memberLookUpService(memberVO);
 		
@@ -80,15 +93,12 @@ public class MypageController {
 		return null;
 	}
 	
-	//본인 게시물 5개 미리 불러오기
+	//본인 게시물 이동하기
 	@RequestMapping(value="/BoardLoad.ak")
 	public String BoardLoad(HttpSession session, MemberVO memberVO, Model model) {
 		
 		String m_id = (String)session.getAttribute("m_id");
-		System.out.println("BoardLoad 세션 아이디 : " + m_id);
-		ArrayList<MasterVO> boardList = 
-				boardService.clientBoardListService(m_id);
-		model.addAttribute("boardList", boardList);
+		
 		model.addAttribute("m_id", m_id);
 		
 		return "mypage/BoardLoad";
