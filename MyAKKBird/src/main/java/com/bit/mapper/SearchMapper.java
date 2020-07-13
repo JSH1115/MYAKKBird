@@ -53,4 +53,5 @@ public interface SearchMapper {
 			@Param("choice") String choice,
 			@Param("startNo") int startNo);
 	
+	public ArrayList<MasterVO> likeBoardList(String m_id);
 }

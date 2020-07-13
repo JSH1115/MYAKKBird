@@ -99,29 +99,37 @@ public class SearchController {
 	@RequestMapping(value="/search_data.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> searchData(String b_address_road, 
 			String b_category, String choice) {
-		System.out.println(b_address_road);
-		System.out.println(b_category);
-		System.out.println(choice);
+		System.out.println("검색한 주소 : " + b_address_road);
+		System.out.println("선택한 검색조건 : " + choice);
+		System.out.println("선택한 카테고리 : " + b_category);
 		
-		ArrayList<MasterVO> master_list = 
+		ArrayList<MasterVO> search_board = 
 				searchService.searchDataService(b_address_road, b_category,
 						choice);
 		
-		return master_list;
+		return search_board;
 	}
 	
 	@RequestMapping(value="/search_data2.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> searchData2(String b_address_road, 
 			String b_category, String choice, int startNo) {
-		System.out.println(b_address_road);
-		System.out.println(b_category);
-		System.out.println(choice);
-		System.out.println(startNo);
+		System.out.println("검색한 주소 : " + b_address_road);
+		System.out.println("선택한 검색조건 : " + choice);
+		System.out.println("선택한 카테고리 : " + b_category);
 		
 		ArrayList<MasterVO> search_infinite = 
 				searchService.searchInfiniteService(b_address_road, b_category, 
 						choice, startNo);
 		
 		return search_infinite;
+	}
+	
+	@RequestMapping(value="/like_boardList.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> likeBoardList(String m_id) {
+		
+		ArrayList<MasterVO> like_board =
+				searchService.likeBoardListService(m_id);
+		
+		return like_board;
 	}
 }

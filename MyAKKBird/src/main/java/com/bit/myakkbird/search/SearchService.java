@@ -29,4 +29,6 @@ public interface SearchService {
 	public ArrayList<MasterVO> searchInfiniteService(String b_address_road, 
 			String b_category, String choice, int startNo);
 	
+	public ArrayList<MasterVO> likeBoardListService(String m_id);
+	
 }

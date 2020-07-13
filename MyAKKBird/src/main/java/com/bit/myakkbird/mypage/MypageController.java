@@ -95,7 +95,7 @@ public class MypageController {
 	
 	//본인 게시물 이동하기
 	@RequestMapping(value="/BoardLoad.ak")
-	public String BoardLoad(HttpSession session, MemberVO memberVO, Model model) {
+	public String BoardLoad(HttpSession session, Model model) {
 		
 		String m_id = (String)session.getAttribute("m_id");
 		
@@ -179,6 +179,16 @@ public class MypageController {
 		model.addAttribute("apply_chk",abc);
 
 		return "mypage/BoardDetail";
+	}
+	
+	@RequestMapping(value="/likeBoard.ak")
+	public String likeBoardList(HttpSession session, Model model) {
+		
+		String m_id = (String)session.getAttribute("m_id");
+		
+		model.addAttribute("m_id", m_id);
+		
+		return "mypage/LikeBoard";
 	}
 	
 }

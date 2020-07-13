@@ -601,13 +601,6 @@
 		}
 		/* 광고, 찜 관련 style */
 		
-		/* 결제화면으로 이동하는 버튼  */
-		.pay_btn {
-			color:white; 
-			text-decoration: none; 
-			padding: 20px;
-		}
-		/* 결제화면으로 이동하는 버튼  */
 	</style>
 </head>
 <body>
@@ -905,7 +898,7 @@ $(document).ready(function () {
 				    '<span>하트♡를 충전해야만 게시글을 쓸 수 있어요!</span><br>',
 				  confirmButtonColor : '#37B04B',
 				  confirmButtonText:
-					'<a class="pay_btn" href="./pay.ak">하트충전</a>',
+					'<div onclick="location.href=\'./pay.ak\'">하트충전</div>',
 			})
 			
 			return false;
