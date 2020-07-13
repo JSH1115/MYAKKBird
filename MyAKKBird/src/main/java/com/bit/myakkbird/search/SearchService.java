@@ -3,8 +3,6 @@ package com.bit.myakkbird.search;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.bit.myakkbird.mainpoint.MasterVO;
 import com.bit.myakkbird.mypage.BoardVO;
 
@@ -30,5 +28,6 @@ public interface SearchService {
 			String b_category, String choice, int startNo);
 	
 	public ArrayList<MasterVO> likeBoardListService(String m_id);
+	public ArrayList<MasterVO> likeBListInfiniteService(String m_id, int startNo);
 	
 }

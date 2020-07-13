@@ -43,15 +43,19 @@ public interface SearchMapper {
 			@Param("startNo") int startNo);
 	
 	public ArrayList<MasterVO> searchData(
-			@Param("b_address_road")String b_address_road, 
+			@Param("b_address_road") String b_address_road, 
 			@Param("b_category") String b_category,
 			@Param("choice") String choice);
 	
 	public ArrayList<MasterVO> searchInfinite(
-			@Param("b_address_road")String b_address_road, 
+			@Param("b_address_road") String b_address_road, 
 			@Param("b_category") String b_category,
 			@Param("choice") String choice,
 			@Param("startNo") int startNo);
 	
 	public ArrayList<MasterVO> likeBoardList(String m_id);
+	
+	public ArrayList<MasterVO> likeBListInfinite(
+			@Param("m_id") String m_id,
+			@Param("startNo") int startNo);
 }

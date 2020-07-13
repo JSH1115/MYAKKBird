@@ -1158,8 +1158,11 @@ function banner_check() {
 					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
 					    '</div>',
 					  confirmButtonColor: '#37B04B',
-					  confirmButtonText:
-					    '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
+					  confirmButtonText: '회원가입',
+				}).then((result) => {
+					if (result.value) {
+				    	location.href="./joinselect.ak";
+					}
 				})
 				
 			} else {

@@ -138,4 +138,13 @@ public class SearchServiceImpl implements SearchService {
 		return likeBoardList;
 	}
 
+	@Override
+	public ArrayList<MasterVO> likeBListInfiniteService(String m_id, int startNo) {
+		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
+		ArrayList<MasterVO> likeBInfinite =
+				searchMapper.likeBListInfinite(m_id, startNo);
+		
+		return likeBInfinite;
+	}
+
 }

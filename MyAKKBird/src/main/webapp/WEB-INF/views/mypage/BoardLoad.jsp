@@ -52,7 +52,7 @@
 		.board_count_div {
 			margin-top: 10px;
 			width: 600px;
-			height: 30px;
+			height: 15px;
 		}
 		
 		#count_b {
@@ -75,7 +75,7 @@
 			width: 140px;
 			height: 250px;
 			position: absolute;
-			margin-top: -5px;
+			margin-top: 5px;
 			margin-left: 550px; 
 			border: 0.1px solid #d3d3d3; 
 			border-radius: 5px;
@@ -83,7 +83,6 @@
 			box-shadow: -3px -3px 7px -3px #d3d3d3,
 		                3px 3px 7px -3px #d3d3d3;
 		}
-		
 		
 		.board_search ul li {
 			display: inline;
@@ -795,10 +794,10 @@ function category_list(item) {
 		category_d = '정기청소';
 	} else if(item.b_category === "B") {
 		img_d = 'cleaning-tools.png';
-		category_d = '특수조건청소';
+		category_d = '특수청소';
 	} else if(item.b_category === "C") {
 		img_d = 'kitchen.png';
-		category_d = '입주청소(이사청소)';
+		category_d = '입주청소';
 	} else if(item.b_category === "D") {
 		img_d = 'maid.png';
 		category_d = '상주청소';
@@ -807,7 +806,7 @@ function category_list(item) {
 		category_d = '빌딩청소';
 	} else if(item.b_category === "F") {
 		img_d = 'coronavirus.png';
-		category_d = '방역';
+		category_d = '방역청소';
 	}
 }
 
@@ -852,12 +851,12 @@ function board_list(index, item, startNo) {
 	output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
 	output += '            <span class="photo_span" id="count'+item.b_num+'"></span>'
 	output += '        </div>'
-	output += '            <div class="post_center">'
-	output += '                <span class="post_subject"><b>'+item.b_subject+'</b></span><b class="b_cate">'+category_d+'<img class="post_img" src="./resources/image/'+img_d+'"></b><br>'
-	output += '                <span><b>신청여부</b> '+apply+'</span><br>'
-	output += '                <span><b>청소시작</b> '+startDay+'</span><br>'
-	output += '                <span><b>지번주소</b> '+item.b_address_road+'</span><span class="span_date"><b>조회</b> '+item.b_readcount+'</span><br>'
-	output += '                <span><b>희망시급</b> '+item.b_money+'원</span><span class="span_date"><b>작성</b> '+writeDay+'</span><br>'
+	output += '        <div class="post_center">'
+	output += '            <span class="post_subject"><b>'+item.b_subject+'</b></span><b class="b_cate">'+category_d+'<img class="post_img" src="./resources/image/'+img_d+'"></b><br>'
+	output += '            <span><b>신청여부</b> '+apply+'</span><br>'
+	output += '            <span><b>청소시작</b> '+startDay+'</span><br>'
+	output += '            <span><b>지번주소</b> '+item.b_address_road+'</span><span class="span_date"><b>조회</b> '+item.b_readcount+'</span><br>'
+	output += '            <span><b>희망시급</b> '+item.b_money+'원</span><span class="span_date"><b>작성</b> '+writeDay+'</span><br>'
 	output += '        </div>'
 	output += '        <div class="hr_div">'
 	output += '            <hr class="post_hr">'

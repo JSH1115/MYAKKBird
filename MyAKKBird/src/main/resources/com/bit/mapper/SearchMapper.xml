@@ -327,4 +327,30 @@
         AND RNUM1 <= 5
         ]]>
 	</select>
+	
+	<select id="likeBListInfinite" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                      M.m_gender, B.b_num, B.b_category, B.b_money, B.b_start,
+                      B.b_address_road, B.b_subject, B.b_readcount, B.b_date, 
+                      B.b_apply, W.w_state  
+                      FROM MEMBER M, BOARD B, WISH W
+                      WHERE M.m_id = B.m_id
+                      AND B.b_num = W.b_num
+                      AND W.m_id = #{m_id}
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
+                      AND B.b_delete = 'N'
+                      AND W.w_state = 'Y'
+                      ORDER BY W.w_date DESC
+                      ) AA ) A
+        <![CDATA[
+       	WHERE RNUM1 >= #{startNo}+1
+        AND RNUM1 <= #{startNo}+5
+        ]]>
+	</select>
+	
 </mapper>

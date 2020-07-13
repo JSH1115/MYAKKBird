@@ -897,8 +897,11 @@ $(document).ready(function () {
 				  html:
 				    '<span>하트♡를 충전해야만 게시글을 쓸 수 있어요!</span><br>',
 				  confirmButtonColor : '#37B04B',
-				  confirmButtonText:
-					'<div onclick="location.href=\'./pay.ak\'">하트충전</div>',
+				  confirmButtonText: '하트충전',
+			}).then((result) => {
+				if (result.value) {
+					location.href="./pay.ak";
+				}
 			})
 			
 			return false;
@@ -971,7 +974,26 @@ $(document).ready(function () {
 					required: "상세설명을 입력해주세요!",
 					minlength: "최소 15글자 이상은 입력해주세요!"
 				}
-	        }
+	        },
+	        submitHandler: function (frm){
+	        	if(heart > 0) {
+	        		Swal.fire({
+        			  title: '게시글 등록!',
+        			  text: "게시글 등록시 1 하트가 차감 됩니다.",
+        			  icon: 'info',
+        			  showCancelButton: true,
+        			  confirmButtonColor: '#37B04B',
+        			  cancelButtonColor: '#E6E6E6',
+        			  confirmButtonText: '게시글 등록',
+        		      cancelButtonText: '다음에 할게요'
+        			}).then((result) => {
+        			    if (result.value) {
+        				    frm.submit();
+        			    }
+        			})
+	        	}
+                   
+            }
 		});
 	});
 });
@@ -1169,8 +1191,11 @@ function banner_check() {
 					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
 					    '</div>',
 					  confirmButtonColor: '#37B04B',
-					  confirmButtonText:
-					    '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
+					  confirmButtonText: '회원가입',
+				}).then((result) => {
+					if (result.value) {
+				    	location.href="./joinselect.ak";
+					}
 				})
 				
 			} else {

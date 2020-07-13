@@ -83,11 +83,7 @@ public class MypageController {
 		        
 			boardService.insertBoardService(boardVO);
 			
-			session.setAttribute("id", m_id);
-			String m_type = memberService.mypage_menu(m_id);
-			model.addAttribute("m_type", m_type);
-			
-			return "member/mypage_menu";
+			return "redirect:/mypage_menu.ak?id="+m_id;
 		}
 		
 		return null;
@@ -141,11 +137,7 @@ public class MypageController {
         
         boardService.updateBoardService(boardVO);
         
-        session.setAttribute("id", m_id);
-		String m_type = memberService.mypage_menu(m_id);
-		model.addAttribute("m_type", m_type);
-        
-        return "member/mypage_menu";
+		return "redirect:/mypage_menu.ak?id="+m_id;
 		
 	}
 	

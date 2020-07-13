@@ -126,10 +126,17 @@ public class SearchController {
 	
 	@RequestMapping(value="/like_boardList.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> likeBoardList(String m_id) {
-		
 		ArrayList<MasterVO> like_board =
 				searchService.likeBoardListService(m_id);
 		
 		return like_board;
+	}
+	
+	@RequestMapping(value="like_bInfinite.ak", produces="application/json;charset=UTF-8")
+	public ArrayList<MasterVO> likeBInfinite(String m_id, int startNo) {
+		ArrayList<MasterVO> like_bInfinite =
+				searchService.likeBListInfiniteService(m_id, startNo);
+		
+		return like_bInfinite;
 	}
 }
