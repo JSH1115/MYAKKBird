@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<!-- jquery 모달 API 끝 -->
 	<style>
+		/* 전체 적용 */	
 		html, body {
 		 	width: 100%;
 		 	height: auto;
@@ -31,6 +32,7 @@
 		ul li {
 			list-style: none;
 		}
+		/* 전체 적용 */	
 		
 		.boardList_div {
 			margin: 0 auto;
@@ -46,12 +48,34 @@
 			font-weight: bold;
 		}
 		
+		/* 게시글 개수 style */
+		.board_count_div {
+			margin-top: 10px;
+			width: 600px;
+			height: 15px;
+		}
+		
+		#count_b {
+			font-size: 14px;
+			margin-left: 24px;
+			float: left;
+		}
+		/* 게시글 개수 style */
+		
+		/* 조건 검색 style */
+		#search_a {
+			float: right;
+			margin-right: 20px;
+			margin-top: -5px;
+			cursor: pointer;
+		}
+		
 		.board_search {
 			display: none;
 			width: 140px;
 			height: 250px;
 			position: absolute;
-			margin-top: -5px;
+			margin-top: 5px;
 			margin-left: 550px; 
 			border: 0.1px solid #d3d3d3; 
 			border-radius: 5px;
@@ -108,25 +132,102 @@
 			font-weight: bold;
 		}
 		
-		.board_count_div {
+		input[type="radio"] { display:none; }
+		
+		input[type="radio"] + label .c1 { 
+			cursor: pointer; 
+			width: 70px;
+			height: 25px;
 			margin-top: 10px;
-			width: 600px;
-			height: 30px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_s.png");
+			background-repeat: no-repeat;
+			background-size: 70px 25px;
+		}
+
+		input[type="radio"]:checked + label .c1 { 
+			width: 70px;
+			height: 25px;
+			background: url("./resources/image/radio_c_s.png");
+			background-repeat: no-repeat;
+			background-size: 70px 25px;
 		}
 		
-		#count_b {
-			font-size: 14px;
-			margin-left: 24px;
-			float: left;
+		input[type="radio"] + label .c2 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_m.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .c2 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_m.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
 		}
 		
-		#search_a {
-			float: right;
-			margin-right: 20px;
-			margin-top: -5px;
-			cursor: pointer;
+		input[type="radio"] + label .c3 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_d.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .c3 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_d.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
 		}
 		
+		input[type="radio"] + label .a1 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-top: 10px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_match.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .a1 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_match.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+		
+		input[type="radio"] + label .a2 { 
+			cursor: pointer; 
+			width: 100px;
+			height: 25px;
+			margin-left: 15px;
+			background: url("./resources/image/radio_nomatch.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+
+		input[type="radio"]:checked + label .a2 { 
+			width: 100px;
+			height: 25px;
+			background: url("./resources/image/radio_c_nomatch.png");
+			background-repeat: no-repeat;
+			background-size: 100px 25px;
+		}
+		/* 조건 검색 style */
+		
+		/* 게시글 style */
 		.post {
 			margin: 18px auto;
 			margin-left: -15px;
@@ -173,10 +274,10 @@
 		
 		.post_center {
 			width: 450px;
-			height: 70px;
+			height: 100px;
 			font-size: 13px;
 			float: right;
-			margin-top: 20px;
+			margin-top: 13px;
 		}
 		
 		.post_subject {
@@ -184,13 +285,18 @@
 			margin-top: -6px;
 		}
 		
+		.post_subject b {
+			line-height: 25px;
+		}
+		
 		.post_center span {
 			margin-left: 20px;
+			line-height: 18px;
 		}
 		
 		.b_cate {
 			float:right;
-			margin-top: 1px;
+			margin-top: 5px;
 			margin-left: -15px;
 		}
 		
@@ -251,7 +357,9 @@
 			text-decoration: none;
 			cursor: pointer;
 		}
+		/* 게시글 style */
 		
+		/* 모달 style */
 		.modal {
 			width: 500px;
 			height: 650px;
@@ -403,6 +511,7 @@
 			font-weight: bold;
 			color: white;
 		}
+		/* 모달 style */
 		
 		/* 게시물 등록하러가기 style */
 		#noDataZone {
@@ -576,101 +685,6 @@
 			background-color: #E6E6E6;
 		}
 		/* 기타 style */
-		
-		input[type="radio"] { display:none; }
-		
-		input[type="radio"] + label .c1 { 
-			cursor: pointer; 
-			width: 70px;
-			height: 25px;
-			margin-top: 10px;
-			margin-left: 15px;
-			background: url("./resources/image/radio_s.png");
-			background-repeat: no-repeat;
-			background-size: 70px 25px;
-		}
-
-		input[type="radio"]:checked + label .c1 { 
-			width: 70px;
-			height: 25px;
-			background: url("./resources/image/radio_c_s.png");
-			background-repeat: no-repeat;
-			background-size: 70px 25px;
-		}
-		
-		input[type="radio"] + label .c2 { 
-			cursor: pointer; 
-			width: 100px;
-			height: 25px;
-			margin-left: 15px;
-			background: url("./resources/image/radio_m.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-
-		input[type="radio"]:checked + label .c2 { 
-			width: 100px;
-			height: 25px;
-			background: url("./resources/image/radio_c_m.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-		
-		input[type="radio"] + label .c3 { 
-			cursor: pointer; 
-			width: 100px;
-			height: 25px;
-			margin-left: 15px;
-			background: url("./resources/image/radio_d.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-
-		input[type="radio"]:checked + label .c3 { 
-			width: 100px;
-			height: 25px;
-			background: url("./resources/image/radio_c_d.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-		
-		input[type="radio"] + label .a1 { 
-			cursor: pointer; 
-			width: 100px;
-			height: 25px;
-			margin-top: 10px;
-			margin-left: 15px;
-			background: url("./resources/image/radio_match.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-
-		input[type="radio"]:checked + label .a1 { 
-			width: 100px;
-			height: 25px;
-			background: url("./resources/image/radio_c_match.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-		
-		input[type="radio"] + label .a2 { 
-			cursor: pointer; 
-			width: 100px;
-			height: 25px;
-			margin-left: 15px;
-			background: url("./resources/image/radio_nomatch.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-
-		input[type="radio"]:checked + label .a2 { 
-			width: 100px;
-			height: 25px;
-			background: url("./resources/image/radio_c_nomatch.png");
-			background-repeat: no-repeat;
-			background-size: 100px 25px;
-		}
-		
 	</style>
 </head>
 <body>
@@ -718,16 +732,22 @@
 		<div id="end">
 		</div>
 	</div>
+	<!-- 데이터 없을시 -->
 	<div id="noDataZone">
 	</div>
+	<!-- 데이터 없을시 -->
+	<!-- top 버튼 -->
 	<div class="Top_div">
 		<button class="top">Top</button>
 	</div>
+	<!-- top 버튼 -->
 </body>
+<!-- modal -->
 <div id="modal_id" class="modal">
 	<div id="modal_content" class="modal_content_div">
 	</div>
 </div>
+<!-- modal -->
 <script type="text/javascript">
 //전역 변수
 var m_id = '<%=m_id %>';           // 현재 아이디
@@ -749,6 +769,8 @@ var isEmpty = function(val) {
 
 // 내가 쓴 게시글이 없을 경우 
 function noData() {
+	$('#count_b').empty();
+	
 	var output = '';
 	
 	output += '<div class="noData_div">'
@@ -772,10 +794,10 @@ function category_list(item) {
 		category_d = '정기청소';
 	} else if(item.b_category === "B") {
 		img_d = 'cleaning-tools.png';
-		category_d = '특수조건청소';
+		category_d = '특수청소';
 	} else if(item.b_category === "C") {
 		img_d = 'kitchen.png';
-		category_d = '입주청소(이사청소)';
+		category_d = '입주청소';
 	} else if(item.b_category === "D") {
 		img_d = 'maid.png';
 		category_d = '상주청소';
@@ -784,7 +806,7 @@ function category_list(item) {
 		category_d = '빌딩청소';
 	} else if(item.b_category === "F") {
 		img_d = 'coronavirus.png';
-		category_d = '방역';
+		category_d = '방역청소';
 	}
 }
 
@@ -829,12 +851,12 @@ function board_list(index, item, startNo) {
 	output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
 	output += '            <span class="photo_span" id="count'+item.b_num+'"></span>'
 	output += '        </div>'
-	output += '            <div class="post_center">'
-	output += '                <span class="post_subject"><b>'+item.b_subject+'</b></span><b class="b_cate">'+category_d+'<img class="post_img" src="./resources/image/'+img_d+'"></b><br>'
-	output += '                <span><b>신청여부</b> '+apply+'</span><br>'
-	output += '                <span><b>청소시작</b> '+startDay+'</span><br>'
-	output += '                <span><b>지번주소</b> '+item.b_address_road+'</span><span class="span_date"><b>조회</b> '+item.b_readcount+'</span><br>'
-	output += '                <span><b>희망시급</b> '+item.b_money+'원</span><span class="span_date"><b>작성</b> '+writeDay+'</span><br>'
+	output += '        <div class="post_center">'
+	output += '            <span class="post_subject"><b>'+item.b_subject+'</b></span><b class="b_cate">'+category_d+'<img class="post_img" src="./resources/image/'+img_d+'"></b><br>'
+	output += '            <span><b>신청여부</b> '+apply+'</span><br>'
+	output += '            <span><b>청소시작</b> '+startDay+'</span><br>'
+	output += '            <span><b>지번주소</b> '+item.b_address_road+'</span><span class="span_date"><b>조회</b> '+item.b_readcount+'</span><br>'
+	output += '            <span><b>희망시급</b> '+item.b_money+'원</span><span class="span_date"><b>작성</b> '+writeDay+'</span><br>'
 	output += '        </div>'
 	output += '        <div class="hr_div">'
 	output += '            <hr class="post_hr">'
@@ -870,6 +892,13 @@ function board_list(index, item, startNo) {
 	
 	$('#boardList').append(output);
 	
+	delete_board(item);
+}
+
+// 게시글 삭제
+function delete_board(item) {
+	
+	// 게시글 삭제 버튼 클릭
 	$('#a_btn_delete'+item.b_num).on('click', function() {
 		
 		$('#delete_id'+item.b_num).toggle();

@@ -285,8 +285,8 @@ $(document).ready(function() {
 	<td><b>성별</b></td>
 </tr>
 <tr>
-	<td><input type="radio" name="m_gender" value="남" checked/>남자
-			<input type="radio" name="m_gender" value="여"/>여자</td>
+	<td><input type="radio" name="m_gender" value="M" checked/>남자
+			<input type="radio" name="m_gender" value="W"/>여자</td>
 </tr>
 <tr>
 	<td><b>이메일</b></td>

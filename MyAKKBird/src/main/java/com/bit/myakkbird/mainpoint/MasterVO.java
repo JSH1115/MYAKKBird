@@ -37,6 +37,7 @@ public class MasterVO {
 	private Date b_date;              //게시글 올린 날짜
 	private String b_apply;           //게시글 신청 여부
 	private String b_delete;          //게시글 삭제 여부
+	private String w_state;           //게시글 찜 여부
 	
 	private String img;               //카테고리 그림 저장을 위한 변수
 	
@@ -225,6 +226,12 @@ public class MasterVO {
 	}
 	public void setB_delete(String b_delete) {
 		this.b_delete = b_delete;
+	}
+	public String getW_state() {
+		return w_state;
+	}
+	public void setW_state(String w_state) {
+		this.w_state = w_state;
 	}
 	public String getImg() {
 		return img;

@@ -591,8 +591,9 @@
 			background-color: #37B04B;
 			border: 1px solid #37B04B;
     		border-radius: 15px;
-    		font-size: 10px;
+    		font-size: 11px;
     		padding: 5px;
+    		margin-left: -5px;
     		box-shadow: -1px -1px 7px -3px #d3d3d3,
 		                1px 1px 7px -3px #d3d3d3;
 		}
@@ -1133,12 +1134,18 @@ function list_index(index, item, startNo) {
 	var output = '';
 	var hot_b = '';
 	var photo = '';
+	var today = new Date();
+	var to_day = moment(today).format("M월 D일 작성");
+	// 게시글 작성 날짜 포맷
+	var board_day = moment(item.b_date).format("M월 D일 작성");
 	
 	// 조회 수 체크
 	if(item.b_readcount > 800) {
 		hot_b = '<b class="hot_b">인기 게시글</b>';
 	} else if(item.b_readcount > 400) {
 		hot_b = '<b class="hot_b">관심 게시글</b>';
+	} else if(to_day == board_day) {
+		hot_b = '<b class="hot_b">오늘 작성글</b>';
 	}
 	
 	// 성별 체크
@@ -1154,9 +1161,6 @@ function list_index(index, item, startNo) {
 	} else {
 		photo = item.m_photo;
 	}
-	
-	// 게시글 작성 날짜 포맷
-	var board_day = moment(item.b_date).format("M월 D일 작성");
 	
 	output += '<li data-no='+(index+startNo+1)+'>'
 	output += '<div class="post" id="post_id'+item.b_num+'">'
@@ -1283,8 +1287,11 @@ function check_member(b_num) {
 					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
 					    '</div>',
 					  confirmButtonColor: '#37B04B',
-					  confirmButtonText:
-						  '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
+					  confirmButtonText: '회원가입',
+				}).then((result) => {
+					if (result.value) {
+				    	location.href="./joinselect.ak";
+					}
 				})
 				
 			} else {
@@ -1424,9 +1431,12 @@ function banner_check() {
 					    '    <svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
 					    '    <b class="mj_txt">회원가입하면 하트 3개 무료!</b>' +
 					    '</div>',
-					  confirmButtonColor: '#37B04B',
-					  confirmButtonText:
-					    '<div onclick="location.href=\'./joinselect.ak\'">회원가입</div>',
+					  	confirmButtonColor: '#37B04B',
+					  	confirmButtonText: '회원가입',
+				}).then((result) => {
+					if (result.value) {
+				    	location.href="./joinselect.ak";
+					}
 				})
 				
 			} else {
