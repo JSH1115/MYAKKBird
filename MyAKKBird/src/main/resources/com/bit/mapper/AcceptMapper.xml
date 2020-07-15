@@ -3,9 +3,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bit.mapper.AcceptMapper">
-
-	<!-- 지연님 -->
 	
+	<!-- 게시글 검색 -->
+	<resultMap type="com.bit.myakkbird.mainpoint.MasterVO" id="masterResultMap2">
+		<result property="m_id" column="m_id"/>
+		<result property="m_photo" column="m_photo"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_age" column="m_age"/>
+		<result property="m_gender" column="m_gender"/>
+		<result property="m_address_road" column="m_address_road"/>
+		<result property="m_address_detail" column="m_address_detail"/>
+		<result property="m_type" column="m_type"/>
+		<result property="m_status" column="m_status"/>
+		<result property="b_num" column="b_num"/>
+		<result property="b_type" column="b_type"/>
+		<result property="b_category" column="b_category"/>
+		<result property="b_money" column="b_money"/>
+		<result property="b_start" column="b_start"/>
+		<result property="b_end" column="b_end"/>
+		<result property="b_address_road" column="b_address_road"/>
+		<result property="b_address_detail" column="b_address_detail"/>
+		<result property="b_subject" column="b_subject"/>
+		<result property="b_content" column="b_content"/>
+		<result property="b_org_file" column="b_org_file"/>
+		<result property="b_up_file" column="b_up_file"/>
+		<result property="b_readcount" column="b_readcount"/>
+		<result property="b_date" column="b_date"/>
+		<result property="b_apply" column="b_apply"/>
+		<result property="b_delete" column="b_delete"/>
+		
+		<result property="a_num" column="a_num"/>
+		<result property="a_apply" column="a_apply"/>
+		<result property="e_id" column="e_id"/>
+		<result property="r_num" column="r_num"/>
+		<result property="r_id" column="r_id"/>
+		<result property="r_content" column="r_content"/>
+		<result property="r_date" column="r_date"/>
+		<result property="r_star" column="r_star"/>
+		<result property="r_up_file" column="r_up_file"/>
+		<result property="r_like" column="r_like"/>
+	</resultMap>
+	
+	<!-- 지연님 -->
 	<!-- 회원과 근로자가 서로 매칭된 상태인지 체크 -->
  	<select id="isMatchedWhenC" parameterType="String" resultType="String">
 		select c_id from accept where e_id=#{id} and a_apply='Y'
@@ -14,9 +53,8 @@
 	<select id="isMatchedWhenE" parameterType="String" resultType="String">
 		select e_id from accept where c_id=#{id} and a_apply='Y'
 	</select>
-
-	<!-- 승주님 -->
 	
+	<!-- 승주님 -->
 	<!-- 회원과 근로자가 서로 매칭된 상태인지 체크 -->
  	<select id="isMatched" parameterType="String" resultType="String">
 		select c_id from accept where e_id=#{id} and a_apply='Y'
@@ -33,5 +71,132 @@
 		VALUES (#{b_num},#{c_id},#{e_id},sysdate)
 	</insert>
 	
+	<!-- 수락한 게시물내역불러오기(고객) 5개미리 불러오기 -->
+	<select id="clientAcceptList" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                             M.m_gender, B.b_num, B.b_category, B.b_money, B.b_start,
+                             B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply , C.a_num, C.e_id
+                      FROM MEMBER M, BOARD B , ACCEPT C
+                      WHERE M.m_id = B.m_id
+                      AND B.b_num = C.b_num
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_apply = 'Y'
+                      AND B.b_delete = 'N'
+					  AND B.m_id = #{m_id}
+                      ORDER BY B.b_date DESC) AA ) A
+        <![CDATA[
+        WHERE RNUM1 >= 1
+        AND RNUM1 <= 5
+        ]]>
+	</select>
+	
+	<!-- 수락한 게시물내역불러오기(고객) 무한스크롤 -->
+	<select id="acceptListInfinite" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                             M.m_gender, B.b_num, B.b_category, B.b_money, B.b_start,
+                             B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply , C.a_num, C.e_id
+                      FROM MEMBER M, BOARD B, ACCEPT C
+                      WHERE M.m_id = B.m_id
+                      AND B.b_num = C.b_num
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_apply = 'Y'
+                      AND B.b_delete = 'N'
+					  AND B.m_id = #{m_id}
+                      ORDER BY B.b_date DESC) AA ) A
+        <![CDATA[
+       	WHERE RNUM1 >= #{startNo}+1
+        AND RNUM1 <= #{startNo}+5
+        ]]>
+	</select>
+	
+	<!-- 요청받은 게시물내역불러오기(고객) 5개미리 불러오기 -->
+	<select id="clientApplyList" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                             M.m_gender,B.b_num, B.b_category, B.b_money, B.b_start,
+                             B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply 
+                      FROM MEMBER M, BOARD B
+                      WHERE M.m_id = B.m_id
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
+                      AND B.b_delete = 'N'
+					  AND B.m_id = #{m_id}
+                      AND B.b_num in (select distinct b_num from accept where c_id=#{m_id} and a_apply='D')
+                      ORDER BY B.b_num DESC) AA ) A
+        <![CDATA[
+        WHERE RNUM1 >= 1
+        AND RNUM1 <= 5
+        ]]>
+	</select>
+	
+	<!-- 신청받은 게시물내역불러오기(고객) 무한스크롤 -->
+	<select id="applyListInfinite" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT A.*
+    	FROM (SELECT ROWNUM AS RNUM1, AA.* 
+                FROM (SELECT M.m_id, M.m_photo, M.m_name, M.m_age, 
+                             M.m_gender,B.b_num, B.b_category, B.b_money, B.b_start,
+                             B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply 
+                      FROM MEMBER M, BOARD B
+                      WHERE M.m_id = B.m_id
+                      AND B.b_type = 'A'
+                      AND M.m_type = 'C'
+                      AND M.m_status = 'N'
+                      AND B.b_apply = 'N'
+                      AND B.b_delete = 'N'
+					  AND B.m_id = #{m_id}
+                      AND B.b_num in (select distinct b_num from accept where c_id=#{m_id} and a_apply='D')
+                      ORDER BY B.b_num DESC) AA ) A
+        <![CDATA[
+       	WHERE RNUM1 >= #{startNo}+1
+        AND RNUM1 <= #{startNo}+5
+        ]]>
+	</select>
+	
+	<!-- 하나의 게시글 정보 불러오기 (매칭완료페이지,신청한회원목록페이지) -->
+	<select id="acceptBoardList" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT M.m_id, M.m_photo, M.m_name, M.m_age, M.m_gender, 
+			   B.b_num, B.b_category, B.b_money, B.b_start, B.b_address_road, B.b_subject, B.b_readcount, B.b_date, B.b_apply
+		 FROM MEMBER M, BOARD B
+		 WHERE M.m_id = B.m_id
+			AND B.b_type = 'A'
+			AND M.m_type = 'C'   
+			AND M.m_status = 'N'
+			AND B.b_delete = 'N'
+			AND B.m_id = #{m_id}
+			AND B.b_num = #{b_num}
+	</select>
+	
+	<!-- 신청한근로자 리스트 불러오기 -->
+	<select id="applyEmpProfile" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT m_id, m_photo, m_name, m_age, m_gender, m_address_road, m_address_detail, m_email, m_phone, m_category, m_type, m_heart
+		FROM MEMBER
+		WHERE m_id in (select e_id from accept where a_apply='D' and b_num=#{b_num})
+	</select>
+	
+	<!-- 근로자 프로필 정보 불러오기 -->
+	<select id="empProfile" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT m_id, m_photo, m_name, m_age, m_gender, m_address_road, m_address_detail, m_email, m_phone, m_category, m_type, m_heart
+		FROM MEMBER
+		WHERE m_id = #{r_id}
+	</select>
+	
+	<!-- 신청한근로자 리뷰정보 불러오기  -->
+	<select id="applyEmpReview" parameterType="com.bit.myakkbird.mainpoint.MasterVO" resultMap="masterResultMap2">
+		SELECT r_num, m_id, r_id, r_content, r_date, r_star, r_up_file, r_like 
+		FROM REVIEW 
+		WHERE r_id = #{r_id} 
+		ORDER BY r_date desc
+	</select>
 	
 </mapper>

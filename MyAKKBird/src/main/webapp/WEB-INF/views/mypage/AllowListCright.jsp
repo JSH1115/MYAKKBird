@@ -82,7 +82,7 @@
 			padding: 0;
 			width: 600px;
 			height: auto;
-			background-color: #E6E6E6;
+			background-color: #E6E6E6; 	
 		}
 		
 		.boardList_div_text {
@@ -110,9 +110,9 @@
 			height: 180px;
 			border: 0.1px solid #d3d3d3; 
 			border-radius: 5px;
-			background-color: white;
+		 	background-color: white;
 			box-shadow: -3px -3px 7px -3px #d3d3d3,
-		                3px 3px 7px -3px #d3d3d3;
+		                3px 3px 7px -3px #d3d3d3;              
 		}
 		
 		.post_main {
@@ -606,11 +606,14 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		/* 왼쪽액션바 하얗게 (선택) */
-		$('#_3kQHk_left').css({"border-width": "2px", "border-style": "solid", "border-color": "rgb(238, 238, 238) rgb(238, 238, 238) white", "border-image": "initial", "box-sizing": "border-box", display: "inline-block", "font-family": "&quot;Noto Sans KR&quot", "-webkit-tap-highlight-color": "rgba(0, 0, 0, 0)", cursor: "pointer", "text-decoration": "none", margin: "0px 10px -2px", padding: "0px", outline: "none", "font-size": "inherit", "font-weight": "inherit", position: "relative", "z-index": "1", height: "36px", "line-height": "36px", "min-width": "88px", color: "rgba(0, 0, 0, 0.87)", transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms", "border-radius": "18px 18px 0px 0px", "user-select": "none", overflow: "hidden", "background-color": "white", "text-align": "center", width: "50%"});
+		/* 오른쪽액션바 하얗게 (선택) */
+		$('#_3kQHk_right').css({"border-width": "2px","border-style": "solid","border-color": "rgb(238, 238, 238) rgb(238, 238, 238) white","border-image": "initial","box-sizing": "border-box",display: "inline-block","font-family": "Noto Sans KR","-webkit-tap-highlight-color": "rgba(0, 0, 0, 0)",cursor: "pointer","text-decoration": "none",margin: "0px 10px -2px",padding: "0px",outline: "none","font-size": "inherit","font-weight": "inherit",position: "relative","z-index": "1",height: "36px","line-height": "36px","min-width": "88px",color: "rgba(0, 0, 0, 0.87)",transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms","border-radius": "18px 18px 0px 0px","user-select": "none",overflow: "hidden","background-color": "white","text-align": "center",width: "50%" });
+		/* 왼쪽액션바 어둡게 */
+		$('#_3kQHk_left').css({"border-top": "2px solid rgb(238, 238, 238)","border-right": "2px solid rgb(238, 238, 238)","border-bottom": "none","border-left": "2px solid rgb(238, 238, 238)","border-image": "initial","box-sizing": "border-box",display: "inline-block","font-family": "Noto Sans KR","-webkit-tap-highlight-color": "rgba(0, 0, 0, 0)",cursor: "pointer","text-decoration": "none",margin: "0px 10px -2px",padding: "0px",outline: "none","font-size": "inherit","font-weight": "inherit",position: "relative","z-index": "1",height: "36px","line-height": "36px","min-width": "88px",color: "rgba(0, 0, 0, 0.87)",transition: "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms","border-radius": "18px 18px 0px 0px","user-select": "none",overflow: "hidden","background-color": "pink","text-align": "center",width: "50%"});
 		/* 선택글자:진하게 비선택:연하게 */
-		$('._3kQHk_right_span').css({color: "#9E9E9E", "font-weight":"none"});
-		$('._3kQHk_left_span').css({color: "#353535", "font-weight":"600"});
+		$('._3kQHk_left_span').css({color: "#9E9E9E", "font-weight":"none"});
+		$('._3kQHk_right_span').css({color: "#353535", "font-weight":"600"});
+		
 	});
 </script>
 
@@ -641,7 +644,7 @@
 				<!-- 내가 지원한 / 내게 신청한 -->
 				<div class="fMmkw">
 					<div class="_191Jn">
-						<button id="_3kQHk_left " class="_3kQHk" onclick="tabBtn_left()" type="button" style="border-width: 2px; border-style: solid; border-color: rgb(238, 238, 238) rgb(238, 238, 238) white; border-image: initial; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 10px -2px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; position: relative; z-index: 1; height: 36px; line-height: 36px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 18px 18px 0px 0px; user-select: none; overflow: hidden; background-color: white; text-align: center; width: 50%;">
+						<button id="_3kQHk_left " class="_3kQHk" onclick="location='allowListC.ak'" type="button" style="border-width: 2px; border-style: solid; border-color: rgb(238, 238, 238) rgb(238, 238, 238) white; border-image: initial; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 10px -2px; padding: 0px; outline: none; font-size: inherit; position: relative; z-index: 1; height: 36px; line-height: 36px; min-width: 88px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 18px 18px 0px 0px; user-select: none; overflow: hidden; background-color: #EEEEEE; text-align: center; width: 50%;">
 							<div>
 								<span style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span>
 								<span style="position: relative; padding-left: 16px; padding-right: 16px; vertical-align: top; letter-spacing: 0px; text-transform: uppercase; font-weight: 400; font-size: 17px;">
@@ -649,7 +652,7 @@
 								</span>
 							</div>
 						</button>
-						<button id="_3kQHk_right" class="_3kQHk" onclick="location='allowListCright.ak'" tabindex="0" type="button" style="border-top: 2px solid rgb(238, 238, 238); border-right: 2px solid rgb(238, 238, 238); border-bottom: none; border-left: 2px solid rgb(238, 238, 238); border-image: initial; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 10px -2px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; position: relative; z-index: 1; height: 36px; line-height: 36px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 18px 18px 0px 0px; user-select: none; overflow: hidden; background-color: rgb(238, 238, 238); text-align: center; width: 50%;">
+						<button id="_3kQHk_right" class="_3kQHk" tabindex="0" type="button" style="border-top: 2px solid rgb(238, 238, 238); border-right: 2px solid rgb(238, 238, 238); border-bottom: none; border-left: 2px solid rgb(238, 238, 238); border-image: initial; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 10px -2px; padding: 0px; outline: none; font-size: inherit; position: relative; z-index: 1; height: 36px; line-height: 36px; min-width: 88px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 18px 18px 0px 0px; user-select: none; overflow: hidden; background-color: white; text-align: center; width: 50%;">
 							<div>
 								<span style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span>
 								<span style="position: relative; padding-left: 16px; padding-right: 16px; vertical-align: top; letter-spacing: 0px; text-transform: uppercase; font-weight: 400; font-size: 17px; color: rgb(158, 158, 158);">
@@ -675,7 +678,7 @@
 											for(int i = 0; i < boardList.size(); i++) {
 										%>
 										<li id="list_id" data-no=<%=i+1 %>>
-											<div class="post" id="post_id" onclick="postlink('<%=boardList.get(i).getM_id()%>','<%=boardList.get(i).getE_id()%>',<%=boardList.get(i).getB_num()%>)">
+											<div class="post" id="post_id" onclick="postlink('<%=boardList.get(i).getM_id()%>',<%=boardList.get(i).getB_num()%>)">
 												<div class="post_main">
 													<span class="post_no">no.<%=boardList.get(i).getB_num() %></span>
 													<%
@@ -711,7 +714,7 @@
 													<span class="span_date1"><b>조회</b> <%=boardList.get(i).getB_readcount() %> </span><br>
 													<span class="span_date2"><b>작성</b> <%=boardList.get(i).getB_date() %> </span><br>
 												</div>
-											</div><!-- </a> -->
+											</div>
 										</li>
 										<%
 											}
@@ -764,9 +767,9 @@
 	</div>
 </div>
 <script type="text/javascript">
-//게시물 클릭시 매칭된 회원정보 보러가는 페이지링크
-function postlink(m_id, e_id, b_num){
-	location.href="acceptDetail.ak?m_id="+m_id+"&e_id="+e_id+"&b_num="+b_num;
+//게시물 클릭시 해당 게시물에 신청한 근로자 리스트(프로필정보) 보러가기
+function postlink(m_id, b_num){
+	location.href="applyDetail.ak?m_id="+m_id+"&b_num="+b_num;
 }
 //전역 변수
 var boardCount = <%=boardCount %>; // 게시글 개수
@@ -837,7 +840,7 @@ $(document).ready(function(){
 		startNo = $("#boardList #list_id").last().data("no") || 0;
 		
 		$.ajax({
-			url : '/myakkbird/acceptList_infinite.ak?m_id='+m_id+'&startNo='+startNo+'',
+			url : '/myakkbird/applyList_infinite.ak?m_id='+m_id+'&startNo='+startNo+'',
 			type : 'GET',
 			dataType : "json",
 			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
@@ -876,7 +879,7 @@ $(document).ready(function(){
 					}
 					
 					output += '<li id="list_id" data-no='+totalCount+'>'
-					output += '    <div class="post" id="post_id" onclick="postlink(`'+item.m_id+'`,`'+item.e_id+'`,'+item.b_num+')">'
+					output += '    <div class="post" id="post_id" onclick="postlink(`'+item.m_id+'`,'+item.b_num+')">'
 					output += '	       <div class="post_main">'
 					output += '            <span class="post_no">no.'+item.b_num+'</span>'
 					output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
@@ -909,8 +912,6 @@ $(document).ready(function(){
 				}) 
 			},
 			error:function(request,status,error){		
-		        //alert("무한스크롤 에러")
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		    },
 		});
 		event.preventDefault();

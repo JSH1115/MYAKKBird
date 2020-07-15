@@ -21,10 +21,10 @@
 		case "A" : b_category = "정기청소";
 				   b_category_img = "vacuum.png";
 				  break;
-		case "B" : b_category = "특수장비청소";
+		case "B" : b_category = "특수청소";
 				   b_category_img = "cleaning-tools.png";
 		  		  break;
-		case "C" : b_category = "입주청소(이사청소)";
+		case "C" : b_category = "입주청소";
 				   b_category_img = "kitchen.png";
 		 		  break;
 		case "D" : b_category = "상주청소";
@@ -253,7 +253,7 @@
 				  showCancelButton: true,
 				  confirmButtonColor: '#37B04B',
 				  cancelButtonColor: '#E6E6E6',
-				  confirmButtonText: '<div onclick="allowListE.ak">신청내역보기</div>',
+				  confirmButtonText: '<div onclick="location.href=\'allowListE.ak\'">신청내역보기</div>',
 				  cancelButtonText:'Close',
 				})
 		});	

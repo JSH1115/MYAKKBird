@@ -41,6 +41,19 @@ public class MasterVO {
 	
 	private String img;               //카테고리 그림 저장을 위한 변수
 	
+	private int a_num;				  //요청번호
+	private String a_date;			  //요청일
+	private String e_id;			  //요청한사람(근로자ID)
+	private String a_apply;			  //수락여부
+	
+	private int r_num;				//리뷰번호
+	private String r_id;			//리뷰 받는 아이디
+	private String r_content;		//리뷰내용
+	private String r_date;			//작성일
+	private int r_star;				//별점 1 2 3 4 5(Default)
+	private String r_up_file;		//업로드리뷰파일명
+	private int r_like;				//좋아요
+	
 	public String getM_password() {
 		return m_password;
 	}
@@ -238,6 +251,72 @@ public class MasterVO {
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+	public int getA_num() {
+		return a_num;
+	}
+	public void setA_num(int a_num) {
+		this.a_num = a_num;
+	}
+	public String getA_date() {
+		return a_date;
+	}
+	public void setA_date(String a_date) {
+		this.a_date = a_date;
+	}
+	public String getE_id() {
+		return e_id;
+	}
+	public void setE_id(String e_id) {
+		this.e_id = e_id;
+	}
+	public String getA_apply() {
+		return a_apply;
+	}
+	public void setA_apply(String a_apply) {
+		this.a_apply = a_apply;
+	}
+	public int getR_num() {
+		return r_num;
+	}
+	public void setR_num(int r_num) {
+		this.r_num = r_num;
+	}
+	public String getR_id() {
+		return r_id;
+	}
+	public void setR_id(String r_id) {
+		this.r_id = r_id;
+	}
+	public String getR_content() {
+		return r_content;
+	}
+	public void setR_content(String r_content) {
+		this.r_content = r_content;
+	}
+	public String getR_date() {
+		return r_date;
+	}
+	public void setR_date(String r_date) {
+		this.r_date = r_date;
+	}
+	public int getR_star() {
+		return r_star;
+	}
+	public void setR_star(int r_star) {
+		this.r_star = r_star;
+	}
+	public String getR_up_file() {
+		return r_up_file;
+	}
+	public void setR_up_file(String r_up_file) {
+		this.r_up_file = r_up_file;
+	}
+	public int getR_like() {
+		return r_like;
+	}
+	public void setR_like(int r_like) {
+		this.r_like = r_like;
 	}
 	
 }
