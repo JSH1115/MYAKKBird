@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bit.mapper.MemberMapper;
 import com.bit.mapper.ReviewMapper;
 
 @Service("reviewService")
@@ -30,7 +31,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int hasWritten(HashMap<String, String> hashmap) {		//회원에게 달린 총 리뷰개수 구하기
+	public int hasWritten(HashMap<String, Object> hashmap) {		//회원에게 달린 총 리뷰개수 구하기 (X) -> 리뷰 작성한 적 있는 회원인지 확인
 		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
 		int hasWritten = reviewMapper.hasWritten(hashmap);
 		return hasWritten;
@@ -61,5 +62,55 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
 		reviewMapper.deleteReview(r_num);
 	}
+	
+	@Override
+	public void deleteLiketo(int r_num) {
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		reviewMapper.deleteLiketo(r_num);
+	}
+
+	@Override
+	public List<ReviewVO> latestReviews() { // 메인에 뿌려줄 최신 리뷰 불러오기
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		List<ReviewVO> list = reviewMapper.latestReviews();
+		return list;
+	}
+
+	@Override
+	public void likeReview(HashMap<String, Object> hashmap) { //리뷰 좋아요
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		reviewMapper.likeReview(hashmap);
+		return;
+		
+	}
+
+	@Override
+	public void updateR_like(int r_num) { //r_like + 1
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		reviewMapper.updateR_like(r_num);
+		return;		
+	}
+
+	@Override
+	public int like_check(HashMap<String, Object> hashmap) { //해당 사용자가 해당 리뷰 좋아요 눌렀는지 확인
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		int res = reviewMapper.like_check(hashmap);
+		return res;
+	}
+
+	@Override
+	public void unlikeReview(HashMap<String, Object> hashmap) { //리뷰 좋아요 취소
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		reviewMapper.unlikeReview(hashmap);
+		
+	}
+
+	@Override
+	public void updateR_unlike(int r_num) { //r_like - 1
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		reviewMapper.updateR_unlike(r_num);
+	}
+
+
 
 }

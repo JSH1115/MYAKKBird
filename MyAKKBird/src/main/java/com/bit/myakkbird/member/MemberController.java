@@ -52,55 +52,64 @@ public class MemberController {
 		String m_type = memberService.mypage_menu(id); // 타입 구하기
 		model.addAttribute("m_type", m_type);
 
-		return "member/mypage_menu";
+		return "member/mypage_menu2";
 	}
 	
 	// parameter로 받은 id의 프로필창으로 이동
-	@RequestMapping("/profile.ak")
-	public String profile(String id, Model model, HttpSession session) throws Exception {
-		// 해당 id에 대한 모든 정보
-		MemberVO memberVO = memberService.profile(id);
-		// 해당 id에 대한 리뷰
-		List<ReviewVO> reviewList = reviewService.getReviewList(id);
-		
-		if (reviewList.size() > 0) {
-			String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); // 총 평점
-			model.addAttribute("avgStar", avgStar);
-		}
-		model.addAttribute("memberVO", memberVO);
-		model.addAttribute("reviewList", reviewList);
-		
-	
-		// 리뷰작성 버튼을 위한 해당 id와 매칭된 적 있는 id 찾기
-		if (memberVO.getM_type().equals("C")) {
-			String matchedPpl = acceptService.isMatched(id);
-			model.addAttribute("matchedPpl", matchedPpl);
+		@RequestMapping("/profile.ak")
+		public String profile(String id, Model model, HttpSession session) throws Exception {
+			String current_id = (String)session.getAttribute("m_id");
+			String m_type = memberService.mypage_menu(current_id); // 현재 세션id의 회원 타입 구하기 ( 타입에 따라 메뉴가 다름)
+			model.addAttribute("m_type", m_type);
 			
-			// 현재 사용자가 리뷰 작성한 적 있는지 체크하기 (한사람당 한번만 작성가능하도록) 
-			String m_id = (String) session.getAttribute("id");
-			HashMap<String, String> hashmap = new HashMap<String, String>();
-			hashmap.put("r_id", id);
-			hashmap.put("m_id", m_id);
-			int hasWritten = reviewService.hasWritten(hashmap);
-			model.addAttribute("hasWritten", hasWritten);			
-		} else if (memberVO.getM_type().equals("E")){
-			System.out.println("여기 더 해야돼");
+			// 해당 id에 대한 정보 (프로필) 불러오기
+			MemberVO memberVO = memberService.profile(id);
 			
-			//여기서부터 >>> 07.03 조승주.
-			String matchedPpl = acceptService.isMatched(id);
-			model.addAttribute("matchedPpl", matchedPpl);
-			// 현재 사용자가 리뷰 작성한 적 있는지 체크하기 (한사람당 한번만 작성가능하도록) 
-			String m_id = (String) session.getAttribute("id");
-			HashMap<String, String> hashmap = new HashMap<String, String>();
-			hashmap.put("r_id", id);
-			hashmap.put("m_id", m_id);
-			int hasWritten = reviewService.hasWritten(hashmap);
-			model.addAttribute("hasWritten", hasWritten);
-			//<<여기까지 에러때매 임시로 집어 넣어둔 코드 
-		}
+			// 해당 id에 대한 리뷰 불러오기
+			List<ReviewVO> reviewList = reviewService.getReviewList(id);
+			
+			// 각 리뷰마다 현재 세션id가 좋아요 누른 적 있는지 확인
+			HashMap<String, Object> hashmap = new HashMap<String, Object>();
+			hashmap.put("watched_id", id); // watched_id : 현재 보여지고 있는 프로필의 id (리뷰 받는사람 r_id) 
+			hashmap.put("current_id", current_id); // current_id : 현재 로그인되어있는 세션 id (리뷰 쓰는 사람 m_id)
+			for(ReviewVO vo : reviewList) {
+				vo.setL_check(0); 
+				hashmap.put("r_num", vo.getR_num());
+				int res = reviewService.like_check(hashmap);
+				vo.setL_check(res);
+			}
+			
+			// 해당 id 리뷰 총 평점 계산
+			if (reviewList.size() > 0) {
+				String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); 
+				model.addAttribute("avgStar", avgStar);
+			}
+			model.addAttribute("memberVO", memberVO);
+			model.addAttribute("reviewList", reviewList);
+			
+			// 자신의 프로필이 아닌 타인의 프로필을 보고 있을 경우 (리뷰작성 버튼 보여주기)
+			if (!(current_id.equals(id))){
+				
+			// 리뷰작성 버튼을 위한 해당 id와 매칭된 적 있는 id 찾기
+				// 현재 보고있는 프로필이 C(회원)인 경우
+				if (memberVO.getM_type().equals("C")) {
+					String matchedPpl = acceptService.isMatchedWhenC(id);
+					model.addAttribute("matchedPpl", matchedPpl); // 매칭된 적 있는 사람(들)				
+				// 현재 보고있는 프로필이 E(근로자)인 경우
+				} else if (memberVO.getM_type().equals("E")){ 
+					String matchedPpl = acceptService.isMatchedWhenE(id);
+					model.addAttribute("matchedPpl",matchedPpl);
+				}
+				int hasWritten = reviewService.hasWritten(hashmap); // 리뷰 작성한 적 있는지 체크  -> 0 또는 1 
+				model.addAttribute("hasWritten",hasWritten);
 
-		return "member/mypage_profile3";
-	}
+			}else { // 본인 프로필 보고 있을 경우 (리뷰 작성버튼 X)
+				model.addAttribute("matchedPpl","a");
+				model.addAttribute("hasWritten",0);
+			}
+
+			return "member/mypage_profile3";
+		}
 		
 		// 프로필 수정 (ajax)
 		@RequestMapping(value = "modifyProfileProcess.ak", produces = "application/json;charset=UTF-8")
@@ -126,7 +135,7 @@ public class MemberController {
 		memberService.modifyProfile(memberVO);
 		
 		// 리뷰 불러오기
-		String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("m_id");
 		List<ReviewVO> reviewList = reviewService.getReviewList(id);
 		if (reviewList.size() > 0) {
 			String avgStar = String.format("%.1f", reviewService.getAvgStar(id));
@@ -144,69 +153,10 @@ public class MemberController {
 		@RequestMapping(value = "/getProfile.ak", produces = "application/json;charset=UTF-8")
 		@ResponseBody
 		public MemberVO getProfile(HttpSession session, Model model) {
-			String id = (String) session.getAttribute("id");
+			String id = (String) session.getAttribute("m_id");
 			MemberVO memberVO = memberService.profile(id);
 
 			return memberVO;
-		}
-
-		// 리뷰 작성
-		@RequestMapping("/writeReview3.ak")
-		public String writeReview(MultipartHttpServletRequest request, ReviewVO reviewVO) throws Exception {				
-			List<MultipartFile> fileList = request.getFiles("file1");
-			MultipartFile a = fileList.get(0);
-			System.out.println("a.isEmpty() : " + a.isEmpty()); // true (파일 선택 X인 경우) 
-			
-			if(!(a.isEmpty())) { // 첨부파일 비어있지 않으면(= 첨부파일 있으면)
-				String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
-				StringBuilder allFiles = new StringBuilder("");
-				for (MultipartFile mf : fileList) {
-					String originalFileExtension = mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-					String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-					mf.transferTo(new File(uploadPath + storedFileName));
-					allFiles.append(storedFileName).append(",");
-				}
-				String af = (allFiles.deleteCharAt(allFiles.length() - 1)).toString();
-				reviewVO.setR_up_file(af);
-			}else { // a.isEmpty()가 true (첨부파일 없으면)
-				reviewVO.setR_up_file("");
-			}
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			String today = sdf.format(date);reviewVO.setR_date(today);
-			
-			String r_id = reviewVO.getR_id();
-			
-			reviewService.writeReview(reviewVO);
-		
-			return "redirect:/profile.ak?id="+ r_id;
-
-	}
-		
-		// 리뷰 수정 모달창을 위한 원래 값 불러오기
-		@RequestMapping(value = "modifyReview.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
-		@ResponseBody
-		public ReviewVO getReview(@RequestParam(value="r_num") int r_num, Model model) {
-			ReviewVO reviewVO = reviewService.getReview(r_num);
-			return reviewVO;
-		}
-		
-		// 리뷰 수정작업
-		@RequestMapping("/modifyReviewProcess.ak")
-		public String modifyReview(ReviewVO reviewVO) {
-			reviewService.modifyReview(reviewVO);
-			ReviewVO vo = reviewService.getReview(reviewVO.getR_num());
-			
-			return "redirect:profile.ak?id="+ vo.getR_id();
-		}
-		
-		// 리뷰 삭제
-		@RequestMapping("/deleteReview.ak")
-		public String deleteReview(int r_num) {
-			ReviewVO vo = reviewService.getReview(r_num);
-			reviewService.deleteReview(r_num);
-			
-			return "redirect:profile.ak?id="+ vo.getR_id();
 		}
 		
 		//-------------------------------------------------------------------------------------//

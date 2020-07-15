@@ -4,6 +4,19 @@
 
 <mapper namespace="com.bit.mapper.AcceptMapper">
 
+	<!-- 지연님 -->
+	
+	<!-- 회원과 근로자가 서로 매칭된 상태인지 체크 -->
+ 	<select id="isMatchedWhenC" parameterType="String" resultType="String">
+		select c_id from accept where e_id=#{id} and a_apply='Y'
+	</select> 
+	
+	<select id="isMatchedWhenE" parameterType="String" resultType="String">
+		select e_id from accept where c_id=#{id} and a_apply='Y'
+	</select>
+
+	<!-- 승주님 -->
+	
 	<!-- 회원과 근로자가 서로 매칭된 상태인지 체크 -->
  	<select id="isMatched" parameterType="String" resultType="String">
 		select c_id from accept where e_id=#{id} and a_apply='Y'

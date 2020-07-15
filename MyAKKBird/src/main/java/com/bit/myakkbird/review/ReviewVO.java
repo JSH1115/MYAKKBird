@@ -11,7 +11,9 @@ public class ReviewVO {
 	private int r_star;				//별점 1 2 3 4 5(Default)
 	private String r_up_file;		//업로드리뷰파일명
 	private MultipartFile file1;	//input타입에서 리뷰사진을 저장하기위한 변수
-	private int r_like;				//좋아요
+	private int r_like_cnt;			//좋아요
+	private String m_photo;
+	private int l_check;
 	
 	public int getR_num() {
 		return r_num;
@@ -61,11 +63,23 @@ public class ReviewVO {
 	public void setFile1(MultipartFile file1) {
 		this.file1 = file1;
 	}
-	public int getR_like() {
-		return r_like;
+	public int getR_like_cnt() {
+		return r_like_cnt;
 	}
-	public void setR_like(int r_like) {
-		this.r_like = r_like;
+	public void setR_like_cnt(int r_like_cnt) {
+		this.r_like_cnt = r_like_cnt;
+	}
+	public String getM_photo() {
+		return m_photo;
+	}
+	public void setM_photo(String m_photo) {
+		this.m_photo = m_photo;
+	}
+	public int getL_check() {
+		return l_check;
+	}
+	public void setL_check(int l_check) {
+		this.l_check = l_check;
 	}
 
 }
