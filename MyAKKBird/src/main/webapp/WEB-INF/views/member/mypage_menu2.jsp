@@ -60,9 +60,9 @@ $(document).ready(function(){
 			<div class= "dir"> > </div>
 		</div>
 	<% } else if(m_type.equals("M")){ %>
-		<div class="eachMenu">
+		<div class="eachMenu" onclick="location.href='memberList.ak'">
 			<div>회원목록</div>
-			<div class= "dir"> > </div>
+			<div class= "dir" > > </div>
 		</div>
 		<div class="eachMenu">
 			<div>매칭내역</div>

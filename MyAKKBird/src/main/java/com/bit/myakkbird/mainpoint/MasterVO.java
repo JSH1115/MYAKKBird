@@ -4,7 +4,9 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class MasterVO {
+import com.bit.myakkbird.admin.PageVO;
+
+public class MasterVO extends PageVO {
 	private String m_password;        //회원 비밀번호
 	private String m_photo;           //회원 사진
 	private String m_name;            //회원 이름

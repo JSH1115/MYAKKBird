@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.mapper.AdminMapper">
+	
+	<resultMap type="MasterVO" id="masterResultMap">
+		<result property="m_id" column="m_id"/>
+		<result property="m_password" column="m_password"/>
+		<result property="m_photo" column="m_photo"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_age" column="m_age"/>
+		<result property="m_gender" column="m_gender"/>
+		<result property="m_address_road" column="m_address_road"/>
+		<result property="m_address_detail" column="m_address_detail"/>
+		<result property="m_email" column="m_email"/>
+		<result property="m_phone" column="m_phone"/>
+		<result property="m_category" column="m_category"/>
+		<result property="m_type" column="m_type"/>
+		<result property="m_heart" column="m_heart"/>
+		<result property="m_status" column="m_status"/>
+		<result property="page" column="page"/>
+		<result property="limit" column="limit"/>
+	</resultMap>
+	
+	<select id="memberCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		<choose>
+			<when test="searchFiled != null and searchFiled != ''">
+	            WHERE ${searchFiled} like '%'||#{searchValue}||'%'
+	        </when>
+		</choose>
+	</select>
+	
+	<select id="memberList" parameterType="MasterVO" resultMap="masterResultMap">
+	    SELECT A.*
+        FROM (SELECT ROWNUM AS RNUM1, AA.*
+            FROM (SELECT * FROM MEMBER
+                  <choose>
+				      <when test="searchFiled != null and searchFiled != ''">
+			              WHERE ${searchFiled} like '%'||#{searchValue}||'%'
+			          </when>
+			          <otherwise>
+		                  ORDER BY m_name DESC
+			          </otherwise>
+				  </choose>
+                  ) AA ) A
+        <![CDATA[           
+        WHERE RNUM1 >= #{startRowNo}
+        AND RNUM1 <= #{endRowNo}
+        ]]>
+	</select>
+	
+</mapper>
