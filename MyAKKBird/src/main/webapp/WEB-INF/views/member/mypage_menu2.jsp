@@ -26,7 +26,7 @@ $(document).ready(function(){
 			<div>게시글 쓰기</div>
 			<div class= "dir"> > </div>
 		</div>
-		<div class="eachMenu" onclick="location.href=''">
+		<div class="eachMenu" onclick="location.href='BoardLoad.ak'">
 			<div> 게시물 보기 </div>
 			<div class= "dir"> > </div>
 		</div>
