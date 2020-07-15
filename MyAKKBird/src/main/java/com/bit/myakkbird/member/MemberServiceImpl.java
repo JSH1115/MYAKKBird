@@ -67,5 +67,28 @@ public class MemberServiceImpl implements MemberService{
     public MemberVO checkUserWithSessionKey(String sessionId) {
         return dao.checkUserWithSessionKey(sessionId);
     }
+    
+	@Override
+	public int idcheck(String m_id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int res = memberMapper.idcheck(m_id);
+		return res;
+	}
+
+	@Override
+	public MemberVO searchId(MemberVO memberVO) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		
+		MemberVO vo = memberMapper.findId(memberVO);
+		return vo; 
+	}
+	
+	@Override
+	public MemberVO searchPw(MemberVO memberVO) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		
+		MemberVO vo = memberMapper.findPw(memberVO);
+		return vo; 
+	}
 
 }

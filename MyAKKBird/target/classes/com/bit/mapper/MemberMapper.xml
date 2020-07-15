@@ -37,6 +37,11 @@
 	</select>
 	
 	<!-- 결제(카카오페이) -->
+	<select id="idcheck" parameterType="String" resultType="int">
+		select count(*) from member where m_id = #{m_id} 
+	</select>
+	
+	<!-- 결제(카카오페이) -->
 	<select id="heartCheck" parameterType="com.bit.myakkbird.member.MemberVO" resultType="com.bit.myakkbird.member.MemberVO">
 		select * from member where m_id = #{m_id} 
 	</select>
@@ -50,5 +55,15 @@
 	<select id="checkUserWithSessionKey" resultType="MemberVO">
         select * from member where session_key = #{sessionId} and session_limit > now()
     </select>
-
+	
+	<!-- 아이디 찾기 -->
+    <select id="findId" resultType="MemberVO">
+        select m_id from member where m_name = #{m_name} and m_email =#{m_email}
+    </select>
+    
+     <!-- 비밀번호 찾기 -->
+    <select id="findPw" resultType="MemberVO">
+        select m_password from member where m_name = #{m_name} and m_email =#{m_email} and m_id=#{m_id}
+    </select>
+    
 </mapper>

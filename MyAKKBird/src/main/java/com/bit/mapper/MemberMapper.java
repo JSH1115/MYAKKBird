@@ -15,5 +15,8 @@ public interface MemberMapper {
 	public MemberVO heartCheck(MemberVO memberVO);
 	public MemberVO keepLogin(MemberVO memberVO);
 	public MemberVO checkUserWithSessionKey(MemberVO memberVO);
+	public int idcheck(String m_id);
+	public MemberVO findId(MemberVO memberVO);
+	public MemberVO findPw(MemberVO memberVO);
 	
 }

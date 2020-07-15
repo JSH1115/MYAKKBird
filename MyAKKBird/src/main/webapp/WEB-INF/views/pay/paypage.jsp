@@ -7,7 +7,6 @@
 		out.println("location.href='./loginform.ak'");
 		out.println("</script>");
 	}
-
 %>
 
 <!doctype html>
@@ -16,7 +15,12 @@
     <meta charset="utf-8" />
 	<style>
 			body {margin:0;padding:0;}
-			#webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+			#webView {overflow:hidden;position:relative;background:#FFFFFF;
+			width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);
+			transform:translate3d(0,0,0);
+			background-image:url("./resources/image/croheart.png");
+			background-repeat:no-repeat;
+			background-position:left bottom;}
 			#webView[data-show-memo='true'] {overflow:visible}
 			a{
 			text-decoration:none;
@@ -30,6 +34,16 @@
 			height:60px;
 			
 			}
+			
+				 .btn1{
+		 	margin:5px; 
+			padding: 5px; 
+			border-radius:5px;
+			border:0px;
+			background: #37b04b;
+			text-decoration: none;
+			color:white;
+			}
 	</style>
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -38,7 +52,6 @@
         var IMP = window.IMP;
         var code = "imp37972570"; // 가맹점 식별코드
         IMP.init(code);
-
         // 결제요청
         IMP.request_pay({
             // name과 amount만 있어도 결제 진행가능
@@ -70,7 +83,6 @@
 				              m_heart: '5'
 				              
 		                  };
-
 				var dataJson = JSON.stringify(newData);
 				  jQuery.ajax({
 			          url: "./paysuccess.ak", // 가맹점 서버
@@ -90,13 +102,11 @@
 			          error: function(e) {
 			        	    console.log(e);
 			        	  }
-
 				  });
             }
             else { // 결제 실패시
                 var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg
             }
-
         });
     }
     
@@ -105,7 +115,6 @@
         var IMP = window.IMP;
         var code = "imp51586343"; // 가맹점 식별코드
         IMP.init(code);
-
         // 결제요청
         IMP.request_pay({
             // name과 amount만 있어도 결제 진행가능
@@ -129,7 +138,6 @@
 				              m_id: '${memberVO.getM_id()}',
 				            	  m_heart: '25'
 		                  };
-
             	var dataJson = JSON.stringify(newData);
 				  jQuery.ajax({
 			          url: "./paysuccess.ak", // 가맹점 서버
@@ -149,13 +157,11 @@
 			          error: function(e) {
 			        	    console.log(e);
 			        	  }
-
 				  });
           }
           else { // 결제 실패시
               var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg
           }
-
       });
   }
     
@@ -165,7 +171,6 @@
         var IMP = window.IMP;
         var code = "imp51586343"; // 가맹점 식별코드
         IMP.init(code);
-
         // 결제요청
         IMP.request_pay({
             // name과 amount만 있어도 결제 진행가능
@@ -208,13 +213,11 @@
 			          error: function(e) {
 			        	    console.log(e);
 			        	  }
-
 				  });
           }
           else { // 결제 실패시
               var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg
           }
-
       });
   }
     
@@ -224,7 +227,7 @@
  }
     </script>
 
-<title>Insert title here</title>
+<title>하트 충전</title>
 </head>
 <body>
 <div id="webView">
@@ -247,7 +250,7 @@
 </c:if>
 <c:if test="${m_id != null}">
 ${m_id }님 환영합니다.
-<button style="text-align:center;font-size:15;" onclick="location.href='joinselect.ak'">마이페이지</button>
+<button style="text-align:center;font-size:15;" onclick="location.href='mypage_menu.ak?id=${login.m_id }'">마이페이지</button>
 <button style="text-align:center;font-size:15;margin:20;" onclick="location.href='logOut.ak'">
 로그아웃</button>
 </c:if>
@@ -259,28 +262,28 @@ ${m_id }님 환영합니다.
 <br/>
 <table align="center">
 <tr>
-	<td width="60"><img src="./resources/image/heart.jpg" /></td>
+	<td width="60"><img src="./resources/image/heart.png" /></td>
 	<td>나의 하트 개수</td>
 </tr>
 <tr>
 	<td colspan="3" style="
-	border: 1px solid #00ff00; width:200px;height:50px;
+	border: 1px solid #37b04b; width:200px;height:50px;
 	text-align:center;border-radius: 10px;">보유 중인 하트 : ${memberVO.getM_heart() }</td>
 </tr>
 <tr>
-	<td><img src="./resources/image/heart.jpg"></td>
+	<td><img src="./resources/image/heart.png"></td>
 	<td>하트5개</td>
-	<td><input type="button" value="1000원" onclick="pay5()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
+	<td><input type="button" class="btn1" value="1000원" onclick="pay5()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
 </tr>
 <tr>
-	<td><img src="./resources/image/heart.jpg"></td>
+	<td><img src="./resources/image/heart.png"></td>
 	<td>하트25개</td>
-	<td><input type="button" value="5000원" onclick="pay25()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
+	<td><input type="button" class="btn1" value="5000원" onclick="pay25()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
 </tr>
 <tr>
-	<td><img src="./resources/image/heart.jpg"></td>
+	<td><img src="./resources/image/heart.png"></td>
 	<td>하트50개</td>
-	<td><input type="button" value="10000원" onclick="pay50()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
+	<td><input type="button" class="btn1" value="10000원" onclick="pay50()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
 </tr>
 
 

@@ -117,6 +117,15 @@
 	text-decoration: none;
 	color:white;
 	}
+		 .btn2{
+ 	margin:5px; 
+	padding: 5px; 
+	border-radius:5px;
+	border:0px;
+	background: #89df8f;
+	text-decoration: none;
+	color:white;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -136,7 +145,7 @@ $(document).ready(function(){
 	
  
 </script>
-<title>Insert title here</title>
+<title>카테고리</title>
 </head>
 <body>
 <form name="catefrm" action="./joinformcs.ak">
@@ -191,9 +200,20 @@ $(document).ready(function(){
 
 
 </div>
+<input type="button" class="btn2" onclick="back()" value="뒤로">
+
 <input type="button" class="btn1" id="select" value="다음">
 
 </div>
 </form>
+
+<script>
+	function back(){
+		window.history.back();
+	}
+</script>
+
+
+
 </body>
 </html>

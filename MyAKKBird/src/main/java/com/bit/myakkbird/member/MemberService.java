@@ -12,8 +12,10 @@ public interface MemberService {
 	public int insertMember(MemberVO memberVO);					//회원가입
 	public MemberVO userCheck(MemberVO memberVO);					//로그인체크
 	public MemberVO heartCheck(MemberVO memberVO);				//결제하기
-	
 	public void keepLogin(String uid, String sessionId, Date next);
     public MemberVO checkUserWithSessionKey(String sessionId);
+    public int idcheck(String m_id);
+    public MemberVO searchId(MemberVO memberVO);
+    public MemberVO searchPw(MemberVO memberVO);
 	
 }

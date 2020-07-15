@@ -9,14 +9,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +42,8 @@ public class MemberController {
 	private AcceptService acceptService;
 	@Autowired
 	private ReviewService reviewService;
-	
+	@Autowired
+	JavaMailSender mailSender;
 	
 	// 해당 id의 회원type에 따라 다른 마이페이지 메뉴로 이동
 	@RequestMapping("/mypage_menu.ak")
@@ -352,6 +357,111 @@ public class MemberController {
 			return "/join/join_form_wk_category";
 		}
 		
+		
+		//아이디중복확인
+		 @RequestMapping("/idcheck.ak")
+		    @ResponseBody
+		    public Map<Object, Object> idcheck(@RequestBody String m_id) {
+		        
+		        int count = 0;
+		        Map<Object, Object> map = new HashMap<Object, Object>();
+		 
+		        count = memberService.idcheck(m_id);
+		        map.put("cnt", count);
+		 
+		        return map;
+		    }
+		
+		 
+		 //계정 찾기
+		 @RequestMapping(value = "/searchSelect.ak", method = RequestMethod.GET)
+			public String searchSelect(MemberVO memberVO) {
+				
+				return "/join/search_form";
+				
+		 }
+		 
+		 @RequestMapping(value = "/searchingId.ak", method = RequestMethod.GET)
+			public String searchId(MemberVO memberVO) {
+				
+				return "/join/search_id";
+				
+		 }
+		 
+		 @RequestMapping(value = "/searchingPw.ak", method = RequestMethod.GET)
+			public String searchㅖd(MemberVO memberVO) {
+				
+				return "/join/search_pw";
+				
+		 }
+		 
+		 @RequestMapping(value = "/findId.ak", method = RequestMethod.POST)
+			public String findId(MemberVO memberVO, HttpServletResponse response)throws Exception {
+				MemberVO vo = memberService.searchId(memberVO);
+			 	
+				response.setCharacterEncoding("utf-8");
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter writer = response.getWriter();
+				
+				if (vo != null)
+				{
+					writer.write("<script>alert('당신의 아이디는 "+vo.getM_id()+" 입니다. ');"
+							+ "location.href='./searchSelect.ak';</script>");
+				}
+				else
+				{
+					writer.write("<script>alert('잘못된정보입니다!!!');"
+							+ "location.href='./home.ak';</script>");
+				}
+				return null;
+	
+				
+		 }
+		 
+		 @RequestMapping(value = "/findPw.ak", method = RequestMethod.POST)
+			public String findPw(MemberVO memberVO, HttpServletResponse response,HttpServletRequest request)throws Exception {
+				MemberVO vo = memberService.searchPw(memberVO);
+			 	
+				response.setCharacterEncoding("utf-8");
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter writer = response.getWriter();
+				
+				if (vo != null)
+				{
+					String setfrom = "ccomajun@naver.com";
+					String tomail = request.getParameter("m_email");// 받는사람 이메일
+					String title = "MyAkkbird 비밀번호 조회 이메일 입니다."; //제목
+					String content = System.getProperty("line.separator")
+							+"안녕하세요 회원님 MyAkkbird를 찾아주셔서 감사합니다."
+							+System.getProperty("line.separator")
+							+"비밀번호는"+vo.getM_password()+"입니다.";
+					
+					try {
+						MimeMessage message = mailSender.createMimeMessage();
+						MimeMessageHelper messageHelper = 
+								new MimeMessageHelper(message, true, "UTF-8");
+						messageHelper.setFrom(setfrom);//보내는사람 . 생략하면 정상작동을 안함.
+						messageHelper.setTo(tomail);//받는사람 이메일
+						messageHelper.setSubject(title);//메일제목은 생략이 가능
+						messageHelper.setText(content);//메일 내용
+						
+						mailSender.send(message);
+					}catch(Exception e) {
+						System.out.println(e);
+					}
+					writer.write("<script>alert('이메일을 확인해주세요.!!!');"
+							+ "location.href='./searchSelect.ak';</script>");
+				}
+				else
+				{
+					writer.write("<script>alert('잘못된정보입니다!!!');"
+							+ "location.href='./home.ak';</script>");
+				}
+				return null;
+	
+				
+		}
+		
 		//결제(카카오페이)
 		@RequestMapping(value = "/pay.ak", method = RequestMethod.GET)
 		public String payPage(MemberVO memberVO , Model model,HttpSession session, HttpServletResponse response) throws Exception{
@@ -361,7 +471,7 @@ public class MemberController {
 		
 			MemberVO vo = memberService.heartCheck(memberVO);
 			model.addAttribute("memberVO", vo);
-		
+			
 			return "/pay/paypage";
 			
 		}

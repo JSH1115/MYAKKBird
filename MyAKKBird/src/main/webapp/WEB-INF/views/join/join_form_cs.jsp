@@ -7,12 +7,12 @@
 <% 
 String va= "";
 for(int i=0;i<str.length;i++){
-	if(i<str.length){
-		va+=str[i]+",";
-	}if(i==str.length-1){
+	if(i==str.length-1){
 		va+=str[i];
+		break;
+	}else if(i<str.length){
+		va+=str[i]+",";
 	}
-
 }	
 %>
 <!DOCTYPE html>
@@ -29,20 +29,29 @@ for(int i=0;i<str.length;i++){
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
-	body {margin:0;padding:0;}
-#webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+	body {margin:0;padding:0;
+		 
+		 }
+#webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;
+-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);
+background-image:url("./resources/image/back_cro1.png"),url("./resources/image/crotooth3.png");
+background-repeat:no-repeat;
+background-position:left top, right bottom;
+}
 #webView[data-show-memo='true'] {overflow:visible}
 	a	{
 		text-decoration:none;
 	}
-
-		table {
+	b{
+		float:right;
+		margin:0 8px;
+	}
+	table {
   border-collapse: separate;
   border-spacing: 0 10px;
 }
-input:focus {outline:none;}
-
-.tex{
+	input:focus {outline:none;}
+	.tex{
 		    height: 50px;
     padding: 14px;
     -webkit-box-sizing: border-box;
@@ -53,7 +62,40 @@ input:focus {outline:none;}
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width: 80%;
+    width: 360px;
+    -webkit-transition: border .3s ease;
+    -o-transition: border .3s ease;
+    transition: border .3s ease;
+	}
+		.tex2{
+		    height: 50px;
+    padding: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    width: 360px;
+    -webkit-transition: border .3s ease;
+    -o-transition: border .3s ease;
+    transition: border .3s ease;
+	}
+	
+			.tex3{
+		    height: 50px;
+    padding: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #37b04b;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    width:360px;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -95,12 +137,35 @@ input:focus {outline:none;}
 	text-decoration: none;
 	color:white;
 	}
+	 .btn3{
+ 	margin:5px; 
+	padding: 5px; 
+	border-radius:5px;
+	border:0px;
+	width:66px;
+	background: #89df8f;
+	text-decoration: none;
+	color:white;
+	}
  	.addrborder{
  	border: 1px solid #37b04b;
  	border-radius:5px;
  	margin:1px; 
  	}
- 	input > file-upload-button{
+ 	.before{
+ 		background-color:transparent;
+ 		border:0;
+ 		width:70px;
+ 		color:red;
+ 	}
+ 	.after{
+ 		background-color:transparent;
+ 		border:0;
+ 		width:70px;
+ 		color:#37b04b;
+ 	}
+ 	
+ 	 	input > file-upload-button{
  	background-color:#37b04b;
  	}
 .custom-file-input::-webkit-file-upload-button {
@@ -128,14 +193,29 @@ input:focus {outline:none;}
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
-
-
+ 	
 </style>
 <script type="text/javascript">
 function mail_check(){
+	var email =  $("#m_email").val();
+	if($("#m_email").val()==""){
+		alert("이메일를 입력해주세요.");
+		$("#m_emil").focus();
+		return false;
+	}
+	
+	if(email.indexOf("@") == "-1"){
+    	alert("유효하지않은 이메일입니다.");
+    	return false;
+    }
 	var check = document.joinformcs;
 	
-	window.open('',"popView","width=600,height=200");
+	var popupX = (document.body.offsetWidth/2)-(200/2);
+	//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+	var popupY= (window.screen.height/2)-(300/2);
+	//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+	window.open('', "popView", 'status=no, height=120, width=466, left='+ popupX + ', top='+ popupY);
+	
 	check.action="./auth.ak";
 	check.target = "popView";
 	check.submit();
@@ -157,6 +237,51 @@ $("input").keyup(function(){
 			}
 		} 
 	});
+});
+//아이디 중복체크
+var idck = 0;
+$(function() {
+  //idck 버튼을 클릭했을 때 
+  $("#idcheck").click(function() {
+      
+      //userid 를 param.
+      var userid =  $("#m_id").val(); 
+      
+      $.ajax({
+          async: true,
+          type : 'POST',
+          data : userid,
+          url : "./idcheck.ak",
+          dataType : "json",
+          contentType: "application/json; charset=UTF-8",
+          success : function(data) {
+              if (data.cnt > 0) {
+                  
+                  alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                  //아이디가 존재할 경우 빨강으로 , 아니면 그린으로 처리하는 디자인
+                  $("#m_id").addClass("tex2")
+                  $("#m_id").removeClass("tex1")
+                  $("#m_id").removeClass("tex3")
+                  $("#m_id").focus();
+                  
+              
+              } else {
+                  alert("사용가능한 아이디입니다.");
+                  
+                  $("#m_id").addClass("tex3")
+                  $("#m_id").removeClass("tex2")
+                  $("#m_password").focus();
+                  //아이디가 중복하지 않으면  idck = 1 
+                  idck = 1;
+                  
+              }
+          },
+          error : function(error) {
+              
+              alert("error : " + error);
+          }
+      });
+  });
 });
 $(document).ready(function(){
    //빈칸
@@ -201,12 +326,13 @@ $(document).ready(function(){
 			$("#m_email").focus();
 			return false;
 		}
-		var isSeasonChk = $("input:checkbox[name='m_category']").is(":checked");
-		    
-	      if(!isSeasonChk){
-	            alert("카테고리를 한개 이상 선택해주세요.");
-	            return false;
-	      }
+		var ccc = "1";
+		if(idck != ccc){
+			alert("아이디 중복검사를 해주세요.");
+			$("#m_id").focus();
+			return false;
+		}
+		
 		document.joinformcs.target = '_self';
 		document.joinformcs.action="./joininput.ak";
 		document.joinformcs.submit();
@@ -215,7 +341,7 @@ $(document).ready(function(){
 		
 	
 })
-$(document).ready(function() {
+/* $(document).ready(function() {
    var strData = $('input[name=va]').val();
     var arrDay = strData.split(',');
    
@@ -224,7 +350,22 @@ $(document).ready(function() {
     for (var nArrCnt in arrDay) {
                     $("input[name=m_category][value="+arrDay[nArrCnt]+"]").prop("checked",true);
     }    
+}); */
+//프로필 미리보기
+$(function() {
+    $("#imgInp").on('change', function(){
+        readURL(this);
+    });
 });
+function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+            $('#image_section').attr('src', e.target.result);
+        }
+      reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 
 <title>고객 회원가입</title>
@@ -234,113 +375,88 @@ $(document).ready(function() {
 
 <br/>
 <br/>
-<h2>이제 거의 다 왔어요!</h2>
-<h1>마이악어새를 이용하기 위해 정보를 입력해주세요.</h1>
+<h2 style="color:#212121">이제 거의 다 왔어요!</h2>
+<h1 style="color:#212121">마이악어새를 이용하기 위해 정보를 입력해주세요.</h1>
 <br/>
 <br/>
 <form name="joinformcs" method="post" enctype="multipart/form-data">
-<input type="hidden" name="va" value="<%=va%>">
+<input type="hidden" name="m_category" value="<%=va%>">
 <input type="hidden" name="m_type" value="C" >
+
 <table align="center">
 <tr>
-<td>
-<img class="img-responsive center-block" src="resources/image/crocodile_profile.png"
-	style="height:100px;width:100px">
+<td colspan="3">
+ <img class="img-responsive center-block" id="image_section" src="resources/image/crocodile_profile.png"
+	style="height:100px;width:100px"/>
 </td>
 </tr>
 <tr>
-	<td><b>프로필 사진</b></td>
-</tr>
-<tr>
-	 <td><input type="file" name="file" class="tex custom-file-input"style="margin-left: auto;
-    margin-right: auto;"/></td>
+	<td style="width:120px;"><b>프로필 사진</b></td>
+		<td><input type="file" id="imgInp" name="file" class="tex custom-file-input"style="margin-left: auto;
+   			 margin-right: auto;"/></td>
 </tr>
 
 <tr>
 	<td><b>아이디</b></td>
-</tr>
-<tr>
-	<td><input class="tex" type="text" id="m_id" name="m_id" placeholder="내용을 입력해주세요"></td>
+		<td><input class="tex" type="text" id="m_id" name="m_id" placeholder="아이디를 입력해주세요"></td>
+		<td><input class="btn1" style="float:left;" type="button" id="idcheck" name="idcheck" value="중복확인">	
+		</td>
 </tr>
 <tr>
 	<td><b>비밀번호</b></td>
-</tr>
-<tr>
-	<td><input class="tex" type="password" id="m_password"name="m_password" placeholder="내용을 입력해주세요"></td>
+		<td><input class="tex" type="password" id="m_password"name="m_password" placeholder="내용을 입력해주세요"></td>
 </tr>
 <tr>
 	<td><b>비밀번호 재입력</b></td>
-</tr>
-<tr>
-	<td><input class="tex" type="password" id="m_password2" name="m_password2" placeholder="비밀번호룰 입력해주세요">
-		<div id="alert-success"  
-		><input type="text" style="border:0px;color:green;"size="17px" readonly value="비밀번호가 일치합니다"></div> 
+		<td><input class="tex" type="password" id="m_password2" name="m_password2" placeholder="비밀번호룰 입력해주세요">
+		<div id="alert-success"  >
+		<input type="text" style="border:0px;color:green;"size="17px" readonly value="비밀번호가 일치합니다"></div> 
 		<div id="alert-danger">
 		<input type="text" style="border:0px;color:red;"size="23px" readonly value="비밀번호가 일치하지 않습니다"></div>
 	</td>
 </tr>
 <tr>
 	<td><b>이름</b></td>
+		<td><input class="tex" type="text"  id="m_name" name="m_name" placeholder="내용을 입력해주세요"><br/></td>
+	
 </tr>
-<tr>
-	<td><input class="tex" type="text"  id="m_name" name="m_name" placeholder="내용을 입력해주세요"></td>
-</tr>
+
 <tr>
 	<td><b>나이</b></td>
-</tr>
-<tr>
-	<td><input class="tex" type="text" name="m_age" placeholder="내용을 입력해주세요"></td>
+		<td><input class="tex" type="text" name="m_age" placeholder="내용을 입력해주세요"></td>
 </tr>
 <tr>
 	<td><b>성별</b></td>
-</tr>
-<tr>
-	<td><input type="radio" name="m_gender" value="M" checked/>남자
-			<input type="radio" name="m_gender" value="W"/>여자</td>
+		<td class="tex"><input type="radio" name="m_gender" value="남" checked/>남자
+		<input type="radio" name="m_gender" value="여"/>여자</td>
 </tr>
 <tr>
 	<td><b>이메일</b></td>
-</tr>
-<tr>
-	<td><input class="tex" type="text"  id="m_email" name="m_email" placeholder="이메일을 입력해주세요">
-		<br/><input class="btn1" type="button" value="이메일인증" onClick='mail_check()'>
-		<input type="text" id="mailCheck" value="인증필요" style="background-color:transparent;border:0;width:70px;color:red;" readonly>
+		<td><input class="tex" type="text"  id="m_email" name="m_email" placeholder="이메일을 입력해주세요"></td>
+		<td><input class="btn1" type="button" value="이메일인증" onClick='mail_check()'>
+		<input type="text" id="mailCheck" value="인증필요" class="before" readonly>
 	</td>
 </tr>
 <tr>
 	<td><b>핸드폰</b></td>
+		<td><input class="tex" type="text"  id="m_phone" name="m_phone" placeholder="번호를 입력해주세요"></td>
 </tr>
 <tr>
-	<td><input class="tex" type="text"  id="m_phone" name="m_phone" placeholder="번호를 입력해주세요"></td>
-</tr>
-<tr>
-	<td><b>카테고리</b></td>
-</tr>
-<tr>
-	<td><input type="checkbox"  name="m_category" value="A">정기청소
-		<input type="checkbox"  name="m_category" value="B">특수장비청소
-		<input type="checkbox"  name="m_category" value="C">입주청소
-		<input type="checkbox"  name="m_category" value="D">상주청소
-		<input type="checkbox"  name="m_category" value="E">빌딩청소
-		<input type="checkbox"  name="m_category" value="F">방역</td>
-</tr>
-<tr>
-	<td>주소</td>
-</tr>
-<tr>
-	<td>
-		<input type="text"class="addrborder" id="m_postcode" placeholder="우편번호">
+	<td><b>주소</b></td>
+		<td><input type="text"class="addrborder" id="m_postcode" placeholder="우편번호">
 		<input type="text"class="addrborder" id="m_address_road" name="m_address_road"placeholder="주소"><br>
 		<input type="text"class="addrborder" id="m_address_detail" name="m_address_detail" placeholder="상세주소">
-		<input type="text"class="addrborder" id="m_extraAddress" placeholder="참고항목"><br/>
-		<input type="button" class="btn1"onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+		<input type="text"class="addrborder" id="m_extraAddress" placeholder="참고항목"></td>
+		<td><input type="button" style="float:left" class="btn1"onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
 	</td>
 </tr>
 
 
 </table>
 <br/>
-<input type="button" id="join" class="btnn" value="회원가입">
+<input type="button"  class="btn3" onclick="cancel()" value="취소">
+<input type="button" id="join" class="btn1" value="회원가입">
+
 <br/>
 <br/>
 <br/>
@@ -357,6 +473,9 @@ $(document).ready(function() {
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	function cancel(){
+		window.location.href="./joinselect.ak"
+	}
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
     function closeDaumPostcode() {

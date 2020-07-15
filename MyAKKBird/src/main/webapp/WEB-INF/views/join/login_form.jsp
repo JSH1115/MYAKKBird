@@ -15,7 +15,7 @@
 	body {margin:0;padding:0;}
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 #webView[data-show-memo='true'] {overflow:visible}
-	div > a {
+	a:hover {
 		text-decoration: none;
 	}
 	#logo{
@@ -138,7 +138,7 @@ onclick="check_input()">
 	<a  href='./joinselect.ak'>회원가입</a>&nbsp;
 
 
-	<a >계정 찾기</a>
+	<a href='./searchSelect.ak'>계정 찾기</a>
 </div>
 
 
