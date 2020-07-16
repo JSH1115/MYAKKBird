@@ -314,7 +314,7 @@ body{
 				
 		  		var pic='';
 				if (exPhoto == 'null'){ /* 지정된 프로필 사진 없는 경우 */
-					pic += '<div><img id="img_preview" src="img/crocodile_profile.png"><div>';
+					pic += '<div><img id="img_preview" src="resources/image/crocodile_profile.png"><div>';
 				}else{ /* 따로 프로필사진 지정한 경우 */
 					pic += '<div><img id="img_preview" src="/myakkbird/myakkbirdUpload/'+ exPhoto +'">'; /* 원래 프로필사진 출력 */
 					pic += '<input type="hidden" name="m_photo" value="'+ exPhoto +'"><div>'; /* 프로필사진 변경 안할 경우 원래 프로필사진을 던져줌  */
@@ -626,7 +626,7 @@ body{
 				 	<% } else { %> <!-- 좋아요 O 상태 -->
 				 	<span  class="thumb_up_yes"><img src="resources/image/thumb_up_yes.png"></span>
 				 	<% } %> 
-				 	<span class="like_cnt"> <%=reviewVO.getR_like_cnt()%> </span>
+				 	<span class="like_cnt"> <%=reviewVO.getR_like()%> </span>
 				</div>
 				
 				<div class="review_content">

@@ -6,7 +6,7 @@
 	<!-- 해당아이디에 달린모든 리뷰정보조회 -->
  	<select id="getReviewList" parameterType="String" resultType="com.bit.myakkbird.review.ReviewVO">
 			select * from 
-			(select R.r_num, R.m_id, R.r_id, R.r_content, R.r_date, R.r_star, R.r_up_file, R.r_like_cnt, M.m_photo
+			(select R.r_num, R.m_id, R.r_id, R.r_content, R.r_date, R.r_star, R.r_up_file, R.r_like, M.m_photo
 			from review R, member M
 			where M.m_id = R.m_id and R.r_id = #{id}
 			order by r_num asc)
@@ -69,7 +69,7 @@
 	<!-- 해당 리뷰에 좋아요 개수 +1 -->
 	<update id="updateR_like" parameterType="int">
 		update review set
-		r_like_cnt = r_like_cnt +1
+		r_like = r_like +1
 		where r_num = #{r_num}
 	</update> 
 	
@@ -88,7 +88,7 @@
 	<!-- 좋아요 취소 시 좋아요 개수 -1 -->
 	<update id="updateR_unlike" parameterType="int">
 		update review set
-		r_like_cnt = r_like_cnt -1
+		r_like = r_like -1
 		where r_num = #{r_num}
 	</update>
 	
