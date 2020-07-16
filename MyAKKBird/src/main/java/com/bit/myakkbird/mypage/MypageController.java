@@ -83,7 +83,7 @@ public class MypageController {
 		        
 			boardService.insertBoardService(boardVO);
 			
-			return "redirect:/mypage_menu.ak?id="+m_id;
+			return "redirect:/profile.ak?id="+m_id;
 		}
 		
 		return null;
@@ -137,7 +137,7 @@ public class MypageController {
         
         boardService.updateBoardService(boardVO);
         
-		return "redirect:/mypage_menu.ak?id="+m_id;
+		return "redirect:/profile.ak?id="+m_id;
 		
 	}
 	
