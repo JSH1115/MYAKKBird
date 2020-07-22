@@ -56,7 +56,7 @@
 		<![CDATA[select * from 
 			(select R.r_num, R.m_id, R.r_id, R.r_content, R.r_date, R.r_star, R.r_up_file, M.m_photo 
 			from member M, review R  
-			where M.m_id = R.m_id  order by r_date desc)
+			where M.m_id = R.m_id  order by r_num desc)
 		 where rownum <=9]]>	
 	</select>
 	
@@ -92,5 +92,22 @@
 		where r_num = #{r_num}
 	</update>
 	
+	<!-- 리뷰 평점순 -->
+	<select id="orderbyStar" resultType="ReviewVO">
+			select * from 
+			(select R.r_num, R.m_id, R.r_id, R.r_content, R.r_date, R.r_star, R.r_up_file, R.r_like, M.m_photo
+			from review R, member M
+			where M.m_id = R.m_id and R.r_id = #{id}
+			order by r_star desc, r_num asc)
+	</select> 
+	
+	<!-- 리뷰 좋아요순 -->
+	<select id="orderbyLike" resultType="ReviewVO">
+			select * from 
+			(select R.r_num, R.m_id, R.r_id, R.r_content, R.r_date, R.r_star, R.r_up_file, R.r_like, M.m_photo
+			from review R, member M
+			where M.m_id = R.m_id and R.r_id = #{id}
+			order by r_like desc, r_num asc)
+	</select> 
 
 </mapper>

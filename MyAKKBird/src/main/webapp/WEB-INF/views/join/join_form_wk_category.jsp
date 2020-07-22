@@ -13,10 +13,35 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
-	body {margin:0;padding:0;}
+	 @font-face{ 
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	body {margin:0;padding:0;font-family: "NotoSansKR-Regular"}
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 #webView[data-show-memo='true'] {overflow:visible}
 	a	{
@@ -159,7 +184,8 @@ $(document).ready(function(){
 <br/>
 <b>어떤 청소를 원하세요?</b>
 <br/>
-<br/>
+
+<br/><br/><br/><br/><br/><br/>
 <div>
 <div class="ccheck">
 	<input type="checkbox" id="check_test" name="m_category" value="A">

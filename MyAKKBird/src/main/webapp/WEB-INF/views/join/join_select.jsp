@@ -3,10 +3,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
 <meta charset="UTF-8">
 <title>회원가입</title>
 	<style>
-	body {margin:0;padding:0;}
+	
+		 @font-face{ 
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	
+	
+	body {margin:0;padding:0;	font-family: "NotoSansKR-Regular";}
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 #webView[data-show-memo='true'] {overflow:visible}
 	a {
@@ -16,6 +44,9 @@
 	#logo{
 		height:100px;
 		float:right;
+	}
+	b{
+		font-family: "NotoSansKR-Bold";
 	}
 	</style>
 </head>
@@ -53,11 +84,11 @@
 <div style="text-align:left;flex: 4;height:100px;">
 <br/>
 <br/>
-<b style="font-size:25px;">"청소해주실 분 찾습니다!"</b>
+<b style="font-size:30px;">"청소해주실 분 찾습니다!"</b>
 
 </div>
 </div>
-<a href="joinformcscate.ak" style="height:15px;">&nbsp;&nbsp;&nbsp;고객회원가입 ▶</a>
+<a href="joinformcscate.ak" style="height:15px;">&nbsp;&nbsp;&nbsp;<b>고객회원가입 ▶</b></a>
 <hr size="3" color="gray">
 <br>
 <br/>
@@ -72,10 +103,10 @@
 <div style="text-align:left;flex: 4;height:100px;">
 <br/>
 <br/>
-<b style="font-size:25px;">"대신 청소해드립니다!"</b>
+<b style="font-size:30px;">"대신 청소해드립니다!"</b>
 </div>
 </div>
-<a href="joinformwkcate.ak" style="height:15px;text-color:black;">&nbsp;&nbsp;&nbsp;근로자 or 업체 회원가입 ▶</a>
+<a href="joinformwkcate.ak" style="height:15px;text-color:black;">&nbsp;&nbsp;&nbsp;<b>근로자 or 업체 회원가입 ▶</b></a>
 </div>
 
 

@@ -111,6 +111,23 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewMapper.updateR_unlike(r_num);
 	}
 
+	@Override
+	public List<ReviewVO> orderbyStar(String id) { //리뷰평점순 조회
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		List<ReviewVO> list = reviewMapper.orderbyStar(id);
+		return list;
+	}
+
+	@Override
+	public List<ReviewVO> orderbyLike(String id) { //리뷰좋아요순 조회
+		ReviewMapper reviewMapper = sqlSession.getMapper(ReviewMapper.class);
+		List<ReviewVO> list = reviewMapper.orderbyLike(id);
+		return list;
+	}
+
+
+	
+
 
 
 }

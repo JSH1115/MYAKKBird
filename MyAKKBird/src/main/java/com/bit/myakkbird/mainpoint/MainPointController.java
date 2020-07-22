@@ -17,6 +17,7 @@ public class MainPointController {
 	@Autowired
 	private MainPointService mainPointService;
 	
+	// 검색 창 이동
 	@RequestMapping(value="/searchProcess.ak")
 	public String searchProcess(HttpSession session, String b_address_road, Model model) {
 		
@@ -29,6 +30,13 @@ public class MainPointController {
 		model.addAttribute("m_id", m_id);
 		
 		return "mainpoint/searchScreen";
+	}
+	
+	// 가이드 이동
+	@RequestMapping(value="/guide.ak")
+	public String guide() {
+		
+		return "mainpoint/guide";
 	}
 	
 }

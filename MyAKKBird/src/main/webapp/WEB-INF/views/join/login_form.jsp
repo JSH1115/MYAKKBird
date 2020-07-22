@@ -11,8 +11,34 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>로그인</title>
-	<style>
-	body {margin:0;padding:0;}
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
+<style>
+@font-face{
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	body {margin:0;padding:0;
+	font-family: "NotoSansKR-Regular";}
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 #webView[data-show-memo='true'] {overflow:visible}
 	a:hover {
@@ -117,15 +143,18 @@ function check_input()
 <hr size="3" color="gray">
 
 <div class="login-box">
+<br/>
+<br/>
+<br/>
 <center>
 <form name="loginform" action="./login.ak" method="post">
 <h1><b>로그인</b></h1></b>
 <div class="form-group">
 <input type="text" class="tex" name="m_id"  placeholder="아이디를 입력해주세요."
-style="width:200px; height:20px;" ></div><br/>
+style="width:300px; height:50px;" ></div>
 <div class="form-group">
 <input type="password" class="tex" name="m_password"  placeholder="비밀번호를 입력해주세요."
-style="width:200px; height:20px;"></div>
+style="width:300px; height:50px;"></div>
 <label>
             <input type="checkbox" name="useCookie"> 로그인유지
 </label>

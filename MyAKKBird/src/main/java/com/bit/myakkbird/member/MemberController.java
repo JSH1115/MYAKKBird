@@ -36,56 +36,66 @@ import com.bit.myakkbird.review.ReviewVO;
 @Controller
 public class MemberController {
 	
-	@Autowired
-	private MemberService memberService;
-	@Autowired
-	private AcceptService acceptService;
-	@Autowired
-	private ReviewService reviewService;
-	@Autowired
-	JavaMailSender mailSender;
+		@Autowired
+		private MemberService memberService;
+		@Autowired
+		private AcceptService acceptService;
+		@Autowired
+		private ReviewService reviewService;
+		@Autowired
+		JavaMailSender mailSender;
 	
-	// 해당 id의 회원type에 따라 다른 마이페이지 메뉴로 이동
-	@RequestMapping("/mypage_menu.ak")
-	public String mypage_menu(String id, Model model, HttpSession session) throws Exception {
-		session.setAttribute("id", id);
-		String m_type = memberService.mypage_menu(id); // 타입 구하기
-		model.addAttribute("m_type", m_type);
-
-		return "member/mypage_menu2";
-	}
+		// 해당 id의 회원type에 따라 다른 마이페이지 메뉴로 이동
+		@RequestMapping("/mypage_menu.ak")
+		public String mypage_menu(String id, Model model, HttpSession session) throws Exception {
+			session.setAttribute("id", id);
+			String m_type = memberService.mypage_menu(id); // 타입 구하기
+			model.addAttribute("m_type", m_type);
 	
-	// parameter로 받은 id의 프로필창으로 이동
+			return "member/mypage_menu2";
+		}
+	
+	    // parameter로 받은 id의 프로필창으로 이동
 		@RequestMapping("/profile.ak")
 		public String profile(String id, Model model, HttpSession session) throws Exception {
+			System.out.println("h1");
 			String current_id = (String)session.getAttribute("m_id");
+			
+			if (session.getAttribute("m_id") == null) {
+				return "/join/login_form";
+			}
 			String m_type = memberService.mypage_menu(current_id); // 현재 세션id의 회원 타입 구하기 ( 타입에 따라 메뉴가 다름)
 			model.addAttribute("m_type", m_type);
+			System.out.println("h2");
 			
 			// 해당 id에 대한 정보 (프로필) 불러오기
 			MemberVO memberVO = memberService.profile(id);
-			
+			model.addAttribute("memberVO", memberVO);
+			System.out.println("h3");
 			// 해당 id에 대한 리뷰 불러오기
 			List<ReviewVO> reviewList = reviewService.getReviewList(id);
-			
-			// 각 리뷰마다 현재 세션id가 좋아요 누른 적 있는지 확인
-			HashMap<String, Object> hashmap = new HashMap<String, Object>();
-			hashmap.put("watched_id", id); // watched_id : 현재 보여지고 있는 프로필의 id (리뷰 받는사람 r_id) 
-			hashmap.put("current_id", current_id); // current_id : 현재 로그인되어있는 세션 id (리뷰 쓰는 사람 m_id)
-			for(ReviewVO vo : reviewList) {
-				vo.setL_check(0); 
-				hashmap.put("r_num", vo.getR_num());
-				int res = reviewService.like_check(hashmap);
-				vo.setL_check(res);
-			}
-			
-			// 해당 id 리뷰 총 평점 계산
-			if (reviewList.size() > 0) {
-				String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); 
-				model.addAttribute("avgStar", avgStar);
-			}
-			model.addAttribute("memberVO", memberVO);
 			model.addAttribute("reviewList", reviewList);
+			System.out.println("h4");
+			System.out.println("h5");
+	
+			HashMap<String, Object> hashmap = new HashMap<String, Object>();
+			if (reviewList.size() != 0 || reviewList != null) {
+				// 각 리뷰마다 현재 세션id가 좋아요 누른 적 있는지 확인
+				hashmap.put("watched_id", id); // watched_id : 현재 보여지고 있는 프로필의 id (리뷰 받는사람 r_id) 
+				hashmap.put("current_id", current_id); // current_id : 현재 로그인되어있는 세션 id (리뷰 쓰는 사람 m_id)
+				for(ReviewVO vo : reviewList) {
+					vo.setL_check(0); 
+					hashmap.put("r_num", vo.getR_num());
+					int res = reviewService.like_check(hashmap);
+					vo.setL_check(res);
+				}
+				// 해당 id 리뷰 개수 및 총 평점 계산
+				model.addAttribute("countReview", reviewList.size());
+				System.out.println("reviewList.size() : "+ reviewList.size());
+	//					String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); 
+	//					model.addAttribute("avgStar", avgStar);
+			}
+			System.out.println("h6");
 			
 			// 자신의 프로필이 아닌 타인의 프로필을 보고 있을 경우 (리뷰작성 버튼 보여주기)
 			if (!(current_id.equals(id))){
@@ -93,21 +103,22 @@ public class MemberController {
 			// 리뷰작성 버튼을 위한 해당 id와 매칭된 적 있는 id 찾기
 				// 현재 보고있는 프로필이 C(회원)인 경우
 				if (memberVO.getM_type().equals("C")) {
-					String matchedPpl = acceptService.isMatchedWhenC(id);
+					String matchedPpl = acceptService.isMatchedWhenC(id);	// C(회원)이랑 매칭된적 있는 E(근로자)찾기
 					model.addAttribute("matchedPpl", matchedPpl); // 매칭된 적 있는 사람(들)				
 				// 현재 보고있는 프로필이 E(근로자)인 경우
 				} else if (memberVO.getM_type().equals("E")){ 
-					String matchedPpl = acceptService.isMatchedWhenE(id);
+					String matchedPpl = acceptService.isMatchedWhenE(id);	// E(근로자)랑 매칭된적 있는 C(근로자)찾기
 					model.addAttribute("matchedPpl",matchedPpl);
 				}
 				int hasWritten = reviewService.hasWritten(hashmap); // 리뷰 작성한 적 있는지 체크  -> 0 또는 1 
 				model.addAttribute("hasWritten",hasWritten);
-
+	
 			}else { // 본인 프로필 보고 있을 경우 (리뷰 작성버튼 X)
 				model.addAttribute("matchedPpl","a");
 				model.addAttribute("hasWritten",0);
+				System.out.println("h7");
 			}
-
+			System.out.println("h8");
 			return "member/mypage_profile3";
 		}
 		
@@ -152,7 +163,7 @@ public class MemberController {
 		// 수정된 프로필 받기 (ajax)
 		@RequestMapping(value = "/getProfile.ak", produces = "application/json;charset=UTF-8")
 		@ResponseBody
-		public MemberVO getProfile(HttpSession session, Model model) {
+		public MemberVO getProfile(HttpSession session, Model model) throws Exception{
 			String id = (String) session.getAttribute("m_id");
 			MemberVO memberVO = memberService.profile(id);
 
@@ -179,9 +190,11 @@ public class MemberController {
 			}else{ // 첨부파일 없을 경우 
 				reviewVO.setR_up_file("");
 			}
+			
 			Date date = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			String today = sdf.format(date);
+
 			reviewVO.setR_date(today);
 
 			reviewService.writeReview(reviewVO);
@@ -190,11 +203,11 @@ public class MemberController {
 			return "redirect:/profile.ak?id="+ r_id;
 
 		}
-		
+				
 		// 리뷰 수정 모달창을 위한 원래 값 불러오기
 		@RequestMapping(value = "modifyReview.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
-		public ReviewVO getReview(@RequestParam(value="r_num") int r_num, Model model) {
+		public ReviewVO getReview(@RequestParam(value="r_num") int r_num, Model model) throws Exception{
 			ReviewVO reviewVO = reviewService.getReview(r_num);
 			return reviewVO;
 		}
@@ -223,7 +236,7 @@ public class MemberController {
 		// 리뷰 좋아요
 		@RequestMapping(value = "/likeReview.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
-		public Map<String, Object> likeReview(@RequestParam(value="r_num") int r_num, HttpSession session) {
+		public Map<String, Object> likeReview(@RequestParam(value="r_num") int r_num, HttpSession session) throws Exception{
 			String m_id = (String)session.getAttribute("m_id");
 
 			HashMap<String, Object> hashmap = new HashMap<String, Object>();
@@ -244,7 +257,7 @@ public class MemberController {
 		// 리뷰 좋아요 취소
 		@RequestMapping(value = "/unlikeReview.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 		@ResponseBody
-		public Map<String, Object> unlikeReview(@RequestParam(value="r_num") int r_num, HttpSession session) {
+		public Map<String, Object> unlikeReview(@RequestParam(value="r_num") int r_num, HttpSession session) throws Exception{
 			String m_id = (String)session.getAttribute("m_id");
 			
 			HashMap<String, Object> hashmap = new HashMap<String, Object>();
@@ -260,6 +273,69 @@ public class MemberController {
 			retVal.put("like_cnt", reviewVO.getR_like());
 			
 			return retVal;
+		}
+		
+		// 리뷰 최신순으로 보기
+		@RequestMapping(value = "/review_orderbyLatest.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public List<ReviewVO> orderbyLatest(String id, HttpSession session) throws Exception{ 
+			List<ReviewVO> reviewList = reviewService.getReviewList(id);
+			
+			// 좋아요 누른적 있는 리뷰 체크
+			String current_id = (String)session.getAttribute("m_id");
+			HashMap<String, Object> hashmap = new HashMap<String, Object>();
+			hashmap.put("watched_id", id); 
+			hashmap.put("current_id", current_id); 
+			for(ReviewVO vo : reviewList) {
+				vo.setL_check(0); 
+				hashmap.put("r_num", vo.getR_num());
+				int res = reviewService.like_check(hashmap);
+				vo.setL_check(res);
+			}
+			
+			return reviewList;
+		}
+		
+		// 리뷰 평점순으로 보기
+		@RequestMapping(value = "/review_orderbyStar.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public List<ReviewVO> orderbyStar(String id, HttpSession session) throws Exception{ 
+			List<ReviewVO> reviewList = reviewService.orderbyStar(id);
+			
+			// 좋아요 누른적 있는 리뷰 체크
+			String current_id = (String)session.getAttribute("m_id");
+			HashMap<String, Object> hashmap = new HashMap<String, Object>();
+			hashmap.put("watched_id", id); 
+			hashmap.put("current_id", current_id); 
+			for(ReviewVO vo : reviewList) {
+				vo.setL_check(0); 
+				hashmap.put("r_num", vo.getR_num());
+				int res = reviewService.like_check(hashmap);
+				vo.setL_check(res);
+			}
+			
+			return reviewList;
+		}
+		
+		// 리뷰 좋아요순으로 보기
+		@RequestMapping(value = "/review_orderbyLike.ak", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+		@ResponseBody
+		public List<ReviewVO> orderbyLike(String id, HttpSession session) throws Exception{ 
+			List<ReviewVO> reviewList = reviewService.orderbyLike(id);
+			
+			// 좋아요 누른적 있는 리뷰 체크
+			String current_id = (String)session.getAttribute("m_id");
+			HashMap<String, Object> hashmap = new HashMap<String, Object>();
+			hashmap.put("watched_id", id); 
+			hashmap.put("current_id", current_id); 
+			for(ReviewVO vo : reviewList) {
+				vo.setL_check(0); 
+				hashmap.put("r_num", vo.getR_num());
+				int res = reviewService.like_check(hashmap);
+				vo.setL_check(res);
+			}
+			
+			return reviewList;
 		}
 		
 		//-------------------------------------------------------------------------------------//
@@ -302,7 +378,7 @@ public class MemberController {
 			PrintWriter writer = response.getWriter();
 			if (res != 0)
 			{
-				writer.write("<script>alert('회원 가입 성공!!');"
+				writer.write("<script>"
 						+ "location.href='./home.ak';</script>");
 			}
 			else
@@ -365,7 +441,7 @@ public class MemberController {
 			HttpSession session = req.getSession();
 			session.invalidate();
 			
-			return "home";
+			return "redirect:/home.ak";
 		}
 		
 		//로그인양식	

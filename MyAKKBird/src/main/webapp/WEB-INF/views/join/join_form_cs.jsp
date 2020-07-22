@@ -24,13 +24,43 @@ for(int i=0;i<str.length;i++){
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<style>
+
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
+<style> 
+    @font-face{ 
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	h1{
+	font-family: "NotoSansKR-Bold";
+	}
+	h2{
+	font-family: "NotoSansKR-Bold";
+	}
 	body {margin:0;padding:0;
-		 
+		 font-family: "NotoSansKR-Regular";
 		 }
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;
 -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);
@@ -41,10 +71,11 @@ background-position:left top, right bottom;
 #webView[data-show-memo='true'] {overflow:visible}
 	a	{
 		text-decoration:none;
-	}
+	} 
 	b{
 		float:right;
 		margin:0 8px;
+		font-family: "NotoSansKR-Bold";
 	}
 	table {
   border-collapse: separate;
@@ -62,7 +93,7 @@ background-position:left top, right bottom;
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width: 360px;
+    width: 400px;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -78,7 +109,7 @@ background-position:left top, right bottom;
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width: 360px;
+    width: 400px;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -95,7 +126,7 @@ background-position:left top, right bottom;
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width:360px;
+    width:400x;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -133,6 +164,7 @@ background-position:left top, right bottom;
 	padding: 5px; 
 	border-radius:5px;
 	border:0px;
+	width:90px;
 	background: #37b04b;
 	text-decoration: none;
 	color:white;
@@ -142,7 +174,7 @@ background-position:left top, right bottom;
 	padding: 5px; 
 	border-radius:5px;
 	border:0px;
-	width:66px;
+	width:90px;
 	background: #89df8f;
 	text-decoration: none;
 	color:white;
@@ -170,7 +202,7 @@ background-position:left top, right bottom;
  	}
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
-}
+} 
 .custom-file-input::before {
   content: 'Open';
   background: linear-gradient(top, #f9f9f9, #e3e3e3);
@@ -192,8 +224,8 @@ background-position:left top, right bottom;
 }
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
- 	
+} 
+ 	 
 </style>
 <script type="text/javascript">
 function mail_check(){
@@ -364,14 +396,14 @@ function readURL(input) {
             $('#image_section').attr('src', e.target.result);
         }
       reader.readAsDataURL(input.files[0]);
-    }
+    } 
 }
 </script>
 
 <title>고객 회원가입</title>
 </head>
 <body>
-<div id="webView" style="text-align:center;">
+<div id="webView" style="text-align:center;" >
 
 <br/>
 <br/>
@@ -379,7 +411,7 @@ function readURL(input) {
 <h1 style="color:#212121">마이악어새를 이용하기 위해 정보를 입력해주세요.</h1>
 <br/>
 <br/>
-<form name="joinformcs" method="post" enctype="multipart/form-data">
+<form name="joinformcs" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m_category" value="<%=va%>">
 <input type="hidden" name="m_type" value="C" >
 
@@ -427,8 +459,8 @@ function readURL(input) {
 </tr>
 <tr>
 	<td><b>성별</b></td>
-		<td class="tex"><input type="radio" name="m_gender" value="남" checked/>남자
-		<input type="radio" name="m_gender" value="여"/>여자</td>
+		<td class="tex"><input type="radio" name="m_gender" value="M" checked/>남자
+		<input type="radio" name="m_gender" value="W"/>여자</td>
 </tr>
 <tr>
 	<td><b>이메일</b></td>
@@ -447,14 +479,14 @@ function readURL(input) {
 		<input type="text"class="addrborder" id="m_address_road" name="m_address_road"placeholder="주소"><br>
 		<input type="text"class="addrborder" id="m_address_detail" name="m_address_detail" placeholder="상세주소">
 		<input type="text"class="addrborder" id="m_extraAddress" placeholder="참고항목"></td>
-		<td><input type="button" style="float:left" class="btn1"onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+		<td><input type="button" style="float:left" class="btn1"onclick="sample2_execDaumPostcode()" value="우편번호">
 	</td>
 </tr>
 
 
 </table>
 <br/>
-<input type="button"  class="btn3" onclick="cancel()" value="취소">
+<input type="button"  class="btn1" onclick="cancel()" value="취소">
 <input type="button" id="join" class="btn1" value="회원가입">
 
 <br/>

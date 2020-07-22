@@ -21,5 +21,7 @@ public interface ReviewMapper {
 	public int like_check(HashMap<String, Object> hashmap);		//해당 사용자가 해당 리뷰 좋아요 눌렀는지 확인
 	public void unlikeReview(HashMap<String,Object> hashmap);	//리뷰 좋아요 취소
 	public void updateR_unlike(int r_num);						//r_like - 1
+	public List<ReviewVO> orderbyStar(String id);				//리뷰평점순 조회
+	public List<ReviewVO> orderbyLike(String id);				//리뷰좋아요순 조회
 	
 }

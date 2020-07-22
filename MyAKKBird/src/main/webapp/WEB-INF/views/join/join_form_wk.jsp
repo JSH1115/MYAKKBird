@@ -23,11 +23,37 @@ for(int i=0;i<str.length;i++){
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
 
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
-	body {margin:0;padding:0;}
+	 @font-face{ 
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	
+	body {margin:0;padding:0;font-family: "NotoSansKR-Regular";}
 #webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;
 -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);
 background-image:url("./resources/image/back_cro1.png"),url("./resources/image/bird2.png");
@@ -35,6 +61,12 @@ background-repeat:no-repeat;
 background-position:left top, right bottom;
 }
 #webView[data-show-memo='true'] {overflow:visible}
+	h1{
+	font-family: "NotoSansKR-Bold";
+	}
+	h2{
+	font-family: "NotoSansKR-Bold";
+	}
 	a	{
 		text-decoration:none;
 	}
@@ -58,7 +90,7 @@ background-position:left top, right bottom;
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width: 360px;
+    width: 400px;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -74,7 +106,7 @@ background-position:left top, right bottom;
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width: 360px;
+    width: 400px;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -91,7 +123,7 @@ background-position:left top, right bottom;
     font-size: 13px;
     font-weight: 500;
     color: #000;
-    width:360px;
+    width:400px;
     -webkit-transition: border .3s ease;
     -o-transition: border .3s ease;
     transition: border .3s ease;
@@ -129,6 +161,7 @@ background-position:left top, right bottom;
 	padding: 5px; 
 	border-radius:5px;
 	border:0px;
+	width:90px;
 	background: #37b04b;
 	text-decoration: none;
 	color:white;
@@ -138,7 +171,7 @@ background-position:left top, right bottom;
 	padding: 5px; 
 	border-radius:5px;
 	border:0px;
-	width:66px;
+	width:90px;
 	background: #89df8f;
 	text-decoration: none;
 	color:white;
@@ -448,7 +481,7 @@ $(function() {
 
 </table>
 <br/>
-<input type="button"  class="btn3" onclick="cancel()" value="취소">
+<input type="button"  class="btn1" onclick="cancel()" value="취소">
 <input type="button" id="join" class="btn1"value="회원가입" >
 <br/>
 <br/>

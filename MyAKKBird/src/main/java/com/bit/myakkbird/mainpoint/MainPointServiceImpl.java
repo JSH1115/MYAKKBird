@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bit.mapper.BoardMapper;
 import com.bit.mapper.MainPointMapper;
 import com.bit.myakkbird.mypage.BoardVO;
 
@@ -20,6 +21,14 @@ public class MainPointServiceImpl implements MainPointService {
 		MainPointMapper mainPointMapper = sqlSession.getMapper(MainPointMapper.class);
 		
 		return mainPointMapper.selectBoard(b_address_road);
+	}
+	
+	// 지연
+	@Override
+	public int totalBoardCount() {
+		BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
+		int totalBoardCount = boardMapper.totalBoardCount();
+		return totalBoardCount;
 	}
 
 }

@@ -8,7 +8,7 @@ public class ReviewVO {
 	private String r_id;			//리뷰 받는 아이디
 	private String r_content;		//리뷰내용
 	private String r_date;			//작성일
-	private int r_star;				//별점 1 2 3 4 5(Default)
+	private double r_star;			//별점 1 2 3 4 5(Default)
 	private String r_up_file;		//업로드리뷰파일명
 	private MultipartFile file1;	//input타입에서 리뷰사진을 저장하기위한 변수
 	private int r_like;			//좋아요
@@ -45,10 +45,10 @@ public class ReviewVO {
 	public void setR_date(String r_date) {
 		this.r_date = r_date;
 	}
-	public int getR_star() {
+	public double getR_star() {
 		return r_star;
 	}
-	public void setR_star(int r_star) {
+	public void setR_star(double r_star) {
 		this.r_star = r_star;
 	}
 	public String getR_up_file() {

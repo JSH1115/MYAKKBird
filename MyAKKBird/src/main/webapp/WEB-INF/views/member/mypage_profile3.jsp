@@ -24,91 +24,68 @@
 <html>
 <head>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
 <style>
+	 @font-face{
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	/* ------------------------------------------------ */
 body{
+	font-family: "NotoSansKR-Regular";
 	padding: 0px;
 	margin: 0px;
 }
-/* ------------------------------------------------ */
-#header_container{
-	display:flex;
-	flex-direction:row;
-	justify-content:space-between;
-	width:100%;
-	height:80px;
-	background-color:white;
+.wrap {
+	position:relative;
+	min-height:100%; 
 }
-#header_container > div{
-	display:flex;
-	flex-direction:row;
-	justify-content: space-around;
+#content_container{
+	min-height:1000px 
 }
-#main_logo{
-	width: 360px;
-	cursor:pointer;
-}
-.btn_header{
-	width:100px;
-	height:50px;
-	padding-top:15px;
-	border-radius: 10px;
-	color:white;
-	cursor:pointer;
-} 
 /* ------------------------------------------------ */
 #body{
 	display:flex;
-	flex-direction: row;
-}
-#menu_container{
-	top:100px;
-	left:80px;
-	display:flex;
 	flex-direction: column;
-	align-items: flex-start;
-	flex-shrink:1;
-	height:100%;
-	width:600px;
-	padding-left:10px;
-	margin:0 30px 0 100px;
-	border-left: solid 7px #37b04b;
-}
-#main{
-	display:flex;
-	flex-direction:column;
 	align-items:center;
-	flex-shrink:0;
-	margin:0 300px 0 0;
 }
 .eachMenu{
-	display:flex;
-	flex-direction:row;
-	justify-content:space-between;
-	width:250px;
+	text-align:center;
+	width:600px;
 	height:30px;
 	margin:10px;
 	padding:10px;
 	line-height:30px;
-	border:4px solid #89df8f;
-	border-radius:20px;
-	box-shadow: -3px -3px 5px -3px #d3d3d3, 3px 3px 5px -3px #bbbaba;
+	box-shadow: -5px -5px 10px -5px #d3d3d3, 5px 5px 10px -5px #a9a8a8;
 	cursor: pointer;
-}
-.dir{
-	font-weight: bold;
-	color: #37b04b;
-	font-size: 20px;
 }
 /* ------------------------------------------------ */
 #profile_container, #review_container{
 	text-align:center;
 }
 #profile_container{
-	width:700px;
-	margin:10px;
-	background-color: #e6f7e4;
-	border-radius: 50px;
-	border: 2px solid gray;
+	width:620px;
+	margin:14px;
 	box-shadow: -15px -15px 20px -15px #d3d3d3, 15px 15px 20px -15px #a9a8a8;
 }
 #Profile{
@@ -117,43 +94,99 @@ body{
 #Profile table{
 	font-size: 16px;
 }
-#Profile hr{
-	width:300px;
-	border: solid #e6f7e4 ;
-}
-#m_id h1{
-	margin:0px;
-	padding:13px;
-	background-color: #89df8f;
-	border-radius: 50px 50px 0 0;
-	border-bottom: 2px solid black;
-}
 #m_photo{
 	width:350px;
 }
 #m_photo img{
-	width:330px; 
-	height:330px;
- 	border-radius: 330px; 
+	width:250px; 
+	height:250px;
+ 	border-radius: 50px; 
 	border: 2px solid gray;
+}
+#modifyForm{
+	border: solid 2px #e6f7e4;
+    border-radius: 6px;
+    background-color: #e6f7e4;
+    padding: 3px;
+    cursor :pointer;
+}
+#profile_cover{
+	width:230px;
+	border-radius:20px;
+	background-color: #575757;
+	color: #c2c2c2;
+	opacity:0.5;
 }
 /* ------------------------------------------------ */
 #review_container{
-	width:700px;
-	padding: 5px;
-	border: solid gray 2px;
-	border-radius:20px;
-	box-shadow: -15px -15px 20px -15px #d3d3d3, 15px 15px 20px -15px #a9a8a8;
-	
+	width:600px;
+	margin:14px;
+	border:14px solid #E6E6E6;
+	background-color:#E6E6E6;
+	box-shadow: -9px -9px 9px -9px #d3d3d3, 9px 9px 9px -9px #a9a8a8;
+	margin-bottom: 300px;
 }
 #review_container div{
 	overflow: auto;
 }
+.highlight{
+	color:#37b04b;
+	font-size: larger;
+	font-weight: bold;
+}
+#text_onlyPhotos{
+    position: relative;
+    left: 10px;
+    padding:10px;
+    text-align: initial;
+    
+}
+#onlyPhotos{
+	display:flex;
+	height:100px;
+}
+#onlyPhotos::-webkit-scrollbar, #thumbnails::-webkit-scrollbar {
+		 height: 10px; 
+	}
+#onlyPhotos::-webkit-scrollbar-track , #thumbnails::-webkit-scrollbar-track{
+		background-color:#c1c1c1;
+		border-radius: 10px;
+	}
+#onlyPhotos::-webkit-scrollbar-thumb , #thumbnails::-webkit-scrollbar-thumb{
+		background: #676767;
+		border-radius: 10px;
+	}
+#onlyPhotos::-webkit-scrollbar-thumb:hover {
+	 background: #37b04b; 
+	 }
+#onlyPhotos::-webkit-scrollbar-thumb:active {
+	 background: #37b04b; 
+	 }
+#onlyPhotos > .pic{
+	width:79px;
+	height:79px;
+	padding-bottom: 5px;
+}
+#orderby_container{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+}
+#orderbyLatest{
+	background-color: gray;
+}
+.orderby{
+    display: block;
+    width: 100px;
+    padding: 2px 10px;
+    margin: 10px;
+}
 .eachReview{
 	margin:10px;
 	padding:10px;
-	border:2px solid #89df8f;
-	border-radius:20px;
+	background-color:white;
+	box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
+	
 }
 .eachReview_info{
 	display:flex;
@@ -163,6 +196,10 @@ body{
 	width:60px;
 	height:60px;
 	border-radius:60px;
+}
+.review_star{
+	width: 140px;
+    height: 30px;
 }
 .thumb_up_no img{
 	width:30px;
@@ -186,24 +223,29 @@ body{
 #thumbnails{
 	display:flex;
 	flex-direction:row;
-	width:650px;
+	width:550px;
+	height:115px;
 	overflow-x:scroll;
 }
 #thumbnails img{
 	width:100px;
 	height:100px;
+	padding-bottom:5px;
 	cursor:pointer;
 }
 .big_photo{
 	display:inline-block;
-	width:630px;
-	height:630px;
+	width:550px;
+	height:550px;
 	margin:5px;
 	cursor:pointer;
 	
 }
 /* The Modal 스타일 시작 --------------------------------> */
 /* The Modal (background) */
+#myBtn{
+	margin:10px;
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -255,6 +297,10 @@ body{
 	width:10%;
 	margin:10px;
 }
+#review_img_preview img{
+	width: 180px;
+	height:180px;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -279,11 +325,11 @@ body{
 				
 				var addr ='';
 				addr += memberVO.m_address_road +'<br/>';
-				addr += memberVO.m_address_detail +'<hr>';
+				addr += memberVO.m_address_detail ;
 				$('#m_addr').html(addr);
 				
 				var email='';
-				email += memberVO.m_email+'<hr>';
+				email += memberVO.m_email;
 				$('#m_email').html(email);
 				
 				var phone='';
@@ -325,11 +371,11 @@ body{
 				var addr ='';
 				addr += '<div><input type="hidden" name="m_id" value="'+ memberVO.m_id +'">';
 				addr += '<input type="text" size="30" name="m_address_road" value="'+ memberVO.m_address_road +'"><br/>';
-				addr += '<input type="text" size="30" name="m_address_detail" value="'+ memberVO.m_address_detail +'"><hr>';
+				addr += '<input type="text" size="30" name="m_address_detail" value="'+ memberVO.m_address_detail +'">';
 				$('#m_addr').html(addr);
 				
 				var email ='';
-				email += '<input type="text" size="30" name="m_email" value="'+ memberVO.m_email +'"><hr>'
+				email += '<input type="text" size="30" name="m_email" value="'+ memberVO.m_email +'">'
 				$('#m_email').html(email);
 				
 				var phone='';
@@ -355,7 +401,7 @@ body{
 					 readURL(this); 
 				}) 
 				
-				// 프로필 수정
+				// 프로필 수정 작업
 				$(document).on('click','#btn_modifyProcess',function(event){
 					var formData = new FormData($('#Profile')[0]);
 					$.ajax({
@@ -384,15 +430,149 @@ body{
 				alert("getProfile error")
 			}
 		});
+	}		
+</script>
+
+
+
+</head>
+<body>
+<div class="wrap">
+<jsp:include page="../header_container.jsp">
+	<jsp:param value="m_id" name="m_id"/>
+</jsp:include> 
+
+<div id="content_container">
+
+	<a href="profile.ak?id=ljy7828"> ljy7828프로필 </a>
+	<a href="profile.ak?id=rain1208"> rain1208프로필 </a>
+	
+	<script>
+$(document).ready(function(){
+	$('#modifyForm').hover(function(){
+		$(this).css('border','solid 1px #89df8f');
+/* 		$(this).css('border-top','solid 1px #89df8f');
+		$(this).css('border-right','solid 9px #89df8f');
+		$(this).css('border-bottom','solid 1px #89df8f');
+		$(this).css('border-left','solid 9px #89df8f');
+		$(this).css('border-radius','0px'); */
+	}, function(){
+		$(this).css('border','none');
+	})
+})
+</script>
+
+<section id="body">
+	<section id="profile_container">
+
+<% if(memberVO.getM_id().equals(id)){%> <!-- 본인이면 프로필 다 오픈-->
+		<form id ="Profile" action="./modifyProcess.ak" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td id="m_photo" rowspan="9">
+						<% if ( memberVO.getM_photo() == null){ %>
+						<img src="resources/image/crocodile_profile.png"/>
+						<% } else{  %>
+						<img src="/myakkbird/myakkbirdUpload/<%=memberVO.getM_photo()%>"/> 
+						<% } %>
+					</td>
+					<td><%=memberVO.getM_name()%>&nbsp;(<%=memberVO.getM_id() %>) </td>
+				</tr>
+				<tr>
+					<td id="m_type"> <%=m_type %> </td>
+				</tr>
+				<tr>
+					<td id="m_heart"> 보유하트수 <%=memberVO.getM_heart() %>  </td>
+				</tr>
+
+				<tr>
+					<td id="m_addr"> 
+						<%=memberVO.getM_address_road()%><br/>
+						<%=memberVO.getM_address_detail()%>
+					</td>
+				</tr>
+				<tr>
+					<td id="m_email"><%=memberVO.getM_email() %></td>
+				</tr>
+				<tr>
+					<td id="m_phone"><%=memberVO.getM_phone() %></td>
+				</tr>
+				<% if(memberVO.getM_id().equals(id)){%>
+				<tr>
+					<td><div class="button" id="modifyForm" onclick="modifyProfile()"> 프로필 수정 </div> </td>
+				</tr>
+				<% } %>
+			</table>
+		</form>
+	</section> <!-- profile_container -->
+	
+	
+	<div id="menu_container">
+		<jsp:include page="./mypage_menu2.jsp">
+			<jsp:param value="m_type" name="m_type"/>
+		</jsp:include>
+	</div>
+	
+<% }else { %> <!-- 본인 아닐경우 -->
+		<form id ="Profile" action="./modifyProcess.ak" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td id="m_photo" rowspan="4">
+						<% if ( memberVO.getM_photo() == null){ %>
+						<img src="resources/image/crocodile_profile.png"/>
+						<% } else{  %>
+						<img src="/myakkbird/myakkbirdUpload/<%=memberVO.getM_photo()%>"/> 
+						<% } %>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><%=m_type %>(<%=memberVO.getM_id() %>)</td>
+				</tr>
+				<tr>
+					<td id="profile_cover">연락처는 매칭 후 <br/> 오픈됩니다</td>
+				</tr>
+			</table>
+		</form>
+	</section> <!-- profile_container -->
+<% } %>
+
+<!-- 	<span class="button">
+		<img src="resources/image/btn_modify2.png" id="modifyForm" onclick="modifyProfile()" />
+		<input type="button" id="modifyForm"  value="정보수정" onclick="modifyProfile()" />
+		<input type="button" id="getBack" value="돌아가기"/>
+	</span> -->
+
+<!-- -----------------------리뷰부분----------------------- -->
+		
+	<script>
+	
+	// 사진만 모아보기 클릭하면 큰화면으로 출력
+	function getOnlyPhotoDetail(e){
+		var r_num = $(e).attr('id').split('_'); // r_num
+		var img_src = $(e).attr('src');
+		$('#onlyPhoto_detail').css({
+			'height':'600px',
+			'display':'block'
+		})
+		
+		var a = '<img src="' + img_src + '" class="big_photo">';
+		$('#onlyPhoto_detail').html(a);
 	}
+	$(document).on('click','#onlyPhoto_detail',function(){
+		$('#onlyPhoto_detail').css({
+			'height' : '1px',
+			'display' : 'none'
+		})
+	})
 	
 	// 리뷰썸네일 클릭시 큰화면으로 출력
 	function getReviewDetail(e){ /* e : this(사진) */
-		var pic = $(e).attr('id'); /* pic : r_up_file (.jpg) */
+		var pic = $(e).attr('id'); /* pic : r_up_file (.jpg 포함) */
 		var r_num = $(e).parents('.eachReview').attr('id'); /* x: 리뷰번호 (r_num) */ 
 		
 		$('#'+ r_num +'').children('.detail').css({
-			'height':'650px',
+			'height':'600px',
 			'display':'block'
 		})
 		
@@ -400,13 +580,13 @@ body{
 		a += '<img src="/myakkbird/myakkbirdUpload/'+ pic +'" class="big_photo">';
 		$('#'+ r_num +'').children('.detail').html(a);
 	 }   
-	 
 	$(document).on('click','.detail',function(){
 		$('.detail').css({
 			'height' : '1px',
 			'display' : 'none'
 		})
 	})
+	
 	// 리뷰 작성 모달창	
 	$(document).on('click','#myBtn', function(){
 		var modal = document.getElementById('myModal'); // 모달창
@@ -455,96 +635,10 @@ body{
 				alert("수정 error");
 			}
 		})
-		
 	}
-		
-</script>
-
-
-
-</head>
-<body>
-
-<jsp:include page="../header_container.jsp">
-	<jsp:param value="m_id" name="m_id"/>
-</jsp:include> 
-
-
-<section id="body">
-	<div id="menu_container">
-		<jsp:include page="./mypage_menu2.jsp">
-			<jsp:param value="m_type" name="m_type"/>
-		</jsp:include>
-	</div>
-		
-<section id="main">
-	<section id="profile_container">
-		<span id="m_id">
-			<h1> <%=memberVO.getM_name()%>&nbsp;(<%=memberVO.getM_id() %>)  </h1>
-		</span>
-		<form id ="Profile" action="./modifyProcess.ak" method="post" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<td id="m_photo" rowspan="13">
-						<% if ( memberVO.getM_photo() == null){ %>
-						<img src="resources/image/crocodile_profile.png"/>
-						<% } else{  %>
-						<img src="/myakkbird/myakkbirdUpload/<%=memberVO.getM_photo()%>"/> 
-						<% } %>
-					</td>
-					<td>회원구분</td>
-				</tr>
-				<tr>
-					<td id="m_type"> <%=m_type %> <hr></td>
-				</tr>
-				<tr>
-					<td>보유하트수</td>
-				</tr>
-				<tr>
-					<td id="m_heart"> <%=memberVO.getM_heart() %> <hr> </td>
-				</tr>
-				<tr>
-					<td>주소</td>
-				</tr>
-				<tr>
-					<td id="m_addr"> 
-						<%=memberVO.getM_address_road()%><br/>
-						<%=memberVO.getM_address_detail()%><hr>
-					</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-				</tr>
-				<tr>
-					<td id="m_email"><%=memberVO.getM_email() %><hr></td>
-				</tr>
-				<tr>
-					<td>휴대전화</td>
-				</tr>
-				<tr>
-					<td id="m_phone"><%=memberVO.getM_phone() %></td>
-				</tr>
-			</table>
-		</form>
-	</section> <!-- profile_container -->
 	
-	<span class="button">
-		<img src="resources/image/btn_modify2.png" id="modifyForm" onclick="modifyProfile()" />
-		<!-- <input type="button" id="modifyForm"  value="정보수정" onclick="modifyProfile()" /> -->
-		<!-- <input type="button" id="getBack" value="돌아가기"/> -->
-	</span>
-
-	<section id=review_container>
-	<% 
-	List<ReviewVO> reviewList = (List<ReviewVO>)request.getAttribute("reviewList");
 	
-	if(reviewList.size() > 0){ // 리뷰 있으면 
-		String avgStar = (String)request.getAttribute("avgStar").toString();
-	%>
-		<h3>리뷰 평점 : <%=avgStar %> / 5 </h3> 
-		
-	<script>
-	/* 좋아요 누르면 */
+	/* 좋아요 */
 	$(document).on('click','.thumb_up_no',function(event){ 
 		var r_num = $(this).parents('.eachReview').attr('id');
 		
@@ -575,7 +669,8 @@ body{
 		});
 			event.preventDefault(); 
 	})  
-		
+	
+	/* 좋아요 취소  */
 	$(document).on('click','.thumb_up_yes',function(event){
 		var r_num = $(this).parents('.eachReview').attr('id');
 		
@@ -604,66 +699,362 @@ body{
 		});
 		event.preventDefault();
 	})	
-		
-		
-		
-		
-	</script>
-		
-		
-	<%	for (int i = 0; i <reviewList.size(); i++){ // 리뷰 개수만큼 리뷰 뿌려줄 칸 만들기
-			ReviewVO reviewVO = (ReviewVO)reviewList.get(i);
-	%> 
-		<div id="<%=reviewVO.getR_num()%>" class="eachReview">
-			
-				<div class="eachReview_info"> <!-- 리뷰 정보 -->
-					<img src="/myakkbird/myakkbirdUpload/<%=reviewVO.getM_photo()%>" class="review_profile">
-				  	<span><%=reviewVO.getM_id() %></span>
-				  	<span>평점 : <%=reviewVO.getR_star() %></span>
-				 	<span><%=reviewVO.getR_date()%></span> 
-				 	<% if (reviewVO.getL_check() == 0){ %> <!-- 좋아요 X 상태 -->
-				 	<span class="thumb_up_no"><img src="resources/image/thumb_up_no.png"></span>
-				 	<% } else { %> <!-- 좋아요 O 상태 -->
-				 	<span  class="thumb_up_yes"><img src="resources/image/thumb_up_yes.png"></span>
-				 	<% } %> 
-				 	<span class="like_cnt"> <%=reviewVO.getR_like()%> </span>
-				</div>
-				
-				<div class="review_content">
-				  	<%=reviewVO.getR_content()%> <br/> <!-- 리뷰 내용 -->
-				</div>
-				
 	
-				<% if(reviewVO.getR_up_file() != null){ // 첨부사진 있을경우 
-					String[] files = reviewVO.getR_up_file().split(","); %>
+	/* 리뷰 최신순 보기 */	
+	 $(document).on('click','#orderbyLatest',function(){
+		$(this).css('background-color','gray');
+		$('#orderbyStar').css('background-color','#E6E6E6');
+		$('#orderbyLike').css('background-color','#E6E6E6');
+		var id= '<%=memberVO.getM_id() %>';	
+		$.ajax({
+			url:'/myakkbird/review_orderbyLatest.ak',
+			type:'POST',
+			data : {id : id},
+			dataType:'json',
+			contentType:'application/x-www-form-urlencoded; charset=utf-8',
+			enctype : 'multipart/form-data',
+			success : function(reviewList){
+					var a ='';
+				for(var i = 0; i<reviewList.length; i++){
+ 					a += '<div id="'+ reviewList[i].r_num +'" class="eachReview">';
+					a += 	'<div class="eachReview_info">';
+					a += 		'<img src="/myakkbird/myakkbirdUpload/'+ reviewList[i].m_photo +'" class="review_profile">';
+					a += 		'<span>'+ reviewList[i].m_id +'</span>';
+					/* a += 		'<span>'+ reviewList[i].r_star+'</span>'; */
 					
-
-	 				<div id="thumbnails"> <!-- 썸네일부분-->
-					<% if(files.length < 8){
-						for (int j=0; j < files.length; j++){ %>
-							<img src="/myakkbird/myakkbirdUpload/<%=files[j]%>" class="pic" id="<%=files[j]%>" onclick="getReviewDetail(this)" >
-						<% } 
-					} %> 	
-					</div>		
-					<div class="detail" ></div> <!-- 크게 보기 -->
-				<% } %> 
-				
-				<% if (id.equals(reviewVO.getM_id())){ %>
-				<button type="button" onclick="modifyReview(this)"> 수정 </button>
-				<button type="button" onclick='location.href="deleteReview.ak?r_num=<%=reviewVO.getR_num()%>"'> 삭제 </button>
-				<% } %>
+					if (reviewList[i].r_star == 0.5){
+						a += '<img src="resources/image/star_0.5.png" class="review_star">';
+						} else if (reviewList[i].r_star == 1.0){
+						a += '<img src="resources/image/star_1.0.png" class="review_star">';
+						} else if (reviewList[i].r_star == 1.5){
+						a += '<img src="resources/image/star_1.5.png" class="review_star">';
+						} else if (reviewList[i].r_star == 2.0){
+						a += '<img src="resources/image/star_2.0.png" class="review_star">';
+						} else if (reviewList[i].r_star == 2.5){
+						a += '<img src="resources/image/star_2.5.png" class="review_star">';
+						} else if (reviewList[i].r_star == 3.0){
+						a += '<img src="resources/image/star_3.0.png" class="review_star">';
+						} else if (reviewList[i].r_star == 3.5){
+						a += '<img src="resources/image/star_3.5.png" class="review_star">';
+						} else if (reviewList[i].r_star == 4.0){
+						a += '<img src="resources/image/star_4.0.png" class="review_star">';
+						} else if (reviewList[i].r_star == 4.5){
+						a += '<img src="resources/image/star_4.5.png" class="review_star">';
+						} else {
+						a += '<img src="resources/image/star_5.0.png" class="review_star">';
+						}
+					
+					a += '<span>'+ reviewList[i].r_date.substring(0,10) +'</span>';
+					
+					if (reviewList[i].l_check == 0){
+					a += 		'<span class="thumb_up_no"><img src="resources/image/thumb_up_no.png"></span>';
+					} else{
+					a += 		'<span class="thumb_up_yes"><img src="resources/image/thumb_up_yes.png"></span>';
+					}
+					a += 		'<span class="like_cnt">'+ reviewList[i].r_like + '</span>';
+					a += 	'</div>';	
+					a += 	'<div class="review_content">'+ reviewList[i].r_content+'<br/></div>';
+					if (reviewList[i].r_up_file != null){
+						var files = new Array();
+						files = reviewList[i].r_up_file.split(',');
+						
+					a += '<div id="thumbnails">';
+						if(files.length <8){
+							for(var j =0; j <files.length; j++){	
+					a += '<img src="/myakkbird/myakkbirdUpload/'+ files[j] + '" class="pic" id="'+ files[j] +'" onclick="getReviewDetail(this)">';			
+							}
+						}
+					a += '</div>';
+					a += '<div class="detail"></div>';
+					}
+					a +='</div>'
+				}
+				$('#a').html(a); 		 
+		},
+			error: function(){
+				alert('x');
+			}
+		});
+	}) 
+		
+	/* 리뷰 평점순 보기 */	
+	 $(document).on('click','#orderbyStar',function(){
+		$(this).css('background-color','gray');
+		$('#orderbyLatest').css('background-color','#E6E6E6');
+		$('#orderbyLike').css('background-color','#E6E6E6');
+		var id= '<%=memberVO.getM_id() %>';	
+		$.ajax({
+			url:'/myakkbird/review_orderbyStar.ak',
+			type:'POST',
+			data : {id : id},
+			dataType:'json',
+			contentType:'application/x-www-form-urlencoded; charset=utf-8',
+			enctype : 'multipart/form-data',
+			success : function(reviewList){
+	 					var a ='';
+						for(var i = 0; i<reviewList.length; i++){
+		 					a += '<div id="'+ reviewList[i].r_num +'" class="eachReview">';
+							a += 	'<div class="eachReview_info">';
+							a += 		'<img src="/myakkbird/myakkbirdUpload/'+ reviewList[i].m_photo +'" class="review_profile">';
+							a += 		'<span>'+ reviewList[i].m_id +'</span>';
+							/* a += 		'<span>'+ reviewList[i].r_star+'</span>'; */
+							
+							if (reviewList[i].r_star == 0.5){
+								a += '<img src="resources/image/star_0.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 1.0){
+								a += '<img src="resources/image/star_1.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 1.5){
+								a += '<img src="resources/image/star_1.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 2.0){
+								a += '<img src="resources/image/star_2.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 2.5){
+								a += '<img src="resources/image/star_2.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 3.0){
+								a += '<img src="resources/image/star_3.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 3.5){
+								a += '<img src="resources/image/star_3.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 4.0){
+								a += '<img src="resources/image/star_4.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 4.5){
+								a += '<img src="resources/image/star_4.5.png" class="review_star">';
+								} else {
+								a += '<img src="resources/image/star_5.0.png" class="review_star">';
+								}
+							
+							a += 		'<span>'+ reviewList[i].r_date.substring(0,10) +'</span>';
+							
+							if (reviewList[i].l_check == 0){
+							a += 		'<span class="thumb_up_no"><img src="resources/image/thumb_up_no.png"></span>';
+							} else{
+							a += 		'<span class="thumb_up_yes"><img src="resources/image/thumb_up_yes.png"></span>';
+							}
+							a += 		'<span class="like_cnt">'+ reviewList[i].r_like + '</span>';
+							a += 	'</div>';	
+							a += 	'<div class="review_content">'+ reviewList[i].r_content+'<br/></div>';
+							if (reviewList[i].r_up_file != null){
+								var files = new Array();
+								files = reviewList[i].r_up_file.split(',');
+								
+							a += '<div id="thumbnails">';
+								if(files.length <8){
+									for(var j =0; j <files.length; j++){	
+							a += '<img src="/myakkbird/myakkbirdUpload/'+ files[j] + '" class="pic" id="'+ files[j] +'" onclick="getReviewDetail(this)">';			
+									}
+								}
+							a += '</div>';
+							a += '<div class="detail"></div>';
+							}
+							a +='</div>'
+						}
+						$('#a').html(a); 		 
+				},
+			error: function(){
+				alert('x');
+			}
+		});
+	}) 
+	/* 리뷰 좋아요순 보기 */	
+	 $(document).on('click','#orderbyLike',function(){
+		$(this).css('background-color','gray');
+		$('#orderbyLatest').css('background-color','#E6E6E6');
+		$('#orderbyStar').css('background-color','#E6E6E6');
+		var id= '<%=memberVO.getM_id() %>';	
+		$.ajax({
+			url:'/myakkbird/review_orderbyLike.ak',
+			type:'POST',
+			data : {id : id},
+			dataType:'json',
+			contentType:'application/x-www-form-urlencoded; charset=utf-8',
+			enctype : 'multipart/form-data',
+			success : function(reviewList){
+	 					var a ='';
+						for(var i = 0; i<reviewList.length; i++){
+		 					a += '<div id="'+ reviewList[i].r_num +'" class="eachReview">';
+							a += 	'<div class="eachReview_info">';
+							a += 		'<img src="/myakkbird/myakkbirdUpload/'+ reviewList[i].m_photo +'" class="review_profile">';
+							a += 		'<span>'+ reviewList[i].m_id +'</span>';
+							/* a += 		'<span>'+ reviewList[i].r_star +'</span>'; */
+							
+							if (reviewList[i].r_star == 0.5){
+								a += '<img src="resources/image/star_0.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 1.0){
+								a += '<img src="resources/image/star_1.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 1.5){
+								a += '<img src="resources/image/star_1.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 2.0){
+								a += '<img src="resources/image/star_2.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 2.5){
+								a += '<img src="resources/image/star_2.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 3.0){
+								a += '<img src="resources/image/star_3.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 3.5){
+								a += '<img src="resources/image/star_3.5.png" class="review_star">';
+								} else if (reviewList[i].r_star == 4.0){
+								a += '<img src="resources/image/star_4.0.png" class="review_star">';
+								} else if (reviewList[i].r_star == 4.5){
+								a += '<img src="resources/image/star_4.5.png" class="review_star">';
+								} else {
+								a += '<img src="resources/image/star_5.0.png" class="review_star">';
+								}
+							a += 		'<span>'+ reviewList[i].r_date.substring(0,10) +'</span>';
+							
+							if (reviewList[i].l_check == 0){
+							a += 		'<span class="thumb_up_no"><img src="resources/image/thumb_up_no.png"></span>';
+							} else{
+							a += 		'<span class="thumb_up_yes"><img src="resources/image/thumb_up_yes.png"></span>';
+							}
+							a += 		'<span class="like_cnt">'+ reviewList[i].r_like + '</span>';
+							a += 	'</div>';	
+							a += 	'<div class="review_content">'+ reviewList[i].r_content+'<br/></div>';
+							if (reviewList[i].r_up_file != null){
+							a += '<div id="thumbnails">';
+								var files = reviewList[i].r_up_file.split(',');
+								for (var j in files){
+							a += '<img src="/myakkbird/myakkbirdUpload/'+ files[j] + '" class="pic" id="'+ files[j] +'" onclick="getReviewDetail(this)">';			
+								}
+							a += '</div>';
+							a += '<div class="detail"></div>';
+							}
+							a +='</div>'
+						}
+						$('#a').html(a); 		 
+				},
+			error: function(){
+				alert('x');
+			}
+		});
+	}) 
+	
+	
+	/* 리뷰작성 모달창에서 이미지파일 미리보기 */
+	var sel_files = [];
+	$(document).ready(function(){
+		$('#review_img').on('change',handleImgsFilesSelect);
+	});
+	
+	function handleImgsFilesSelect(e){
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")){
+				alert("이미지 파일만 가능합니다");
+				return;
+			}
 			
+			sel_files.push(f);
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				var img_html = "<img src=\"" + e.target.result + "\" />";
+				$('#review_img_preview').append(img_html);
+			}
+			reader.readAsDataURL(f);
+		});
+		
+	}
+	
+	</script>
+	<section id=review_container>
+	<% 
+	List<ReviewVO> reviewList = (List<ReviewVO>)request.getAttribute("reviewList");
+	int countReview = ((Integer)request.getAttribute("countReview")).intValue();
+	System.out.println(reviewList.size());
+	if(reviewList.size() > 0){ // 리뷰 있으면 
+		/* String avgStar = (String)request.getAttribute("avgStar").toString(); */ %>
+		<div>
+			<%-- <span>리뷰 평점 : <span class="highlight"><%=avgStar %></span> / 5.0</span>   --%>
+			<span>(총 <span class="highlight"><%=countReview%></span>개의 리뷰가 있습니다)</span>
+		</div> 		
+		
+		
+		<div id="text_onlyPhotos">사진만 모아보기 > </div>
+		<div id="onlyPhotos">
+			<% for(ReviewVO vo : reviewList){// 리뷰 하나씩 꺼내서
+				if(vo.getR_up_file() != null){ // 첨부사진 있는것만 
+					String[] files = vo.getR_up_file().split(","); %>
+					<% for (String a : files){ %>
+					<img src="/myakkbird/myakkbirdUpload/<%=a%>" class="pic" id="pic_<%=vo.getR_num()%>" onclick="getOnlyPhotoDetail(this)">
+					<% } %>
+				<% } %>
+			<% } %>
+		</div>
+			<div id="onlyPhoto_detail"></div>
+		<div id="orderby_container">
+			<span id="orderbyLatest" class="orderby"> 최신순 </span>
+			<span id="orderbyStar" class="orderby"> 평점 높은순 </span>
+			<span id="orderbyLike" class="orderby"> 좋아요순</span>
 		</div>	
-			 
-	<% } 
-	} else{%>
-		리뷰가 없습니다.
-	<% } %>
-	<br/>
-	</section>	<!-- review_container -->
+
+<!-- 	<button type="button" id="orderbyLatest"> 최신순 </button>
+		<button type="button" id="orderbyStar"> 평점 높은순</button>
+		<button type="button" id="orderbyLike"> 좋아요 많은순</button> -->
+
+	<div id="a">	
+		<%	for (int i = 0; i <reviewList.size(); i++){ // 리뷰 개수만큼 리뷰 뿌려줄 칸 만들기
+				ReviewVO reviewVO = (ReviewVO)reviewList.get(i);	%> 
+			<div id="<%=reviewVO.getR_num()%>" class="eachReview">
+					<div class="eachReview_info"> <!-- 리뷰 정보 -->
+						<img src="/myakkbird/myakkbirdUpload/<%=reviewVO.getM_photo()%>" class="review_profile">
+					  	<span><%=reviewVO.getM_id() %></span>
+					  	<span>평점 : <%=reviewVO.getR_star() %></span> 
+					 	
+					 	<span>
+					 	<% if (reviewVO.getR_star() == 0.5){ %> 
+								<img src="resources/image/star_0.5.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 1.0){%>
+								<img src="resources/image/star_1.0.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 1.5){%>
+								<img src="resources/image/star_1.5.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 2.0){%>
+								<img src="resources/image/star_2.0.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 2.5){%>
+								<img src="resources/image/star_2.5.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 3.0){%>
+								<img src="resources/image/star_3.0.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 3.5){%>
+								<img src="resources/image/star_3.5.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 4.0){%>
+								<img src="resources/image/star_4.0.png" class="review_star">
+								<% } else if (reviewVO.getR_star() == 4.5){%>
+								<img src="resources/image/star_4.5.png" class="review_star">
+								<% } else {%>
+								<img src="resources/image/star_5.0.png" class="review_star">
+								<% } %>
+					 	</span>
+					 	<span><%=reviewVO.getR_date().substring(0,10)%></span>
+					 	<% if (reviewVO.getL_check() == 0){ %> <!-- 좋아요 X 상태 -->
+					 	<span class="thumb_up_no"><img src="resources/image/thumb_up_no.png"></span>
+					 	<% } else { %> <!-- 좋아요 O 상태 -->
+					 	<span  class="thumb_up_yes"><img src="resources/image/thumb_up_yes.png"></span>
+					 	<% } %> 
+					 	<span class="like_cnt"> <%=reviewVO.getR_like()%> </span>
+					</div>
+					
+					<div class="review_content">
+					  	<%=reviewVO.getR_content()%> <br/> <!-- 리뷰 내용 -->
+					</div>
+					<% if(reviewVO.getR_up_file() != null){ // 첨부사진 있을경우 
+						String[] files = reviewVO.getR_up_file().split(","); %>
 	
-	<!-- (Modal)리뷰작성 -->
-	
+		 				<div id="thumbnails"> <!-- 썸네일부분-->
+						<% if(files.length < 8){
+							for (int j=0; j < files.length; j++){ %>
+								<img src="/myakkbird/myakkbirdUpload/<%=files[j]%>" class="pic" id="<%=files[j]%>" onclick="getReviewDetail(this)" >
+							<% } 
+						} %> 	
+						</div>		
+						<div class="detail" ></div> <!-- 크게 보기 -->
+					<% } %> 
+					
+					<!-- 리뷰 작성자일 경우만 -->
+					<% if (id.equals(reviewVO.getM_id())){ %>
+					<button type="button" onclick="modifyReview(this)"> 수정 </button>
+					<button type="button" onclick='location.href="deleteReview.ak?r_num=<%=reviewVO.getR_num()%>"'> 삭제 </button>
+					<% } %>	
+			</div>
+		<% } %>
+		
+		<!----------------------- (Modal)리뷰작성 --------------------------------->
 	<% 
 	/* String matchedPpl = (String)request.getAttribute("matchedPpl");
 	int hasWritten = ((Integer)request.getAttribute("hasWritten")).intValue(); */
@@ -671,6 +1062,7 @@ body{
 	/* if(id.equals(matchedPpl)){
 		if(hasWritten == 0){ */%>
 		<button id="myBtn">리뷰 작성</button>
+		
 		 
 		<div id="myModal" class="modal">
 			
@@ -682,47 +1074,37 @@ body{
 					<input type="hidden" name="r_id" value="<%=memberVO.getM_id()%>">
 					<input type="hidden" name="m_id" value="<%=id%>">
 					
-					<h3><%=memberVO.getM_id()%>님에게 후기 작성하기</h4> 
+					<h3><%=memberVO.getM_id()%>님에게 후기 작성하기</h3> 
 					<div>평점 : <input type="number" name="r_star" min="0.5" max="5" step="0.5" required> </div>
 					<textarea name="r_content" cols="50" rows="20" style="resize:none;" required></textarea>
-					
 					<input type="file" id="review_img" name="file1" multiple>
-					
+					사진파일만 최대 7개까지 업로드 가능
 				 	<input type="submit" value="확인" id="btn_submit_review" >
-				 	 <a href="javascript:reviewform.submit()">확인</a>
-					
 				</form> 
 				
-					<div id="review_img_preview"></div>
+					<div id="review_img_preview" ></div>
 			</div>
 		</div>
 	<%-- <%}
-	} %> --%>
-<!-- 
-</section> main
-</section> body
- -->
-<!-- /*리뷰 좋아요*/
-create table liketo(
-    l_num number,
-    r_num number,
-    m_id varchar2(50),
-    l_check number default 0 null,
-    constraint like_l_num_pk primary key(l_num),
-    constraint like_r_num_fk foreign key(r_num) references review(r_num), 
-    constraint like_m_id_fk foreign key(m_id) references member(m_id)
-);
-select * from liketo;
-drop table liketo;
--- 리뷰 좋아요기능 시퀀스, 트리거
-create sequence sequence_liketo_l_num start with 1 increment by 1;
-create or replace trigger trigger_liketo_l_num
-    before insert on liketo
-    for each row
-begin
-    select sequence_liketo_l_num.nextval into :new.l_num from dual;
-end;
-/ -->
+	} %> --%>	
+	
+	</div>			 
+	<% } else{%>
+		리뷰가 없습니다.
+	<% } %>
+	<br/>
+	</section>	<!-- review_container -->
+	 
+	
+	
+</div> <!-- content_container -->
 
+
+
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
+
+</div> <!-- div class="wrap" -->
 </body>
 </html>

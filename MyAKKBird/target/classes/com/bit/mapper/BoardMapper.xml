@@ -130,4 +130,10 @@
 		AND m_id = #{m_id}
 	</update>
 	
+	<!-- 지연 -->
+	<!-- 게시글 총 수 계산 -->
+	<select id="totalBoardCount" resultType="int">
+		select count(b_num) from board
+	</select>
+	
 </mapper> 

@@ -13,8 +13,34 @@
 <html>
 <head>
     <meta charset="utf-8" />
-	<style>
-			body {margin:0;padding:0;}
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
+<style>
+@font-face{
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	body {margin:0;padding:0;
+	font-family: "NotoSansKR-Regular";}
 			#webView {overflow:hidden;position:relative;background:#FFFFFF;
 			width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);
 			transform:translate3d(0,0,0);
@@ -30,9 +56,12 @@
 				float:right;
 			}
 			td >img{
-			width:60px;
-			height:60px;
+			width:35px;
+			height:35px;
 			
+			}
+			td {
+				font-size:20px;
 			}
 			
 				 .btn1{
@@ -260,16 +289,18 @@ ${m_id }님 환영합니다.
 <hr size="3" color="gray">
 <br/>
 <br/>
+<br/>
 <table align="center">
 <tr>
-	<td width="60"><img src="./resources/image/heart.png" /></td>
+	<td width="30px"><img src="./resources/image/heart.png" /></td>
 	<td>나의 하트 개수</td>
 </tr>
 <tr>
 	<td colspan="3" style="
 	border: 1px solid #37b04b; width:200px;height:50px;
-	text-align:center;border-radius: 10px;">보유 중인 하트 : ${memberVO.getM_heart() }</td>
+	text-align:center;border-radius: 10px;font-family: NotoSansKR-Medium;">보유 중인 하트 : ${memberVO.getM_heart() }</td>
 </tr>
+<tr></tr>
 <tr>
 	<td><img src="./resources/image/heart.png"></td>
 	<td>하트5개</td>
@@ -280,6 +311,8 @@ ${m_id }님 환영합니다.
 	<td>하트25개</td>
 	<td><input type="button" class="btn1" value="5000원" onclick="pay25()"style="WIDTH: 50pt; HEIGHT: 20pt"></td>
 </tr>
+<tr>
+
 <tr>
 	<td><img src="./resources/image/heart.png"></td>
 	<td>하트50개</td>

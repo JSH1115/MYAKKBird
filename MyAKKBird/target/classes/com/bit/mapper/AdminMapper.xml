@@ -22,6 +22,31 @@
 		<result property="limit" column="limit"/>
 	</resultMap>
 	
+	<resultMap type="MasterVO" id="matchResultMap">
+		<result property="c_id" column="c_id"/>
+		<result property="e_id" column="e_id"/>
+		<result property="b_subject" column="b_subject"/>
+		<result property="b_apply" column="b_apply"/>
+		<result property="b_date" column="b_date"/>
+		<result property="page" column="page"/>
+		<result property="limit" column="limit"/>
+	</resultMap>
+	
+	<resultMap type="MasterVO" id="dangerResultMap">
+		<result property="d_num" column="d_num"/>
+		<result property="b_num" column="b_num"/>
+		<result property="c_num" column="c_num"/>
+		<result property="d_date" column="d_date"/>
+		<result property="m_id" column="m_id"/>
+		<result property="d_id" column="d_id"/>
+		<result property="d_con" column="d_con"/>
+		<result property="d_status" column="d_status"/>
+		<result property="d_s_date" column="d_s_date"/>
+		<result property="d_type" column="d_type"/>
+		<result property="page" column="page"/>
+		<result property="limit" column="limit"/>
+	</resultMap>
+	
 	<select id="memberCount" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 		<choose>
@@ -49,5 +74,74 @@
         AND RNUM1 <= #{endRowNo}
         ]]>
 	</select>
+	
+	
+	<!-- ======================================================================== -->
+	
+	<!-- 호준님 (신고, 매칭) -->
+	<select id="matchCount" resultType="int">
+		SELECT COUNT(*) FROM accept where a_apply = 'Y'
+		<choose>
+			<when test="searchFiled != null and searchFiled != ''">
+	            and ${searchFiled} like '%'||#{searchValue}||'%' 
+	        </when>
+		</choose>
+	</select>
+	
+	<select id="matchList" parameterType="MasterVO" resultMap="matchResultMap">
+	    SELECT x.*
+        FROM (SELECT ROWNUM AS RNUM1, AA.*
+            FROM (SELECT accept.*,board.b_subject FROM accept 
+            inner join board on accept.b_num = board.b_num
+             where a_apply='Y'
+                  <choose>
+				    <when test="searchFiled != null and searchFiled != ''">
+			             and ${searchFiled} like '%'||#{searchValue}||'%'
+			          </when>
+			          <otherwise>
+			          		 order by b_subject desc
+			          </otherwise>
+				  </choose>
+                  ) AA ) x
+        <![CDATA[           
+        WHERE RNUM1 >= #{startRowNo}
+        AND RNUM1 <= #{endRowNo}
+        ]]>
+	</select>
+	
+	<select id="dangerCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		<choose>
+			<when test="searchFiled != null and searchFiled != ''">
+	            where ${searchFiled} like '%'||#{searchValue}||'%' 
+	        </when>
+		</choose>
+	</select>
+	
+	<select id="dangerList" parameterType="MasterVO" resultMap="dangerResultMap">
+	    SELECT A.*
+        FROM (SELECT ROWNUM AS RNUM1, AA.*
+            FROM (SELECT danger.*,board.b_subject FROM danger
+                  inner join board on danger.b_num = board.b_num
+                  <choose>
+				      <when test="searchFiled != null and searchFiled != ''">
+			              WHERE ${searchFiled} like '%'||#{searchValue}||'%'
+			          </when>
+
+				  </choose>
+                  ) AA ) A
+        <![CDATA[           
+        WHERE RNUM1 >= #{startRowNo}
+        AND RNUM1 <= #{endRowNo}
+        ]]>
+	</select>
+	
+	<update id="dangerOK" parameterType="String">
+		update danger set d_status = 'O' where d_id = #{d_id}
+	</update>
+
+	<update id="dangerNO" parameterType="String">
+		update danger set d_status = 'X' where d_id = #{d_id}
+	</update>
 	
 </mapper>

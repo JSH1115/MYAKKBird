@@ -21,4 +21,6 @@ public interface BoardMapper {
 			@Param("m_id") String m_id);	            //게시글 수정 전 기본정보 불러오기
 	public int updateBoard(BoardVO boardVO);			//게시글 수정
 
+	//지연 
+	public int totalBoardCount();                       //메인에 뿌려줄 게시물 개수
 }

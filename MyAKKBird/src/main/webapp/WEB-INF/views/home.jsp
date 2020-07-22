@@ -12,57 +12,70 @@
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://kit.fontawesome.com/535c824fa5.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="fonts/font.css">
 <style>
-
-	body{
-		padding:0px;
+	 @font-face{
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	/* ------------------------------------------------ */
+	
+	body, html{
 		margin:0px;
+		padding:0px;
 	}
 	
+	.wrap {
+		position: relative;
+		min-height:100%;
+	}
+	
+	#content_container{
+	}
+	/* ------------------------------------------------ */	 
 	#header_container, #ad_container, #search_container, #review_container, #FAQ_container{
 		text-align:center;
 	}
-	
-	#menu_container{
-		
-	}
 	/* ------------------------------------------------ */
-	
-	#header_container{
-		display:flex;
-		flex-direction:row;
-		justify-content:space-between;
-		width:100%;
-		height:80px;
-		background-color:white;
-	}
-	
-	#header_container > div{
-		display:flex;
-		flex-direction:row;
-		justify-content: space-around;
-	}
-	
-	#main_logo{
-		width: 360px;
-		cursor:pointer;
-	}
-	
-	.btn_header{
-		width:100px;
-		height:50px;
-		padding-top:15px;
-		border-radius: 10px;
-		color:white;
-		cursor:pointer;
-	} 
-	
-	/* ------------------------------------------------ */
-	
 	#ad_container{
 		height:470px;
-		padding-top:80px;
 			
+	}
+	/* ------------------------------------------------ */	
+	#total_count{
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		height:70px;
+		background-color: #89df8f;
+		color:white;
+		font-size: 18px;
+	}
+	
+	#total_count span{
+		color: #37b04b;
+	    font-weight: bold;
+	    font-size: x-large;
 	}
 	
 	/* ------------------------------------------------ */
@@ -76,22 +89,22 @@
 		display:flex;
 		flex-direction: row;
 		justify-content: center;
-		padding: 80px 0 40px;
+		padding: 60px 0 40px;
 	}
 	
 	#search_area span{
 		color: #37b04b;
 		font-size: 50px;
+		cursor:pointer;
 	}
 	
 	#search_area input{
 		text-align: center;
 		height:50px;
-		width:400px;
+		width:500px;
 		border: solid 3px #37b04b;
 		border-radius: 4px; 
 		line-height: 70px;
-		
 	}
 	
 	#hotplace{
@@ -110,7 +123,7 @@
 	.btn_category{
 		width:60px;
 		height:80px;
-		margin:10px;
+		margin:20px;
 		padding:13px 5px 5px 5px;
 		border-radius:20px;
 		cursor: pointer;
@@ -141,14 +154,18 @@
 		height:130px;
 	}
 	
-	#total_count{
-		display:flex;
-		justify-content:center;
-		align-items:center;
-		height:70px;
-		background-color: #89df8f;
-		color:white;
-		font-size: 18px;
+	#btn_container_review{
+		width: 300px;
+	    border: 1px solid green;
+	    margin-bottom: 10px;
+    }
+	
+	.chooseReview{
+		padding: 0px 45px;
+	}
+	
+	.reviews{
+		border-spacing:5px;
 	}
 	
 	#more img{
@@ -166,17 +183,18 @@
 	}
 	
 	.each_review{
-		width: 220px;
-		height:250px;
+		width:265px;
 		padding:5px;
 		background-color:white;
-		border: solid #89df8f 1px;
+		border: solid #89df8f 5px;
+		cursor:pointer;
 	}
 	
 	.each_review table{
 		position: relative;
 		bottom:20px;
-		left:5px;
+		left: 25px;
+   		border-spacing: 5px;
 	}
 	
 	.each_review_img img {
@@ -193,8 +211,12 @@
 		height:40px;
 	}
 	
+	.review_star{
+		width:100px;
+	}
+	
 	.each_review div{
-		width:255px;
+		width:100%;
 		height:150px;
 		padding: 5px 0;
 		margin:0;
@@ -202,6 +224,30 @@
 		display:block;
 	  	overflow: hidden; 
 	 	text-overflow: ellipsis;
+	}
+	
+	.each_review .content{
+		position:relative;
+		width:252px;
+	}
+	
+	#thumbnails{
+		position:absolute;
+		left:5px;
+		bottom:0px;
+		display:flex;
+		flex-direction: row;
+		height:60px;
+	}
+	
+	#thumbnails img{
+		width:50px;
+		height:50px;
+	}
+	
+	.each_pic{
+		position:absolute;
+		right:10px;
 	}
 	
 	#more_reviews{
@@ -226,9 +272,15 @@
 	/* ------------------------------------------------ */
 	
 	#FAQ_container{
-		display:flex;
-		flex-direction:column;
-		align-items: center;
+		display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    padding-bottom: 300px;
+	}
+	
+	#FAQ_container h3{
+		position: relative;
+		top:20px;
 	}
 	
 	#FAQ_category{
@@ -249,8 +301,8 @@
 		flex-direction:column;
 		align-items:center;
 		width:120px;
-		margin:30px;
-		padding:10px;
+		margin:20px 40px 40px 40px;
+		padding:20px;
 		cursor: pointer;
 	}
 		
@@ -264,7 +316,7 @@
 		height:25px;
 		background-color: #37b04b;
 		border-radius: 10px;
-		margin:5px;
+		margin:20px;
 		margin-bottom:30px;
 		padding:10px;
 		color:white;
@@ -273,43 +325,6 @@
 	
 	/* ------------------------------------------------ */
 	
-	#footer_container{
-		height:300px;
-		background-color: #d4d4d4;
-	}
-	
-	#footer_logos{
-		margin:2px; 
-		padding:5px; 
-	}
-	 
-	#footer_logos i{
-		font-size:40px;
-	}
-	
-	#footer_akkbird{
-		width:250px;
-	}
-	
-	.sns{
-		width:40px;
-		height:40px;
-		border-radius: 40px; 
-	}
-	
-	#footer_info{
-		display:flex;
-		flex-direction: row;
-		justify-content: center;
-		padding:10px;
-		
-	}
-	
-	#footer_info > div{
-		margin:10px; 
-		padding:10px; 
-		color:#595959;
-	}
 	
 	/* background-image{
 		background-repeat: no-repeat;
@@ -333,7 +348,45 @@
 	@keyframes fade { from {opacity: .4} to {opacity: 1}}
 	/* 모바일 화면 글자 크기 조정 */
 	@media only screen and (max-width: 200px) { .text {font-size: 11px}}
-
+	
+	.closer_webchat_button {
+	background-color: green;
+	}
+	
+	/* ------------------------------------------------ */
+	
+	.modal {
+	    display: none; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top :  숫자가 클수록 상단에 위치 */
+	    left: 0;
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
+	/* Modal Content/Box */
+	.modal-content {
+	    background-color: #fefefe;
+	    margin: 15% auto; /* 15% from the top and centered */
+	    padding: 20px;
+	    border: 1px solid #888;
+	    width: 50%; /* Could be more or less, depending on screen size */                          
+	}
+	/* The Close Button */
+	.close {
+	    color: #aaa;
+	    float: right;
+	    font-size: 28px;
+	    font-weight: bold;
+	}
+	.close:hover,
+	.close:focus {
+	    color: black;
+	    text-decoration: none;
+    	cursor: pointer;
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
@@ -373,70 +426,18 @@
 		}
 	})
 </script>
-
 </head>
-
 <body>
-	<!-- 호준님 -->
-	<!-- 
-	<div id="header_container">
-		<img src="resources/image/fullLogo.png" class="logo">
-		<div class="header_empty"></div>	
-		<div class="header_member_img">프로필<br><span class="material-icons">
-		done_outline
-		</span> </div>
-		<c:if test="${login.m_id == null}">
-			<ul class="header_btn">
-				<li><a href="joinselect.ak" id="header_btn_1">회원가입</a></li>
-				<li><a href="loginform.ak" id="header_btn_2">로그인 </a></li>
-			</ul>
-		</c:if>
-
-		<c:if test="${login.m_id != null}">
-			<div>${login.m_id }님 환영합니다.</div>
-			<ul class="header_btn">
-				<li><a href="mypage_menu.ak?id=${login.m_id }" id="header_btn_1">마이페이지</a></li>
-				<li><a href="logOut.ak" id="header_btn_2">로그아웃 </a></li>
-			</ul>
-		</c:if>
-	</div> -->
-	<!-- 호준님 -->
+<div class="wrap">
+<jsp:include page="./header_container.jsp">
+	<jsp:param value="m_id" name="m_id"/>
+</jsp:include> 
 	
-	<!-- 지연님 -->
-	<jsp:include page="./header_container.jsp">
-		<jsp:param value="m_id" name="m_id"/>
-	</jsp:include> 
-	<!-- 지연님 -->
-	
-	<!-- 지연님 -->
-	<%--  <section id="header_container">
-	<img src="resources/image/fullLogo.png" id="main_logo">
-	
-	<c:if test="${m_id == null}">
-		<div>
-			<!-- <div class="btn_header" onclick="location.href='loginform.ak'">로그인</div>
-			<div class="btn_header" onclick="location.href='joinselect.ak'">회원가입</div> -->
-			<img src="resources/image/btn_login.png" class="btn_header" onclick="location.href='loginform.ak'">
-			<img src="resources/image/btn_join.png" class="btn_header" onclick="location.href='joinselect.ak'">
-		</div>
-	</c:if>
-	<c:if test="${m_id != null}">
-		<div>
-			<div class="btn_header" onclick="location.href='mypage_menu.ak?id=${m_id}'">마이페이지</div>
-			<div class="btn_header" onclick="location.href='logOut.ak'">로그아웃</div>
-			<img src="resources/image/btn_mypage.png" class="btn_header" onclick="location.href='mypage_menu.ak?id=${m_id}'">
-			<img src="resources/image/btn_logout.png" class="btn_header" onclick="location.href='logOut.ak'">
-			
-		</div>
-	</c:if>
-	</section>  --%>
-	<!-- 지연님 -->
-
-
+<div id="content_container">
 <section id="ad_container">
 	<div class="slideshow-container">
 		<div class="mySlides fade" style="background-color: #FDFDFD;">
-			<img src="resources/image/main_s1.png" width="1080px" height="400px">
+			<img src="resources/image/main_s1.png" width="1024" height="400px">
 		</div>
 		
 <!--  		<div class="mySlides fade" style="background-color: #e4fffd">
@@ -463,7 +464,6 @@
 		<span class="dot"></span>
 	</div>
 </section>
-
 <script>
 $(document).ready(function(){
 	$('.btn_category').hover(function(){
@@ -473,15 +473,17 @@ $(document).ready(function(){
 	});
 })
 </script>
-
+<% int totalBoardCount = ((Integer)request.getAttribute("totalBoardCount")).intValue(); %>
 <section id="search_container">
 	<div id="total_count"> 
-		실시간 마이악어새 총 게시물 <h3>' n '</h3>건
+	<% if (totalBoardCount != 0){ %>
+		마이악어새 게시물  총&nbsp;&nbsp; <span> <%=totalBoardCount %> </span> &nbsp;건
+	<% } %>
 	</div>
 	<form name="selectForm" action="searchProcess.ak" >
 		<div id="search_area">
-			<span class="material-icons">near_me</span>
 			<input type="text" name="b_address_road" placeholder="거주하는 동네를 입력해보세요!">
+			<span class="material-icons" onclick="location.href='javascript:selectForm.submit()'">near_me</span>
 		</div>
 		<span id="hotplace">핫한 지역 바로가기</span>
 		<div id="search_category">
@@ -503,24 +505,28 @@ $(document).ready(function(){
 		</div>
 	</form>
 </section>
-
 <section id="review_container">
 	<img src="resources/image/main_review_title.gif">
-<% List<ReviewVO> reviewList = (List<ReviewVO>)request.getAttribute("reviewList");
-if (reviewList != null){ %>
-<% if (reviewList.size() <=3){ %>
+<!-- 	<div id="btn_container_review">
+		<span id="recentReviews" class="chooseReview">최신순</span>
+		<span id="likeReviews" class="chooseReview">좋아요순</span>
+	</div> -->
+<% List<ReviewVO> reviewList = (List<ReviewVO>)request.getAttribute("reviewList"); %>
+<% if (reviewList != null || reviewList.size() > 0){ %>
+	<!-- 리뷰가 3개 이하 -->
+	<% if (reviewList.size() <=3){ %>	 
 	<table class="reviews">
 		<tr>
 			<%for (int i=0; i <reviewList.size(); i++){
 				ReviewVO vo = (ReviewVO)reviewList.get(i); %>
-				<td class="each_review"> 
+				<td class="each_review" id="<%=vo.getR_num()%>" onclick="location.href='profile.ak?id=<%=vo.getR_id()%>'"> 
 					<table>
 						<tr>
 							<td rowspan="3" class="each_review_img"><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
 							<td><%=vo.getR_id() %></td>
 						</tr>
-						<tr><td><%=vo.getR_star() %></td></tr>
-						<tr><td><%=vo.getR_date() %></td></tr>
+						<tr><td><%=vo.getR_star() %></td></tr> 
+						<tr><td><%=vo.getR_date().substring(0,10) %></td></tr>
 					</table>
 					<div><%=vo.getR_content() %> </div>
 				</td>
@@ -528,70 +534,55 @@ if (reviewList != null){ %>
 		</tr>
 	</table>
 	
-	<%} else if(reviewList.size() <=5){ %>
-	<div>
-		<table class="reviews">
-			<tr>
-			<%for (int i=0; i<3; i++){
-				ReviewVO vo = (ReviewVO)reviewList.get(i); %>
-				<td class="each_review"> 
-					<table>
-						<tr>
-							<td rowspan="3" class="each_review_img"><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
-							<td><%=vo.getR_id() %></td>
-						</tr>
-						<tr><td><%=vo.getR_star() %></td></tr>
-						<tr><td><%=vo.getR_date() %></td></tr>
-					</table>
-					<div><%=vo.getR_content() %> </div>
-				</td>
-			</tr>
-		</table>
-		<div id="story" class="reviews"style="display: none">
-			<table>
-				<tr>
-				<% } for (int i=3; i<reviewList.size(); i++){
-					ReviewVO vo = (ReviewVO)reviewList.get(i); %>
-						<td class="each_review"> 
-							<table>
-								<tr>
-									<td rowspan="3" class="each_review_img"><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
-									<td><%=vo.getR_id() %></td>
-								</tr>
-								<tr><td><%=vo.getR_star() %></td></tr>
-								<tr><td><%=vo.getR_date() %></td></tr>
-							</table>
-							<div><%=vo.getR_content() %> </div>
-						</td>
-				<% } %>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div id="more" style="CURSOR: hand" onclick="more()"> <img src="resources/image/btn_more.png"></div>
-	
-	
-	
-	
-	<% } else if(reviewList.size() <=9){ 
-	%>
-
+	<!-- 리뷰가 3개 이상 9개 이하 -->
+	<% } else if(reviewList.size() <=9){ 	%>
 	<div>
 		<table class="reviews">
 			<tr>
 				<% for (int i=0; i<3; i++){
 					ReviewVO vo = (ReviewVO)reviewList.get(i); %>
-					<td class="each_review"> 
+					<td class="each_review" id="<%=vo.getR_num()%>" onclick="location.href='profile.ak?id=<%=vo.getR_id()%>'"> 
 						<img src="resources/image/new2.png" class="each_review_new">
 						<table>
 							<tr>
 								<td rowspan="3" class="each_review_img" ><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
 								<td><%=vo.getR_id() %></td>
 							</tr>
-							<tr><td><%=vo.getR_star() %></td></tr>
-							<tr><td><%=vo.getR_date() %></td></tr>
+							<tr><td>		
+							<% if (vo.getR_star() == 0.5){ %> 
+							<img src="resources/image/star_0.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 1.0){%>
+							<img src="resources/image/star_1.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 1.5){%>
+							<img src="resources/image/star_1.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 2.0){%>
+							<img src="resources/image/star_2.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 2.5){%>
+							<img src="resources/image/star_2.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 3.0){%>
+							<img src="resources/image/star_3.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 3.5){%>
+							<img src="resources/image/star_3.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 4.0){%>
+							<img src="resources/image/star_4.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 4.5){%>
+							<img src="resources/image/star_4.5.png" class="review_star">
+							<% } else {%>
+							<img src="resources/image/star_5.0.png" class="review_star">
+							<% } %>
+							</td></tr>
+							<tr><td><%=vo.getR_date().substring(0,10) %></td></tr>
 						</table>
-						<div><%=vo.getR_content() %> </div>
+						<div class="content"><%=vo.getR_content() %> 
+						<% if (vo.getR_up_file() != null){
+							String[] files = vo.getR_up_file().split(","); %>
+							<div id =thumbnails>
+								<% for (String a : files){ %>
+									<img src="/myakkbird/myakkbirdUpload/<%=a%>" class="each_pic">
+								<% } %>
+							</div>
+						<% } %>
+						</div>
 					</td>
 				<% } %>
 			</tr>
@@ -600,43 +591,105 @@ if (reviewList != null){ %>
 			<tr>
 				<% for (int i=3; i<6; i++){
 					ReviewVO vo = (ReviewVO)reviewList.get(i); %>
-					<td class="each_review"> 
-					<img src="resources/image/new2.png" class="each_review_new">
+					<td class="each_review" id="<%=vo.getR_num()%>" onclick="location.href='profile.ak?id=<%=vo.getR_id()%>'"> 
+						<img src="resources/image/new2.png" class="each_review_new">
 						<table>
 							<tr>
-								<td rowspan="3" class="each_review_img"><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
+								<td rowspan="3" class="each_review_img" ><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
 								<td><%=vo.getR_id() %></td>
 							</tr>
-							<tr><td><%=vo.getR_star() %></td></tr>
-							<tr><td><%=vo.getR_date() %></td></tr>
+							<tr><td>
+							<% if (vo.getR_star() == 0.5){ %> 
+							<img src="resources/image/star_0.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 1.0){%>
+							<img src="resources/image/star_1.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 1.5){%>
+							<img src="resources/image/star_1.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 2.0){%>
+							<img src="resources/image/star_2.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 2.5){%>
+							<img src="resources/image/star_2.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 3.0){%>
+							<img src="resources/image/star_3.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 3.5){%>
+							<img src="resources/image/star_3.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 4.0){%>
+							<img src="resources/image/star_4.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 4.5){%>
+							<img src="resources/image/star_4.5.png" class="review_star">
+							<% } else {%>
+							<img src="resources/image/star_5.0.png" class="review_star">
+							<% } %>
+							</td></tr>
+							<tr><td><%=vo.getR_date().substring(0,10) %></td></tr>
 						</table>
-						<div><%=vo.getR_content() %> </div>
+						<div class="content"><%=vo.getR_content() %> 
+						<% if (vo.getR_up_file() != null){
+							String[] files = vo.getR_up_file().split(","); %>
+							<div id =thumbnails>
+								<% for (String a : files){ %>
+									<img src="/myakkbird/myakkbirdUpload/<%=a%>" class="each_pic">
+								<% } %>
+							</div>
+						<% } %>
+						</div>
 					</td>
 				<% } %>
 			</tr>
 			<tr>
 				<% for(int i =6; i<reviewList.size(); i++){
 					ReviewVO vo = (ReviewVO)reviewList.get(i);%>
-					<td class="each_review"> 
-					<img src="resources/image/new2.png" class="each_review_new">
+					<td class="each_review" id="<%=vo.getR_num()%>" onclick="location.href='profile.ak?id=<%=vo.getR_id()%>'"> 
+						<img src="resources/image/new2.png" class="each_review_new">
 						<table>
 							<tr>
-								<td rowspan="3" class="each_review_img"><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
+								<td rowspan="3" class="each_review_img" ><img src="/myakkbird/myakkbirdUpload/<%=vo.getM_photo()%>"></td>
 								<td><%=vo.getR_id() %></td>
 							</tr>
-							<tr><td><%=vo.getR_star() %></td></tr>
-							<tr><td><%=vo.getR_date() %></td></tr>
+							<tr><td>
+							<% if (vo.getR_star() == 0.5){ %> 
+							<img src="resources/image/star_0.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 1.0){%>
+							<img src="resources/image/star_1.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 1.5){%>
+							<img src="resources/image/star_1.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 2.0){%>
+							<img src="resources/image/star_2.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 2.5){%>
+							<img src="resources/image/star_2.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 3.0){%>
+							<img src="resources/image/star_3.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 3.5){%>
+							<img src="resources/image/star_3.5.png" class="review_star">
+							<% } else if (vo.getR_star() == 4.0){%>
+							<img src="resources/image/star_4.0.png" class="review_star">
+							<% } else if (vo.getR_star() == 4.5){%>
+							<img src="resources/image/star_4.5.png" class="review_star">
+							<% } else {%>
+							<img src="resources/image/star_5.0.png" class="review_star">
+							<% } %>
+							</td></tr>
+							<tr><td><%=vo.getR_date().substring(0,10) %></td></tr>
 						</table>
-						<div><%=vo.getR_content() %> </div>
+						<div class="content"><%=vo.getR_content() %> 
+						<% if (vo.getR_up_file() != null){
+							String[] files = vo.getR_up_file().split(","); %>
+							<div id =thumbnails>
+								<% for (String a : files){ %>
+									<img src="/myakkbird/myakkbirdUpload/<%=a%>" class="each_pic">
+								<% } %>
+							</div>
+						<% } %>
+						</div>
 					</td>
 				<% } %>
 			</tr>
 			
 		</table>
 	</div>
-	<div id="more" style="CURSOR: hand" onclick="more()"> <img src="resources/image/btn_more.png"></div>
+	<div id="more" onclick="more()"> <img src="resources/image/btn_more.png"></div>
 	 <% } 
-	}else{%>
+	}else{ %>
 	<div>리뷰가 없습니다. 리뷰를 작성해주세요!</div>
 	<% } %>
 <script>
@@ -645,12 +698,9 @@ if (reviewList != null){ %>
 		alert('h2');
 	}
 </script>
-
-
 	
 	<div>&nbsp;</div>
 </section>
-
 <section id="FAQ_container">
 	<h3>우리 사이트가 궁금하신가요?</h3>
 	<div id="FAQ_category">
@@ -668,36 +718,12 @@ if (reviewList != null){ %>
 		</div>
 	</div>
 	<img src="resources/image/btn_goto.png" id="btn_goto">
-	
 </section>
-
-<section id="footer_container">
-	<div id="footer_info">
-		<div>
-		(주)마이악어새 <br/>
-			<div id="footer_logos">
-				<i class="fab fa-facebook-square" class="sns"></i>
-				<i class="fab fa-twitter-square"></i>
-				<i class="fab fa-instagram-square"></i>
-			</div>
-		서울 서초구 강남대로 459 백암빌딩 구관 (우)06611 <br/>
-		지번 : 서초동 1303-34 <br/>
-		<img src="resources/image/fullLogo_removebg.png" id="footer_akkbird">
-		</div>
-		
-		<div>
-		이용문의 > <br/>
-		평일 9:30 ~ 18:10 <br/>
-		(점심시간 13:00 ~ 14:00 제외, 주말/공휴일 제외) <br/><br/>
-		
-		제휴관련 문의 > <br/>
-		Email : abcd1234@myakkbird.bit <br/>
-		Tel : 1588 -1588 <br/>
-		Fax : 02 - 1234 -5678 <br/>
-		</div>
-	</div>
-</section>
-
+</div> <!-- content_container -->
+<jsp:include page="./footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
+</div> <!-- div id="wrap" -->
 </body>
 <script id="embeddedChatbot" data-botId="B1ezy3" src="https://www.closer.ai/js/webchat.min.js"></script>
 </html>
