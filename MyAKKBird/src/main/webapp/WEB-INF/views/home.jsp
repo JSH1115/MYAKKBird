@@ -717,7 +717,7 @@ $(document).ready(function(){
 			<h4>이용권이 <br> 궁금해요!</h4>
 		</div>
 	</div>
-	<img src="resources/image/btn_goto.png" id="btn_goto">
+	<img src="resources/image/btn_goto.png" id="btn_goto" onclick="location.href='FAQList.ak'">
 </section>
 </div> <!-- content_container -->
 <jsp:include page="./footer_container.jsp">

@@ -18,8 +18,14 @@
 		<result property="m_type" column="m_type"/>
 		<result property="m_heart" column="m_heart"/>
 		<result property="m_status" column="m_status"/>
-		<result property="page" column="page"/>
-		<result property="limit" column="limit"/>
+	</resultMap>
+	
+	<resultMap type="FAQVO" id="faqResultMap">
+		<result property="f_num" column="f_num"/>
+		<result property="f_sub" column="f_sub"/>
+		<result property="f_content" column="f_content"/>
+		<result property="f_date" column="f_date"/>
+		<result property="f_readcount" column="f_readcount"/>
 	</resultMap>
 	
 	<resultMap type="MasterVO" id="matchResultMap">
@@ -47,27 +53,54 @@
 		<result property="limit" column="limit"/>
 	</resultMap>
 	
+	<!-- 회원관리, FAQ -->
+	<select id="adminProfile" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT * FROM MEMBER
+		WHERE m_id = #{m_id}
+		AND m_type = 'M'
+	</select>
+	
 	<select id="memberCount" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
-		<choose>
-			<when test="searchFiled != null and searchFiled != ''">
-	            WHERE ${searchFiled} like '%'||#{searchValue}||'%'
-	        </when>
-		</choose>
+		WHERE NOT m_type = 'M'
+		<if test="searchFiled != null and searchFiled != ''">
+	    	AND ${searchFiled} like '%'||#{searchValue}||'%'
+	    </if>
+	    <if test='m_statusValue == "Y"'>
+			AND ${m_statusFiled} = #{m_statusValue}
+     	</if>
+    	<if test='m_statusValue == "N"'>
+     		AND ${m_statusFiled} = #{m_statusValue}
+     	</if>
+     	<if test='m_typeValue == "C"'>
+			AND ${m_typeFiled} = #{m_typeValue}
+     	</if>
+    	<if test='m_typeValue == "E"'>
+     		AND ${m_typeFiled} = #{m_typeValue}
+     	</if>
 	</select>
 	
 	<select id="memberList" parameterType="MasterVO" resultMap="masterResultMap">
 	    SELECT A.*
         FROM (SELECT ROWNUM AS RNUM1, AA.*
             FROM (SELECT * FROM MEMBER
-                  <choose>
-				      <when test="searchFiled != null and searchFiled != ''">
-			              WHERE ${searchFiled} like '%'||#{searchValue}||'%'
-			          </when>
-			          <otherwise>
-		                  ORDER BY m_name DESC
-			          </otherwise>
-				  </choose>
+            	  WHERE NOT m_type = 'M'
+				 <if test="searchFiled != null and searchFiled != ''">
+			     	AND ${searchFiled} like '%'||#{searchValue}||'%'
+			     </if>
+			     <if test='m_statusValue == "Y"'>
+			     	AND ${m_statusFiled} = #{m_statusValue}
+			     </if>
+			     <if test='m_statusValue == "N"'>
+			     	AND ${m_statusFiled} = #{m_statusValue}
+			     </if>
+			     <if test='m_typeValue == "C"'>
+					AND ${m_typeFiled} = #{m_typeValue}
+     			</if>
+    			<if test='m_typeValue == "E"'>
+     				AND ${m_typeFiled} = #{m_typeValue}
+     			</if>
+		         ORDER BY m_name DESC
                   ) AA ) A
         <![CDATA[           
         WHERE RNUM1 >= #{startRowNo}
@@ -75,6 +108,97 @@
         ]]>
 	</select>
 	
+	<select id="typeCCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_type = 'C'
+	</select>
+	
+	<select id="typeECount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_type = 'E'
+	</select>
+	
+	<select id="statusNCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_status = 'N'
+		AND NOT m_type = 'M'
+	</select>
+	
+	<select id="statusYCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_status = 'Y'
+		AND NOT m_type = 'M'
+	</select>
+	
+	<select id="topAddr" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT * 
+		FROM (SELECT m_address_road, CEIL(RATIO_TO_REPORT(COUNT(*)) OVER() * 100) percent
+              FROM MEMBER
+              GROUP BY m_address_road
+		      ORDER BY m_address_road DESC)		  
+		<![CDATA[  
+		WHERE ROWNUM >= 1
+		AND ROWNUM <= 3
+		]]>
+	</select>
+	
+	<select id="detailMember" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT * FROM MEMBER
+		WHERE m_id = #{m_id}
+	</select>
+	
+	<update id="updateYStatus" parameterType="MasterVO">
+		UPDATE MEMBER
+		SET m_status = 'Y'
+		WHERE m_id = #{m_id}
+	</update>
+	
+	<update id="updateNStatus" parameterType="MasterVO">
+		UPDATE MEMBER
+		SET m_status = 'N'
+		WHERE m_id = #{m_id}
+	</update>
+	
+	<select id="faqMemberCheck" parameterType="MasterVO" resultMap="masterResultMap">
+		SELECT * FROM MEMBER
+		WHERE m_id = #{m_id}		
+	</select>
+	
+	<select id="faqCount" resultType="int">
+		SELECT COUNT(*) FROM FAQ
+	</select>
+	
+	<select id="faqList" parameterType="FAQVO" resultMap="faqResultMap">
+		SELECT * FROM FAQ
+	</select>
+	
+	<select id="adminCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_id = #{m_id}
+		AND m_password = #{m_password}
+		AND m_type = 'M'
+	</select>
+	
+	<insert id="faqInsert" parameterType="FAQVO">
+		INSERT INTO FAQ(f_sub, f_content, f_date, f_readcount)
+		VALUES (#{f_sub}, #{f_content}, SYSDATE, 0)
+	</insert>
+	
+	<select id="faqDetail" parameterType="FAQVO" resultMap="faqResultMap">
+		SELECT * FROM FAQ
+		WHERE f_num = #{f_num}
+	</select>
+	
+	<update id="faqUpdate" parameterType="FAQVO">
+		UPDATE FAQ
+		SET f_sub = #{f_sub}, f_content = #{f_content}
+		WHERE f_num = #{f_num}
+	</update>
+	
+	<delete id="faqDelete" parameterType="FAQVO">
+		DELETE FROM FAQ
+		WHERE f_num = #{f_num}
+	</delete>
 	
 	<!-- ======================================================================== -->
 	

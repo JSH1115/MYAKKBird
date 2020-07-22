@@ -16,13 +16,6 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
-	@RequestMapping(value="/autoText.ak", produces="application/json;charset=UTF-8")
-	public List<BoardVO> autoText() {
-		List<BoardVO> list = searchService.autoTextService();
-		
-        return list;
-	}
-	
 	@RequestMapping(value="/cb_load.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> cbLoad(String m_id) {
 		ArrayList<MasterVO> cb_Load =

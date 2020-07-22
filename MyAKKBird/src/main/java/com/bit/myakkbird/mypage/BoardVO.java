@@ -20,6 +20,8 @@ public class BoardVO {
 	private MultipartFile file;       //멀티파트 파일
 	private String b_org_file;        //첨부 파일명
 	private String b_up_file;         //업로드 파일명 
+	private String b_up_file2;         //업로드 파일명2
+	private String b_up_file3;         //업로드 파일명3
 	private int b_readcount;       	  //조회수
 	private Date b_date;              //게시글 올린 날짜
 	private String b_apply;           //게시글 신청 여부
@@ -165,6 +167,18 @@ public class BoardVO {
 	}
 	public void setApply_cnt(int apply_cnt) {
 		this.apply_cnt = apply_cnt;
+	}
+	public String getB_up_file2() {
+		return b_up_file2;
+	}
+	public void setB_up_file2(String b_up_file2) {
+		this.b_up_file2 = b_up_file2;
+	}
+	public String getB_up_file3() {
+		return b_up_file3;
+	}
+	public void setB_up_file3(String b_up_file3) {
+		this.b_up_file3 = b_up_file3;
 	}
 	
 }

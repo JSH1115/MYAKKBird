@@ -9,7 +9,6 @@ import com.bit.myakkbird.mainpoint.MasterVO;
 import com.bit.myakkbird.mypage.BoardVO;
 
 public interface SearchMapper {
-	public List<BoardVO> autoText();
 	
 	public ArrayList<MasterVO> CBList(String m_id);
 	

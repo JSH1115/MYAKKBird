@@ -223,7 +223,7 @@ $('.starRev span').click(function(){
 </section>
 	<div id="more"> 
 		<h3> 우리 사이트에 대해서 더 알고싶으시다면 </h3>
-		<img src="resources/image/btn_goto.png" id="btn_goto">
+		<img src="resources/image/btn_goto.png" id="btn_goto" onclick="location.href='FAQList.ak'">
 	</div>
 </div>
 

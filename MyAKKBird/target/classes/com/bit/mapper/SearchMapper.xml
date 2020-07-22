@@ -50,10 +50,6 @@
 		<result property="w_state" column="w_state"/>
 	</resultMap>
 
-	<select id="autoText" parameterType="com.bit.myakkbird.mypage.BoardVO" resultMap="boardResultMap">
-		SELECT b_address_road FROM BOARD ORDER BY b_address_road ASC
-	</select>
-	
 	<select id="CBList" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 

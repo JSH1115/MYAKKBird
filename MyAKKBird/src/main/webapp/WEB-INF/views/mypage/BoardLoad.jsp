@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.bit.myakkbird.mainpoint.*" %>
 <%
@@ -18,15 +19,48 @@
 	<!-- jquery 모달 API 시작 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<link rel="stylesheet" href="resources/css/jquery_modal.css" />
 	<!-- jquery 모달 API 끝 -->
 	<style>
+		/* font 적용 */
+		@font-face {
+			font-family: "NotoSansKR-Bold";
+			src:url('fonts/NotoSansKR-Bold.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Thin";
+			src:url('fonts/NotoSansKR-Thin.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Black";
+			src:url('fonts/NotoSansKR-Black.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Light";
+			src:url('fonts/NotoSansKR-Light.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Medium";
+			src:url('fonts/NotoSansKR-Medium.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Regular";
+			src:url('fonts/NotoSansKR-Regular.otf');
+		}
+		/* font 적용 */
+		
 		/* 전체 적용 */	
 		html, body {
 		 	width: 100%;
 		 	height: auto;
 		 	margin: 0 auto;
 		 	padding: 0;
+		 	font-family: "NotoSansKR-Regular";
 		}
 		
 		ul li {
@@ -114,6 +148,7 @@
 			border-radius: 2px;
 			font-size: 12px;
 			cursor: pointer;
+			font-family: "NotoSansKR-Regular";
 		}
 		
 		.r_btn {
@@ -124,6 +159,7 @@
 			margin-left: 5px;
 			font-size: 12px;
 			cursor: pointer;
+			font-family: "NotoSansKR-Regular";
 		}
 		
 		input:focus {outline:none;}
@@ -144,7 +180,6 @@
 			background-repeat: no-repeat;
 			background-size: 70px 25px;
 		}
-
 		input[type="radio"]:checked + label .c1 { 
 			width: 70px;
 			height: 25px;
@@ -162,7 +197,6 @@
 			background-repeat: no-repeat;
 			background-size: 100px 25px;
 		}
-
 		input[type="radio"]:checked + label .c2 { 
 			width: 100px;
 			height: 25px;
@@ -180,7 +214,6 @@
 			background-repeat: no-repeat;
 			background-size: 100px 25px;
 		}
-
 		input[type="radio"]:checked + label .c3 { 
 			width: 100px;
 			height: 25px;
@@ -199,7 +232,6 @@
 			background-repeat: no-repeat;
 			background-size: 100px 25px;
 		}
-
 		input[type="radio"]:checked + label .a1 { 
 			width: 100px;
 			height: 25px;
@@ -217,7 +249,6 @@
 			background-repeat: no-repeat;
 			background-size: 100px 25px;
 		}
-
 		input[type="radio"]:checked + label .a2 { 
 			width: 100px;
 			height: 25px;
@@ -330,7 +361,7 @@
 			width: 550px;
 			height: 60px;
 			text-align: center;
-			margin-left: 36px;
+			margin-left: 48px;
 			margin-top: -24px;
 		}
 		
@@ -419,7 +450,7 @@
 		.modal_p_right {
 			width: 246px;
 			height: 90px;
-			margin-top: 6px;
+			margin-top: 1px;
 			float: right;
 			font-size: 12.5px;
 		}
@@ -583,7 +614,6 @@
 		    box-shadow: -3px -3px 7px -3px #d3d3d3,
 		                3px 3px 7px -3px #d3d3d3;
 		}
-
 		.dialog:after,
 		.dialog:before {
 		    content: '';
@@ -688,6 +718,9 @@
 	</style>
 </head>
 <body>
+	<jsp:include page="../header_container.jsp">
+		<jsp:param value="m_id" name="m_id"/>
+	</jsp:include>
 	<div id="boardList_div_id" class="boardList_div">
 		<div class="boardList_div_text">
 			<span>게시글 보기</span>
@@ -755,7 +788,6 @@ var b_num;                         // 게시글 번호
 var img_d = '';                    // 카테고리 이미지
 var category_d = '';               // 카테고리 텍스트
 //전역 변수
-
 // 데이터 체크
 var isEmpty = function(val) {
 	if(val === "" || val === null || val === undefined 
@@ -766,7 +798,6 @@ var isEmpty = function(val) {
 		return false
 	}
 };
-
 // 내가 쓴 게시글이 없을 경우 
 function noData() {
 	$('#count_b').empty();
@@ -786,7 +817,6 @@ function noData() {
 	
 	$('#noDataZone').html(output);
 }
-
 // 카테고리, 이미지 설정
 function category_list(item) {
 	if(item.b_category === "A") {
@@ -809,7 +839,6 @@ function category_list(item) {
 		category_d = '방역청소';
 	}
 }
-
 // 게시글 개수
 function board_count(index, startNo) {
 	var count = '';
@@ -819,23 +848,15 @@ function board_count(index, startNo) {
 	
 	$('#count_b').html(count);
 }
-
 // 게시글 출력 
 function board_list(index, item, startNo) {
 	var output = '';
-	var photo = '';
 	var apply = '';                 
 	
 	if(item.b_apply === "N") {
 		apply = '매칭 대기중';
 	} else if(item.b_apply === "Y") {
 		apply = '<b style="color:red;">매칭 완료</b>';
-	}
-	
-	if(item.m_photo === null) {
-		photo = 'crocodile_profile.png';
-	} else {
-		photo = item.m_photo;
 	}
 	
 	var startDay = moment(item.b_start).format("YY년 M월 D일");
@@ -848,7 +869,7 @@ function board_list(index, item, startNo) {
 	output += '    <div class="post" id="post_id">'
 	output += '	       <div class="post_main">'
 	output += '            <span class="post_no">no.'+item.b_num+'</span>'
-	output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
+	output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+item.m_photo+'"><br>'
 	output += '            <span class="photo_span" id="count'+item.b_num+'"></span>'
 	output += '        </div>'
 	output += '        <div class="post_center">'
@@ -894,7 +915,6 @@ function board_list(index, item, startNo) {
 	
 	delete_board(item);
 }
-
 // 게시글 삭제
 function delete_board(item) {
 	
@@ -924,7 +944,6 @@ function delete_board(item) {
 		
 	});
 }
-
 // 게시글 지원 인원 카운트
 function apply_conunt(b_num) {
 	
@@ -944,7 +963,6 @@ function apply_conunt(b_num) {
 	});
 	
 }
-
 // 무한 스크롤 후 데이터 없을시
 function end_board() {
 	var end_div = '';
@@ -960,12 +978,10 @@ function end_board() {
 	
 	$('#end').html(end_div);
 }
-
 // 조건 검색 창 보이기, 숨기기
 $('#search_a').on('click', function() {
 	$('.board_search').toggle();
 });
-
 // 조건 검색 클릭 후 게시물 5개 출력
 $(document).on('click', '#s_btn_id', function(event){
 	var params = $('#search_form').serialize();
@@ -1010,7 +1026,6 @@ $(document).on('click', '#s_btn_id', function(event){
 	    }
 	});
 });
-
 function appendDocument2(params) {
 	
 	var startNo = $("#boardList #list_id").last().data("no") || 0;
@@ -1040,7 +1055,6 @@ function appendDocument2(params) {
 	});
 	event.preventDefault();
 }
-
 $(document).ready(function(){
 	
 	scroll_top();
@@ -1115,13 +1129,9 @@ $(document).ready(function(){
 	}
 	
 });
-
 // 게시글 자세히 보기
 $(document).on("click",'.detail_btn',function() {
 	b_num = $(this).attr('value');
-	$(this).modal({
-        fadeDuration: 250
-    });
 	
 	$('body').css("overflow-y", "scroll");
 	$('.board_search').hide();
@@ -1150,12 +1160,6 @@ $(document).on("click",'.detail_btn',function() {
 				gender = '여자';
 			}
 			
-			if(data.m_photo === null) {
-				photo = 'crocodile_profile.png';
-			} else {
-				photo = data.m_photo;
-			}
-			
 			var start_day = moment(data.b_start).format("YY년 M월 D일");
 			var end_day = moment(data.b_end).format("YY년 M월 D일");
 			var write_day = moment(data.b_date).format("YY년 M월 D일 작성");
@@ -1168,7 +1172,7 @@ $(document).on("click",'.detail_btn',function() {
 			modal += '</div>'
 			modal += '<div class="modal_profile">'
 			modal += '    <div class="modal_p_left">'
-			modal += '        <img class="modal_myPhoto" src="/myakkbird/myakkbirdUpload/'+photo+'">'
+			modal += '        <img class="modal_myPhoto" src="/myakkbird/myakkbirdUpload/'+data.m_photo+'">'
 			modal += '    </div>'
 			modal += '    <div class="modal_p_right">'
 			modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+type+'</span><br>'
@@ -1199,10 +1203,12 @@ $(document).on("click",'.detail_btn',function() {
 			modal += '</div>'
 			
 			$('#modal_content').append(modal);
-		}
+		},
+		error:function(){
+	        alert("ajax통신 실패!!!");
+	    }
 	});
 });
-
 //스크롤 Top 기능
 function scroll_top() {
 	$(window).scroll(function() {

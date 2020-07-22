@@ -7,7 +7,6 @@ import com.bit.myakkbird.mainpoint.MasterVO;
 import com.bit.myakkbird.mypage.BoardVO;
 
 public interface SearchService {
-	public List<BoardVO> autoTextService();
 	
 	public ArrayList<MasterVO> CBListService(String m_id);
 	public ArrayList<MasterVO> CBListInfiniteService(String m_id, int startNo);

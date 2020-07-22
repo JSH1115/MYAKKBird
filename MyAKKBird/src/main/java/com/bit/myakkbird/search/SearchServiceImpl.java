@@ -19,14 +19,6 @@ public class SearchServiceImpl implements SearchService {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<BoardVO> autoTextService() {
-		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
-		List<BoardVO> boardList = searchMapper.autoText();
-		
-		return boardList;
-	}
-	
-	@Override
 	public ArrayList<MasterVO> CBListService(String m_id) {
 		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
 		ArrayList<MasterVO> cbList = searchMapper.CBList(m_id);

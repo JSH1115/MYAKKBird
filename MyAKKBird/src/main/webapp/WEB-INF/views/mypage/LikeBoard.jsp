@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String m_id = (String)request.getAttribute("m_id");
 	System.out.println("현재 아이디 : " + m_id);
@@ -17,12 +18,45 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<!-- alert창 API 끝 -->
 	<style>
+		/* font 적용 */
+		@font-face {
+			font-family: "NotoSansKR-Bold";
+			src:url('fonts/NotoSansKR-Bold.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Thin";
+			src:url('fonts/NotoSansKR-Thin.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Black";
+			src:url('fonts/NotoSansKR-Black.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Light";
+			src:url('fonts/NotoSansKR-Light.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Medium";
+			src:url('fonts/NotoSansKR-Medium.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Regular";
+			src:url('fonts/NotoSansKR-Regular.otf');
+		}
+		/* font 적용 */
+		
 		/* 전체 적용 */	
 		html, body {
 		 	width: 100%;
 		 	height: auto;
 		 	margin: 0 auto;
 		 	padding: 0;
+		 	font-family: "NotoSansKR-Regular";
 		}
 		
 		ul li {
@@ -149,7 +183,7 @@
 		.post_right {
 			float:right;
 			width:75%; 
-			margin-top: 3px; 
+			margin-top: -4px; 
 			margin-left: 10px;
 		}
 		
@@ -317,6 +351,11 @@
 	</style>
 </head>
 <body>
+	<!-- header zone -->
+	<jsp:include page="../header_container.jsp">
+		<jsp:param value="m_id" name="m_id"/>
+	</jsp:include>
+	<!-- header zone -->
 	<div id="boardList_div_id" class="boardList_div">
 		<div class="boardList_div_text">
 			<span>찜한 게시글</span>
@@ -350,7 +389,6 @@ var img_d = '';          // 카테고리 이미지
 var category_d = '';     // 카테고리 텍스트
 var gender = '';         // 성별
 //전역 변수
-
 // 데이터 체크
 var isEmpty = function(val) {
 	if(val === "" || val === null || val === undefined 
@@ -361,7 +399,6 @@ var isEmpty = function(val) {
 		return false
 	}
 };
-
 //찜한 게시글이 없을 경우
 function noData() {
 	$('#count_b').empty();
@@ -382,7 +419,6 @@ function noData() {
 	
 	$('#noLikeZone').html(output);
 };
-
 //무한 스크롤 후 데이터 없을시
 function end_board() {
 	var end_div = '';
@@ -398,7 +434,6 @@ function end_board() {
 	
 	$('#end').html(end_div);
 };
-
 //게시글 개수
 function board_count(index, startNo) {
 	var count = '';
@@ -408,7 +443,6 @@ function board_count(index, startNo) {
 	
 	$('#count_b').html(count);
 }
-
 //카테고리, 이미지 설정
 function category_list(item) {
 	if(item.b_category === "A") {
@@ -431,7 +465,6 @@ function category_list(item) {
 		category_d = '방역청소';
 	}
 }
-
 //게시글 출력
 function list_index(index, item, startNo) {
 	var output = '';
@@ -459,13 +492,6 @@ function list_index(index, item, startNo) {
 		gender = '여';
 	}
 	
-	// 프로필 사진 체크
-	if(item.m_photo === null) {
-		photo = 'crocodile_profile.png';
-	} else {
-		photo = item.m_photo;
-	}
-	
 	if(item.w_state == 'Y') {
 		c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
 	}
@@ -480,7 +506,7 @@ function list_index(index, item, startNo) {
   	output += '	       <hr class="post_hr">'
   	output += '    </div>'
   	output += '    <div class="post_img">'
-  	output += '        <img class="profile" src="/myakkbird/myakkbirdUpload/'+photo+'">'
+  	output += '        <img class="profile" src="/myakkbird/myakkbirdUpload/'+item.m_photo+'">'
   	output += '        <div class="readcount_zone">'+hot_b+'</div>'
   	output += '    </div>'
   	output += '    <div class="post_right">'
@@ -501,14 +527,13 @@ function list_index(index, item, startNo) {
   	$('#data_insert').append(output);
   	
 };
-
 //게시글 찜하기 삭제
 function delete_like(b_num) {
 	
 	Swal.fire({
 		  html:
-			  '<b style="margin-top: 10px; float:right; margin-right:120px;">&nbsp;찜 목록에서 삭제할까요?</b>' +
-			  '<svg style="margin-left:-400px; float:right;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
+			  '<b style="margin-top: 10px; float:right; margin-right:90px;">&nbsp;찜 목록에서 삭제할까요?</b>' +
+			  '<svg style="margin-left:-300px; float:right;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
 		  showCancelButton: true,
 		  confirmButtonColor: '#37B04B',
 		  cancelButtonColor: '#E6E6E6',
@@ -535,17 +560,12 @@ function delete_like(b_num) {
 	})
 	
 }
-
-//조건 검색 창 보이기, 숨기기
-$('#search_a').on('click', function() {
-	$('.board_search').toggle();
-});
-
 $(document).ready(function(){
 	
 	onload();
 	scroll_top();
 	
+	//찜한 게시물 5개 출력
 	function onload() {
 		
 		$.ajax({
@@ -583,6 +603,7 @@ $(document).ready(function(){
 		});
 	}
 	
+	//찜한 게시물 무한스크롤
 	function appendDocument() {
 		
 		var startNo = $("#data_insert #list_id").last().data("no") || 0;
@@ -612,7 +633,6 @@ $(document).ready(function(){
 		});
 	}
 });
-
 //스크롤 Top 기능
 function scroll_top() {
 	$(window).scroll(function() {

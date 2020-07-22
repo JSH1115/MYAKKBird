@@ -16,8 +16,44 @@ public class PageVO {
 
     private String searchFiled;  //검색 조건
     private String searchValue;  //검색어
+    private String m_statusFiled; //탈퇴 체크
+    private String m_statusValue; //탈퇴 값
+    private String m_typeFiled; //회원 유형 체크
+    private String m_typeValue; //회원 값
 
-    public int getPageSize() {
+	public String getM_typeFiled() {
+		return m_typeFiled;
+	}
+
+	public void setM_typeFiled(String m_typeFiled) {
+		this.m_typeFiled = m_typeFiled;
+	}
+
+	public String getM_typeValue() {
+		return m_typeValue;
+	}
+
+	public void setM_typeValue(String m_typeValue) {
+		this.m_typeValue = m_typeValue;
+	}
+
+	public String getM_statusFiled() {
+		return m_statusFiled;
+	}
+
+	public void setM_statusFiled(String m_statusFiled) {
+		this.m_statusFiled = m_statusFiled;
+	}
+
+	public String getM_statusValue() {
+		return m_statusValue;
+	}
+
+	public void setM_statusValue(String m_statusValue) {
+		this.m_statusValue = m_statusValue;
+	}
+
+	public int getPageSize() {
         return pageSize;
     }
 
@@ -130,13 +166,12 @@ public class PageVO {
         this.searchValue = searchValue;
     }
 
-
     private void makePaging() {
   
         // 기본 값 설정
         if (this.totalCount == 0) return; 
         if (this.pageNo == 0) this.setPageNo(1);   //기본 페이지 번호
-        if (this.pageSize == 0) this.setPageSize(8); //기본 페이지 리스트 사이즈
+        if (this.pageSize == 0) this.setPageSize(7); //기본 페이지 리스트 사이즈
         if (this.pageBlock == 0 ) this.setPageBlock(10); //기본 페이지 네비[블록] 사이즈
         
         //--[첫 페이지], [마지막 페이지] 계산
@@ -169,8 +204,6 @@ public class PageVO {
         }
         this.setStartPageNo(startPage); // 시작 페이지 (페이징 네비 기준)
         this.setEndPageNo(endPage);  // 끝 페이지 (페이징 네비 기준)
-
-
 
         //--조회 시작 row, 조회 마지막 row 계산
         int startRowNo = ( (pageNo-1) * pageSize ) + 1;

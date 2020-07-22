@@ -33,9 +33,6 @@ $(document).ready(function(){
 		<div class="eachMenu" onclick="location.href='likeBoard.ak'">
 			<div>찜한 게시물</div>
 		</div>
-		<div class="eachMenu" onclick="location.href=''">
-			<div>구인현황</div>
-		</div>
 		<div class="eachMenu" onclick="location.href='allowListE.ak'">
 			<div>매칭게시물 목록</div>
 		</div>
@@ -52,7 +49,7 @@ $(document).ready(function(){
 		<div class="eachMenu" onclick="location.href='DangerList.ak'">
 			<div>신고관리</div>
 		</div>
-		<div class="eachMenu">
+		<div class="eachMenu" onclick="location.href='FAQList.ak'">
 			<div>FAQ관리</div>
 		</div>
 	<% } %>

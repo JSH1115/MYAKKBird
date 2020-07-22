@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.bit.myakkbird.mainpoint.*" %>
 <%
@@ -29,13 +30,45 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<!-- alert창 API 끝 -->
 	<style>
-		 /* 전체 적용 시작 */
+		/* font 적용 */
+		@font-face {
+			font-family: "NotoSansKR-Bold";
+			src:url('fonts/NotoSansKR-Bold.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Thin";
+			src:url('fonts/NotoSansKR-Thin.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Black";
+			src:url('fonts/NotoSansKR-Black.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Light";
+			src:url('fonts/NotoSansKR-Light.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Medium";
+			src:url('fonts/NotoSansKR-Medium.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Regular";
+			src:url('fonts/NotoSansKR-Regular.otf');
+		}
+		/* font 적용 */
+		
+		/* 전체 적용 시작 */
 		html, body {
 		 	width: 100%;
 		 	height: auto;
 		 	margin: 0 auto;
 		 	padding: 0;
-		 	font-family: "NotoSansKR";
+		 	font-family: "NotoSansKR-Regular";
 		}
 		 
 		body {
@@ -55,9 +88,18 @@
 		ul li {
 			list-style: none;
 		}
-		
 		/* 전체 적용 끝 */
 		 
+		/* header 수정 */
+		.btn_header {
+			width:100px;
+			height:50px;
+			border-radius: 10px;
+			color:white;
+			cursor:pointer;
+		}
+		/* header 수정 */
+		
 		/* 지도 style 시작 */
 		.map_wrap {
 			position:relative;
@@ -94,6 +136,37 @@
 		}
 		/* 지도 style 끝 */
 		
+		/* header */
+		#header_container{
+			display:flex;
+			flex-direction:row;
+			justify-content:space-between;
+			width:100%;
+			height:80px;
+			background-color:white;
+		}
+	
+		#header_container > div{
+			display:flex;
+			flex-direction:row;
+			justify-content: space-around;
+		}
+		
+		#main_logo{
+			width: 360px;
+			cursor:pointer;
+		}
+		
+		.btn_header{
+			width:100px;
+			height:50px;
+			margin-top: 15px;
+			border-radius: 10px;
+			color:white;
+			cursor:pointer;
+		}
+		/* header */
+		
 		/* 자동완성 style 시작 */
 		.ui-autocomplete {
 			width: 100px;
@@ -101,11 +174,24 @@
 		    overflow-y: 100px;
 		    overflow-x: hidden;
 		    font-size: 14px;
+		    font-family: "NotoSansKR-Regular";
 	    }
 	    
 	   	* html .ui-autocomplete {
 	   		height: 200px;
 	   	}
+	   	
+	   	.ui-autocomplete::-webkit-scrollbar {
+    		width: 12px;
+  		}
+  		
+  		.ui-autocomplete::-webkit-scrollbar-thumb {
+		    background-color: #E6E6E6;
+		    border-radius: 10px;
+		    background-clip: padding-box;
+		    border: 2px solid transparent;
+  		}
+  		
 	   	/* 자동완성 style 끝 */
 	   	
 	   	/* 검색 스크린 창 style */
@@ -173,7 +259,7 @@
 		.search_f_sub {
 			 padding-left: 110px; 
 			 padding-top: 15px; 
-			 margin-left: 78px; 
+			 margin-left: 92px; 
 			 color: #212121;
 		}
 		
@@ -184,7 +270,7 @@
 		}
 		
 		.search_fc_sub {
-			padding-left: 323px; 
+			padding-left: 335px; 
 			color: #212121;
 		}
 		
@@ -223,7 +309,7 @@
 		.input_div {
 			width: 100%;
 			margin-top: 10px;
-			margin-left: 80px;
+			margin-left: 90px;
 		}
 		
 		.input_div span {
@@ -237,7 +323,7 @@
 			width: 100%;
 			height: 60px;
 			margin-top: 20px;
-			margin-left: 31px;
+			margin-left: 42px;
 		}
 		
 		.choice_div ul li {
@@ -255,7 +341,6 @@
 			background-repeat: no-repeat;
 			background-size: 80px 30px;
 		}
-
 		input[type="radio"]:checked + label .c1 { 
 			cursor: pointer;
 			width: 80px;
@@ -273,7 +358,6 @@
 			background-repeat: no-repeat;
 			background-size: 115px 30px;
 		}
-
 		input[type="radio"]:checked + label .c2 { 
 			cursor: pointer;
 			width: 115px;
@@ -291,7 +375,6 @@
 			background-repeat: no-repeat;
 			background-size: 115px 30px;
 		}
-
 		input[type="radio"]:checked + label .c3 { 
 			cursor: pointer;
 			width: 115px;
@@ -306,7 +389,7 @@
 		.chk_list {
 			width: 100%;
 			height: 80px;
-			padding-left: 50px;
+			padding-left: 65px;
 			margin-top: 20px;
 			margin-left: -5px;
 		}
@@ -315,7 +398,8 @@
 			width: 100%;
 			height: 50px;
 			margin-top: -10px;
-			margin-left: 25px;
+			margin-left: 55px;
+			font-family: "NotoSansKR-Black";
 		}
 		
 		.chk_text b {
@@ -338,12 +422,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 48px;
+			margin-left: 62px;
 			background: url("./resources/image/vacuum.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="checkbox"]:checked + label .b_category1 { 
 			width: 50px;
 			height: 50px;
@@ -356,12 +439,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 40px;
+			margin-left: 33px;
 			background: url("./resources/image/cleaning-tools.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="checkbox"]:checked + label .b_category2 { 
 			width: 50px;
 			height: 50px;
@@ -374,12 +456,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 37px;
+			margin-left: 33px;
 			background: url("./resources/image/kitchen.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="checkbox"]:checked + label .b_category3 { 
 			width: 50px;
 			height: 50px;
@@ -392,12 +473,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 40px;
+			margin-left: 35px;
 			background: url("./resources/image/maid.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="checkbox"]:checked + label .b_category4 { 
 			width: 50px;
 			height: 50px;
@@ -410,12 +490,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 36px;
+			margin-left: 32px;
 			background: url("./resources/image/apartment.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="checkbox"]:checked + label .b_category5 { 
 			width: 50px;
 			height: 50px;
@@ -428,12 +507,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 37px;
+			margin-left: 34px;
 			background: url("./resources/image/coronavirus.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="checkbox"]:checked + label .b_category6 { 
 			width: 50px;
 			height: 50px;
@@ -770,6 +848,24 @@
 	</style>
 </head>
 <body>
+	<!-- header -->
+	<section id="header_container">
+		<img src="resources/image/fullLogo.png" id="main_logo" onclick="location.href='home.ak'">
+		<c:if test="${login.m_id == null}">
+			<div>
+				<img src="resources/image/btn_login.png" class="btn_header" onclick="location.href='loginform.ak'">
+				<img src="resources/image/btn_join.png" class="btn_header" onclick="location.href='joinselect.ak'">
+			</div>
+		</c:if>
+		<c:if test="${login.m_id != null}">
+			<div>
+				${login.m_id}
+				<img src="resources/image/btn_mypage.png" class="btn_header" onclick="location.href='profile.ak?id=${login.m_id }'">
+				<img src="resources/image/btn_logout.png" class="btn_header" onclick="location.href='logOut.ak'">
+			</div>
+		</c:if>
+	</section> 
+	<!-- header -->
 	<div class="screen_Top">
 		<div class="screen_Top_text">
 			<b class="screen_t_sub"><strong>악어</strong>를 찾고 싶은 지역,</b><br>
@@ -919,7 +1015,6 @@
 	<!-- Top 버튼 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3cbd93568d5ed61c52a1851035124ae3&libraries=services"></script>
 <script>
-
 // 전역 변수
 var se_id = '<%=m_id %>'; // 세션 아이디
 var addr = '<%=addr %>';  // 검색한 주소
@@ -933,7 +1028,6 @@ var mapTypeControl;
 var zoomControl;
 //맵 생성 관련
 // 전역 변수
-
 // 데이터 체크
 var isEmpty = function(val) {
 	if(val === "" || val === null || val === undefined 
@@ -944,32 +1038,19 @@ var isEmpty = function(val) {
 		return false
 	}
 };
-
 // 자동 완성
 function selectData() {
-	var availableTags = [];
-	
-	$.ajax({
-        url:'/myakkbird/autoText.ak',
-        type:'POST',
-        dataType : "json", // 서버에서 보내줄 데이터 타입
-        contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-        success:function(data){
-        	$.each(data, function(index, item){
-        		availableTags.push(item.b_address_road);
+	var availableTags = ["서울 강남구 신사동", "서울 강남구 압구정동", "서울 강남구 논현동",
+		                 "서울 강남구 삼성동", "서울 강남구 청담동", "서울 강남구 역삼동",
+		                 "서울 강남구 대치동", "서울 강남구 도곡동", "서울 강남구 개포동",
+		                 "서울 강남구 일원동", "서울 강남구 수서동", "서울 강남구 세곡동"];
         		
-        		$("#autoText").autocomplete({
-        			source: availableTags,
-        			minLength: 1
-        		});
-       	  	});
-    	},
-    	error:function(){
-        alert("ajax통신 실패!!!");
-    	}
-	}); 
+    $("#autoText").autocomplete({
+    	source: availableTags,
+       	minLength: 1
+    });
+    
 }
-
 // 체크박스 하나만 선택
 function oneCheckbox(check){
 	var obj = document.getElementsByName("b_category");
@@ -979,7 +1060,6 @@ function oneCheckbox(check){
         }
     }
 }
-
 // 스크롤 Top 기능
 function scroll_top() {
 	$(window).scroll(function() {
@@ -995,7 +1075,6 @@ function scroll_top() {
 		return false;
 	});
 };
-
 // 검색 후 로딩 모달 창
 function timer() {
 	let timerInterval
@@ -1004,6 +1083,7 @@ function timer() {
 	  html: '조금만 기달려주세요.',
 	  timer: 500,
 	  timerProgressBar: true,
+	  confirmButtonColor: "#37B04B",
 	  onBeforeOpen: () => {
 	    Swal.showLoading()
 	    timerInterval = setInterval(() => {
@@ -1019,7 +1099,6 @@ function timer() {
 	  }
 	})
 }
-
 // 검색 후 데이터 없을 때
 function noDataOut() {
 	$('#data_insert').empty();
@@ -1037,7 +1116,6 @@ function noDataOut() {
 	$('#autoText').focus();
 	$('#data_insert').append(output);
 }
-
 // 카테고리, 이미지 설정
 function category_list(item) {
 	
@@ -1061,7 +1139,6 @@ function category_list(item) {
 		category_d = '방역청소';
 	}
 }
-
 // 맵 생성
 function newMap() {
 	
@@ -1081,7 +1158,6 @@ function newMap() {
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	
 }
-
 // 맵에 마커 추가
 function addmarker(index, listData) {
 	var geocoder = new kakao.maps.services.Geocoder();
@@ -1089,7 +1165,6 @@ function addmarker(index, listData) {
 	geocoder.addressSearch(listData[index].addr, function(result, status) {
 		
       		if (status === kakao.maps.services.Status.OK) {
-
       			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
       			
       			var imageSrc = './resources/image/crocodile_profile_marker.png',   
@@ -1127,8 +1202,6 @@ function addmarker(index, listData) {
     		} 
 	});
 }
-
-
 // 게시글 출력
 function list_index(index, item, startNo) {
 	var output = '';
@@ -1155,13 +1228,6 @@ function list_index(index, item, startNo) {
 		gender = '여';
 	}
 	
-	// 프로필 사진 체크
-	if(item.m_photo === null) {
-		photo = 'crocodile_profile.png';
-	} else {
-		photo = item.m_photo;
-	}
-	
 	output += '<li data-no='+(index+startNo+1)+'>'
 	output += '<div class="post" id="post_id'+item.b_num+'">'
 	output += '    <div class="post_top">'
@@ -1172,7 +1238,7 @@ function list_index(index, item, startNo) {
   	output += '	       <hr class="post_hr">'
   	output += '    </div>'
   	output += '    <div class="post_img">'
-  	output += '        <img class="profile" src="/myakkbird/myakkbirdUpload/'+photo+'">'
+  	output += '        <img class="profile" src="/myakkbird/myakkbirdUpload/'+item.m_photo+'">'
   	output += '        <div class="readcount_zone">'+hot_b+'</div>'
   	output += '    </div>'
   	output += '    <div class="post_right">'
@@ -1193,7 +1259,6 @@ function list_index(index, item, startNo) {
   	$('#data_insert').append(output);
   	
 }
-
 // 게시글 개수 출력
 function count_txt(index, startNo) {
 	var listCount = '';
@@ -1205,7 +1270,6 @@ function count_txt(index, startNo) {
 		
 	$('.screen_middle').html(listCount);
 }
-
 // 스크롤 끝에 도달하면 출력 
 function end_title() {
 	 var end_div = '';
@@ -1221,7 +1285,6 @@ function end_title() {
 	 
      $('#end').html(end_div);
 }
-
 // 스크롤 시 맵도 같이 따라오게
 function scroll_Map() {
 	var scrollOffset = $('#map_div').offset();
@@ -1235,7 +1298,6 @@ function scroll_Map() {
         }
 	});
 }
-
 // 게시물 찜하기 체크
 function like_check(item, se_id) {
 	
@@ -1263,7 +1325,6 @@ function like_check(item, se_id) {
 	});
 	
 }
-
 // 게시물 찜하기 로그인 여부 체크
 function check_member(b_num) {
 	
@@ -1306,7 +1367,6 @@ function check_member(b_num) {
 	});
 	
 }
-
 // 게시글 찜하기 근로자인지 체크
 function check_worker(b_num) {
 	
@@ -1337,7 +1397,6 @@ function check_worker(b_num) {
 	    }
 	});
 }
-
 // 게시글 찜하기 눌렀는지 안눌렀는지 체크
 function like_check_re(b_num) {
 	
@@ -1358,7 +1417,6 @@ function like_check_re(b_num) {
 	    }
 	});
 }
-
 // 게시글 찜하기 추가
 function insert_like(b_num) {
 	
@@ -1377,7 +1435,6 @@ function insert_like(b_num) {
 	    }
 	});
 }
-
 // 게시글 찜하기 삭제
 function delete_like(b_num) {
 	
@@ -1396,7 +1453,6 @@ function delete_like(b_num) {
 	    }
 	});
 }
-
 // 광고 출력
 function banner() {
 	var banner = '';
@@ -1408,7 +1464,6 @@ function banner() {
 	
 	$('#data_insert').append(banner);
 }
-
 // 광고 로그인 여부 검사
 function banner_check() {
 	
@@ -1448,7 +1503,7 @@ function banner_check() {
 	    }
 	});
 }
-
+// 광고 하트를 지급 받았는지 검사
 function banner_got_check(se_id) {
 	
 	$.ajax({
@@ -1476,7 +1531,7 @@ function banner_got_check(se_id) {
 	    }
 	});
 }
-
+// 광고 하트 지급
 function banner_got(se_id) {
 	
 	$.ajax({
@@ -1504,7 +1559,7 @@ function banner_got(se_id) {
 	    }
 	});
 }
-
+// 광고 하트 지급 완료
 function heart_got(se_id) {
 	
 	$.ajax({
@@ -1529,7 +1584,6 @@ function heart_got(se_id) {
 	    }
 	});
 }
-
 $(document).ready(function(){
 	
 	timer();

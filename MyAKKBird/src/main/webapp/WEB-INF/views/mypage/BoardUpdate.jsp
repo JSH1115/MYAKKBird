@@ -1,9 +1,25 @@
-<%@page import="com.bit.myakkbird.mainpoint.MasterVO"%>
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.bit.myakkbird.mainpoint.MasterVO"%>
 <%
 	MasterVO masterVO = (MasterVO)request.getAttribute("masterVO");
 	String m_id = masterVO.getM_id();
+	
+	ArrayList<String> upFileList = new ArrayList<String>();
+	
+	upFileList.add(masterVO.getB_up_file());
+	upFileList.add(masterVO.getB_up_file2());
+	upFileList.add(masterVO.getB_up_file3());
+	while(upFileList.remove(null));
+	
+	System.out.println("저장된 업로드 파일 개수 : " + upFileList.size());
+	for(int i = 0; i < upFileList.size(); i++) {
+		
+		System.out.println("저장된 업로드 " + (i+1) + "번째 파일 : " + upFileList.get(i));
+	}
 	
 	System.out.println("수정할 현재 아이디 : " + m_id);
 	System.out.println("수정할 게시판 번호 : " + masterVO.getB_num());
@@ -31,7 +47,48 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3cbd93568d5ed61c52a1851035124ae3&libraries=services"></script>
 	<!-- 카카오 맵 API 끝 -->
 	<style>
+		/* font 적용 */
+		@font-face {
+			font-family: "NotoSansKR-Bold";
+			src:url('fonts/NotoSansKR-Bold.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Thin";
+			src:url('fonts/NotoSansKR-Thin.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Black";
+			src:url('fonts/NotoSansKR-Black.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Light";
+			src:url('fonts/NotoSansKR-Light.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Medium";
+			src:url('fonts/NotoSansKR-Medium.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Regular";
+			src:url('fonts/NotoSansKR-Regular.otf');
+		}
+		/* font 적용 */
+		
 		/* 전체 적용  */
+		body {
+			margin: 0 auto;
+			font-family: "NotoSansKR-Regular";
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
 		table {
 			margin-top: 10px;
 			margin-left: auto;
@@ -60,6 +117,10 @@
 		table td {
 			width: 650px;
 			padding: 5px;
+		}
+		
+		input {
+			font-family: "NotoSansKR-Regular";
 		}
 		
 		input:focus, textarea:focus {
@@ -106,7 +167,7 @@
 		}
 		
 		.category_img_div {
-			margin-left: -45px;
+			margin-left: -100px;
 			margin-top: -20px;
 		}
 		
@@ -128,7 +189,6 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="radio"]:checked + label .b_category1 { 
 			width: 50px;
 			height: 50px;
@@ -146,7 +206,6 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="radio"]:checked + label .b_category2 { 
 			width: 50px;
 			height: 50px;
@@ -159,13 +218,12 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 30px;
+			margin-left: 35px;
 			padding-left: 5px;
 			background: url("./resources/image/kitchen.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="radio"]:checked + label .b_category3 { 
 			width: 50px;
 			height: 50px;
@@ -184,7 +242,6 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="radio"]:checked + label .b_category4 { 
 			width: 50px;
 			height: 50px;
@@ -197,13 +254,12 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 28px;
+			margin-left: 30px;
 			padding-left: 5px;
 			background: url("./resources/image/apartment.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="radio"]:checked + label .b_category5 { 
 			width: 50px;
 			height: 50px;
@@ -216,12 +272,11 @@
 			cursor: pointer; 
 			width: 50px;
 			height: 50px;
-			margin-left: 25px;
+			margin-left: 30px;
 			background: url("./resources/image/coronavirus.png");
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
-
 		input[type="radio"]:checked + label .b_category6 { 
 			width: 50px;
 			height: 50px;
@@ -231,7 +286,8 @@
 		}
 		
 		.category_text_div {
-			margin-left: -60px;
+			margin-left: -120px;
+			font-family: "NotoSansKR-Black";
 		}
 		
 		.category_text_div b {
@@ -251,7 +307,7 @@
 		.category_text_div ul li {
 			list-style-type: none;
 			display: inline;
-			padding-left: 15px;
+			padding-left: 20px;
 		}
 		
 		.category_e_zone {
@@ -271,8 +327,9 @@
 			border: 0;
 			color: white;
 			border-radius: 5px;
-			margin-left: 3px;
-			height:40px;
+			margin-left: 9px;
+			height:45px;
+			font-family: "NotoSansKR-Regular"; 
 		}
 		
 		.post_button:hover {
@@ -325,6 +382,7 @@
 			display: none;
 			float: left;
 			width: 300px;
+			margin-top: -4px;
 			margin-left: -15px;
 		}
 		
@@ -463,7 +521,8 @@
 			background-repeat: no-repeat;
 			background-position: 380px 120px;
 			background-size: 120px 130px;
-			font-size: 12.5px;
+			font-family: "NotoSansKR-Regular";
+			font-size: 14px;
 		}
 		/* 제목, 상세설명 테이블 */
 		
@@ -471,23 +530,12 @@
 		.img_div {
 			width: 600px;
 			height: 350px;
-		}
-		
-		.img_see {
-			width: 400px;
-			height: 300px;	
-			margin-top: 30px;
-			margin-left: -60px;
+			display: none;
 		}
 		
 		.file_div {
 			width: 600px;
 			height: 70px;
-		}
-		
-		.file_div input {
-			margin-top: 12px;
-			margin-left: -75px;
 		}
 		
 		input[type="file"] { 
@@ -501,34 +549,63 @@
 			border: 0; 
 		}
 		
-		.file_div label { 
-			display: inline-block; 
-			padding: 10px; 
-			color: white; 
-			font-size: 13px;
+		.up_btn {
+			font-size: 15px;
 			background-color: #37B04B;
-			border-radius: 5px; 
-			cursor: pointer; 
-		} 
-		
-		.file_div label:hover { 
-			background-color: #268F38;
-			font-weight: bold;
-			cursor: pointer;
-		} 
-		
-		.file_div .upload_name { 
-			display: inline-block; 
-			padding: 10px; 
-			font-size: 13px;
-			background-color: white; 
-			border-radius: 5px;  
-			border: 1px solid #ebebeb; 
+			color: white;
+			padding: 8px;
+			margin-left: 20px;
+			border-radius: 5px;
+			margin-top: 15px;
+			float: left;
+			display: none;
 		}
 		
-		.upload_success {
-			 color: #444444; 
-			 margin-left: -60px;
+		.preview {
+			width: 180px;
+			height: 180px;
+		}
+		
+		#preview_txt {
+			font-size: 12px;
+		}
+		
+		.preview_1img {
+			width: 400px;
+			height: 300px;
+			margin-top: -62px;
+			margin-left: -20px;
+		}
+		
+		#preview_1img_txt {
+			margin-left: -20px;
+		}
+		
+		.preview_2img {
+			width: 250px;
+			height: 200px;
+		}
+		
+		#preview_2img_txt {
+			font-size: 15px;
+		}
+		
+		#img_ul {
+			margin-left: -50px;
+			padding-top: 80px;
+		}
+		
+		#img_ul li {
+			list-style: none;
+			display: inline-block;
+			padding-left: 10px;
+		}
+		
+		.default_img {
+			width: 400px;
+			height: 300px;
+			margin-top: 33px;
+			margin-left: -22px;
 		}
 		/* 파일 업로드 테이블 */
 		
@@ -550,6 +627,7 @@
 			width: 80px;
 			height:40px;
 			margin-left: 15px;
+			font-family: "NotoSansKR-Regular";
 		}
 		
 		.down_btn:hover {
@@ -583,7 +661,9 @@
 		}
 		
 		.mj_icon3 {
-			margin-left: -11px;
+			float: left;
+    		margin-top: 10px;
+    		margin-left: 60px;
 		}
 		
 		.mj_txt {
@@ -597,12 +677,66 @@
 		
 		.mw_txt {
 			font-size: 20px;
-			margin-left: 10px;
+			float: left;
+			margin-top: 30px;
 		}
 		/* 광고, 찜 관련 style */
+		
+		.default_img_div {
+			width: 600px;
+			height: 350px;
+		}
+		
+		#default_ul li {
+			list-style: none;
+			display: inline-block;
+			padding-left: 10px;
+		}
+		
+		#default_ul {
+			margin-left: -50px;
+    		padding-top: 80px
+		}
+		
+		.default_upfile {
+			width: 180px;
+			height: 180px;
+		}
+		
+		.default_btn {
+			font-size: 15px;
+			background-color: #37B04B;
+			color: white;
+			padding: 8px;
+			margin-left: 190px;
+			border-radius: 5px;
+			margin-top: 15px;
+			float: left;
+		}
+		
+		.new_btn {
+			font-size: 15px;
+			background-color: #37B04B;
+			color: white;
+			padding: 8px;
+			margin-left: 20px;
+			border-radius: 5px;
+			margin-top: 15px;
+			float: left;
+		}
+		
+		#no_file_txt {
+			font-size: 20px;
+			margin-left: -10px;
+    		margin-top: 72px;
+   	 		float: left;
+		}
 	</style>
 </head>
 <body>
+	<jsp:include page="../header_container.jsp">
+		<jsp:param value="m_id" name="m_id"/>
+	</jsp:include>
 	<div class="all">
 	<form name="board_form" id="board_form_id" action="board_updateProcess.ak" 
 	      method="post" enctype="multipart/form-data">
@@ -801,7 +935,7 @@
 					<td align="center">
 						<div class="detail_div">
 							<input type="text" name="b_d_detail" id="b_d_detail_id" 
-							       placeholder=" 예) 13시 ~ 15시, 정확한 시간은 매칭 후 협의"
+							       placeholder=" 예) 13시 ~15시, 매칭 후 협의"
 							       value="<%=masterVO.getB_d_detail() %>" /><br>
 							<label class="error" for="b_d_detail_id" style="margin-left: -345px;"></label>
 						</div>
@@ -828,13 +962,14 @@
 					<td align="center">
 						<div class="content_div">
 							<textarea name="b_content" id="textarea_id"  
-							          placeholder=" 
-							                                                   예) 상세설명 작성 주의사항
-							                          - 청소와 관련 없는 홍보성 정보는 입력하지 마세요.
-							                            (홈페이지 주소,블로그,SNS,전화번호,이메일 등)
-							                          - 욕설이나 음란성 언어를 절대로 적지 마세요!
-							                             
-							                          * 위반시 게시글 삭제나 이용 제한이 있을 수 있습니다."><%=masterVO.getB_content()%></textarea><br>
+							          placeholder="
+ 예) 상세설명 작성 주의사항
+ 
+ - 청소와 관련 없는 홍보성 정보는 입력하지 마세요.
+   (홈페이지 주소,블로그,SNS,전화번호,이메일 등)
+ - 욕설이나 음란성 언어를 절대로 적지 마세요!
+ 
+ * 위반시 게시글 삭제나 이용 제한이 있을 수 있습니다."><%=masterVO.getB_content()%></textarea><br>
 							<label class="error" for="textarea_id" style="margin-left: -100px;"></label>
 						</div>
 					</td>
@@ -847,20 +982,70 @@
 				<tr>
 					<th>일반 사진</th>
 					<td align="center">
+						<div class="default_img_div">
+							<%
+								if(upFileList.size() == 0) {
+							%>
+								<input type="hidden" name="b_up_file" value="">
+								<input type="hidden" name="b_up_file2" value="">
+								<input type="hidden" name="b_up_file3" value="">
+							<%
+								} else if(upFileList.size() == 1) {
+							%>
+								<input type="hidden" name="b_up_file" value="<%=upFileList.get(0)%>">
+								<input type="hidden" name="b_up_file2" value="">
+								<input type="hidden" name="b_up_file3" value="">
+							<%
+								} else if(upFileList.size() == 2) {
+							%>
+								<input type="hidden" name="b_up_file" value="<%=upFileList.get(0)%>">
+								<input type="hidden" name="b_up_file2" value="<%=upFileList.get(1)%>">
+								<input type="hidden" name="b_up_file3" value="">
+							<%		
+								} else {
+							%>
+								<input type="hidden" name="b_up_file" value="<%=upFileList.get(0)%>">
+								<input type="hidden" name="b_up_file2" value="<%=upFileList.get(1)%>">
+								<input type="hidden" name="b_up_file3" value="<%=upFileList.get(2)%>">
+							<%		
+								}
+							 %>
+							<ul id="default_ul">
+								<%
+									if(upFileList.size() == 0) {
+								%>
+										<li>
+											<b id="no_file_txt">업로드 한 파일이 없어요...</b>
+										</li>
+								<%
+									} else {
+										for(int i = 0; i < upFileList.size(); i++) {
+								%>
+										<li>
+											<img class="default_upfile" src="/myakkbird/myakkbirdUpload/<%=upFileList.get(i)%>"><br>
+											<b>업로드 <%=i+1 %>파일</b>
+										</li>
+								<%
+										}
+									}
+								%>
+							</ul>
+						</div>
 						<div class="img_div" id="image_container">
-							<img class="img_see" id="image_section" 
-							     src="./resources/image/img_default.png">
-							<div id="comment"></div>
+							<img class="default_img" src="./resources/image/img_default.png">
+							<ul id="img_ul">
+							</ul>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th>파일 업로드</th>
+					<th><div class="file_txt">파일 업로드</div></th>
 					<td align="center">
 						<div class="file_div">
-							<input class="upload_name" value="파일선택" disabled="disabled">
-							<label for="img_input">업로드</label> 
-							<input type="file" name="file" id="img_input" accept="image/*">
+							<a href="javascript:" id="default_btn_id" class="default_btn">기존 이미지</a>
+							<a href="javascript:" id="new_btn_id" class="new_btn">파일 업로드</a>
+							<a href="javascript:" onclick="fileUploadAction();" id="up_btn_id" class="up_btn">파일 업로드</a>
+							<input type="file" name="file" id="img_input" multiple="multiple" accept="image/*">
 						</div>
 					</td>
 				</tr>
@@ -881,8 +1066,96 @@
 	</form>
 </div>
 <script type="text/javascript">
-
+var sel_files = [];
+$('#new_btn_id').click(function() {
+	$('.default_img_div').hide();
+	$('.img_div').show();
+	$('#new_btn_id').hide();
+	$('#up_btn_id').show();
+});
+$('#default_btn_id').click(function() {
+	$('.default_img_div').show();
+	$('.img_div').hide();
+	$('#new_btn_id').show();
+	$('#up_btn_id').hide();
+});
+function fileUploadAction() {
+	$('#img_input').trigger('click');
+}
 $(document).ready(function () {
+	
+	$('#img_input').on("change", handleImgFileSelect);
+	
+	function handleImgFileSelect(e) {
+		
+		sel_files = [];
+		$('.default_img').remove();
+		$("#img_ul").empty();
+		
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		if(filesArr.length > 3) {
+			
+			Swal.fire({
+				  html:
+				    '<b>파일은 최대 3개까지 업로드 가능합니다!</b><br>',
+				  confirmButtonColor : '#37B04B',
+				  confirmButtonText: '확인',
+			});
+			$("#img_input").val("");
+			return;
+			
+		} else {
+			var index = 0;
+			filesArr.forEach(function (f) {
+				
+				if(!f.type.match("image.*")) {
+					Swal.fire({
+						  html:
+						    '<b>이미지 파일만 업로드 가능합니다!</b><br>',
+						  confirmButtonColor : '#37B04B',
+						  confirmButtonText: '확인',
+					});
+					return;
+				}
+				
+				sel_files.push(f);
+				
+				var reader = new FileReader();
+				
+				reader.onload = function(e) {
+					var img = '';
+					index++;
+					
+					if(sel_files.length == 1) {
+						img += "<li>"
+						img += "    <img id=\"img_preview"+index+"\" class='preview_1img' src=\""+e.target.result+"\" data-file='"+f.name+"'><br>"
+						img += "    <b id='preview_1img_txt'>'"+f.name+"'</b>"
+						img += "</li>" 
+					} else if(sel_files.length == 2) {
+						img += "<li>"
+						img += "    <img id=\"img_preview"+index+"\" class='preview_2img' src=\""+e.target.result+"\" data-file='"+f.name+"'><br>"
+						img += "    <b id='preview_2img_txt'>'"+f.name+"'</b>"
+						img += "</li>"
+					} else {
+						img += "<li>"
+						img += "    <img id=\"img_preview"+index+"\" class='preview' src=\""+e.target.result+"\" data-file='"+f.name+"'><br>"
+						img += "    <b id='preview_txt'>'"+f.name+"'</b>"
+						img += "</li>"
+					}
+					
+					$("#img_ul").append(img);
+					
+					
+				}
+				
+				reader.readAsDataURL(f);
+				
+			});
+		}
+		
+	}
 	
 	newMap();
 	addr_choice();
@@ -916,7 +1189,8 @@ $(document).ready(function () {
 					required: true 
 				},
 				b_d_detail: { 
-					required: true
+					required: true,
+					maxlength: 15
 				},
 				b_subject: { 
 					required: true,
@@ -925,7 +1199,8 @@ $(document).ready(function () {
 				},
 				b_content: { 
 					required: true,
-					minlength: 15
+					minlength: 15,
+					maxlength: 300
 				}
 	        },
 	        messages: {
@@ -949,7 +1224,8 @@ $(document).ready(function () {
 	        		required: "청소 종료일을 선택하세요!" 
 	        	},
 	        	b_d_detail: { 
-	        		required: "상세 근무시간을 자세히 입력해주세요!"
+	        		required: "상세 근무시간을 자세히 입력해주세요!",
+	        		maxlength: "최대 15글자만 입력가능합니다!"
 	        	},
 	        	b_subject: { 
 	        		required: "게시글 제목을 입력해주세요!",
@@ -958,19 +1234,18 @@ $(document).ready(function () {
 	        	},
 				b_content: { 
 					required: "상세설명을 입력해주세요!",
-					minlength: "최소 15글자 이상은 입력해주세요!"
+					minlength: "최소 15글자 이상은 입력해주세요!",
+					maxlength: "최대 300글자만 입력가능합니다!",
 				}
 	        }
 		});
 	});
 });
-
 //세션 아이디, 맵 생성 관련 전역 변수
 var se_id = '<%=m_id %>';
 var mapContainer;
 var map;
 // 세션 아이디, 맵 생성 관련 전역 변수
-
 //맵 생성
 function newMap() {
 	mapContainer = document.getElementById('map'), 
@@ -981,7 +1256,6 @@ function newMap() {
 	
 	map = new kakao.maps.Map(mapContainer, mapOption); 
 }
-
 // 주소 선택
 function addr_choice() {
 		
@@ -1009,26 +1283,22 @@ function addr_choice() {
 		$('#sample6_detailAddress').attr('disabled', false);
 	})
 }
-
 // 다음 주소 API
 function sample6_execDaumPostcode() {
 	
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var addr = ''; // 주소 변수
             var extraAddr = ''; // 참고항목 변수
-
             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                 addr = data.roadAddress;
             } else { // 사용자가 지번 주소를 선택했을 경우(J)
                 addr = data.jibunAddress;
             }
-
             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
             if(data.userSelectedType === 'R'){
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
@@ -1050,7 +1320,6 @@ function sample6_execDaumPostcode() {
             } else {
                 document.getElementById("sample6_extraAddress").value = '';
             }
-
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('sample6_postcode').value = data.zonecode;
             document.getElementById("sample6_address").value = addr;
@@ -1096,45 +1365,6 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
-
-var fileTarget = $('#img_input'); 
-
-// 파일 업로드 후 파일 이름 출력
-fileTarget.on('change', function(){ 
-	if(window.FileReader){ 
-		var filename = $(this)[0].files[0].name; 
-	} else { 
-		var filename = $(this).val().split('/').pop().split('\\').pop(); 
-	}
-	$(this).siblings('.upload_name').val(filename); 
-});
-
-// 파일 업로드 후 미리보기
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-  
-        reader.onload = function (e) {
-            $('#image_section').attr('src', e.target.result);  
-        }
-  
-        reader.readAsDataURL(input.files[0]);
-    }
-    
-}
-
-// 파일 업로드 후 텍스트 출력
-$("#img_input").change(function(){
-    var output = '';
-   	    output += '<div class="upload_success">'
-        output += '    <b>사진 업로드 완료!</b>'
-        output += '</div>'
-        
-   $('#comment').empty();
-   $('#comment').append(output);
-   readURL(this);
-});
-
 //광고 로그인 여부 검사
 function banner_check() {
 	
@@ -1174,7 +1404,7 @@ function banner_check() {
 	    }
 	});
 }
-
+// 광고 하트를 지급 받았는지 검사
 function banner_got_check(se_id) {
 	
 	$.ajax({
@@ -1202,7 +1432,7 @@ function banner_got_check(se_id) {
 	    }
 	});
 }
-
+// 광고 하트 지급
 function banner_got(se_id) {
 	
 	$.ajax({
@@ -1230,7 +1460,7 @@ function banner_got(se_id) {
 	    }
 	});
 }
-
+// 광고 하트 지급 완료
 function heart_got(se_id) {
 	
 	$.ajax({

@@ -4,6 +4,7 @@ package com.bit.myakkbird.mypage;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bit.myakkbird.accept.AcceptService;
 import com.bit.myakkbird.accept.AcceptVO;
@@ -57,30 +59,59 @@ public class MypageController {
 	
 	//글쓰기등록
 	@RequestMapping(value="/board_insertProcess.ak")
-	public String BoardInsertProcess(HttpSession session, String m_id, 
-			BoardVO boardVO, Model model) throws Exception {
+	public String BoardInsertProcess(MultipartHttpServletRequest mtfRequest,
+			String m_id, BoardVO boardVO, Model model) throws Exception {
 		
 		int result = boardService.UpdateHeartServiec(m_id);
-			
+		
 		if(result == 1) {
-			MultipartFile mf = boardVO.getFile();
+			List<MultipartFile> fileList = mtfRequest.getFiles("file");
+			ArrayList<String> saveFileName = new ArrayList<String>();
 			String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
-			//지정한 위치에 파일 저장        
-	        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
-	            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
-				String originalFileExtension = 
-						mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-				String storedFileName = 
-						UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-	        	
-				mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
-				boardVO.setB_org_file(mf.getOriginalFilename());
-				boardVO.setB_up_file(storedFileName);
-	        } else { // 첨부된 파일이 없을때
-				boardVO.setB_org_file("");
+			// 파일 업로드 안 할 경우
+			if(fileList.size() == 1 && fileList.get(0).getOriginalFilename().equals("")) {
 				boardVO.setB_up_file("");
+				boardVO.setB_up_file2("");
+				boardVO.setB_up_file3("");
+			// 파일 업로드 할 경우
+			} else {
+				for(int i = 0; i < fileList.size(); i++) {
+					String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
+					
+					String originalFileName = 
+							fileList.get(i).getOriginalFilename().substring(
+									fileList.get(i).getOriginalFilename().lastIndexOf("."));
+					
+					saveFileName.add(storedFileName + originalFileName); 
+					System.out.println("저장된 파일 : "+ saveFileName.get(i));
+					
+					String savePath = uploadPath + saveFileName.get(i);
+					System.out.println("저장된 파일 경로 : " + savePath);
+					
+					fileList.get(i).transferTo(new File(savePath));
+				}
+				
+				// 파일 2개 업로드
+				if(saveFileName.size() == 2) {
+					System.out.println("파일 2개 업로드");
+					boardVO.setB_up_file(saveFileName.get(0));
+					boardVO.setB_up_file2(saveFileName.get(1));
+					boardVO.setB_up_file3("");
+				// 파일 1개 업로드
+				} else if(saveFileName.size() == 1) {
+					System.out.println("파일 1개 업로드");
+					boardVO.setB_up_file(saveFileName.get(0));
+					boardVO.setB_up_file2("");
+					boardVO.setB_up_file3("");
+				// 파일 3개 업로드
+				} else {
+					System.out.println("파일 3개 업로드");
+					boardVO.setB_up_file(saveFileName.get(0));
+					boardVO.setB_up_file2(saveFileName.get(1));
+					boardVO.setB_up_file3(saveFileName.get(2));
+				}
 			}
-		        
+			
 			boardService.insertBoardService(boardVO);
 			
 			return "redirect:/profile.ak?id="+m_id;
@@ -115,24 +146,51 @@ public class MypageController {
 	
 	//게시물 수정하기
 	@RequestMapping(value="/board_updateProcess.ak")
-	public String boardUpdateProcess(HttpSession session, String m_id, 
-			BoardVO boardVO, Model model) throws Exception {
-		MultipartFile mf = boardVO.getFile();
+	public String boardUpdateProcess(MultipartHttpServletRequest mtfRequest, 
+			String m_id, MasterVO masterVO, BoardVO boardVO, Model model) throws Exception {
+		
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		ArrayList<String> saveFileName = new ArrayList<String>();
 		String uploadPath = "C:\\Project156\\myakkbirdUpload\\";
-		//지정한 위치에 파일 저장        
-        if(mf.getSize() != 0) {// 첨부된 파일이 있을때            
-            //mf.transferTo(new File(uploadPath+"/"+mf.getOriginalFilename()));   
-			String originalFileExtension = 
-					mf.getOriginalFilename().substring(mf.getOriginalFilename().lastIndexOf("."));
-			String storedFileName = 
-					UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-        	
-			mf.transferTo(new File(uploadPath+storedFileName)); // 예외처리 기능 필요함.
-			boardVO.setB_org_file(mf.getOriginalFilename());
-			boardVO.setB_up_file(storedFileName);
-        } else { // 첨부된 파일이 없을때
-			boardVO.setB_org_file("");
-			boardVO.setB_up_file("");
+		// 기존 이미지로 업로드 할 경우
+		if(fileList.size() == 1 && fileList.get(0).getOriginalFilename().equals("")) {
+		// 파일 업로드 할 경우
+		} else {
+			for(int i = 0; i < fileList.size(); i++) {
+				String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
+				
+				String originalFileName = 
+						fileList.get(i).getOriginalFilename().substring(
+								fileList.get(i).getOriginalFilename().lastIndexOf("."));
+				
+				saveFileName.add(storedFileName + originalFileName); 
+				System.out.println("저장된 파일 : "+ saveFileName.get(i));
+				
+				String savePath = uploadPath + saveFileName.get(i);
+				System.out.println("저장된 파일 경로 : " + savePath);
+				
+				fileList.get(i).transferTo(new File(savePath));
+			}
+			
+			// 파일 2개 업로드
+			if(saveFileName.size() == 2) {
+				System.out.println("파일 2개 업로드");
+				boardVO.setB_up_file(saveFileName.get(0));
+				boardVO.setB_up_file2(saveFileName.get(1));
+				boardVO.setB_up_file3("");
+			// 파일 1개 업로드
+			} else if(saveFileName.size() == 1) {
+				System.out.println("파일 1개 업로드");
+				boardVO.setB_up_file(saveFileName.get(0));
+				boardVO.setB_up_file2("");
+				boardVO.setB_up_file3("");
+			// 파일 3개 업로드
+			} else {
+				System.out.println("파일 3개 업로드");
+				boardVO.setB_up_file(saveFileName.get(0));
+				boardVO.setB_up_file2(saveFileName.get(1));
+				boardVO.setB_up_file3(saveFileName.get(2));
+			}
 		}
         
         boardService.updateBoardService(boardVO);
