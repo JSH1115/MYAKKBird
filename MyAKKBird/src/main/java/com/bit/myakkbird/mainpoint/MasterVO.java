@@ -49,14 +49,16 @@ public class MasterVO extends PageVO {
 	private String a_date;			  //요청일
 	private String e_id;			  //요청한사람(근로자ID)
 	private String a_apply;			  //수락여부
+	private int applyEmp_chk;		  //게시글 당 지원한 지원자 수	
 	
 	private int r_num;				//리뷰번호
 	private String r_id;			//리뷰 받는 아이디
 	private String r_content;		//리뷰내용
 	private String r_date;			//작성일
-	private double r_star;				//별점 1 2 3 4 5(Default)
+	private double r_star;			//별점 1 2 3 4 5(Default)
 	private String r_up_file;		//업로드리뷰파일명
 	private int r_like;				//좋아요
+	private int r_cnt;				//리뷰 총 개수
 	
 	private String c_id;        //작성인(고객ID
 	private int d_num;			//신고 번호 		
@@ -398,6 +400,17 @@ public class MasterVO extends PageVO {
 	public void setB_up_file3(String b_up_file3) {
 		this.b_up_file3 = b_up_file3;
 	}
-	
+	public int getApplyEmp_chk() {
+		return applyEmp_chk;
+	}
+	public void setApplyEmp_chk(int applyEmp_chk) {
+		this.applyEmp_chk = applyEmp_chk;
+	}
+	public int getR_cnt() {
+		return r_cnt;
+	}
+	public void setR_cnt(int r_cnt) {
+		this.r_cnt = r_cnt;
+	}
 	
 }

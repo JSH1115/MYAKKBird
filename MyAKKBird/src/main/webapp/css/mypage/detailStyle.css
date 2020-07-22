@@ -1,7 +1,12 @@
 @charset "UTF-8";
-
+	@font-face{font-family: "NotoSansKR-Bold";src:url('fonts/NotoSansKR-Bold.otf');}
+	@font-face{font-family: "NotoSansKR-Thin";src:url('fonts/NotoSansKR-Thin.otf');}
+	@font-face{font-family: "NotoSansKR-Black";src:url('fonts/NotoSansKR-Black.otf');}
+	@font-face{font-family: "NotoSansKR-Light";src:url('fonts/NotoSansKR-Light.otf');}
+	@font-face{font-family: "NotoSansKR-Medium";src:url('fonts/NotoSansKR-Medium.otf');}
+	@font-face{font-family: "NotoSansKR-Regular";src:url('fonts/NotoSansKR-Regular.otf');}
 	html {color: #222;font-weight: 100;font-size: 1em;line-height: 1.375}
-	body {margin: 0}
+	body {margin: 0; font-family: "NotoSansKR-Medium",serif;}
 	.vDnl_ {
 		max-width: 650px;
 		margin: 0 auto;

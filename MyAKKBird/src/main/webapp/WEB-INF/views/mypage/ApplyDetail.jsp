@@ -4,6 +4,9 @@
 <% 
 	MasterVO applyBoardVO = (MasterVO)request.getAttribute("applyBoardVO");
 	ArrayList<MasterVO> applyEmpProfile = (ArrayList<MasterVO>)request.getAttribute("applyEmpProfile");
+	ArrayList<MasterVO> applyStateList = (ArrayList<MasterVO>)request.getAttribute("applyStateList");
+	String id = (String)session.getAttribute("m_id"); 
+	
 	//A:정기청소 B:특수청소 C:입주청소 D:상주청소 E:빌딩청소 F:방역청소
 	//카테고리 이미지도 같이 처리해주기
 	String str = applyBoardVO.getB_category();
@@ -43,11 +46,45 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style type="text/css">
+	@font-face{
+		font-family: "NotoSansKR-Bold";
+		src:url('fonts/NotoSansKR-Bold.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Thin";
+		src:url('fonts/NotoSansKR-Thin.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Black";
+		src:url('fonts/NotoSansKR-Black.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Light";
+		src:url('fonts/NotoSansKR-Light.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Medium";
+		src:url('fonts/NotoSansKR-Medium.otf');
+	}
+	 @font-face{
+		font-family: "NotoSansKR-Regular";
+		src:url('fonts/NotoSansKR-Regular.otf');
+	}
+	
+	#header_container{
+		margin-bottom: 70px;
+	}
+	#footer_info{
+		margin-top: 15%;
+	}
+	
 	html, body {
 	 	width: 100%;
 	 	height: auto;
 	 	margin: 0 auto;
 	 	padding: 0;
+	}
+	.detailSround{
 	}
 	.postSround{
 		margin: 18px auto;
@@ -67,6 +104,7 @@
 		position: absolute;
 		border: 0.1px solid #d3d3d3; 
 		border-radius: 5px;
+		font-family: "NotoSansKR-Regular", serif;
 		background-color: white; 
 		box-shadow: -3px -3px 7px -3px #d3d3d3,
 	                3px 3px 7px -3px #d3d3d3;                       
@@ -81,6 +119,8 @@
 	.post_no {
 		font-size: 11px;
 		margin-left: 10px;
+		font-family: "NotoSansKR-Thin", serif;
+		font-size: 12px
 	}
 	
 	.post_photo {
@@ -155,9 +195,12 @@
 		height: 180px;
 		border: 0.1px solid #d3d3d3; 
 		border-radius: 5px;
+		font-family: "NotoSansKR-Medium" ,serif;
+		font-size: 16px;
 	 	background-color: white;
 		box-shadow: -3px -3px 7px -3px #d3d3d3,
-	                3px 3px 7px -3px #d3d3d3; 
+	                3px 3px 7px -3px #d3d3d3;
+	                 
 	}
 	
 	.profile_main{
@@ -212,7 +255,7 @@
 	}
 	.profile_center{
 		width: auto;
-	    margin: 110px 230px;
+	    margin: 108px 230px;
 	    position: absolute;
 	}
 	.division_line{
@@ -220,15 +263,15 @@
 	    float: left;
 	    margin-right: 5px;
 	    width: 1px;
-	    height: 18px;
+	    height: 24px;
 	    background-color: #ccc;
 	}
 	.profile_name{
 		position: relative;
 	    float: left;
 	    margin-right: 5px;
-	    margin-left: -25px;
-	  	color: #424242;
+	    margin-left: -27px;
+	    color: #424242;
 	}
 	.profile_age{
 		position: relative;
@@ -275,6 +318,9 @@
 	    float: left;
 	    margin-top: 6px;
 	}
+	.accept_lineR_sround img:last-child{display:none} 
+	.accept_lineR_sround:hover img:first-child{display:none} 
+	.accept_lineR_sround:hover img:last-child{display:inline-block}
 	.accept_denied{
 		width: 40px;
 		height: 40px;
@@ -282,12 +328,144 @@
 	    float: left;
 	    margin-top: -10px;
 	}
+	.accept_num{
+		position: absolute;
+	    float: left;
+	    margin-top: -194px;
+	    margin-left: -4px;
+	    font-size: 12px;
+	    font-family: "NotoSansKR-Thin", serif;
+	}
+	.accept_date{
+		position: absolute;
+	    float: left;
+	    margin-top: -194px;
+	    margin-left: 463px;
+	    font-size: 12px;
+	    font-family: "NotoSansKR-Thin", serif;
+	}
+	.post_icons1{
+		position: absolute;
+ 		margin-left: 55px;
+   		margin-top: 10px;
+	}
+	
+	.post_icons2{
+		position: absolute;
+	 	margin-left: 55px;
+   		margin-top: 25px;
+	}
+	.post_icons3{
+		position: absolute;
+  	 	margin-left: 55px;
+   		margin-top: 35px;
+	}
+	.post_icons4{
+		position: absolute;
+  	 	margin-left: 55px;
+   		margin-top: 45px;
+	}
+	.post_icons1_txt{
+		position: absolute;
+  	 	margin-left: 58px;
+   		margin-top: 17px;
+   		font-family: "NotoSansKR-Thin", serif;
+   		font-size: 15px;
+	}
+	
+	.post_icons2_txt{
+		position: absolute;
+  	 	margin-left: 55px;
+   		margin-top: 27px;
+   		font-family: "NotoSansKR-Thin", serif;
+   		font-size: 15px;
+	}
+	.post_icons3_txt{
+		position: absolute;
+  	 	margin-left: 55px;
+   		margin-top: 37px;
+   		font-family: "NotoSansKR-Thin", serif;
+   		font-size: 15px;
+	}
+	.post_icons4_txt{
+		position: absolute;
+  	 	margin-left: 55px;
+   		margin-top: 47px;
+   		font-family: "NotoSansKR-Thin", serif;
+   		font-size: 15px;
+	}
+	.span_date1 {
+		position: absolute;
+  		margin-left: 380px;
+  		margin-top: 50px;
+  		font-family: "NotoSansKR-Thin", serif;
+	}
+	.span_date2 {
+		position: absolute;
+		margin-left: 331px;
+		margin-top: 49px;
+		font-family: "NotoSansKR-Thin", serif;
+	}
+		
+	/* Top 스크롤 버튼 style */
+	.top {
+		position: fixed;
+		bottom: 70px;
+		display: none;
+		border-radius: 50px;
+		width: 50px;
+		height: 50px;
+		color: white;
+		background-color: #37B04B;
+		border: 0;
+		text-decoration: none;
+		margin-left: 1700px;
+		box-shadow: -3px -3px 7px -3px #d3d3d3,
+               3px 3px 7px -3px #d3d3d3;
+	}
+	
+	.top:hover {
+		background-color: #268F38;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	
+	.top:focus {
+		border: 0;
+		outline: none;
+	}
+	
+	.Top_div {
+		clear: both;
+	}
+	/* Top 스크롤 버튼 style */
+	
+	.x_button{
+		position: absolute;
+		margin-top: -35px;
+		margin-left: 1210px;
+		z-index: 1;
+	}
+	.x_button_svg{
+		box-shadow: 10px 10px 10px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
+	}
 	</style>
 </head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/sweetAlert.js"></script>  <!-- 모달창 -->
 <body>
+	<jsp:include page="../header_container.jsp"></jsp:include>
+	
+	<div class="x_button" role="button">
+		<a href="javascript:history.back();">
+			<svg class="x_button_svg" height="20pt" viewBox="0 0 512 512" width="20pt" xmlns="http://www.w3.org/2000/svg" ><path fill="#89df8f" d="m176.8125 351.1875c-4.097656 0-8.195312-1.554688-11.308594-4.691406-6.25-6.25-6.25-16.382813 0-22.632813l158.378906-158.402343c6.25-6.25 16.382813-6.25 22.632813 0 6.253906 6.25 6.253906 16.382812 0 22.636718l-158.378906 158.398438c-3.132813 3.136718-7.230469 4.691406-11.324219 4.691406zm0 0"/><path d="m335.1875 351.1875c-4.09375 0-8.191406-1.554688-11.304688-4.691406l-158.378906-158.378906c-6.25-6.25-6.25-16.382813 0-22.632813 6.25-6.253906 16.382813-6.253906 22.632813 0l158.378906 158.398437c6.253906 6.25 6.253906 16.382813 0 22.632813-3.132813 3.117187-7.230469 4.671875-11.328125 4.671875zm0 0" fill="#89df8f"/><path d="m453.332031 512h-394.664062c-32.363281 0-58.667969-26.304688-58.667969-58.667969v-394.664062c0-32.363281 26.304688-58.667969 58.667969-58.667969h394.664062c32.363281 0 58.667969 26.304688 58.667969 58.667969v394.664062c0 32.363281-26.304688 58.667969-58.667969 58.667969zm-394.664062-480c-14.699219 0-26.667969 11.96875-26.667969 26.667969v394.664062c0 14.699219 11.96875 26.667969 26.667969 26.667969h394.664062c14.699219 0 26.667969-11.96875 26.667969-26.667969v-394.664062c0-14.699219-11.96875-26.667969-26.667969-26.667969zm0 0" fill="#89df8f"/></svg>
+		</a>
+	</div>
+	<div class="detailSround">
 	<!-- 게시글 내용 div S -->
 	<div class="postSround">
-	<div class="post" id="post_id">
+	<div class="post" id="post_id" onclick="postlink('<%=id%>',<%=applyBoardVO.getB_num() %>)">
 		<div class="post_main">
 			<span class="post_no">no.<%=applyBoardVO.getB_num() %></span>
 			<% if(applyBoardVO.getM_photo() == null) { %>
@@ -295,8 +473,6 @@
 			<% } else { %>
 				<img class="post_photo" src="/myakkbird/myakkbirdUpload/<%=applyBoardVO.getM_photo()%>">
 			<% } %>
-			
-			<span class="photo_span">0명 지원</span>
 		</div>
 		<div class="post_center">
 			<span class="post_subject"><b class="post_subject_b"><%=applyBoardVO.getB_subject() %></b></span><b class="b_cate"><%=b_category%><img class="post_img" src="./resources/image/<%=b_category_img%>"></b><br>
@@ -353,34 +529,133 @@
 						</div>
 					</div>
 				</div>
-				<div class="accept_img">
-					<img class="accept_agree" src="./resources/image/accept_agree_d.png">
-					<img class="accept_lineL" src="./resources/image/accept_line.png">
-					<svg class="accept_derault" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1 1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.501 3.501 0 1 1 13 13.355z" fill="#89df8f"/></svg> 
-					<img class="accept_lineR" src="./resources/image/accept_line.png">
-					<img class="accept_denied" src="./resources/image/accept_denied_d.png">  
+				
+				<!-- 수락버튼, 요청num, 요청일 -->					
+				<%for(int j=0; j<applyStateList.size(); j++){
+					if(applyStateList.get(j).getE_id().equals(applyEmpProfile.get(i).getM_id())){ %>
+					<div class="accept_num">no.<%=applyStateList.get(j).getA_num() %></div>
+					<div class="accept_date"><%=applyStateList.get(j).getA_date() %></div>
 					
-				</div>
+					<%if(applyStateList.get(j).getA_apply().equals("D")){ %>	<!-- 아직 수락여부 결정 못함 -->
+					<div class="accept_img">
+						<img class="accept_agree" onclick="acceptMatched(<%=applyBoardVO.getB_num()%>,<%=applyStateList.get(j).getA_num()%>)" src="./resources/image/accept_agree_d.png" onmouseover="this.src='./resources/image/accept_agree.png'" onmouseout="this.src='./resources/image/accept_agree_d.png'">
+						<img class="accept_lineL" src="./resources/image/accept_line.png">
+						<svg class="accept_derault" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1 1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.501 3.501 0 1 1 13 13.355z" fill="#89df8f"/></svg> 
+						<img class="accept_lineR" src="./resources/image/accept_line.png" >
+						<img class="accept_denied" onclick="deniedMatched(<%=applyStateList.get(j).getA_num()%>)" src="./resources/image/accept_denied_d.png" onmouseover="this.src='./resources/image/accept_denied.png'" onmouseout="this.src='./resources/image/accept_denied_d.png'">  
+					</div>
+					<%}else{ %>	<!-- 거절한 근로자일 경우 -->
+					<div class="accept_img">
+						<img class="accept_agree" onclick="acceptMatched(<%=applyBoardVO.getB_num()%>,<%=applyStateList.get(j).getA_num()%>)" src="./resources/image/accept_agree_d.png" onmouseover="this.src='./resources/image/accept_agree.png'" onmouseout="this.src='./resources/image/accept_agree_d.png'">
+						<img class="accept_lineL" src="./resources/image/accept_line.png">
+						<svg class="accept_derault" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1 1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.501 3.501 0 1 1 13 13.355z" fill="#e6e6e6"/></svg> 
+						<img class="accept_lineR" src="./resources/image/accept_line.png" ">
+						<img class="accept_denied" src="./resources/image/accept_denied.png">  
+					</div>
+				<%}}} %>
 			<%}%>
 			
 		</ul>
-
 	</div>
-	
-
 	<!-- 지원자 프로필 리스트 E -->
 	
 	<div class="endDiv"></div>
 	
+	</div>
 	<!-- Top 버튼 -->
 	<div class="Top_div">
 		<button class="top">Top</button>
 	</div>
+	
 </body>
-
 <script type="text/javascript">
+	$(document).ready(function(){
+		scroll_top();
+	});	
+	
+	//게시물 디테일 페이지로 이동
+	function postlink(m_id, b_num){
+		location.href="BoardDetail.ak?b_num="+b_num+"&e_id="+m_id;
+	}
+	//프로필 눌렀을 때 리뷰보여주기
 	function empReviewLink(r_id, b_num, m_id) {
 		location.href="empReviewProfile.ak?r_id="+r_id+"&b_num="+b_num+"&m_id="+m_id;
 	}
+	
+	//매칭요청 수락
+	function acceptMatched(b_num, a_num) {
+		Swal.fire({
+			  title: '매칭을 원해요!',
+			  text: "매칭요청 수락시 1 하트가 차감됩니다",
+			  icon: 'info',
+			  iconColor: '#37B04B',
+			  showCancelButton: true,
+			  confirmButtonColor: '#37B04B',
+			  cancelButtonColor: '#E6E6E6',
+			  confirmButtonText: '<div onclick="accept_match('+b_num+','+a_num+')">매칭 수락하기</div>',
+			  cancelButtonText:'다음에 할게요',
+			})
+	}
+	//매칭요청 수락 통신
+	function accept_match(b_num, a_num) {
+		location.href="accept_match.ak?b_num="+b_num+"&a_num="+a_num;
+	}
+	//매칭요청 거절
+	function deniedMatched(a_num) {
+		Swal.fire({
+			  title: 'Are you sure?',
+			  text: "매칭 요청을 거절 하시겠습니까?",
+			  icon: 'info',
+			  iconColor: '#37B04B',
+			  showCancelButton: true,
+			  confirmButtonColor: '#37B04B',
+			  cancelButtonColor: '#E6E6E6',
+			  confirmButtonText: '<div onclick="denied_match('+a_num+')">거절 하기</div>',
+			  cancelButtonText: '더 생각해 볼게요',
+			})
+	}
+	function denied_match(a_num) {
+		$.ajax({
+			url : '/myakkbird/denied_match.ak',
+			type : 'POST',
+			 data : {'a_num':a_num},
+			dataType : 'json',
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			success : function(data) {
+				if(data == 1){
+				    Swal.fire({
+				    	icon: 'success',
+				    	title:'거절 완료!',
+				    	confirmButtonColor: '#37B04B',
+				    	confirmButtonText:'<div onclick="reload()">마음이 바뀌면 언제든 수락 해주세요!</div>',	
+				    	/* showConfirmButton: false */
+				    })
+				} 
+				
+			},
+			error:function() {
+				alert("ajax 통신 실패(매칭 신청하기 통신)!!!");
+			}
+		}); 
+	}
+	function reload() {
+		location.reload();
+	}
+	
+	//스크롤 Top 기능
+	function scroll_top() {
+		$(window).scroll(function() {
+			if($( this).scrollTop() > 200 ) {
+				$('.top').fadeIn();
+			} else {
+				$('.top').fadeOut();
+			}
+		});
+		
+		$('.top').click(function() {
+			$('html, body').animate({ scrollTop : 0 }, 400);
+			return false;
+		});
+	};
 </script>
 </html>

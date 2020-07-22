@@ -203,6 +203,16 @@ public class MypageController {
 	@RequestMapping(value="/BoardDetail.ak") 
 	public String BoardDetail(int b_num, Model model, HttpSession session, AcceptVO acceptVO) throws Exception {
 		
+		String type_id = (String)session.getAttribute("m_id");
+		if(type_id != null) {
+			// 멤버 타입 구하기
+			String m_type = memberService.mypage_menu(type_id);
+			model.addAttribute("m_type", m_type);	
+			//하트개수 구하기
+			int heart = memberService.heartCnt(type_id);
+			//System.out.println("하트개수:"+heart);
+			model.addAttribute("heart", heart);
+		}
 		//게시글 내용 불러오기
 		BoardVO vo = boardService.getDetail(b_num);		
 		model.addAttribute("board", vo);
@@ -231,6 +241,7 @@ public class MypageController {
 		return "mypage/BoardDetail";
 	}
 	
+	//좋아요 게시글 보기
 	@RequestMapping(value="/likeBoard.ak")
 	public String likeBoardList(HttpSession session, Model model) {
 		

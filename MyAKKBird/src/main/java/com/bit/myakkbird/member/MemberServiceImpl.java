@@ -90,5 +90,12 @@ public class MemberServiceImpl implements MemberService{
 		MemberVO vo = memberMapper.findPw(memberVO);
 		return vo; 
 	}
+	
+	@Override
+	public int heartCnt(String type_id) {	//하트개수구하기
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int heart = memberMapper.heartCnt(type_id);
+		return heart;
+	}
 
 }

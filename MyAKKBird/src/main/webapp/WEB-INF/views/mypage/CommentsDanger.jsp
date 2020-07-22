@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.bit.myakkbird.mypage.*" %>
 <%
-	int b_num = Integer.parseInt(request.getAttribute("b_num").toString());
-	String e_id = (String)session.getAttribute("m_id");
+	int c_num = Integer.parseInt(request.getAttribute("c_num").toString());
 	
 	BoardVO name_vo = (BoardVO)request.getAttribute("name_vo");
 %>
@@ -74,10 +73,9 @@ $(function() {
     $('#content').keyup();
 });
 function dangerFormSubmit() {
-	
 	let timerInterval
 	Swal.fire({
-	  title: '게시글 신고가 완료되었습니다.',
+	  title: '댓글 신고가 완료되었습니다.',
 	  html: '회원님들의 신고는 MyAKKBird의 쾌적한 이용환경에 도움을 줘요!',
 	  timer: 2000, 
 	  confirmButtonColor: "#37b04b",
@@ -97,13 +95,12 @@ function dangerFormSubmit() {
 	    console.log('I was closed by the timer')
 	  }
 	})
-	
 }
 </script> 
 </head>
 <body>
 		
-	<form name="danger_form" action="insertBoardDangerAction.ak?b_num=<%=b_num %>&e_id='<%=e_id %>'" method="post" enctype="multipart/form-data"> 
+	<form name="danger_form" action="insertCommentDangerAction.ak?c_num=<%=c_num %>" method="post" enctype="multipart/form-data"> 
 	<input type="hidden" name="m_id" value="${m_id }" />
 	<div class="CHMRN">
 	<div>
@@ -133,13 +130,13 @@ function dangerFormSubmit() {
 		</div>
 		<div style="padding: 0px 20px;">
 			<div class="ClJHU">
-				<% if(name_vo.getM_photo() == null) {	%>
+				<%-- <% if(name_vo.getM_photo() == null) {	%>
 						<img class="profile_photo" src="./resources/image/crocodile_profile.png"><br>
 				<% } else {	%>
 						<img class="profile_photo" src="/myakkbird/myakkbirdUpload/<%=name_vo.getM_photo()%>">
-				<% } %>			
+				<% } %>			 --%>
 				<br>
-				<span class="_2p8ES">no. <%=b_num %></span>
+				<span class="_2p8ES">no. <%=c_num %></span>
 				<span class="_2k1eb"><%=name_vo.getM_name1() %>○<%=name_vo.getM_name2() %></span>
 			</div>
 			<div class="_2_cZ6">

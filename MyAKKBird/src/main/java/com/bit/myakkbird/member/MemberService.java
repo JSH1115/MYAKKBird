@@ -18,4 +18,6 @@ public interface MemberService {
     public MemberVO searchId(MemberVO memberVO);
     public MemberVO searchPw(MemberVO memberVO);
 	
+    //승주님
+    public int heartCnt(String type_id);		//하트개수구하기
 }

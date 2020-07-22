@@ -29,6 +29,7 @@ public class BoardVO {
 	private String m_name;			  //회원이름
 	private String m_name1, m_name2;  //이름 첫글자, 세번째~마지막글자
 	private int apply_cnt;		  	  //게시글에 지원한 총 지원자 수
+	private String m_photo;			  //프로필 사진
 	
 	public String getM_name1() {
 		return m_name1;
@@ -180,5 +181,12 @@ public class BoardVO {
 	public void setB_up_file3(String b_up_file3) {
 		this.b_up_file3 = b_up_file3;
 	}
+	public String getM_photo() {
+		return m_photo;
+	}
+	public void setM_photo(String m_photo) {
+		this.m_photo = m_photo;
+	}
+	
 	
 }

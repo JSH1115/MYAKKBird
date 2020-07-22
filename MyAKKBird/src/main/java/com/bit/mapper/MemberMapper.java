@@ -19,4 +19,7 @@ public interface MemberMapper {
 	public MemberVO findId(MemberVO memberVO);
 	public MemberVO findPw(MemberVO memberVO);
 	
+	//승주님
+	public int heartCnt(String type_id);		//하트개수구하기
+	
 }

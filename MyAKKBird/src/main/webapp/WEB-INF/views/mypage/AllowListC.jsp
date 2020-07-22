@@ -4,6 +4,7 @@
 <%
 	ArrayList<MasterVO> boardList = (ArrayList<MasterVO>)request.getAttribute("boardList");
 	String m_id = (String)session.getAttribute("m_id");
+	String m_type = (String)request.getAttribute("m_type");
 	
 	int boardCount = boardList.size();
 	
@@ -36,8 +37,6 @@
 		}
 		
 	}
-	
-	//System.out.println("현재 세션 아이디 : " + m_id);
 %>
 <!DOCTYPE html>
 <html>
@@ -624,7 +623,7 @@
 				<!-- 내 구직현황 -->
 				<div style="color: rgba(0, 0, 0, 0.87); background-color: white; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; box-sizing: border-box; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: none; border-radius: 0px; position: relative; z-index: 1100; width: 100%; display: flex; padding-left: 24px; padding-right: 24px; margin-bottom: 20px;">
 					<div style="margin-top: 8px; margin-right: 8px; margin-left: -16px;">
-						<button tabindex="0" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 12px; outline: none; font-size: 0px; font-weight: inherit; position: relative; z-index: 1; overflow: visible; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; width: 48px; height: 48px; background: none;">
+						<button onclick="javascript:history.back();" tabindex="0" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 12px; outline: none; font-size: 0px; font-weight: inherit; position: relative; z-index: 1; overflow: visible; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; width: 48px; height: 48px; background: none;">
 							<div>
 								<svg viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;">
 									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
@@ -633,8 +632,13 @@
 						</button>
 					</div>
 					<div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0px; padding-top: 0px; letter-spacing: 0px; font-size: 24px; font-weight: 400; color: rgb(255, 255, 255); height: 64px; line-height: 64px; flex: 1 1 0%;">
-						<div style="color: rgb(67, 67, 67); font-size: 25px; font-weight: 500; vertical-align: top; text-align: center; display: block; position: absolute; width: 200px; 
-						left: calc(50% - 100px);"> 악어새님의 구직 현황 </div>
+						<div style="color: rgb(67, 67, 67); font-size: 25px; font-weight: 500; vertical-align: top; text-align: center; display: block; position: absolute; width: 200px; left: calc(50% - 100px); margin-left: -36px;"> 
+							<%if(m_type.equals("E")){ %>
+								<%=m_id %>악어새님의 구직 현황
+							<%}else if(m_type.equals("C")){ %>
+								<%=m_id %>악어님의 매칭 현황
+							<%} %> 
+						</div>
 					</div>
 				</div>
 				
@@ -649,6 +653,7 @@
 								</span>
 							</div>
 						</button>
+						<%if(m_type.equals("C")){ %>
 						<button id="_3kQHk_right" class="_3kQHk" onclick="location='allowListCright.ak'" tabindex="0" type="button" style="border-top: 2px solid rgb(238, 238, 238); border-right: 2px solid rgb(238, 238, 238); border-bottom: none; border-left: 2px solid rgb(238, 238, 238); border-image: initial; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 10px -2px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; position: relative; z-index: 1; height: 36px; line-height: 36px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 18px 18px 0px 0px; user-select: none; overflow: hidden; background-color: rgb(238, 238, 238); text-align: center; width: 50%;">
 							<div>
 								<span style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span>
@@ -656,6 +661,16 @@
 									<span class="_3kQHk_right_span">신청 받은 게시물</span>
 								</span>
 							</div>
+						<%}else{ %>
+						<button id="_3kQHk_right" class="_3kQHk" onclick="location='allowListEright.ak'" tabindex="0" type="button" style="border-top: 2px solid rgb(238, 238, 238); border-right: 2px solid rgb(238, 238, 238); border-bottom: none; border-left: 2px solid rgb(238, 238, 238); border-image: initial; box-sizing: border-box; display: inline-block; font-family: &quot;Noto Sans KR&quot;, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px 10px -2px; padding: 0px; outline: none; font-size: inherit; font-weight: inherit; position: relative; z-index: 1; height: 36px; line-height: 36px; min-width: 88px; color: rgba(0, 0, 0, 0.87); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; border-radius: 18px 18px 0px 0px; user-select: none; overflow: hidden; background-color: rgb(238, 238, 238); text-align: center; width: 50%;">
+							<div>
+								<span style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"></span>
+								<span style="position: relative; padding-left: 16px; padding-right: 16px; vertical-align: top; letter-spacing: 0px; text-transform: uppercase; font-weight: 400; font-size: 17px; color: rgb(158, 158, 158);">
+									<span class="_3kQHk_right_span">신청 한 게시물</span>
+								</span>
+							</div>
+						<%} %>
+							
 						</button>
 					</div>
 					<hr	style="border-top-color: rgb(238, 238, 238); border-right-color: rgb(238, 238, 238); border-bottom: 2px none; border-left-color: rgb(238, 238, 238); border-top-width: 2px; border-right-width: 2px; border-left-width: 2px; margin: -2px 0px 0px; position: absolute; width: 100%; z-index: -1;">
@@ -675,7 +690,11 @@
 											for(int i = 0; i < boardList.size(); i++) {
 										%>
 										<li id="list_id" data-no=<%=i+1 %>>
+											<%if(m_type.equals("C")){ %>
 											<div class="post" id="post_id" onclick="postlink('<%=boardList.get(i).getM_id()%>','<%=boardList.get(i).getE_id()%>',<%=boardList.get(i).getB_num()%>)">
+											<%}else{ %>
+											<div class="post" id="post_id" onclick="postlinkE('<%=boardList.get(i).getM_id()%>',<%=boardList.get(i).getB_num()%>)">
+											<%} %>
 												<div class="post_main">
 													<span class="post_no">no.<%=boardList.get(i).getB_num() %></span>
 													<%
@@ -689,7 +708,6 @@
 													<%
 														}
 													%>
-													<span class="photo_span">0명 지원</span>
 												</div>
 												<div class="post_center">
 													<span class="post_subject"><b class="post_subject_b"><%=boardList.get(i).getB_subject() %></b></span><b class="b_cate"><%=boardList.get(i).getB_category() %><img class="post_img" src="./resources/image/<%=boardList.get(i).getImg() %>"></b><br>
@@ -764,9 +782,13 @@
 	</div>
 </div>
 <script type="text/javascript">
-//게시물 클릭시 매칭된 회원정보 보러가는 페이지링크
+//게시물 클릭시 매칭된 회원정보 보러가는 페이지링크(고객)
 function postlink(m_id, e_id, b_num){
 	location.href="acceptDetail.ak?m_id="+m_id+"&e_id="+e_id+"&b_num="+b_num;
+}
+//게시물 클릭시 매칭된 회원정보 보러가는 페이지링크(근로자)
+function postlinkE(m_id, b_num){
+	location.href="acceptDetailE.ak?m_id="+m_id+"&b_num="+b_num;
 }
 //전역 변수
 var boardCount = <%=boardCount %>; // 게시글 개수
@@ -821,9 +843,14 @@ $(document).ready(function(){
 		$(window).scroll(function () {
 			var scrollHeight = $(window).scrollTop() + $(window).height(); 
 			var documentHeight = $(document).height();
+			var m_type = '<%=m_type%>';
 			
 			if(scrollHeight >= documentHeight) {
-				appendDocument();
+				if(m_type == "C"){
+					appendDocument();				
+				}else if(m_type == "E"){
+					appendDocumentE();
+				}
 			}
 		})
 		
@@ -831,7 +858,7 @@ $(document).ready(function(){
 	
 	var startNo;
 	
-	// 무한 스크롤(내가 쓴 게시글)
+	// 무한 스크롤(고객)
 	function appendDocument() {
 		
 		startNo = $("#boardList #list_id").last().data("no") || 0;
@@ -877,6 +904,91 @@ $(document).ready(function(){
 					
 					output += '<li id="list_id" data-no='+totalCount+'>'
 					output += '    <div class="post" id="post_id" onclick="postlink(`'+item.m_id+'`,`'+item.e_id+'`,'+item.b_num+')">'
+					output += '	       <div class="post_main">'
+					output += '            <span class="post_no">no.'+item.b_num+'</span>'
+					output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
+					output += '        </div>'
+					output += '        <div class="post_center">'
+					output += '                <span class="post_subject"><b class="post_subject_b">'+item.b_subject+'</b></span><b class="b_cate">'+category_d+'<img class="post_img" src="./resources/image/'+img_d+'"></b><br>'
+					output += '                <svg class="post_icons1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="21px" height="35px"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 24h-6.55c-1.08 0-2.14-.45-2.89-1.23l-7.3-7.61 2.07-1.83c.62-.55 1.53-.66 2.26-.27L8 14.34V4.79c0-1.38 1.12-2.5 2.5-2.5.17 0 .34.02.51.05.09-1.3 1.17-2.33 2.49-2.33.86 0 1.61.43 2.06 1.09.29-.12.61-.18.94-.18 1.38 0 2.5 1.12 2.5 2.5v.28c.16-.03.33-.05.5-.05 1.38 0 2.5 1.12 2.5 2.5V20c0 2.21-1.79 4-4 4zM4.14 15.28l5.86 6.1c.38.39.9.62 1.44.62H18c1.1 0 2-.9 2-2V6.15c0-.28-.22-.5-.5-.5s-.5.22-.5.5V12h-2V3.42c0-.28-.22-.5-.5-.5s-.5.22-.5.5V12h-2V2.51c0-.28-.22-.5-.5-.5s-.5.22-.5.5V12h-2V4.79c0-.28-.22-.5-.5-.5s-.5.23-.5.5v12.87l-5.35-2.83-.51.45z"/></svg>'
+					output += '                <span class="post_icons1_txt"><b>신청여부</b> '+apply+'</span><br>'
+					output += '                <svg class="post_icons2" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="#37B04B" width="24px" height="24px"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M16,11h-1V3c0-1.1-0.9-2-2-2h-2C9.9,1,9,1.9,9,3v8H8c-2.76,0-5,2.24-5,5v7h18v-7C21,13.24,18.76,11,16,11z M11,3h2v8h-2V3 z M19,21h-2v-3c0-0.55-0.45-1-1-1s-1,0.45-1,1v3h-2v-3c0-0.55-0.45-1-1-1s-1,0.45-1,1v3H9v-3c0-0.55-0.45-1-1-1s-1,0.45-1,1v3H5 v-5c0-1.65,1.35-3,3-3h8c1.65,0,3,1.35,3,3V21z"/></g></g></svg>'
+					output += '                <span class="post_icons2_txt"><b>청소시작</b> '+moment(item.b_start).format("YYYY-MM-DD")+'</span><br>'
+					output += '                <svg class="post_icons3" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#37B04B" d="M12 2C8.13 2 5 5.13 5 9c0 4.17 4.42 9.92 6.24 12.11.4.48 1.13.48 1.53 0C14.58 18.92 19 13.17 19 9c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'
+					output += '                <span class="post_icons3_txt"><b>지번주소</b> '+item.b_address_road+'</span><br>'
+					output += '                <svg class="post_icons4" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="#37B04B" d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg>'
+					output += '                <span class="post_icons4_txt"><b>희망시급</b> '+item.b_money+'원</span><br>'
+					output += '        </div>'
+					output += '        <div class="post_center_bottom">'
+					output += '				   <span class="span_date1"><b>조회</b> '+item.b_readcount+'</span><br>'
+					output += '				   <span class="span_date2"><b>작성</b> '+moment(item.b_date).format("YYYY-MM-DD")+'</span>'
+					output += '        </div>'
+					output += '    </div>'
+					output += '</li>'
+					
+					$('#boardList').append(output);
+					
+					var count = '';
+					count += '<b id="count_b">총 게시글 '+totalCount+'개</b>'
+					
+					$('#board_count').html(count);
+				}) 
+			},
+			error:function(request,status,error){		
+		        //alert("무한스크롤 에러")
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    },
+		});
+		event.preventDefault();
+	}
+	
+	var startNo2;
+	// 무한 스크롤(근로자)
+	function appendDocumentE() {
+		
+		startNo2 = $("#boardList #list_id").last().data("no") || 0;
+		
+		$.ajax({
+			url : '/myakkbird/acceptListE_infinite.ak?m_id='+m_id+'&startNo='+startNo2+'',
+			type : 'GET',
+			dataType : "json",
+			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+			success: function(data) {
+	            
+ 	            var end_div = '';
+				
+				end_div += '<div class="end_title">'
+				end_div += '	<div class="end_txt">'
+				end_div += '        <div>'
+				end_div += '            <svg class="end_icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="#424242;" width="48px" height="48px"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M15.5,14h-0.79l-0.28-0.27C15.41,12.59,16,11.11,16,9.5C16,5.91,13.09,3,9.5,3C6.08,3,3.28,5.64,3.03,9h2.02 C5.3,6.75,7.18,5,9.5,5C11.99,5,14,7.01,14,9.5S11.99,14,9.5,14c-0.17,0-0.33-0.03-0.5-0.05v2.02C9.17,15.99,9.33,16,9.5,16 c1.61,0,3.09-0.59,4.23-1.57L14,14.71v0.79l5,4.99L20.49,19L15.5,14z"/><polygon points="6.47,10.82 4,13.29 1.53,10.82 0.82,11.53 3.29,14 0.82,16.47 1.53,17.18 4,14.71 6.47,17.18 7.18,16.47 4.71,14 7.18,11.53"/></g></g></svg>'
+				end_div += '        </div>'
+				end_div += '        <b>게시글이 없어요..!</b>'
+				end_div += '	</div>'
+				end_div += '</div>'
+				
+			    $(window).scroll(function() {
+			        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+			        	$('#end').html(end_div);
+			        }
+			    });
+				
+				$.each(data, function(index, item){
+					var output = '';
+					var photo = '';
+					
+					category_list(item);
+					apply_list(item);
+					
+					totalCount = (index+startNo2+1);
+					
+					if(item.m_photo === null) {
+						photo = 'crocodile_profile.png';
+					} else {
+						photo = item.m_photo;
+					}
+					
+					output += '<li id="list_id" data-no='+totalCount+'>'
+					output += '    <div class="post" id="post_id" onclick="postlinkE(`'+item.m_id+'`,'+item.b_num+')">'	
 					output += '	       <div class="post_main">'
 					output += '            <span class="post_no">no.'+item.b_num+'</span>'
 					output += '            <img class="post_photo" src="/myakkbird/myakkbirdUpload/'+photo+'"><br>'
