@@ -70,8 +70,8 @@
 		
 		.addClass {
 			width: 600px;
-			height: 35px;
-			margin: 0 auto;
+   	 		height: 60px;
+    		margin: 0 auto;
 		}
 		
 		.boardList_div {

@@ -171,7 +171,7 @@ public class PageVO {
         // 기본 값 설정
         if (this.totalCount == 0) return; 
         if (this.pageNo == 0) this.setPageNo(1);   //기본 페이지 번호
-        if (this.pageSize == 0) this.setPageSize(7); //기본 페이지 리스트 사이즈
+        if (this.pageSize == 0) this.setPageSize(6); //기본 페이지 리스트 사이즈
         if (this.pageBlock == 0 ) this.setPageBlock(10); //기본 페이지 네비[블록] 사이즈
         
         //--[첫 페이지], [마지막 페이지] 계산

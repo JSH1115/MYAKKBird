@@ -20,7 +20,7 @@
 	}
 	.header_sround{
    	 	height: 64px;
-    	background-color: #fff1d670;
+    	background-color: white;
 	}
 	#main_logo{
 	    position: absolute;
