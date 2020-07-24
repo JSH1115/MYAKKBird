@@ -104,7 +104,7 @@
 		
 		.addClass {
 			width: 600px;
-			height: 35px;
+			height: 100px;
 			margin: 0 auto;
 		}
 		

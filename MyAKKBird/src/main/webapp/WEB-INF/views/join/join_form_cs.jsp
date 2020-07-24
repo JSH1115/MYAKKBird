@@ -888,7 +888,7 @@ $(document).ready(function(){
 			</div> 
 			<div class="phone_div">
 				<b>휴대전화</b><br>
-				<input class="phone_input" type="text" id="m_phone" name="m_phone" placeholder="  번호를 입력해주세요.">
+				<input class="phone_input" type="text" id="m_phone" name="m_phone" placeholder="  예) 010-XXXX-XXXX">
 			</div>
 			<div class="addr_div">
 				<b>주소</b>

@@ -65,7 +65,7 @@
 		/* 전체 적용 */	
 		.addClass {
 			width: 600px;
-			height: 35px;
+			height: 60px;
 			margin: 0 auto;
 		}
 		
@@ -151,7 +151,8 @@
 		
 		.post_hr {
 			margin-top: 10px; 
-			background-color: #d3d3d3;
+			height: 0.1px;
+    		border: solid 0.1px #d3d3d3;
 		}
 		
 		.post_img {

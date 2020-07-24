@@ -29,6 +29,9 @@
 	    margin-left: -93px;
 	    z-index: 1000;
 	}
+	.main_logo_img {
+		cursor: pointer;
+	}
 	#header_line{
 		background-color: #37b04b;
 		height: 28px;

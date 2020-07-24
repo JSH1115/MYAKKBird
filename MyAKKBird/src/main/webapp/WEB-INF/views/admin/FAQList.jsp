@@ -77,7 +77,7 @@
 		
 		.addClass {
 			width: 600px;
-			height: 10px;
+			height: 50px;
 			margin: 0 auto;
 		}
 		
@@ -167,12 +167,11 @@
 		/* FAQ 자세히보기 */
 		#d_b_txt {
 			float: left;
-			margin-left: 20px;
 			font-size: 17px;
 		}
 		
 		#p_txt {
-			text-align : center;
+			text-align : left;
 			font-size: 17px;
 		}
 		
