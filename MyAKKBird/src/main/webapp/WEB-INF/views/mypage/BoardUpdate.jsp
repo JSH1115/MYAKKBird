@@ -17,6 +17,7 @@
 	
 	System.out.println("수정할 현재 아이디 : " + m_id);
 	System.out.println("수정할 게시판 번호 : " + masterVO.getB_num());
+	System.out.println("수정할 카테고리 : " + masterVO.getB_category());
 	System.out.println("수정할 " + m_id + "의 지번 주소 : " + masterVO.getM_address_road());
 	System.out.println("수정할 " + m_id + "의 상세 주소 : " + masterVO.getM_address_detail());
 	
@@ -96,7 +97,7 @@
 			margin-right: auto;
 			width: 800px;
 			border-collapse: collapse;
-			border-radius: 30px;
+			border-radius: 20px;
 			background-color: white;
 			color: #444444;
 			box-shadow: -3px -3px 7px -3px #d3d3d3,
@@ -125,7 +126,7 @@
 		}
 		
 		input:focus, textarea:focus {
-			outline-color: #268F38;
+			outline-color: #37B04B;
 		}
 	
 		.all {
@@ -137,11 +138,7 @@
 		
 		.board_sub {
 		    text-align: center; 
-		    color: #212121;
-		}
-		
-		.board_sub b {
-			color: #37B04B;
+		    color: #444444;
 		}
 		
 		.head_text {
@@ -163,7 +160,7 @@
 		
 		.addClass {
 		    width: 900px;
-		    height: 40px;
+		    height: 50px;
 		    margin-left: auto;
 		    margin-right: auto;
 		    background-color: #E6E6E6;
@@ -312,6 +309,8 @@
 			border-radius: 15px;
 			font-size: 14px;
 			background-color: white;
+			-webkit-transition-duration: 0.2s; 
+			transition-duration: 0.2s
 		}
 		
 		.category_text_div b:hover {
@@ -345,13 +344,7 @@
 			margin-left: 9px;
 			height:45px;
 			font-family: "NotoSansKR-Regular"; 
-		}
-		
-		.post_button:hover {
-   		 	background-color: #268F38;
-			font-weight: bold;
 			cursor: pointer;
-   		 	border: 0;
 		}
 		
 		.info {
@@ -434,14 +427,7 @@
 			padding: 8px;
 			border-radius: 5px;
 			height:40px;
-		}
-		
-		.btn_default_addr:hover, .btn_new_addr:hover {
-			background-color: #268F38;
-			font-weight: bold;
 			cursor: pointer;
-			border: 0;
-			outline: 0;
 		}
 		
 		.btn_default_addr:focus, .btn_new_addr:focus {
@@ -457,7 +443,7 @@
 		/* 시급 테이블 */
 		.money_div {
 			width: 600px;
-			height: 100px;
+			height: 70px;
 		}
 		
 		.money_div b {
@@ -467,7 +453,7 @@
 		.money_div input {
 			width:330px; 
 		    height:40px;
-			margin-top: 27px;
+			margin-top: 12px;
 			margin-left: -240px;
 			font-size: 16px;
 		}
@@ -475,7 +461,7 @@
 		
 		/* 청소 시작, 끝 테이블 */
 		.data_tr {
-			height: 90px;
+			height: 82px;
 		}
 		
 		.data_tr input {
@@ -524,11 +510,10 @@
 		
 		.content_div {
 			width: 500px; 
-			height: 345px;
+			height: 300px;
 		}
 		
 		.content_div textarea {
-			margin-top: 35px;
 			margin-left: -86px;
 			width:500px;
 			height: 280px;
@@ -538,6 +523,7 @@
 			background-size: 120px 130px;
 			font-family: "NotoSansKR-Regular";
 			font-size: 14px;
+			border-radius: 2px;
 		}
 		
 		#counter {
@@ -704,13 +690,7 @@
 			margin-left: 50px;
 			font-size: 18px;
 			font-family: "NotoSansKR-Regular";
-		}
-		
-		.down_btn:hover {
-			background-color: #268F38;
-			font-weight: bold;
 			cursor: pointer;
-			border: 0;
 		}
 		/* submit, reset 버튼 */
 		
@@ -997,7 +977,7 @@
 			<table>
 				<tr class="data_tr">
 					<th>청소 시작일*</th>
-					<td align="center">
+					<td align="center" class="td_point">
 						<div class="start_div">
 							<input type="date" name="b_start" id="b_start_id" value="<%=masterVO.getB_start()%>"/><br>
 							<label class="error" for="b_start_id" style="margin-left: -428px;"></label>
@@ -1006,7 +986,7 @@
 				</tr>
 				<tr class="data_tr">
 					<th>청소 종료일*</th>
-					<td align="center">
+					<td align="center" class="td_point">
 						<div class="end_div">
 							<input type="date" name="b_end" id="b_end_id" value="<%=masterVO.getB_end()%>"/><br>
 							<label class="error" for="b_end_id" style="margin-left: -428px;"></label>
@@ -1015,12 +995,12 @@
 				</tr>
 				<tr class="data_tr">
 					<th>상세 근무시간*</th>
-					<td align="center">
+					<td align="center" class="td_point">
 						<div class="detail_div">
 							<input type="text" name="b_d_detail" id="b_d_detail_id" maxlength="15" 
 							       placeholder=" 예) 13시 ~15시, 매칭 후 협의 (최대 15자)"
 							       value="<%=masterVO.getB_d_detail() %>" /><br>
-							<label class="error" for="b_d_detail_id" style="margin-left: -345px;"></label>
+							<label class="error" for="b_d_detail_id" style="margin-left: -364px;"></label>
 						</div>
 					</td>
 				</tr>

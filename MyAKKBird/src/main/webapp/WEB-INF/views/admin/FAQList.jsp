@@ -77,7 +77,7 @@
 		
 		.addClass {
 			width: 600px;
-			height: 50px;
+			height: 55px;
 			margin: 0 auto;
 		}
 		

@@ -185,7 +185,6 @@
 		.screen_t_sub {
 			font-size: 23px; 
 			margin-left: 77px; 
-			color: #212121;
 		}
 		
 		.screen_t_sub strong {
@@ -195,7 +194,7 @@
 		.screen_t_sub2 {
 			font-size: 18px; 
 			margin-left: 77px; 
-			color: #424242;
+			color: #444444;
 		}
 		
 		.screen_t_rogo_txt {
@@ -240,7 +239,6 @@
 		
 		.search_fc_sub {
 		    padding-left: 335px;
-		    color: #212121;
 		    float: left;
 		    margin-top: 9px;
     	}
@@ -285,7 +283,7 @@
 		
 		.input_div span {
 			margin-left: 3px; 
-			color: #424242;
+			color: #444444;
 		}
 		/* 지번 검색 조건 style */
 		
@@ -384,6 +382,8 @@
 			border-radius: 15px;
 			font-size: 14px;
 			background-color: white;
+			-webkit-transition-duration: 0.2s; 
+			transition-duration: 0.2s
 		}
 		
 		.chk_text b:hover {
@@ -516,9 +516,10 @@
 			background-color: white;
 			font-weight: bold;
 			cursor: pointer; 
-			color: #212121;
 			font-size: 15px;
 			font-family: "NotoSansKR-Black";
+			-webkit-transition-duration: 0.4s; 
+			transition-duration: 0.4s
 		}
 		
 		.reset_button {
@@ -532,9 +533,11 @@
 			margin-top: 18px;
 			background-color: white;
 			cursor: pointer; 
-			color: #424242;
+			color: #444444;
 			font-size: 15px;
 			font-family: "NotoSansKR-Medium";
+			-webkit-transition-duration: 0.4s; 
+			transition-duration: 0.4s
 		}
 		
 		.search_button:focus, .reset_button:focus {
@@ -542,8 +545,7 @@
 		}
 		
 		.search_button:hover, .reset_button:hover {
-			background-color: #f1f3f5;
-			border: 1px solid #d3d3d3;
+			background-color: #f5f5f5;
 		}
 		/* 검색 조건 창 버튼 */
 		/* 검색 스크린 창 style */
@@ -886,6 +888,10 @@
 		.no_heart_icon {
 			margin-left: 20px;
     		float: left;
+		}
+		
+		#no_like:hover {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2337B04B' width='30px' height='30px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
 		}
 		/* 광고, 찜 관련 style */
 	</style>
@@ -1357,7 +1363,7 @@ function like_check(item, se_id) {
 		success: function(data) {
 			
 			if(data === 0) {
-				c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
+				c_heart = '<svg id="no_like" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
 			} else {
 				c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
 			}
@@ -1496,7 +1502,7 @@ function delete_like(b_num) {
 		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 		success: function(data) {
 			$('#f_id'+b_num).empty();
-			var c_heart = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
+			var c_heart = '<svg id="no_like" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>'
 			$('#f_id'+b_num).html(c_heart);
 		},
 		error:function(){

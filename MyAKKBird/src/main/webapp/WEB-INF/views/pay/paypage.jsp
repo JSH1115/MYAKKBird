@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" 
+    pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	if (session.getAttribute("m_id")==null)
@@ -12,8 +13,9 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
-<link rel="stylesheet" type="text/css" href="fonts/font.css">
+<meta charset="utf-8" />
+<title>마이악어새</title>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <style>
 @font-face{
 		font-family: "NotoSansKR-Bold";
@@ -74,7 +76,6 @@
 			color:white;
 			}
 	</style>
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script>
     function pay5() {
@@ -256,40 +257,18 @@
  }
     </script>
 
-<title>하트 충전</title>
+
 </head>
 <body>
+<!-- header zone -->
+<jsp:include page="../header_container.jsp">
+	<jsp:param value="m_id" name="m_id"/>
+</jsp:include> 
+<!-- header zone -->
+<div class="pay_div">
+	
+</div>
 <div id="webView">
-<!-- 사이트이미지 -->
-<header style="height:100px;display: flex;">
-<div style="text-align:left;flex: 1;"><img src="./resources/image/crocodile_logo.png" id="logo"/></div>
-
-<!-- 사이트이름 -->
-<div style="text-align:center;flex: 5;">
-<h1 style="text-align:left;font-size:30;"><a href="home.ak" style="color:green;">마이악어새</a></h1>
-</div>
-
-
-<!-- 회원가입 로그인 -->
-<div style="text-align:right;flex: 2;">
-<c:if test="${m_id == null}">
-<button style="text-align:center;font-size:15;" onclick="location.href='joinselect.ak'">회원가입</button>
-<button style="text-align:center;font-size:15;margin:20;" onclick="location.href='loginform.ak'">
-로그인</button>
-</c:if>
-<c:if test="${m_id != null}">
-${m_id }님 환영합니다.
-<button style="text-align:center;font-size:15;" onclick="location.href='mypage_menu.ak?id=${login.m_id }'">마이페이지</button>
-<button style="text-align:center;font-size:15;margin:20;" onclick="location.href='logOut.ak'">
-로그아웃</button>
-</c:if>
-
-</div>
-</header>
-<hr size="3" color="gray">
-<br/>
-<br/>
-<br/>
 <table align="center">
 <tr>
 	<td width="30px"><img src="./resources/image/heart.png" /></td>

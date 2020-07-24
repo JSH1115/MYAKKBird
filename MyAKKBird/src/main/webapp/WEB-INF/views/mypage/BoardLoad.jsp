@@ -385,6 +385,8 @@
 			color: #37B04B;
 			padding: 5px;
 			cursor: pointer;
+			-webkit-transition-duration: 0.2s; 
+			transition-duration: 0.2s
 		} 
 		 
 		#a_btn:hover, .delete_a:hover {

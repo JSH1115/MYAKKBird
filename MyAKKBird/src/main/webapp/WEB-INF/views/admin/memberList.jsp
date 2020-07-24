@@ -17,6 +17,7 @@
 	System.out.println("현재 운영자 ID : " + profile_M.getM_id());
 	System.out.println("현재 운영자 타입 : " + profile_M.getM_type());
 	System.out.println("현재 총 회원 수 : " + listcount + "명");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -195,13 +196,13 @@
 		}
 		
 		.stats_left {
-			width: 260px;
+			width: 270px;
 			height: 300px;
 			float: left;
 		}
 		
 		.stats_right {
-			width: 280px;
+			width: 270px;
 			height: 300px;
 			float: right;
 		}
@@ -321,7 +322,7 @@
 			width: 315px;
 			height: 30px;
 			float: left;
-			margin-top: 10px;
+			margin-top: 12px;
 			margin-left: 50px;
 		}
 		

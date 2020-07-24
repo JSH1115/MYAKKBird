@@ -76,8 +76,8 @@
 	
 	.sign_div {
 		width: 1000px;
-		height: 1400px;
-		margin: 100px auto;
+    	height: 1300px;
+    	margin: 70px auto;
 	}
 	
 	.img_div {

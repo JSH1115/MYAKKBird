@@ -57,6 +57,9 @@ public class SearchController {
 	@RequestMapping(value="/cb_sload.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> cbSearchLoad(String m_id, String choice,
 			String b_apply) {
+		System.out.println("선택한 검색조건 : " + choice);
+		System.out.println("선택한 매칭여부 : " + b_apply);
+		
 		ArrayList<MasterVO> cb_SearchLoad =
 				searchService.CBSearchListService(m_id, choice, b_apply);
 		
@@ -106,10 +109,6 @@ public class SearchController {
 	@RequestMapping(value="/search_data2.ak", produces="application/json;charset=UTF-8")
 	public ArrayList<MasterVO> searchData2(String b_address_road, 
 			String b_category, String choice, int startNo) {
-		System.out.println("검색한 주소 : " + b_address_road);
-		System.out.println("선택한 검색조건 : " + choice);
-		System.out.println("선택한 카테고리 : " + b_category);
-		
 		ArrayList<MasterVO> search_infinite = 
 				searchService.searchInfiniteService(b_address_road, b_category, 
 						choice, startNo);
