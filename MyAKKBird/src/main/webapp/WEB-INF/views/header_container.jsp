@@ -55,6 +55,12 @@
 		height: 30px;
 		margin-left: 25px;
 	}
+	.header_guide1{
+		cursor: pointer;
+	}
+	.header_guide2{
+		cursor: pointer;
+	}
 	.btn_header1{
 		border: 1px solid #37b04b;
 	    height: 38px;
@@ -63,6 +69,7 @@
 	    color:white;
 	    background-color: #37b04b;
 	    text-align: center;
+	    cursor: pointer;
 	}
 	.btn_header2{
 		margin-left: 10px;
@@ -73,6 +80,7 @@
 	    background-color: white;
 	    text-align: center;
 	    color: #37b04b;
+	    cursor: pointer;
 	}
 	.btn_header1:hover{
 		color: white;
