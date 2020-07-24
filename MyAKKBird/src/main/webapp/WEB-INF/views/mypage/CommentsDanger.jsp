@@ -41,6 +41,21 @@
 	  font-size: 0.75em;
 	  margin-left: 500px;
 	}
+	.CHMRN{
+		margin-top:65px;
+		margin-bottom: 70px;
+	}
+	/* 스크롤바 */
+	#content::-webkit-scrollbar {
+   		width: 12px;
+  	}
+  		
+  	#content::-webkit-scrollbar-thumb {
+	    background-color: #E6E6E6;
+	    border-radius: 10px;
+	    background-clip: padding-box;
+	    border: 2px solid transparent;
+  	}
 </style>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
@@ -96,8 +111,12 @@ function dangerFormSubmit() {
 	  }
 	})
 }
+function profileLink(m_id) {
+	location.href="profile.ak?id="+m_id;
+}
 </script> 
 </head>
+<jsp:include page="../header_container.jsp"></jsp:include>
 <body>
 		
 	<form name="danger_form" action="insertCommentDangerAction.ak?c_num=<%=c_num %>" method="post" enctype="multipart/form-data"> 
@@ -129,7 +148,7 @@ function dangerFormSubmit() {
 			</div>
 		</div>
 		<div style="padding: 0px 20px;">
-			<div class="ClJHU">
+			<div class="ClJHU" onclick="profileLink('<%=name_vo.getM_id()%>')">
 				<% if(name_vo.getM_photo() == null) {	%>
 						<img class="profile_photo" src="./resources/image/crocodile_profile.png"><br>
 				<% } else {	%>
@@ -176,4 +195,5 @@ function dangerFormSubmit() {
 	</div>
 	</form>
 </body>
+<jsp:include page="../footer_container.jsp"></jsp:include>
 </html>

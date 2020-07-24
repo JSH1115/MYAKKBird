@@ -70,6 +70,8 @@
 	    background-color: #37b04b;
 	    text-align: center;
 	    cursor: pointer;
+	    font-family: "NotoSansKR-Regular";
+    	font-size: 14px;
 	}
 	.btn_header2{
 		margin-left: 10px;
@@ -81,6 +83,8 @@
 	    text-align: center;
 	    color: #37b04b;
 	    cursor: pointer;
+	    font-family: "NotoSansKR-Regular";
+   	 	font-size: 14px;
 	}
 	.btn_header1:hover{
 		color: white;

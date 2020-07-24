@@ -70,7 +70,10 @@
 	.vDnl_ {
 		max-width: 650px;
 		margin: 0 auto;
-		background-color: #fff
+		background-color: #fff;
+		margin-top: 60px;
+		margin-bottom: 75px;
+		
 	}
 	.danger_icon:link { color: white; text-decoration: none;}
  	.danger_icon:visited { color: white; text-decoration: none;}
@@ -295,6 +298,7 @@
 <meta charset="UTF-8">
 <title>BoardDetail</title>
 </head>
+<jsp:include page="../header_container.jsp"></jsp:include>
 <body>
 	<!-- 요청하기 -->
 	<input type="hidden" name="b_num" value="<%=b_num %>" />
@@ -318,9 +322,9 @@
 		<div class="NHtEz">
 			<div class="_3s0Sp" role="button">	<!-- 프로필이미지 -->
 				<%if(m_img.equals("no_img")){ %>
-					<img src="./resources/image/crocodile_profile.png" width="50" height="50">
+					<img src="./resources/image/crocodile_profile.png" width="50" height="50" onclick="profileLink('<%=board.getM_id()%>')">
 				<%}else{ %>
-					<img src="/myakkbird/myakkbirdUpload/<%=m_img%>" style="width:70px; height:70px;">
+					<img src="/myakkbird/myakkbirdUpload/<%=m_img%>" style="width:70px; height:70px;" onclick="profileLink('<%=board.getM_id()%>')">
 				<%} %>
 			</div>
 			<div class="_1EHsp"><%=board.getB_subject()%></div>
@@ -459,7 +463,7 @@
 	</div>
 	</div>
 	
-	
+	<jsp:include page="../footer_container.jsp"></jsp:include>
 	<script>
 	$(document).ready(function() {
 		var login_id = '<%=e_id%>';
@@ -639,7 +643,12 @@
 	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	        map.setCenter(coords);
 	    } 
-	});    
+	});
+	
+	//이미지 누르면 개인프로필창으로 이동
+	function profileLink(m_id) {
+		location.href="profile.ak?id="+m_id;
+	}
 	</script>
 </body>
 </html>
