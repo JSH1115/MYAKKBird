@@ -172,6 +172,10 @@ public class AcceptController {
 	public String AcceptDetail(String m_id, String e_id, int b_num, Model model) {
 		//System.out.println("매칭연락처보기 m_id:"+m_id+"  e_id:"+e_id+"  b_num"+b_num);
 		
+		//매칭상태 다음페이지에 넘겨주기
+		String a_apply = "Y";
+		model.addAttribute("a_apply",a_apply);
+		
 		//게시글 정보 불러오기
 		MasterVO BoardVO = acceptService.acceptBoardList(m_id, b_num);
 		model.addAttribute("BoardVO",BoardVO);
@@ -190,6 +194,10 @@ public class AcceptController {
 	//매칭된 내역(근로자): 고객회원 프로필보기
 	@RequestMapping(value="/acceptDetailE.ak", produces="application/json;charset=UTF-8")
 	public String AcceptDetailE(String m_id, int b_num, Model model) {
+		
+		//매칭상태 다음페이지에 넘겨주기
+		String a_apply = "Y";
+		model.addAttribute("a_apply",a_apply);
 		
 		//게시글 정보 불러오기
 		MasterVO BoardVO = acceptService.acceptBoardList(m_id, b_num);
@@ -237,6 +245,10 @@ public class AcceptController {
 	//근로자클릭 시 근로자 프로필 & 리뷰 & 게시물 정보 가져오기
 	@RequestMapping(value="/empReviewProfile.ak", produces="application/json;charset=UTF-8")
 	public String EmpReviewProfile(String r_id,int b_num, String m_id, Model model) {
+		
+		//매칭상태 다음페이지에 넘겨주기
+		String a_apply = "N";
+		model.addAttribute("a_apply",a_apply);
 		
 		//게시글 정보 불러오기
 		MasterVO BoardVO = acceptService.acceptBoardList(m_id, b_num);

@@ -19,7 +19,6 @@ public class DangerController {
 		
 		BoardVO vo = dangerService.getname(b_num);
 		model.addAttribute("name_vo", vo); 
-		
 		model.addAttribute("b_num", b_num);
 		
 		return "mypage/BoardDanger";
@@ -41,13 +40,9 @@ public class DangerController {
 	@RequestMapping(value="/insertCommentDanger.ak")
 	public String insertCommentDanger(Model model,int c_num, DangerVO dangerVO) throws Exception{
 		
-		System.out.println("신고eotrmf");
-		BoardVO vo = dangerService.getname(c_num);
+		BoardVO vo = dangerService.getnameComm(c_num);
 		model.addAttribute("name_vo", vo);
-		
 		model.addAttribute("c_num", c_num);
-		
-		System.out.println("신고"+ vo.getM_photo());
 		
 		return "mypage/CommentsDanger";
 	}

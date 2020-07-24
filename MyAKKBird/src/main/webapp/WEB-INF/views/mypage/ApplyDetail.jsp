@@ -74,9 +74,6 @@
 	#header_container{
 		margin-bottom: 70px;
 	}
-	#footer_info{
-		margin-top: 15%;
-	}
 	
 	html, body {
 	 	width: 100%;
@@ -84,13 +81,15 @@
 	 	margin: 0 auto;
 	 	padding: 0;
 	}
-	.detailSround{
+	#footer_container{
+		position: absolute;
+	    height: 280px;
+	    width: 100%;
 	}
 	.postSround{
 		margin: 18px auto;
 		width: 580px;
 		height: 210px;
-		/* background-color: white; */
 		box-shadow: 10px 10px 10px -3px #d3d3d3,
 	                3px 3px 7px -3px #d3d3d3;
 	    background: #A1FFCE; 
@@ -216,6 +215,7 @@
 		height: 15px;
 		margin-top: -20px;
 		background-color: #E6E6E6; 
+		position: relative;
 		box-shadow: 10px 10px 10px -3px #d3d3d3,
 	                3px 3px 7px -3px #d3d3d3;
 	}
@@ -418,6 +418,7 @@
 		color: white;
 		background-color: #37B04B;
 		border: 0;
+		z-index: 200;
 		text-decoration: none;
 		margin-left: 1700px;
 		box-shadow: -3px -3px 7px -3px #d3d3d3,
@@ -442,13 +443,21 @@
 	
 	.x_button{
 		position: absolute;
-		margin-top: -35px;
-		margin-left: 1210px;
-		z-index: 1;
+	    margin-top: 35px;
+	    margin-left: 63%;
+	    width: 100%;
+	    z-index: 1;
 	}
 	.x_button_svg{
 		box-shadow: 10px 10px 10px -3px #d3d3d3,
 		                3px 3px 7px -3px #d3d3d3;
+	}
+	.detailSround{
+		margin-top: 58px;
+		position: relative;
+		width: 100%;
+		float: left;
+		margin-bottom: 60px;
 	}
 	</style>
 </head>
@@ -566,7 +575,7 @@
 	<div class="Top_div">
 		<button class="top">Top</button>
 	</div>
-	
+	<jsp:include page="../footer_container.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){

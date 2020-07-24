@@ -2,20 +2,17 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
-
    html,body{
       font-family: "NotoSansKR-Regular";
-      height:100%;
       padding:0px;
       margin:0px;
    }
    
    #footer_container{
-       position:absolute;
-       bottom:0;
-       width:100%;
-      /* height:280px; */
-      background-color: #575757;
+      position: relative;
+      height: 280px;
+      width: 100%;
+      bottom: 0px;
    }
    
    #footer_logos{
@@ -29,6 +26,7 @@
    
    #footer_akkbird{
       width:250px;
+      margin-top: -20px;
    }
    
    .sns{  
@@ -38,17 +36,19 @@
    }
    
    #footer_info{
-      display:flex;
-      flex-direction: row;
-      justify-content: center;
-      padding:50px 50px 0px 50px;
+      display: flex;
+	  flex-direction: row;
+	  justify-content: center;
+	  background-color: #ffe3ad;
+	  height: 100%;
       
    }
    
    #footer_info > div{
       margin:10px; 
       padding:10px; 
-      color:#c2c2c2;
+      color:#5d5d5d;
+      margin-top: 30px;
    }
 </style>
 
@@ -63,7 +63,7 @@
          </div>
       서울 서초구 강남대로 459 백암빌딩 구관 (우)06611 <br/>
       지번 : 서초동 1303-34 <br/>
-      <img src="resources/image/fullLogo_removebg.png" id="footer_akkbird">
+      <img src="resources/image/akklogo_footer.png" id="footer_akkbird">
       </div>
       
       <div>

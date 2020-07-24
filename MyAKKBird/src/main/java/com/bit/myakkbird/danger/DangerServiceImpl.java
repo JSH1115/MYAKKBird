@@ -39,6 +39,13 @@ public class DangerServiceImpl implements DangerService{
 		return board;
 	}
 
+	@Override
+	public BoardVO getnameComm(int c_num) {	//댓글쓴이 이름 불러오기
+		DangerMapper dangerMapper = sqlSession.getMapper(DangerMapper.class);
+		
+		BoardVO board = dangerMapper.getnameComm(c_num);
+		return board;
+	}
 
 	@Override
 	public int insertCommentsDanger(DangerVO dangerVO) {	//댓글신고하기

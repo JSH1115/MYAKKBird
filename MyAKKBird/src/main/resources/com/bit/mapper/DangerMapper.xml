@@ -28,4 +28,9 @@
 		select substr(m.m_name, 1, 1) m_name1, substr(m.m_name, 3, 5) m_name2, m.m_name, m.m_photo  
 		from board b, member m where b.b_num=#{b_num} and m.m_id=b.m_id
 	</select>
+	
+	<select id="getnameComm" parameterType="int" resultMap="dangerResultMap">
+		select substr(m.m_name, 1, 1) m_name1, substr(m.m_name, 3, 5) m_name2, m.m_name, m.m_photo  
+		from comments c, member m where c.c_num=#{c_num} and m.m_id=c.m_id
+	</select>	
 </mapper>	

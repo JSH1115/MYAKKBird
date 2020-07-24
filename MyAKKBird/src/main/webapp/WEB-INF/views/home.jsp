@@ -275,7 +275,6 @@
 		display: flex;
 	    flex-direction: column;
 	    align-items: center;
-	    padding-bottom: 300px;
 	}
 	
 	#FAQ_container h3{

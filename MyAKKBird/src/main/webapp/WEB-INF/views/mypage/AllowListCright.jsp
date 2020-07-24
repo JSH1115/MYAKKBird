@@ -62,7 +62,7 @@
 		._1POqd, ._1IykZ {background-color: #fff;min-height: 100vh}
 		._1POqd {max-width: 600px;margin: 50px auto 0}
 	}
-	.fMmkw {overflow: hidden}
+	.fMmkw {overflow: hidden; width: 636px; margin-left: -19px;}
 	._191Jn {position: relative;display: -ms-flexbox;display: flex;-ms-flex-pack: center;justify-content: center;-ms-flex-wrap: nowrap;flex-wrap: nowrap}
 	._3kQHk {width: calc(50% - 28px) !important;height: 50px !important}
 </style>
@@ -692,6 +692,7 @@
 
 </head>
 
+<jsp:include page="../header_container.jsp"></jsp:include>
 <body>
 	<div id="app">
 		<div class="_1IykZ">

@@ -77,18 +77,7 @@
 	.sign_div {
 		width: 1000px;
 		height: 1400px;
-		margin: 60px auto;
-	}
-	
-	.title_div {
-		width: 1000px;
-		height: 80px;
-		text-align: center;
-	}
-	
-	.title_div b {
-		font-size: 25px;
-		font-family: "NotoSansKR-Bold";
+		margin: 100px auto;
 	}
 	
 	.img_div {
@@ -844,10 +833,6 @@ $(document).ready(function(){
 	<form name="joinformcs" method="post" enctype="multipart/form-data" >
 		<input type="hidden" name="m_category" value="<%=va%>">
 		<input type="hidden" name="m_type" value="E" >
-		<div class="title_div">
-			<b>이제 거의 다 왔어요!</b><br>
-			<b>마이악어새를 이용하기 위해 정보를 입력해주세요.</b>
-		</div>
 		<div class="img_div">
 			<div class="img_profile_div">
 			 	<img class="profile_img" id="image_section" src="resources/image/bird_profile.png"/><br>

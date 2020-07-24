@@ -76,7 +76,7 @@ function dangerFormSubmit() {
 	let timerInterval
 	Swal.fire({
 	  title: '댓글 신고가 완료되었습니다.',
-	  html: '회원님들의 신고는 MyAKKBird의 쾌적한 이용환경에 도움을 줘요!',
+	  html: 'MyAKKBird의 쾌적한 이용환경에 도움을 주셔서 감사합니다!',
 	  timer: 2000, 
 	  confirmButtonColor: "#37b04b",
 	  timerProgressBar: true,
@@ -104,7 +104,7 @@ function dangerFormSubmit() {
 	<input type="hidden" name="m_id" value="${m_id }" />
 	<div class="CHMRN">
 	<div>
-		<div style="color: rgba(0, 0, 0, 0.87); background-color: white; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; box-sizing: border-box; font-family: &amp; quot; Noto Sans KR&amp;quot; , sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: none; border-radius: 0px; position: relative; z-index: 1100; width: 100%; display: flex; padding-left: 24px; padding-right: 24px;">
+		<div style="color: rgba(0, 0, 0, 0.87); background-color: white; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; box-sizing: border-box; font-family: &amp; quot; Noto Sans KR&amp;quot; , sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: none; border-radius: 0px; z-index: 1100; width: 100%; display: flex; padding-left: 24px; padding-right: 24px;">
 			<div style="margin-top: 8px; margin-right: 8px; margin-left: -16px;">
 				<a href="javascript:history.back();">
 				<button tabindex="0" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: &amp; quot; Noto Sans KR&amp;quot; , sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 12px; outline: none; font-size: 0px; font-weight: inherit; position: relative; z-index: 1; overflow: visible; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; width: 48px; height: 48px; background: none;">
@@ -130,11 +130,11 @@ function dangerFormSubmit() {
 		</div>
 		<div style="padding: 0px 20px;">
 			<div class="ClJHU">
-				<%-- <% if(name_vo.getM_photo() == null) {	%>
+				<% if(name_vo.getM_photo() == null) {	%>
 						<img class="profile_photo" src="./resources/image/crocodile_profile.png"><br>
 				<% } else {	%>
 						<img class="profile_photo" src="/myakkbird/myakkbirdUpload/<%=name_vo.getM_photo()%>">
-				<% } %>			 --%>
+				<% } %>			 
 				<br>
 				<span class="_2p8ES">no. <%=c_num %></span>
 				<span class="_2k1eb"><%=name_vo.getM_name1() %>○<%=name_vo.getM_name2() %></span>

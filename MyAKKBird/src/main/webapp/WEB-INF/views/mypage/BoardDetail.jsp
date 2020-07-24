@@ -270,19 +270,26 @@
 	.comments_date{
     	position: absolute;
 	    margin-top: 9px;
-	    margin-left: 431px;
+	    margin-left: 480px;
 	    font-size: 12px;
 	    font-weight: bold;
 	}
 	.comments_reply{
 		position: absolute;
-    	margin-top: 3px;
-    	margin-left: 518px;
+    	margin-top: 1px;
+    	margin-left: 567px;
 	}		
 	.comments_danger{
 		position: absolute;
     	margin-top: 3px;
-    	margin-left: 578px;
+    	margin-left: 604px;
+	}
+	.comments_date_sub{
+		position: absolute;
+	    margin-top: 9px;
+	    margin-left: 480px;
+	    font-size: 12px;
+	    font-weight: bold;
 	}	
 	</style>
 <meta charset="UTF-8">

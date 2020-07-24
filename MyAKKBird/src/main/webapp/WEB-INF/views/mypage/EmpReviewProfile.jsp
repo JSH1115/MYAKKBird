@@ -6,6 +6,7 @@
 	MasterVO empProfileVO = (MasterVO)request.getAttribute("empProfileVO");
 	ArrayList<MasterVO> empReviewList = (ArrayList<MasterVO>)request.getAttribute("empReviewList");
 	String id = (String)session.getAttribute("m_id"); 
+	String a_apply = (String)request.getAttribute("a_apply");
 	
 	//A:정기청소 B:특수청소 C:입주청소 D:상주청소 E:빌딩청소 F:방역청소
 	//카테고리 이미지도 같이 처리해주기
@@ -47,10 +48,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 	<style type="text/css">
 	
-	#footer_info{
-		margin-top: 75%;
-		
-	}
  	@font-face{
 		font-family: "NotoSansKR-Bold";
 		src:url('fonts/NotoSansKR-Bold.otf');
@@ -82,11 +79,12 @@
 	 	margin: 0 auto;
 	 	padding: 0;
 	}
-	.detailSround{
+	#footer_container{
+		margin-top: 40%;
 	}
 	.postSround{
 		margin: 45px 23%;
-		margin-top: 55px;
+		margin-top: 125px;
 		width: 1000px;
 		height: 218px;
 		box-shadow: 10px 10px 10px -3px #d3d3d3,
@@ -662,7 +660,7 @@ display: flex;
 }
 .x_button{
 	position: absolute;
-	margin-top: 15px;
+	margin-top: 45px;
 	margin-left: 1400px;
 	z-index: 1;
 }
@@ -751,7 +749,11 @@ display: flex;
 			<div class="profile_phone">
 				<svg class="profile_phone_svg" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m391 7.5h-30v497h30c16.57 0 30-13.43 30-30v-437c0-16.57-13.43-30-30-30z" fill="#404242"/><path d="m361 7.5h-240c-16.57 0-30 13.43-30 30v437c0 16.57 13.43 30 30 30h240c16.57 0 30-13.43 30-30v-60l-90-188.5 90-188.5c0-16.57-13.43-30-30-30z" fill="#565959"/><path d="m286 444.5h-30v30h30c8.284 0 15-6.716 15-15s-6.716-15-15-15z" fill="#8f8f8b"/><path d="m271 459.5c0-8.284-6.716-15-15-15h-30c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15z" fill="#adaca7"/><path d="m256 226 105 188.5h30v-377h-30z" fill="#4b88d5"/><path d="m298.426 37.5-21.213 21.213c-5.452 5.426-12.947 8.787-21.213 8.787s-15.761-3.361-21.193-8.787c-.02 0-21.233-21.213-21.233-21.213h-92.574v377h240v-377z" fill="#69a7ff"/><circle cx="256" cy="37.5" r="6"/><path d="m391 0h-270c-20.678 0-37.5 16.822-37.5 37.5v437c0 20.678 16.822 37.5 37.5 37.5h270c20.678 0 37.5-16.822 37.5-37.5v-437c0-20.678-16.822-37.5-37.5-37.5zm22.5 474.5c0 12.407-10.094 22.5-22.5 22.5h-270c-12.406 0-22.5-10.093-22.5-22.5v-437c0-12.407 10.094-22.5 22.5-22.5h270c12.406 0 22.5 10.093 22.5 22.5z"/><path d="m286 437h-60c-12.406 0-22.5 10.093-22.5 22.5s10.094 22.5 22.5 22.5h60c12.406 0 22.5-10.093 22.5-22.5s-10.094-22.5-22.5-22.5zm0 30h-60c-4.136 0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5h60c4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5z"/><path d="m391 30h-92.574c-1.989 0-3.896.79-5.304 2.197l-21.2 21.201c-4.277 4.257-9.932 6.602-15.922 6.602-5.993 0-11.637-2.341-15.893-6.593-.035-.036-13.158-13.139-21.229-21.21-1.407-1.407-3.315-2.197-5.304-2.197h-92.574c-4.143 0-7.5 3.358-7.5 7.5v173.5c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-166h81.968s18.2 18.189 19.076 18.981l-.038.038c7.089 7.081 16.497 10.981 26.494 10.981 9.983 0 19.396-3.896 26.517-10.984l19.015-19.016h81.968v362h-255v-166c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v173.5c0 4.142 3.357 7.5 7.5 7.5h270c4.143 0 7.5-3.358 7.5-7.5v-377c0-4.142-3.357-7.5-7.5-7.5z"/></g></svg>
 				<%if(empProfileVO.getM_type().equals("E")){ %>
-				<div class="profile_phone_text"><%=empProfileVO.getM_phone() %></div>
+					<%if(a_apply.equals("Y")){ %>
+					<div class="profile_phone_text"><%=empProfileVO.getM_phone() %></div>
+					<%}else{ %>
+					<div class="profile_phone_text2_area" onclick="yetAlert()"><div class="profile_phone_text2">Waiting...</div></div>	
+					<%} %>
 				<%}else{ %>
 				<div class="profile_phone_text2_area" onclick="deniedAlert()"><div class="profile_phone_text2">Waiting...</div></div>
 				<%} %>
@@ -878,6 +880,10 @@ display: flex;
 	  </div>
 	</div>
 	</div>
+	
+	<jsp:include page="../footer_container.jsp"></jsp:include>
+	
+	
 	<script type="text/javascript">
 	//게시물 디테일 페이지로 이동
 	function postlink(m_id, b_num){
@@ -898,7 +904,22 @@ display: flex;
 		  }
 		})
 	}
+	
+	function yetAlert() {
+		Swal.fire({
+		  title: 'Do you want a Phone-number?',
+		  text: '매칭 수락을 하시면 연락처가 공개됩니다.',
+		  background: '#FFFFFB',
+		  confirmButtonColor:'#37B04B',
+		  showClass: {
+		    popup: 'animate__animated animate__fadeInDown'
+		  },
+		  hideClass: {
+		    popup: 'animate__animated animate__fadeOutUp'
+		  }
+		})
+	}
 	</script>
 </body>
-<%-- 	<jsp:include page="../footer_container.jsp"></jsp:include> --%>
+	
 </html>
