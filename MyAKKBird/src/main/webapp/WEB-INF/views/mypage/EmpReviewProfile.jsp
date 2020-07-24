@@ -244,6 +244,23 @@
 	    border: double;
     	border-color: #ece7fe;
 	}
+	.profile_img_Sround:hover .hovertext{
+		opacity: 0.5;
+		text-align: center;
+		color: #ffffff;
+	}
+	.hovertext{
+		background: #000000;
+	    opacity: 0;
+	    position: absolute;
+	    width: 524px;
+	    margin-top: -211px;
+	    height: 211px;
+	}
+	.hovertext p{
+		margin-left: 10px;
+    	margin-top: 60px;
+	}
 	.profile_text_Sround{
 		width: 97.5%;
 	    height: 48%;
@@ -435,6 +452,17 @@
 	    padding-left: 3px;
 	}
 	
+	/* 스크롤바 스타일 */
+   	.right-content::-webkit-scrollbar {
+  		width: 12px;
+	}
+			
+	.right-content::-webkit-scrollbar-thumb {
+	    background-color: #E6E6E6;
+	    border-radius: 10px;
+	    background-clip: padding-box;
+	    border: 2px solid transparent;
+	}
 	</style>
 	<style type="text/css">
 :root {
@@ -725,12 +753,15 @@ display: flex;
 	    	MyAkkBird Profile
 	    </div>
 	    
-	    <div class="profile_img_Sround">
+	    <div class="profile_img_Sround" onclick="profileLink('<%=empProfileVO.getM_id()%>')">
 		<% if(empProfileVO.getM_photo() == null) {	%>
 				<img class="profile_photo" src="./resources/image/crocodile_profile.png"><br>
 		<% } else {	%>
 				<img class="profile_photo" src="/myakkbird/myakkbirdUpload/<%=empProfileVO.getM_photo()%>">
 		<% } %>
+			<div class="hovertext">
+				<p><font size=15>리뷰쓰러 가기!</font></p>
+			</div>
 		</div>
 		
 		<div class="profile_text_Sround">
@@ -918,6 +949,11 @@ display: flex;
 		    popup: 'animate__animated animate__fadeOutUp'
 		  }
 		})
+	}
+	
+	//프로필(마이페이지)로이동
+	function profileLink(m_id) {
+		location.href="profile.ak?id="+m_id;
 	}
 	</script>
 </body>
