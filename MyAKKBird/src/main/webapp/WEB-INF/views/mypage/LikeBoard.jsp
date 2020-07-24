@@ -63,6 +63,11 @@
 			list-style: none;
 		}
 		/* 전체 적용 */	
+		.addClass {
+			width: 600px;
+			height: 35px;
+			margin: 0 auto;
+		}
 		
 		.boardList_div {
 			margin: 0 auto;
@@ -87,7 +92,7 @@
 		
 		#count_b {
 			font-size: 14px;
-			margin-left: 40px;
+			margin-left: 45px;
 			float: left;
 		}
 		/* 게시글 개수 style */
@@ -95,7 +100,7 @@
 		/* 핵심기능 이동 txt style */
 		#go_mainPoint {
 			font-size: 14px;
-			margin-right: 40px;
+			margin-right: 44px;
 			float: right;
 			text-decoration: none;
 			color: black;
@@ -175,7 +180,7 @@
     		border-radius: 15px;
     		font-size: 11px;
     		padding: 5px;
-    		margin-left: -5px;
+    		margin-left: -2px;
     		box-shadow: -1px -1px 7px -3px #d3d3d3,
 		                1px 1px 7px -3px #d3d3d3;
 		}
@@ -232,6 +237,10 @@
 			float: right;
 			margin-right: 33px;
 			cursor: pointer;
+		}
+		
+		.move_icon {
+			float: left;
 		}
 		/* 게시글 style */
 		
@@ -357,6 +366,8 @@
 	</jsp:include>
 	<!-- header zone -->
 	<div id="boardList_div_id" class="boardList_div">
+		<div class="addClass">
+		</div>
 		<div class="boardList_div_text">
 			<span>찜한 게시글</span>
 		</div>
@@ -518,7 +529,7 @@ function list_index(index, item, startNo) {
   	output += '        <span class="post_r_span">희망시급 '+item.b_money+'원</span><br>'
   	output += '        <span class="post_r_span">'+moment(item.b_start).format("M월 D일")+' 청소시작</span>'
   	output += '        <span class="post_r_id"><b>ID </b>'+item.m_id+'</span><br>'
-  	output += '        <a class="post_r_detail" href="./BoardDetail.ak?b_num='+item.b_num+'&e_id='+se_id+'">자세히보기</a>'
+  	output += '        <a class="post_r_detail" href="./BoardDetail.ak?b_num='+item.b_num+'&e_id='+se_id+'"><svg class="move_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="22px" height="22px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>자세히보기</a>'
   	output += '        <span class="time_zone">'+board_day+'</span><br>'
   	output += '    </div>'
   	output += '</div>'

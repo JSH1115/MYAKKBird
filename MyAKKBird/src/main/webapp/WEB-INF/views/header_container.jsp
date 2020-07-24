@@ -12,6 +12,7 @@
 		padding : 20px 400px 20px 400px;
    		border-bottom: 1px solid #bfbebe;
 		text-align:center;
+		background-color: white;
 		word-spacing: 8px;
 	}
 	

@@ -115,16 +115,12 @@
 			width: 900px;
 			margin-left: auto;
 			margin-right: auto;
-			background-color: #F0F0F0;
+			background-color: #E6E6E6;
 		}
 		
 		.board_sub {
 		    text-align: center; 
 		    color: #212121;
-		}
-		
-		.board_sub b {
-			color: #37B04B;
 		}
 		
 		.head_text {
@@ -143,6 +139,63 @@
 			font-weight: bold;
 		}
 		/* 전체 적용  */
+		
+		/* header style */
+		#header_container {
+			display:flex;
+			flex-direction:row;
+			justify-content:center;;
+			height:80px;
+			padding : 20px 400px 20px 400px;
+	   		border-bottom: 1px solid #bfbebe;
+			text-align:center;
+			word-spacing: 8px;
+		}
+	
+		#header_container > div {
+			width:80%;
+		}
+		
+		#header_container div {
+			display:flex;
+			flex-direction:row;
+			justify-content: space-around;
+		}
+		
+		#main_logo {
+			width: 360px;
+			cursor:pointer;
+		}
+		
+		.header_guide {
+			position: relative;
+		    top: 30px;
+		    height: 100px;
+		    padding: 0 50px 0 10px;
+		    letter-spacing: 2px;
+		    font-weight: bold;
+		    cursor: pointer;
+		}
+		
+		.btn_header {
+			margin:18px 5px 5px 5px;
+			width:100px;
+			height:50px;
+			border-radius: 10px;
+			background-color: #89df8f;
+			line-height:47px;
+			color:white;
+			cursor:pointer;
+		} 
+		/* header style */
+		
+		.addClass {
+		    width: 900px;
+		    height: 20px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    background-color: #E6E6E6;
+	    }
 		
 		/* 카테고리 테이블 */
 		.category_div {
@@ -173,6 +226,7 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		
 		input[type="radio"]:checked + label .b_category1 { 
 			width: 50px;
 			height: 50px;
@@ -190,6 +244,7 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		
 		input[type="radio"]:checked + label .b_category2 { 
 			width: 50px;
 			height: 50px;
@@ -208,6 +263,7 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		
 		input[type="radio"]:checked + label .b_category3 { 
 			width: 50px;
 			height: 50px;
@@ -226,6 +282,7 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		
 		input[type="radio"]:checked + label .b_category4 { 
 			width: 50px;
 			height: 50px;
@@ -244,6 +301,7 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		
 		input[type="radio"]:checked + label .b_category5 { 
 			width: 50px;
 			height: 50px;
@@ -261,6 +319,7 @@
 			background-repeat: no-repeat;
 			background-size: 50px 50px;
 		}
+		
 		input[type="radio"]:checked + label .b_category6 { 
 			width: 50px;
 			height: 50px;
@@ -508,6 +567,12 @@
 			font-family: "NotoSansKR-Medium";
 			font-size: 14px;
 		}
+		
+		#counter {
+			float: right;
+			margin-right: 38px;
+			font-family: "NotoSansKR-Black";
+		}
 		/* 제목, 상세설명 테이블 */
 		
 		/* 파일 업로드 테이블 */
@@ -546,6 +611,7 @@
 		.preview {
 			width: 180px;
 			height: 180px;
+			border-radius: 2px;
 		}
 		
 		#preview_txt {
@@ -557,6 +623,7 @@
 			height: 300px;
 			margin-top: -62px;
 			margin-left: -20px;
+			border-radius: 5px;
 		}
 		
 		#preview_1img_txt {
@@ -566,6 +633,7 @@
 		.preview_2img {
 			width: 250px;
 			height: 200px;
+			border-radius: 3px;
 		}
 		
 		#preview_2img_txt {
@@ -588,6 +656,7 @@
 			height: 300px;
 			margin-top: 33px;
 			margin-left: -22px;
+			border-radius: 5px;
 		}
 		/* 파일 업로드 테이블 */
 		
@@ -668,23 +737,52 @@
 			float: left;
 			margin-top: 30px;
 		}
-		
 		/* 광고, 찜 관련 style */
 	</style>
+	<script type="text/javascript">
+	</script>
 </head>
 <body>
 <!-- header zone -->
-<jsp:include page="../header_container.jsp">
-	<jsp:param value="m_id" name="m_id"/>
-</jsp:include>
+<section id="header_container">
+	<div>
+		<img src="resources/image/fullLogo_removebg.png" id="main_logo" onclick="location.href='home.ak'">
+		
+		<div>
+			<span class="header_guide" onclick="location.href='guide.ak'"> 처음오셨나요?</span>
+			<span class="header_guide" onclick="location.href='pay.ak'"> 하트구매 </span>
+		</div>
+		
+		<c:if test="${login.m_id == null}">
+			<div>
+				<span class="btn_header" onclick="location.href='loginform.ak'">로그인</span>
+				<span class="btn_header" onclick="location.href='joinselect.ak'">회원가입</span>
+	<!-- 			<img src="resources/image/btn_login.png" class="btn_header" onclick="location.href='loginform.ak'">
+				<img src="resources/image/btn_join.png" class="btn_header" onclick="location.href='joinselect.ak'"> -->
+			</div>
+		</c:if>
+		<c:if test="${login.m_id != null}">
+			<div>
+				
+				<span class="btn_header" onclick="location.href='profile.ak?id=${login.m_id }'">${login.m_id}</span>
+				<span class="btn_header"onclick="location.href='logOut.ak'">로그아웃</span>
+	<%-- 			<img src="resources/image/btn_mypage.png" class="btn_header" onclick="location.href='profile.ak?id=${login.m_id }'">
+				<img src="resources/image/btn_logout.png" class="btn_header" onclick="location.href='logOut.ak'"> --%>
+				
+			</div>
+		</c:if>
+	</div>
+</section>
 <!-- header zone -->
 <div class="all">
+	<div class="addClass">
+	</div>
 	<form name="board_form" id="board_form_id" action="board_insertProcess.ak" 
 	      method="post" enctype="multipart/form-data">
 	    <!-- 아이디 hidden -->
 	    <input type="hidden" name="m_id" value=<%=memberVO.getM_id() %>>
 		<!-- 아이디 hidden -->
-		<h1 class="board_sub"><b>악어</b>새 구하기</h1>
+		<h1 class="board_sub">악어새 구하기</h1>
 		<div class="board_out">
 			<b class="head_text">청소 종류</b>
 			<table>
@@ -795,11 +893,11 @@
 						<div class="address_div">
 							<div class="address_div_left" >
 								<!-- 다음 주소 API 시작 -->
-								<input type="text" class="post_text" id="sample6_postcode" placeholder=" 우편번호">
+								<input type="text" class="post_text" id="sample6_postcode" readonly placeholder=" 우편번호">
 								<input type="button" class="post_button" onclick="sample6_execDaumPostcode()" 
 								       value="우편번호 찾기"><br>
 								<input type="text" name="b_address_road" id="sample6_address" class="address_input"  
-								       placeholder=" 지번주소로 꼭 선택해주세요!"><br>
+								       readonly placeholder=" 지번주소로 꼭 선택해주세요!"><br>
 								<label class="error" id="addr" for="sample6_address" style="margin-left: -110px;"></label><br>
 								<input type="text" name="b_address_detail" id="sample6_detailAddress"  
 								       class="address_input" placeholder=" 상세주소"><br>
@@ -873,8 +971,8 @@
 					<th>상세 근무시간*</th>
 					<td align="center">
 						<div class="detail_div">
-							<input type="text" name="b_d_detail" id="b_d_detail_id" 
-							       placeholder=" 예) 13시 ~15시, 매칭 후 협의"/><br>
+							<input type="text" name="b_d_detail" id="b_d_detail_id" maxlength="15"
+							       placeholder=" 예) 13시 ~15시, 매칭 후 협의 (최대 15자)"/><br>
 							<label class="error" for="b_d_detail_id" style="margin-left: -345px;"></label>
 						</div>
 					</td>
@@ -888,9 +986,9 @@
 					<th>제목*</th>
 					<td align="center">
 						<div class="subject_div">
-							<input type="text" name="b_subject" id="b_subject_id" 
-							       placeholder=" 예) 다음주 이사로 인해 입주청소가 필요합니다!"/><br>
-							<label class="error" for="b_subject_id" style="margin-left: -100px;"></label>
+							<input type="text" name="b_subject" id="b_subject_id" maxlength="25"
+							       placeholder=" 예) 다음주 이사로 인해 입주청소가 필요합니다! (최대 25자)"/><br>
+							<label class="error" for="b_subject_id" style="margin-left: -110px;"></label>
 						</div>
 					</td>
 				</tr>
@@ -899,9 +997,9 @@
 					<td align="center">
 						<div class="content_div">
 						    <!-- placeholder 편집 금지 -->
-							<textarea name="b_content" id="textarea_id"  
+							<textarea name="b_content" id="textarea_id" maxlength="300" 
 							          placeholder="
- 예) 상세설명 작성 주의사항
+ 예) 상세설명 작성 주의사항 (최대 300자)
  
  - 청소와 관련 없는 홍보성 정보는 입력하지 마세요.
    (홈페이지 주소,블로그,SNS,전화번호,이메일 등)
@@ -909,7 +1007,8 @@
  
  * 위반시 게시글 삭제나 이용 제한이 있을 수 있습니다."></textarea><br>
  							<!-- placeholder 편집 금지 -->
-							<label class="error" for="textarea_id" style="margin-left: -100px;"></label>
+							<label class="error" for="textarea_id" style="margin-left: -20px;"></label>
+							<span id="counter">###</span>
 						</div>
 					</td>
 				</tr>
@@ -947,7 +1046,7 @@
 			<div class="btn_div">
 				<div class="down_btn_div">
 					<input class="down_btn" id="submit_btn" type="submit" value="등록">
-					<input class="down_btn" type="reset">
+					<input class="down_btn" type="reset" onclick="reset_form()">
 				</div>
 			</div>
 		</div>
@@ -957,10 +1056,53 @@
 <!-- footer zone -->
 </body>
 <script type="text/javascript">
-var sel_files = [];
+var sel_files = []; // 업로드한 파일을 저장할 배열
+// 트리거 이벤트
 function fileUploadAction() {
 	$('#img_input').trigger('click');
 }
+// form 초기화
+function reset_form() {
+	var img_ul = '';
+	
+	$('#board_form_id').each( function () {
+        this.reset();
+    });
+	
+	img_ul += '<img class="default_img" src="./resources/image/img_default.png">'
+	img_ul += '<ul id="img_ul"></ul>'
+	
+	$("#img_ul").empty();
+	$(".img_div").html(img_ul);
+}
+$(function() {
+    $('#textarea_id').keyup(function (e){
+        var content = $(this).val();
+        
+        $('#counter').html(content.length + '/300');
+    });
+    $('#textarea_id').keyup();
+});
+$(document).on('mouseover','.header_guide',function(){
+	$(this).css({
+		'text-decoration':'underline'
+	})
+}).on('mouseleave','.header_guide',function(){
+	$(this).css({
+		'text-decoration':'none'
+	})
+})
+$(document).on('mouseover','.btn_header',function(){
+	$(this).css({
+		'background-color':'#37b04b',
+		'box-shadow': '-9px -9px 9px -9px #d3d3d3, 9px 9px 9px -9px #a9a8a8'
+		})
+}).on('mouseleave','.btn_header',function(){
+	$(this).css({
+		'background-color':'#89df8f',
+		'box-shadow':'0 0 0 #ffffff, 0 0 0 #ffffff'
+		})
+})
 $(document).ready(function () {
 	
 	$('#img_input').on("change", handleImgFileSelect);

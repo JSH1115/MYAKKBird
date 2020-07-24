@@ -68,6 +68,12 @@
 		}
 		/* 전체 적용 */	
 		
+		.addClass {
+			width: 600px;
+			height: 35px;
+			margin: 0 auto;
+		}
+		
 		.boardList_div {
 			margin: 0 auto;
 			padding: 0;
@@ -91,7 +97,7 @@
 		
 		#count_b {
 			font-size: 14px;
-			margin-left: 24px;
+			margin-left: 26px;
 			float: left;
 		}
 		/* 게시글 개수 style */
@@ -434,7 +440,6 @@
 			height: 100px;
 			float: left;
 			border-right: 0.5px solid #E6E6E6;
-			background-color: #89DF8F;
 		}
 		
 		.modal_myPhoto {
@@ -722,6 +727,8 @@
 		<jsp:param value="m_id" name="m_id"/>
 	</jsp:include>
 	<div id="boardList_div_id" class="boardList_div">
+		<div class="addClass">
+		</div>
 		<div class="boardList_div_text">
 			<span>게시글 보기</span>
 		</div>
@@ -885,7 +892,7 @@ function board_list(index, item, startNo) {
 	output += '        <div class="post_bottom">'
 	output += '            <ul id="check_ul">'
 	output += '                <li id="check_li">'
-	output += '                    <a href="./searchDetail.ak?b_num='+item.b_num+'" id="a_btn">신청내역보기</a>'
+	output += '                    <a href="./allowListC.ak" id="a_btn">신청내역보기</a>'
 	output += '                </li>'
 	output += '                <li id="check_li">'
 	output += '                    <a href="#modal_id" rel="modal:open" class="detail_btn" id="a_btn" value="'+item.b_num+'">게시글 보기</a>'

@@ -5,12 +5,11 @@
 <%@ page import="com.bit.myakkbird.admin.*" %>
 <%@ page import="com.bit.myakkbird.mainpoint.*" %>
 <%
-	MasterVO memberCheck = (MasterVO)request.getAttribute("memberCheck");	
+	String m_id = (String)request.getAttribute("m_id");	
 	ArrayList<FAQVO> faqList = (ArrayList<FAQVO>)request.getAttribute("faqList");
-	int listcount=((Integer)request.getAttribute("listcount")).intValue();
+	int listcount = ((Integer)request.getAttribute("listcount")).intValue();
 	
-	System.out.println("현재 아이디 : " + memberCheck.getM_id());
-	System.out.println("현재 회원타입 : " + memberCheck.getM_type());
+	System.out.println("현재 아이디 : " + m_id);
 	System.out.println("FAQ 게시글 개수 : " + listcount);
 %>
 <!DOCTYPE html>
@@ -76,6 +75,12 @@
 		}
 		/* 전체 적용 */
 		
+		.addClass {
+			width: 600px;
+			height: 10px;
+			margin: 0 auto;
+		}
+		
 		/* FAQ 게시글 출력 */
 		.faq_div {
 			width: 1000px;
@@ -85,7 +90,7 @@
 		
 		.faq_header {
 			width: 600px;
-			height: 90px;
+			height: 45px;
 			margin: 0 auto;
 			text-align: center;
 		}
@@ -93,6 +98,7 @@
 		.admin_zone {
 			width: 600px;
 			height: 35px;
+			margin: 0 auto;
 		}
 		
 		#faq_count {
@@ -125,6 +131,8 @@
 		#faq_v_move {
 			height: 55px;
 			cursor: pointer;
+			-webkit-transition-duration: 0.4s; 
+			transition-duration: 0.4s
 		}
 		
 		#faq_v_move:hover {
@@ -183,7 +191,7 @@
 		.work_div {
 			width: 600px;
 			height: 50px;
-			margin-top: 25px;
+			margin-top: 5px;
 			text-align: center;
 		}
 		
@@ -205,18 +213,12 @@
 	</jsp:include>
 	<!-- header zone -->
 	<div class="faq_div">
+		<div class="addClass">
+		</div>
 		<div class="faq_header">
 			<h2>마이악어새 FAQ</h2>
-			<%
-				if(memberCheck.getM_type().equals("M")) {
-			%>
-				<div class="admin_zone">
-					<b id="faq_count">총 FAQ게시글 <%=listcount %>개</b>
-					<a href="FAQWrite.ak" id="faq_w_move">FAQ 작성</a>
-				</div>
-			<%
-				} 
-			%>
+		</div>
+		<div class="admin_zone">
 		</div>
 		<div class="faq_table_div">
 			<table>
@@ -255,7 +257,38 @@
 	</div>
 </body>
 <script type="text/javascript">
-var m_type = '<%=memberCheck.getM_type() %>';
+var m_id = '<%=m_id %>';          //현재 아이디
+var m_type;                       //회원 타입
+var listcount = <%=listcount %>;  //FAQ 개수
+$(document).ready(function() {
+	
+	if(m_id != null) {
+		memberCheck();
+	}
+	
+});
+// 회원 체크
+function memberCheck() {
+	
+	$.ajax({
+		url: '/myakkbird/faqMemberCheck.ak?m_id='+m_id+'',
+		type: 'GET',
+		dataType : "json",
+		contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		success: function(data) {
+			var output = '';
+			m_type = data.m_type;
+			
+			if(m_type === 'M') {
+				output += '<b id="faq_count">총 FAQ게시글 '+listcount+'개</b>'
+				output += '<a href="FAQWrite.ak" id="faq_w_move">FAQ 작성</a>'
+				
+				$('.admin_zone').html(output);
+			}
+		}
+	});
+}
+// FAQ 자세히 보기
 function detail_view(f_num) {
 	$('#f_c_div'+f_num).toggle();
 	

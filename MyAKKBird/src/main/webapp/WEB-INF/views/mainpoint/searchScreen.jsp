@@ -126,6 +126,10 @@
 			white-space: nowrap;
 		}
 		
+		.bAddr b {
+			margin-left: 3px;
+		}
+		
 		.bAddr span {
 			font-size: 13px;
 			color: #696969;
@@ -134,19 +138,27 @@
 		.bAddr a {
 			font-size: 13px;
 		}
+		
 		/* 지도 style 끝 */
 		
 		/* header */
 		#header_container{
 			display:flex;
 			flex-direction:row;
-			justify-content:space-between;
-			width:100%;
-			height:80px;
-			background-color:white;
+			justify-content:center;;
+			height:121px;
+			padding : 20px 400px 20px 400px;
+	   		border-bottom: 1px solid #bfbebe;
+			text-align:center;
+			word-spacing: 8px;
+			background-color: white;
 		}
-	
-		#header_container > div{
+		
+		#header_container > div {
+			width:80%;
+		}
+		
+		#header_container  div{
 			display:flex;
 			flex-direction:row;
 			justify-content: space-around;
@@ -157,11 +169,23 @@
 			cursor:pointer;
 		}
 		
+		.header_guide{
+			position: relative;
+		    top: 30px;
+		    height: 100px;
+		    padding: 0 50px 0 10px;
+		    letter-spacing: 2px;
+		    font-weight: bold;
+		    cursor: pointer;
+		}
+		
 		.btn_header{
+			margin:18px 5px 5px 5px;
 			width:100px;
 			height:50px;
-			margin-top: 15px;
 			border-radius: 10px;
+			background-color: #89df8f;
+			line-height:47px;
 			color:white;
 			cursor:pointer;
 		}
@@ -227,18 +251,10 @@
 			color: #424242;
 		}
 		
-		.screen_t_rogo_img {
-			width: 95px;
-			height: 100px;
-			float:right;
-			margin-top: -40px;
-			margin-right: 10px;
-		}
-		
 		.screen_t_rogo_txt {
-			font-size: 16px;
+			font-size: 18px;
 			float: right;
-			margin-top: 6px;
+			margin-top: -1px;
 			margin-right: 100px;
 		}
 		
@@ -671,7 +687,7 @@
     		border-radius: 15px;
     		font-size: 11px;
     		padding: 5px;
-    		margin-left: -5px;
+    		margin-left: -2px;
     		box-shadow: -1px -1px 7px -3px #d3d3d3,
 		                1px 1px 7px -3px #d3d3d3;
 		}
@@ -850,28 +866,40 @@
 <body>
 	<!-- header -->
 	<section id="header_container">
-		<img src="resources/image/fullLogo.png" id="main_logo" onclick="location.href='home.ak'">
-		<c:if test="${login.m_id == null}">
-			<div>
-				<img src="resources/image/btn_login.png" class="btn_header" onclick="location.href='loginform.ak'">
-				<img src="resources/image/btn_join.png" class="btn_header" onclick="location.href='joinselect.ak'">
-			</div>
-		</c:if>
-		<c:if test="${login.m_id != null}">
-			<div>
-				${login.m_id}
-				<img src="resources/image/btn_mypage.png" class="btn_header" onclick="location.href='profile.ak?id=${login.m_id }'">
-				<img src="resources/image/btn_logout.png" class="btn_header" onclick="location.href='logOut.ak'">
-			</div>
-		</c:if>
-	</section> 
+	<div>
+		<img src="resources/image/fullLogo_removebg.png" id="main_logo" onclick="location.href='home.ak'">
+		
+		<div>
+			<span class="header_guide" onclick="location.href='guide.ak'"> 처음오셨나요?</span>
+			<span class="header_guide" onclick="location.href='pay.ak'"> 하트구매 </span>
+		</div>
+		
+			<c:if test="${login.m_id == null}">
+				<div>
+					<span class="btn_header" onclick="location.href='loginform.ak'">로그인</span>
+					<span class="btn_header" onclick="location.href='joinselect.ak'">회원가입</span>
+		<!-- 			<img src="resources/image/btn_login.png" class="btn_header" onclick="location.href='loginform.ak'">
+					<img src="resources/image/btn_join.png" class="btn_header" onclick="location.href='joinselect.ak'"> -->
+				</div>
+			</c:if>
+			<c:if test="${login.m_id != null}">
+				<div>
+					
+					<span class="btn_header" onclick="location.href='profile.ak?id=${login.m_id }'">${login.m_id}</span>
+					<span class="btn_header"onclick="location.href='logOut.ak'">로그아웃</span>
+		<%-- 			<img src="resources/image/btn_mypage.png" class="btn_header" onclick="location.href='profile.ak?id=${login.m_id }'">
+					<img src="resources/image/btn_logout.png" class="btn_header" onclick="location.href='logOut.ak'"> --%>
+					
+				</div>
+			</c:if>
+		</div>
+	</section>
 	<!-- header -->
 	<div class="screen_Top">
 		<div class="screen_Top_text">
 			<b class="screen_t_sub"><strong>악어</strong>를 찾고 싶은 지역,</b><br>
 			<span class="screen_t_sub2">위치와 청소 종류를  찾아 검색하세요.</span>
-			<b class="screen_t_rogo_txt">청소는 마이 <b>악어새</b></b>
-			<img class="screen_t_rogo_img" src="./resources/image/crocodile_logo.png">
+			<b class="screen_t_rogo_txt">청소는 역시 마이 <b>악어새</b></b>
 		</div>
 		<hr>
 		<div class="screen_Top_form">
@@ -1182,10 +1210,13 @@ function addmarker(index, listData) {
 				    iwContent += '<div class="bAddr">'
 				    iwContent += '  <b>'+listData[index].name.substr(0, 1)+'O'+listData[index].name.substr(2, 3)+'</b>'
 				    iwContent += '  <span>'+listData[index].gender+'</span><br>'
+				    iwContent += '  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'
 				    iwContent += '	<span>'+result[0].address_name+'</span><br>'
+				    iwContent += '  <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="#37B04B" width="20px" height="20px"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M16,11h-1V3c0-1.1-0.9-2-2-2h-2C9.9,1,9,1.9,9,3v8H8c-2.76,0-5,2.24-5,5v7h18v-7C21,13.24,18.76,11,16,11z M11,3h2v8h-2V3 z M19,21h-2v-3c0-0.55-0.45-1-1-1s-1,0.45-1,1v3h-2v-3c0-0.55-0.45-1-1-1s-1,0.45-1,1v3H9v-3c0-0.55-0.45-1-1-1s-1,0.45-1,1v3H5 v-5c0-1.65,1.35-3,3-3h8c1.65,0,3,1.35,3,3V21z"/></g></g></svg>'
 				    iwContent += '	<span>'+listData[index].category+'</span><br>'
+				    iwContent += '  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/></svg>'
 				    iwContent += '  <span>시급 '+listData[index].money+'원</span><br>'
-				    iwContent += '	<a href="./BoardDetail.ak?b_num='+listData[index].num+'&e_id='+se_id+'">자세히보기</a>'
+				    iwContent += '	<a href="./BoardDetail.ak?b_num='+listData[index].num+'&e_id='+se_id+'"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>자세히보기</a>'
 				    iwContent += '</div>'; 
 			    
 			    var infowindow = new kakao.maps.InfoWindow({
@@ -1250,7 +1281,7 @@ function list_index(index, item, startNo) {
   	output += '        <span class="post_r_span">희망시급 '+item.b_money+'원</span><br>'
   	output += '        <span class="post_r_span">'+moment(item.b_start).format("M월 D일")+' 청소시작</span>'
   	output += '        <span class="post_r_id"><b>ID </b>'+item.m_id+'</span><br>'
-  	output += '        <a class="post_r_detail" href="./BoardDetail.ak?b_num='+item.b_num+'&e_id='+se_id+'">자세히보기</a>'
+  	output += '        <a class="post_r_detail" href="./BoardDetail.ak?b_num='+item.b_num+'&e_id='+se_id+'"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="22px" height="22px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>자세히보기</a>'
   	output += '        <span class="time_zone">'+board_day+'</span><br>'
   	output += '    </div>'
   	output += '</div>'
@@ -1584,6 +1615,27 @@ function heart_got(se_id) {
 	    }
 	});
 }
+// header script
+$(document).on('mouseover','.header_guide',function(){
+	$(this).css({
+		'text-decoration':'underline'
+	})
+}).on('mouseleave','.header_guide',function(){
+	$(this).css({
+		'text-decoration':'none'
+	})
+})
+$(document).on('mouseover','.btn_header',function(){
+	$(this).css({
+		'background-color':'#37b04b',
+		'box-shadow': '-9px -9px 9px -9px #d3d3d3, 9px 9px 9px -9px #a9a8a8'
+		})
+}).on('mouseleave','.btn_header',function(){
+	$(this).css({
+		'background-color':'#89df8f',
+		'box-shadow':'0 0 0 #ffffff, 0 0 0 #ffffff'
+		})
+})
 $(document).ready(function(){
 	
 	timer();

@@ -383,7 +383,7 @@ public class MemberController {
 			}
 			else
 			{
-				writer.write("<script>alert('회원 가입 실패!!');"
+				writer.write("<script>alert('회원 가입 실패!');"
 						+ "location.href='./join/joinselect.ak';</script>");
 			}
 			return null;
@@ -428,7 +428,7 @@ public class MemberController {
 			}
 			else 
 			{
-				writer.write("<script>alert('로그인 실패!!');location.href='./loginform.ak';</script>");
+				writer.write("<script>alert('로그인 실패!');location.href='./loginform.ak';</script>");
 			}
 			return null;
 		}
@@ -539,8 +539,8 @@ public class MemberController {
 				}
 				else
 				{
-					writer.write("<script>alert('잘못된정보입니다!!!');"
-							+ "location.href='./home.ak';</script>");
+					writer.write("<script>alert('잘못된정보입니다!');"
+							+ "location.href='./searchingId.ak';</script>");
 				}
 				return null;
 	
@@ -578,13 +578,13 @@ public class MemberController {
 					}catch(Exception e) {
 						System.out.println(e);
 					}
-					writer.write("<script>alert('이메일을 확인해주세요.!!!');"
+					writer.write("<script>alert('이메일을 확인해주세요!');"
 							+ "location.href='./searchSelect.ak';</script>");
 				}
 				else
 				{
-					writer.write("<script>alert('잘못된정보입니다!!!');"
-							+ "location.href='./home.ak';</script>");
+					writer.write("<script>alert('잘못된정보입니다!');"
+							+ "location.href='./searchingPw.ak';</script>");
 				}
 				return null;
 	

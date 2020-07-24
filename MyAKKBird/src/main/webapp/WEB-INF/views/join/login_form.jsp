@@ -1,93 +1,180 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<title>로그인</title>
-<link rel="stylesheet" type="text/css" href="fonts/font.css">
-<style>
-@font-face{
+<!-- alert창 API 시작 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- alert창 API 끝 -->
+	<title>마이악어새</title>
+	<style>
+	@font-face {
 		font-family: "NotoSansKR-Bold";
 		src:url('fonts/NotoSansKR-Bold.otf');
 	}
-	 @font-face{
+	
+	@font-face {
 		font-family: "NotoSansKR-Thin";
 		src:url('fonts/NotoSansKR-Thin.otf');
 	}
-	 @font-face{
+	
+	@font-face {
 		font-family: "NotoSansKR-Black";
 		src:url('fonts/NotoSansKR-Black.otf');
 	}
-	 @font-face{
+	
+	@font-face {
 		font-family: "NotoSansKR-Light";
 		src:url('fonts/NotoSansKR-Light.otf');
 	}
-	 @font-face{
+	
+	@font-face {
 		font-family: "NotoSansKR-Medium";
 		src:url('fonts/NotoSansKR-Medium.otf');
 	}
-	 @font-face{
+	
+	@font-face {
 		font-family: "NotoSansKR-Regular";
 		src:url('fonts/NotoSansKR-Regular.otf');
 	}
-	body {margin:0;padding:0;
-	font-family: "NotoSansKR-Regular";}
-#webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
-#webView[data-show-memo='true'] {overflow:visible}
+	
+	/* 전체 적용 */
+	body {
+		margin: 0 auto;
+		padding: 0;
+		background-color: #F6F6F6;
+		font-family: "NotoSansKR-Regular";
+	}
+	
+	h2 {
+		font-family: "NotoSansKR-Bold";
+	}
+	
+	input {
+		font-family: "NotoSansKR-Medium";
+	}
+	
+	input:focus {outline:none;}
+	
 	a:hover {
 		text-decoration: none;
 	}
-	#logo{
-		height:100px;
-		float:right;
+	
+	label {
+		margin-left: -10px;
+		cursor: pointer;
 	}
-	 .btn1{
- 	margin:5px; 
-	padding: 5px; 
-	border-radius:5px;
-	border:0px;
-	background: #37b04b;
-	text-decoration: none;
-	color:white;
+	/* 전체 적용 */
+	
+	.login-box {
+		margin-top: 40px;
 	}
 	
-	.tex{
-		    height: 50px;
-    padding: 14px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid #37b04b;
-    border-radius: 5px;
-    margin: 5px 0;
-    font-size: 13px;
-    font-weight: 500;
-    color: #000;
-    width: 80%;
-    -webkit-transition: border .3s ease;
-    -o-transition: border .3s ease;
-    transition: border .3s ease;
+	.login_btn{
+	 	width: 300px;
+		height: 50px;
+	 	border-radius: 4px;
+		border: 0px;
+		background-color: #37b04b;
+		color: white;
+		font-size: 15px;
+		margin-top: -10px;
+		font-family: "NotoSansKR-Black";
+		cursor: pointer;
 	}
-	h1{
-	 color:#37b04b;
+	
+	.input_id {
+		margin-top: 10px;
+		border-radius: 4px;
+		width:300px; 
+		height:50px;
+		border: 1px solid rgb(195, 195, 195);
 	}
-	</style>
 	
+	.input_pass {
+		border-radius: 4px;
+		margin-top: 10px;
+		border: 1px solid rgb(195, 195, 195);
+		width:300px; 
+		height:50px;
+		margin-bottom: 10px;
+	}
 	
+	#find_btn {
+		font-family: "NotoSansKR-Bold";
+		text-decoration: underline;
+		color: #888888;
+	}
+	
+	#join_btn {
+		font-family: "NotoSansKR-Bold";
+		line-height: 3;
+		color: #313131;
+		text-decoration: none;
+	}
+	
+	#alert_id_txt {
+		font-size: 18px;
+	}
+	
+	#alert_id_txt2 {
+		font-size: 15px;
+	}
+	
+</style>
+</head>
+<body>
+<!-- header zone -->
+<jsp:include page="../header_container.jsp">
+	<jsp:param value="m_id" name="m_id"/>
+</jsp:include> 
+<!-- header zone -->
+<div class="login-box">
+	<br>
+	<br>
+	<br>
+	<center>
+		<form name="loginform" action="./login.ak" method="post">
+			<h2>로그인</h2>
+				<div class="form-group">
+					<input type="text" class="input_id" name="m_id"  placeholder="  아이디를 입력해주세요.">
+				</div>
+				<div class="form-group">
+					<input type="password" class="input_pass" name="m_password"  placeholder="  비밀번호를 입력해주세요.">
+				</div>
+				<label>
+					<input type="checkbox" name="useCookie">&nbsp;<b>로그인유지</b>
+				</label>
+				<br>
+				<br>
+				<input type="button" class="login_btn" value="로그인" onclick="check_input()">
+				<br>
+				<br>
+				<div>
+					<a id="find_btn" href='./searchSelect.ak'>로그인 정보를 잊으셨나요?</a><br>
+					<a id="join_btn" href='./joinselect.ak'>회원가입</a>&nbsp;
+				</div>
+		</form>
+	</center>
+</div>
+</body>
 <script>
-function check_input()
-{
+function check_input() {
 	var str, i, ch;
 	// 아이디 체크 ----> 
 	if (document.loginform.m_id.value == "")
 	{
-		alert("아이디를 입력하세요!!!");
+		Swal.fire({
+			  html: 
+		        '<b id="alert_id_txt">아이디를 입력하세요!</b>',
+			  timer: 1500,
+			  confirmButtonColor: '#37B04B',
+			  confirmButtonText:
+			    '확인'
+		})
 		document.loginform.m_id.focus();
 		return;
 	}
@@ -101,7 +188,15 @@ function check_input()
 			if (!((ch >= "0" && ch <= "9") || (ch >= "a" && ch <= "z") 
 					|| (ch >= "A" && ch <= "Z")))
 			{
-				alert("특수문자가 포함, 다시 입력!!!");
+				Swal.fire({
+					  html: 
+				        '<b id="alert_id_txt">특수문자가 포함되어있습니다!</b><br>' +
+				        '<b id="alert_id_txt2">다시 입력해주세요.</b>',
+					  timer: 1500,
+					  confirmButtonColor: '#37B04B',
+					  confirmButtonText:
+					    '확인'
+				})
 				document.loginform.m_id.focus();
 				return;
 			}
@@ -111,78 +206,18 @@ function check_input()
 	// 패스워드 체크 ------>
 	if (document.loginform.m_password.value == "")
 	{
-		alert("패스워드를 입력하세요!!!");
+		Swal.fire({
+			  html: 
+		        '<b id="alert_id_txt">비밀번호를 입력하세요!</b>',
+			  timer: 1500,
+			  confirmButtonColor: '#37B04B',
+			  confirmButtonText:
+			    '확인'
+		})
 		document.loginform.m_password.focus();
 		return;
 	}
 	loginform.submit();
 }
-</script>	
-	
-	
-</head>
-<body>
-<div id="webView">
-<!-- 사이트이미지 -->
-<header style="height:100px;display: flex;">
-<div style="text-align:left;flex: 1;"><img src="./resources/image/crocodile_logo.png" id="logo"/></div>
-
-<!-- 사이트이름 -->
-<div style="text-align:center;flex: 5;">
-<h1 style="text-align:left;font-size:30;"><a href="home.ak" style="color:green;">마이악어새</a></h1>
-</div>
-
-
-<!-- 회원가입 로그인 -->
-<div style="text-align:right;flex: 2;">
-<button style="text-align:center;font-size:15;" onclick="location.href='./joinselect.ak'">회원가입</button>
-<button style="text-align:center;font-size:15;margin:20;" onclick="location.href='loginform.ak'">
-로그인</button>
-</div>
-</header>
-<hr size="3" color="gray">
-
-<div class="login-box">
-<br/>
-<br/>
-<br/>
-<center>
-<form name="loginform" action="./login.ak" method="post">
-<h1><b>로그인</b></h1></b>
-<div class="form-group">
-<input type="text" class="tex" name="m_id"  placeholder="아이디를 입력해주세요."
-style="width:300px; height:50px;" ></div>
-<div class="form-group">
-<input type="password" class="tex" name="m_password"  placeholder="비밀번호를 입력해주세요."
-style="width:300px; height:50px;"></div>
-<label>
-            <input type="checkbox" name="useCookie"> 로그인유지
-</label>
-<br /><br />
-<input type="button" class="btn1" value="로그인" style="width:200px; height:30px;background-color:#19CE60;"
-onclick="check_input()">
-<br />
-<br>
-<div>
-	<a  href='./joinselect.ak'>회원가입</a>&nbsp;
-
-
-	<a href='./searchSelect.ak'>계정 찾기</a>
-</div>
-
-
-
-</form>
-</center>
-
-
-</div>
-
-
-
-
-
-
-</div>
-</body>
+</script>
 </html>

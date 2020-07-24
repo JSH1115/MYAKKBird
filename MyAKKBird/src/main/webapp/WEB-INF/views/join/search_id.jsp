@@ -1,154 +1,174 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="fonts/font.css">
-<style>
-@font-face{
+<!-- alert창 API 시작 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- alert창 API 끝 -->
+	<title>마이악어새</title>
+	<style>
+	@font-face{
 		font-family: "NotoSansKR-Bold";
 		src:url('fonts/NotoSansKR-Bold.otf');
 	}
-	 @font-face{
+	
+	@font-face{
 		font-family: "NotoSansKR-Thin";
 		src:url('fonts/NotoSansKR-Thin.otf');
 	}
-	 @font-face{
+	
+	@font-face{
 		font-family: "NotoSansKR-Black";
 		src:url('fonts/NotoSansKR-Black.otf');
 	}
-	 @font-face{
+	
+	@font-face{
 		font-family: "NotoSansKR-Light";
 		src:url('fonts/NotoSansKR-Light.otf');
 	}
-	 @font-face{
+	
+	@font-face{
 		font-family: "NotoSansKR-Medium";
 		src:url('fonts/NotoSansKR-Medium.otf');
 	}
-	 @font-face{
+	
+	@font-face{
 		font-family: "NotoSansKR-Regular";
 		src:url('fonts/NotoSansKR-Regular.otf');
 	}
-	body {margin:0;padding:0;
-	font-family: "NotoSansKR-Regular";}
-#webView {overflow:hidden;position:relative;background:#FFFFFF;width:1200px;margin:0 auto;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
-#webView[data-show-memo='true'] {overflow:visible}
-	.tex{
-	height: 50px;
-    padding: 14px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid #37b04b;
-    border-radius: 5px;
-    margin: 5px 0;
-    font-size: 13px;
-    font-weight: 500;
-    color: #000;
-    width: 300px;
-    -webkit-transition: border .3s ease;
-    -o-transition: border .3s ease;
-    transition: border .3s ease;
+	
+	/* 전체 적용 */
+	body {
+		margin: 0 auto;
+		padding: 0;
+		background-color: #F6F6F6;
+		font-family: "NotoSansKR-Regular";
 	}
-	a{
-		display:inline-block;
+	
+	h2 {
+		font-family: "NotoSansKR-Bold";
 	}
-		 a:hover {
-		text-decoration: none;
+	
+	input {
+		font-family: "NotoSansKR-Medium";
 	}
-	#logo{
-		height:100px;
-		float:right;
+	
+	input:focus {outline:none;}
+	
+	/* 전체 적용 */
+	
+	.find_id_box {
+		margin-top: 130px;
 	}
-	h1{
-	color:#37b04b;
+	
+	.find_id_div1 {
+		margin-top: -35px;
+		margin-bottom: 40px;
 	}
-	b{
-		float:right;
-		margin:0 8px;
+	
+	.find_id_div1 b {
+		font-size: 16px;
 	}
-	 .btn1{
- 	margin:5px; 
-	padding: 5px; 
-	border-radius:5px;
-	border:0px;
-	background: #37b04b;
-	text-decoration: none;
-	color:white;
+	
+	.find_id_div1 span {
+		font-size: 14px;
 	}
-		 .btn3{
- 	margin:5px; 
-	padding: 5px; 
-	border-radius:5px;
-	border:0px;
-	background: #89df8f;
-	text-decoration: none;
-	color:white;
+	
+	.input_name {
+		margin-top: -20px;
+		border-radius: 4px;
+		width:300px; 
+		height:50px;
+		border: 1px solid rgb(195, 195, 195);
 	}
-</style>
-<script>
-</script>
-<title>Insert title here</title>
+	
+	.input_email {
+		border-radius: 4px;
+		margin-top: 10px;
+		border: 1px solid rgb(195, 195, 195);
+		width:300px; 
+		height:50px;
+	}
+	
+	.find_btn {
+		width: 300px;
+		height: 50px;
+	 	border-radius: 4px;
+		border: 0px;
+		background-color: #37b04b;
+		color: white;
+		font-size: 15px;
+		margin-top: 20px;
+		font-family: "NotoSansKR-Black";
+		cursor: pointer;
+	}
+	
+	#alert_id_txt {
+		font-size: 18px;
+	}
+	
+	#alert_id_txt2 {
+		font-size: 15px;
+	}
+	</style>
 </head>
 <body>
-<div id="webView">
-<!-- 사이트이미지 -->
-<header style="height:100px;display: flex;">
-<div style="text-align:left;flex: 1;"><img src="./resources/image/crocodile_logo.png" id="logo"/></div>
-
-<!-- 사이트이름 -->
-<div style="text-align:center;flex: 5;">
-<h1 style="text-align:left;font-size:30;"><a href="home.ak" style="color:green;">마이악어새</a></h1>
-</div>
-
-
-<!-- 회원가입 로그인 -->
-<div style="text-align:right;flex: 2;">
-<button style="text-align:center;font-size:15;" onclick="location.href='./joinselect.ak'">회원가입</button>
-<button style="text-align:center;font-size:15;margin:20;" onclick="location.href='loginform.ak'">
-로그인</button>
-</div>
-</header>
-<hr size="3" color="gray">
-<center>
-<div id="webView">
-<h1 color="red">아이디 찾기</h1><br/>
-
-<form action="./findId.ak"  method="post">
-
-<table align="center">
-
-<tr>
-	<td  style="width:120px;"><b>이름</b></td>
-	<td style="width:400px;"><input type="text" name="m_name" class="tex" placeholder="이름을 입력해주세요"></a></td>
-</tr>
-
-<tr>
-	<td><b>이메일</b></td>
-	<td><input type="text" name="m_email" class="tex" placeholder="이메일를 입력해주세요"></td>
-</tr>
-<tr>
-	<td colspan="2" align="center">
-		<input type="button" onclick="javascript:history.back()"class="btn3" value="뒤로">
-		<input type="submit" value="찾기" class="btn1">
-	</td>
-</tr>
-</table>
-
-</form>
-
-</div>
-</center>
-
-
-
-
+<!-- header zone -->
+<jsp:include page="../header_container.jsp">
+	<jsp:param value="m_id" name="m_id"/>
+</jsp:include> 
+<!-- header zone -->
+<div class="find_id_box">
+	<center>
+		<h2>아이디 찾기</h2><br>
+		<div class="find_id_div1">
+			<b>아이디를 잊어버리셨나요?</b><br>
+			<span>정보를 입력하시면, 아이디를 알려드립니다.</span>
+		</div>
+		<form action="./findId.ak"  method="post" onsubmit="return check_input()">
+			<input type="text" name="m_name" class="input_name" placeholder="  이름을 입력해주세요."><br>
+			<input type="text" name="m_email" class="input_email" placeholder="  이메일를 입력해주세요."><br>
+			<input type="submit" value="아이디 찾기" class="find_btn" onclick="check_input()">
+		</form>
+	</center>
 </div>
 </body>
+<script>
+function check_input() {
+	if($(".input_name").val() == "") { 
+		
+		Swal.fire({
+			  html: 
+		        '<b id="alert_id_txt">이름을 입력하세요!</b>',
+			  timer: 1500,
+			  confirmButtonColor: '#37B04B',
+			  confirmButtonText:
+			    '확인'
+		})
+		
+		$(".input_name").focus(); 
+		return false; 
+	}
+	
+	if($(".input_email").val() == "") { 
+		
+		Swal.fire({
+			  html: 
+		        '<b id="alert_id_txt">이메일을 입력하세요!</b>',
+			  timer: 1500,
+			  confirmButtonColor: '#37B04B',
+			  confirmButtonText:
+			    '확인'
+		})
+		
+		$(".input_email").focus(); 
+		return false; 
+	}
+	
+}
+</script>
 </html>
