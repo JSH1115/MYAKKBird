@@ -199,27 +199,37 @@
 		</table>
 	</div>
 	<div class="num_zone">
-		<div>
-			<%if(nowpage <= 1) { %>
-				<span>&lt;</span>
-			<%} else {%>
-				<a href="./payList.ak?page=<%=nowpage-1%>">&lt;</a>
-			<%} %>
-			
-			<%for(int i = startpage; i <= endpage; i++) { 
-				if(i == nowpage) {%>
-				<span><%=i %></span>
+		<%
+			if(payList.size() == 0) {
+		%>		
+			<div></div>
+		<%
+			} else {
+		%>
+			<div>
+				<%if(nowpage <= 1) { %>
+					<span>&lt;</span>
 				<%} else {%>
-				<a href="./payList.ak?page=<%=i %>">[<%=i %>]</a>
+					<a href="./payList.ak?page=<%=nowpage-1%>">&lt;</a>
 				<%} %>
-			<%} %>
-			
-			<%if(nowpage >= maxpage){ %>
-			<span>&gt;</span>
-			<%} else {%>
-			<a href="./payList.ak?page=<%=nowpage+1%>">&gt;</a>
-			<%} %>
-		</div>
+				
+				<%for(int i = startpage; i <= endpage; i++) { 
+					if(i == nowpage) {%>
+					<span><%=i %></span>
+					<%} else {%>
+					<a href="./payList.ak?page=<%=i %>">[<%=i %>]</a>
+					<%} %>
+				<%} %>
+				
+				<%if(nowpage >= maxpage){ %>
+				<span>&gt;</span>
+				<%} else {%>
+				<a href="./payList.ak?page=<%=nowpage+1%>">&gt;</a>
+				<%} %>
+			</div>
+		<%
+			}
+		%>
 	</div>
 </div>	
 </body>
