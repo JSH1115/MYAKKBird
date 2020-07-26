@@ -322,18 +322,20 @@
 		.post_text {
 			width:155px; 
 			height:40px;
-			margin-left: -2px;
 		}
 		
 		.post_button {
-			background-color: #37B04B;
-			border: 0;
-			color: white;
-			border-radius: 5px;
-			margin-left: 9px;
-			height:45px;
-			font-family: "NotoSansKR-Regular"; 
-			cursor: pointer;
+		    background-color: #37B04B;
+		    border: 0;
+		    color: white;
+		    border-radius: 5px;
+		    margin-left: 11px;
+		    height: 45px;
+		    font-family: "NotoSansKR-Medium";
+		    cursor: pointer;
+		    display: inline-block;
+		    width: 90px;
+		    font-size: 15px;
 		}
 		
 		.info {
@@ -625,7 +627,7 @@
 			width: 80px;
 			height:40px;
 			margin-left: 15px;
-			font-family: "NotoSansKR-Regular";
+			font-family: "NotoSansKR-Medium";
 			cursor: pointer;
 		}
 		/* submit, reset 버튼 */
@@ -756,6 +758,10 @@
 			font-size: 17px;
 		}
 		/* 청소 안내 modal style */
+		
+		.go_btn {
+			font-family: "NotoSansKR-Medium";
+		}
 	</style>
 	<script type="text/javascript">
 	</script>
@@ -887,7 +893,7 @@
 								<!-- 다음 주소 API 시작 -->
 								<input type="text" class="post_text" id="sample6_postcode" readonly placeholder=" 우편번호">
 								<input type="button" class="post_button" onclick="sample6_execDaumPostcode()" 
-								       value="우편번호 찾기"><br>
+								       value="주소찾기"><br>
 								<input type="text" name="b_address_road" id="sample6_address" class="address_input"  
 								       readonly placeholder=" 지번주소로 꼭 선택해주세요!"><br>
 								<label class="error" id="addr" for="sample6_address" style="margin-left: -110px;"></label><br>
@@ -1076,7 +1082,7 @@ $('#detail_btn').click(function name() {
 	        '</div>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    '확인'
+		    '<div class="go_btn">확인</div>'
 	})
 });
 // form 초기화
@@ -1121,7 +1127,7 @@ $(document).ready(function () {
 				  html:
 				    '<b>파일은 최대 3개까지 업로드 가능합니다!</b><br>',
 				  confirmButtonColor : '#37B04B',
-				  confirmButtonText: '확인',
+				  confirmButtonText: '<div class="go_btn">확인</div>',
 			});
 			$("#img_input").val("");
 			return;
@@ -1136,7 +1142,7 @@ $(document).ready(function () {
 					  	html:
 					    	'<b>이미지 파일만 업로드 가능합니다!</b><br>',
 					  	confirmButtonColor : '#37B04B',
-					  	confirmButtonText: '확인',
+					  	confirmButtonText: '<div class="go_btn">확인</div>',
 					});
 					return;
 				}
@@ -1193,7 +1199,7 @@ $(document).ready(function () {
 				  html:
 				    '<span>하트♡를 충전해야만 게시글을 쓸 수 있어요!</span><br>',
 				  confirmButtonColor : '#37B04B',
-				  confirmButtonText: '하트충전',
+				  confirmButtonText: '<div class="go_btn">하트충전</div>',
 			}).then((result) => {
 				if (result.value) {
 					location.href="./pay.ak";
@@ -1284,8 +1290,9 @@ $(document).ready(function () {
         			  showCancelButton: true,
         			  confirmButtonColor: '#37B04B',
         			  cancelButtonColor: '#E6E6E6',
-        			  confirmButtonText: '게시글 등록',
-        		      cancelButtonText: '다음에 할게요'
+        			  confirmButtonText: '<div class="go_btn">게시글 등록</div>',
+        		      cancelButtonText: '<div class="go_btn">다음에 할게요</div>'
+        		    	  
         			}).then((result) => {
         			    if (result.value) {
         				    frm.submit();
@@ -1450,7 +1457,7 @@ function banner_check() {
 					      '    </div>' +
 					      '</div>',
 					  	confirmButtonColor: '#37B04B',
-					  	confirmButtonText: '회원가입',
+					  	confirmButtonText: '<div class="go_btn">회원가입</div>',
 				}).then((result) => {
 					if (result.value) {
 				    	location.href="./joinselect.ak";
@@ -1483,7 +1490,7 @@ function banner_got_check(se_id) {
 				      timer: 1000,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+					    '<div class="go_btn">확인</div>'
 				})
 			} else {
 				banner_got(se_id);
@@ -1513,7 +1520,7 @@ function banner_got(se_id) {
 					  timer: 1000,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						 '<div class="go_btn">확인</div>'
 				})
 			}
 		},
@@ -1538,7 +1545,7 @@ function heart_got(se_id) {
 				        '<b class="mw_txt">하트 5개 지급 완료!</b>',
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						 '<div class="go_btn">확인</div>'
 				})
 			}
 		},

@@ -107,6 +107,7 @@
 		font-family: "NotoSansKR-Bold";
 		text-decoration: underline;
 		color: #888888;
+		font-size: 15px;
 	}
 	
 	#join_btn {
@@ -114,6 +115,7 @@
 		line-height: 3;
 		color: #313131;
 		text-decoration: none;
+		font-size: 15px;
 	}
 	
 	#alert_id_txt {
@@ -122,6 +124,10 @@
 	
 	#alert_id_txt2 {
 		font-size: 15px;
+	}
+	
+	.go_btn {
+		font-family: "NotoSansKR-Medium";
 	}
 	
 </style>
@@ -173,7 +179,7 @@ function check_input() {
 			  timer: 1500,
 			  confirmButtonColor: '#37B04B',
 			  confirmButtonText:
-			    '확인'
+				  '<div class="go_btn">확인</div>'
 		})
 		document.loginform.m_id.focus();
 		return;
@@ -195,7 +201,7 @@ function check_input() {
 					  timer: 1500,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						  '<div class="go_btn">확인</div>'
 				})
 				document.loginform.m_id.focus();
 				return;
@@ -212,7 +218,7 @@ function check_input() {
 			  timer: 1500,
 			  confirmButtonColor: '#37B04B',
 			  confirmButtonText:
-			    '확인'
+				  '<div class="go_btn">확인</div>'
 		})
 		document.loginform.m_password.focus();
 		return;

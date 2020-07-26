@@ -184,7 +184,7 @@
 		
 		.screen_t_sub {
 			font-size: 23px; 
-			margin-left: 77px; 
+			margin-left: 90px; 
 		}
 		
 		.screen_t_sub strong {
@@ -193,7 +193,7 @@
 		
 		.screen_t_sub2 {
 			font-size: 18px; 
-			margin-left: 77px; 
+			margin-left: 90px; 
 			color: #444444;
 		}
 		
@@ -931,6 +931,10 @@
 			font-size: 17px;
 		}
 		/* 청소 안내 modal style */
+		
+		.go_btn {
+			font-family: "NotoSansKR-Medium";
+		}
 	</style>
 </head>
 <body>
@@ -1165,7 +1169,7 @@ $('#detail_btn').click(function name() {
 	        '</div>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    '확인'
+			'<div class="go_btn">확인</div>'
 	})
 });
 // 체크박스 하나만 선택
@@ -1471,7 +1475,7 @@ function check_member(b_num) {
 					    '    </div>' +
 					    '</div>',
 					  confirmButtonColor: '#37B04B',
-					  confirmButtonText: '회원가입',
+					  confirmButtonText: '<div class="go_btn">회원가입</div>',
 				}).then((result) => {
 					if (result.value) {
 				    	location.href="./joinselect.ak";
@@ -1507,7 +1511,7 @@ function check_worker(b_num) {
 				      timer: 1000,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						  '<div class="go_btn">확인</div>'
 				})
 			} else {
 				
@@ -1616,7 +1620,7 @@ function banner_check() {
 					      '    </div>' +
 					      '</div>',
 					  	confirmButtonColor: '#37B04B',
-					  	confirmButtonText: '회원가입',
+					  	confirmButtonText: '<div class="go_btn">회원가입</div>',
 				}).then((result) => {
 					if (result.value) {
 				    	location.href="./joinselect.ak";
@@ -1649,7 +1653,7 @@ function banner_got_check(se_id) {
 				      timer: 1000,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						  '<div class="go_btn">확인</div>'
 				})
 			} else {
 				banner_got(se_id);
@@ -1679,7 +1683,7 @@ function banner_got(se_id) {
 					  timer: 1000,
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						  '<div class="go_btn">확인</div>'
 				})
 			}
 		},
@@ -1704,7 +1708,7 @@ function heart_got(se_id) {
 				        '<b class="mw_txt">하트 5개 지급 완료!</b>',
 					  confirmButtonColor: '#37B04B',
 					  confirmButtonText:
-					    '확인'
+						  '<div class="go_btn">확인</div>'
 				})
 			}
 		},

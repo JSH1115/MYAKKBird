@@ -114,6 +114,10 @@
 	#alert_id_txt2 {
 		font-size: 15px;
 	}
+	
+	.go_btn {
+		font-family: "NotoSansKR-Medium";
+	}
 	</style>
 </head>
 <body>
@@ -147,7 +151,7 @@ function check_input() {
 			  timer: 1500,
 			  confirmButtonColor: '#37B04B',
 			  confirmButtonText:
-			    '확인'
+				  '<div class="go_btn">확인</div>'
 		})
 		
 		$(".input_name").focus(); 
@@ -162,7 +166,7 @@ function check_input() {
 			  timer: 1500,
 			  confirmButtonColor: '#37B04B',
 			  confirmButtonText:
-			    '확인'
+				  '<div class="go_btn">확인</div>'
 		})
 		
 		$(".input_email").focus(); 

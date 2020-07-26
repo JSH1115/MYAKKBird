@@ -39,14 +39,6 @@ public class SearchController {
 		return result;
 	}
 	
-	@RequestMapping(value="/cb_detail.ak", produces="application/json;charset=UTF-8")
-	public MasterVO cbDetail(String m_id, int b_num) {
-		MasterVO cb_detail =
-				searchService.CBdetailService(m_id, b_num);
-		
-		return cb_detail;
-	}
-	
 	@RequestMapping(value="/board_delete.ak", produces="application/json;charset=UTF-8")
 	public int boardDelete(int b_num) {
 		int result = searchService.BoardDeleteService(b_num);

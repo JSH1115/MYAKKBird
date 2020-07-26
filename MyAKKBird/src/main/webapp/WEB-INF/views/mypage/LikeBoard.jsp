@@ -358,6 +358,10 @@
 			background-color: #E6E6E6;
 		}
 		/* 기타 style */
+		
+		.go_btn {
+			font-family: "NotoSansKR-Medium";
+		}
 	</style>
 </head>
 <body>
@@ -549,8 +553,8 @@ function delete_like(b_num) {
 		  showCancelButton: true,
 		  confirmButtonColor: '#37B04B',
 		  cancelButtonColor: '#E6E6E6',
-		  confirmButtonText: '삭제',
-	      cancelButtonText: '취소'
+		  confirmButtonText: '<div class="go_btn">삭제</div>',
+	      cancelButtonText: '<div class="go_btn">취소</div>'
 	}).then((result) => {
 	    if (result.value) {
 	    	

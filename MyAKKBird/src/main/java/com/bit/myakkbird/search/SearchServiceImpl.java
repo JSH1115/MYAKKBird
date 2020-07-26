@@ -36,13 +36,6 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
-	public MasterVO CBdetailService(String m_id, int b_num) {
-		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
-		
-		return searchMapper.CBdetail(m_id, b_num);
-	}
-	
-	@Override
 	public int chkApplyCountService(int b_num) {
 		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
 		int result = searchMapper.chkApplyCount(b_num);

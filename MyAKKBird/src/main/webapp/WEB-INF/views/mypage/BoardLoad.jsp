@@ -397,15 +397,39 @@
 		/* 게시글 style */
 		
 		/* 모달 style */
-		#m_title {
-			font-size: 20px;
+		#m_num_id {
+			font-size: 12px;
+		    position: absolute;
+		    margin-top: -10px;
+		    margin-left: -70px;
 		}
 		
-		.go_btn {
-			width: 200px;
-			height: 30px;
-			font-family: "NotoSansKR-Medium";
+		#m_title {
+			font-size: 22px;
 		}
+		
+		.modal_div {
+			width: 400px;
+			height: 500px;
+			margin: 0 auto;
+		}
+		
+		.modal_div1 {
+			width: 350px;
+			height: 30px;
+			text-align: left;
+			font-size: 15px;
+			margin: 10px auto;
+		}
+		
+		.modal_div2 {
+			width: 350px;
+			height: 30px;
+			text-align: left;
+			font-size: 15px;
+			margin: 5px auto;
+		}
+		
 		/* 모달 style */
 		
 		/* 게시물 등록하러가기 style */
@@ -748,7 +772,7 @@ function board_list(index, item, startNo) {
 	output += '                    <a href="./allowListC.ak" id="a_btn">신청내역보기</a>'
 	output += '                </li>'
 	output += '                <li id="check_li">'
-	output += '                    <a href="#modal_id" rel="modal:open" class="detail_btn" id="a_btn" value="'+item.b_num+'">게시글 보기</a>'
+	output += '                    <a href="./BoardDetail.ak?b_num='+item.b_num+'&e_id='+m_id+'" class="detail_btn" id="a_btn">게시글 보기</a>'
 	output += '                </li>'
 	output += '                <li id="check_li">'
 	output += '                    <a href="./boardUpdate.ak?b_num='+item.b_num+'" id="a_btn">게시글 수정</a>'
@@ -988,54 +1012,6 @@ $(document).ready(function(){
 		event.preventDefault();
 	}
 	
-});
-// 게시글 자세히 보기
-$(document).on("click",'.detail_btn',function() {
-	b_num = $(this).attr('value');
-	
-	$('.board_search').hide();
-	$('.delete_list').hide();
-	
-	$.ajax({
-		url : '/myakkbird/cb_detail.ak?m_id='+m_id+'&b_num='+b_num+'',
-		type : 'GET',
-		dataType : "json",
-		contentType : 'application/x-www-form-urlencoded; charset=utf-8', 
-		success: function(data) {
-			var modal = '';
-			var type = '';
-			var gender = '';
-			var photo = '';
-			
-			if(data.m_type === "C") {
-				type = '고객';
-			} 
-			
-			if(data.m_gender === "M") {
-				gender = '남자';
-			} else if(data.m_gender === "W") {
-				gender = '여자';
-			}
-			
-			var start_day = moment(data.b_start).format("YY년 M월 D일");
-			var end_day = moment(data.b_end).format("YY년 M월 D일");
-			var write_day = moment(data.b_date).format("YY년 M월 D일 작성");
-			
-			category_list(data);
-			
-			Swal.fire({
-				title: '<strong id="m_title">'+data.b_subject+'</strong>',
-				html: 
-			        '',
-				confirmButtonColor: '#37B04B',
-				confirmButtonText:'<div class="go_btn">자세히 보기</div>',
-			})
-			
-		},
-		error:function(){
-	        alert("ajax통신 실패!!!");
-	    }
-	});
 });
 //스크롤 Top 기능
 function scroll_top() {

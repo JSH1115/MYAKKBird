@@ -310,6 +310,10 @@
 		float: left;
 		font-size: 17px;
 	}
+	
+	.go_btn {
+		font-family: "NotoSansKR-Medium";
+	}
 	</style>
 </head>
 <body>
@@ -417,7 +421,7 @@ $('#detail_btn').click(function name() {
 	        '</div>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    '확인'
+			'<div class="go_btn">확인</div>'
 	})
 });
 	
@@ -433,7 +437,7 @@ $(document).ready(function(){
 				  timer: 1500,
 				  confirmButtonColor: '#37B04B',
 				  confirmButtonText:
-				    '확인'
+					  '<div class="go_btn">확인</div>'
 				})
 				
 	            return false;

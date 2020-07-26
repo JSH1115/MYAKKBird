@@ -18,10 +18,6 @@ public interface SearchMapper {
 	
 	public int chkApplyCount(int b_num);
 	
-	public MasterVO CBdetail(
-			@Param("m_id") String m_id,
-			@Param("b_num") int b_num);
-	
 	public int BoardDelete(int b_num);
 	
 	public ArrayList<MasterVO> CBSearchList(

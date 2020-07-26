@@ -571,6 +571,9 @@
 		font-size: 20px;
 	}
 	
+	.go_btn {
+		font-family: "NotoSansKR-Medium";
+	}
 </style>
 <script type="text/javascript">
 function mail_check(){
@@ -582,7 +585,7 @@ function mail_check(){
 			  timer: 1500,
 			  confirmButtonColor: '#37B04B',
 			  confirmButtonText:
-			    '확인'
+				  '<div class="go_btn">확인</div>'
 		})
 		$("#m_emil").focus();
 		return false;
@@ -595,7 +598,7 @@ function mail_check(){
 			  timer: 1500,
 			  confirmButtonColor: '#37B04B',
 			  confirmButtonText:
-			    '확인'
+				  '<div class="go_btn">확인</div>'
 		})
     	return false;
     }
@@ -654,7 +657,7 @@ $(function() {
 	       			  timer: 1500,
 	       			  confirmButtonColor: '#37B04B',
 	       			  confirmButtonText:
-	       			    '확인'
+	       				'<div class="go_btn">확인</div>'
         		  })
         		  
                   //아이디가 존재할 경우 빨강으로 , 아니면 그린으로 처리하는 디자인
@@ -670,7 +673,7 @@ $(function() {
 	       		        '<b id="alert_id_txt">사용가능한 아이디입니다.</b>',
 	       			  confirmButtonColor: '#37B04B',
 	       			  confirmButtonText:
-	       			    '확인'
+	       				'<div class="go_btn">확인</div>'
         		  })
                   
                   $("#m_id").addClass("tex3")
@@ -698,7 +701,7 @@ $(document).ready(function(){
      			  timer: 1500,
      			  confirmButtonColor: '#37B04B',
      			  confirmButtonText:
-     			    '확인'
+     				 '<div class="go_btn">확인</div>'
   		  	})
 			$("#m_id").focus();
 			return false;
@@ -710,7 +713,7 @@ $(document).ready(function(){
    			  timer: 1500,
    			  confirmButtonColor: '#37B04B',
    			  confirmButtonText:
-   			    '확인'
+   				'<div class="go_btn">확인</div>'
 		  	})
 			$("#m_password").focus();
 			return false;
@@ -722,7 +725,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_name").focus();
 			return false;
@@ -734,7 +737,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_age").focus();
 			return false;
@@ -746,7 +749,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_email").focus();
 			return false;
@@ -758,7 +761,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_phone").focus();
 			return false;
@@ -770,7 +773,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_address_road").focus();
 			return false;
@@ -782,7 +785,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_email").focus();
 			return false;
@@ -795,7 +798,7 @@ $(document).ready(function(){
 	   			  timer: 1500,
 	   			  confirmButtonColor: '#37B04B',
 	   			  confirmButtonText:
-	   			    '확인'
+	   				'<div class="go_btn">확인</div>'
 			})
 			$("#m_id").focus();
 			return false;
@@ -894,7 +897,7 @@ $(document).ready(function(){
 				<b>주소</b>
 				<svg id="why_addr" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 25 25"><g fill="none" fill-rule="evenodd"><g><circle cx="12.5" cy="12.5" r="12.5" fill="#BDBDBD"/><path fill="#FFF" d="M11.194 14.606c-.402-2.66 2.445-3.717 2.445-5.302 0-.826-.553-1.355-1.424-1.355-.737 0-1.323.38-1.859.925L9 7.652C9.87 6.677 11.06 6 12.517 6 14.527 6 16 7.024 16 9.139c0 2.345-2.914 3.138-2.663 5.467h-2.143zM12.266 19c-.871 0-1.524-.694-1.524-1.586 0-.892.653-1.586 1.524-1.586.887 0 1.54.694 1.54 1.586 0 .892-.653 1.586-1.54 1.586z"/></g><path d="M-176 23h375v30h-375z"/></g></svg><br>
 				<input type="text" class="post_input" id="m_postcode" readonly placeholder="  우편번호">
-				<input type="button" class="addr_btn" onclick="sample6_execDaumPostcode()" value="우편번호"><br>
+				<input type="button" class="addr_btn" onclick="sample6_execDaumPostcode()" value="주소찾기"><br>
 				<input type="text" class="addr_input" id="m_address_road" name="m_address_road" readonly placeholder="  지번주소를 선택해주세요."><br>
 				<input type="text" class="addr_input" id="m_address_detail" name="m_address_detail" placeholder="  상세주소를 입력해주세요.">
 				<input type="text" class="addr_input" id="m_extraAddress" placeholder="  참고항목(선택)">
@@ -927,7 +930,7 @@ $('#detail_btn').click(function() {
 			'</div>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    '확인'
+			'<div class="go_btn">확인</div>'
 	})
 });
 $('#why').click(function() {
@@ -936,7 +939,7 @@ $('#why').click(function() {
 		      '<b>이메일 인증이 필요합니다!</b>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    '확인'
+			'<div class="go_btn">확인</div>'
 	})
 });
 $('#why_addr').click(function() {
@@ -945,7 +948,7 @@ $('#why_addr').click(function() {
 		      '<b>지번주소가 필요합니다!</b>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    '확인'
+			'<div class="go_btn">확인</div>'
 	})
 });
 var fileTarget = $('#img_input'); 

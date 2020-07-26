@@ -59,6 +59,10 @@
 		padding: 0;
 		font-family: "NotoSansKR-Regular";
 	}
+	
+	ul li {
+		list-style: none;
+	}
 	/* 전체 적용 */
 	
 	.pay_div {
@@ -128,7 +132,7 @@
 	
 	.charge_zone {
 		width: 500px;
-		height: 500px;
+		height: 400px;
 		margin: 0 auto;
 	}
 	
@@ -210,12 +214,42 @@
 		outline: none;	
 	}
 	
+	.terms_zone {
+		width: 500px;
+		height: 240px;
+		margin: 0 auto;
+	}
+	
+	#terms_zone_txt {
+		font-size: 18px;
+	}
+	
+	.content_div {
+		width: 500px;
+		height: 300px;
+		border-radius: 3px;
+		margin: -5px auto;
+	}
+	
+	#content_ul {
+		margin-left: -35px;
+		font-family: "NotoSansKR-Regular";
+	}
+	
 	#m_title {
 		font-size: 20px;
 	}
 	
 	#m_content {
 		font-size: 17px;
+	}
+	
+	.text_div {
+		margin-top: 8px;
+	}
+	
+	.go_btn {
+		font-family: "NotoSansKR-Medium";
 	}
 </style>
 </head>
@@ -257,6 +291,33 @@
 			</div>
 		</div>
 	</div>
+	<div class="terms_zone">
+		<b id="terms_zone_txt">필수 유의사항</b>
+		<div class="content_div">
+			<ul id="content_ul">
+				<li>
+					<span>&bull; 환불 요청은 하트를 사용하지 않았거나 3일 이내에만 가능합니다.</span>
+				</li>
+				<li>
+					<div class="text_div">
+						<span>&bull; 환불 요청 시간은 평일 10:00~18:00입니다.<br>
+						&nbsp;&nbsp;(점심시간 12:00~13:00 제외/주말, 공휴일 제외)</span>
+					</div>
+				</li>
+				<li>
+					<div class="text_div">
+						<span>&bull; 타인과 하트 이용권을 공유하는 행위는 엄격히 금지하며 "재가입 불가 탈<br>
+						&nbsp;&nbsp;퇴" 처리하고 있으니 유의해주세요.</span>
+					</div>
+				</li>
+				<li>
+					<div class="text_div">
+						<span>&bull; 결제되는 금액은 VAT 포함 가격입니다.</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 </body>
 <script>
@@ -266,7 +327,7 @@ $('#detail_btn').click(function name() {
 		html: '<span id="m_content">게시글 신청과 고객과 근로자 매칭을 위해 필요한 이용수단입니다.</span>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:
-		    'FAQ가기'
+		    '<div class="go_btn">FAQ가기</div>'
 	}).then((result) => {
 		if (result.value) {
 	    	location.href="./FAQList.ak";
