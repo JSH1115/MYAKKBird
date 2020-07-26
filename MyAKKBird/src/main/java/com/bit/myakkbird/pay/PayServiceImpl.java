@@ -1,6 +1,7 @@
 package com.bit.myakkbird.pay;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -16,7 +17,6 @@ public class PayServiceImpl implements PayService{
 	
 	@Autowired
 	private SqlSession sqlSession;
-
 	
 	@Override
 	public void insertPay(HashMap<String,Object> params) {
@@ -26,13 +26,30 @@ public class PayServiceImpl implements PayService{
 		return;
 	}
 	
-
 	@Override
 	public void updateHeart(HashMap<String,Object> params) {
 		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
 		payMapper.updateHeart(params);
 		
 		return;
+	}
+
+	@Override
+	public int payListCountService(String m_id) {
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		int result = payMapper.payListCount(m_id);
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<PayVO> payListService(String m_id, 
+			int startrow, int endrow) {
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		ArrayList<PayVO> payList = 
+				payMapper.payList(m_id, startrow, endrow);
+		
+		return payList;
 	}
 	
 }

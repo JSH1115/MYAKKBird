@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" 
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.bit.myakkbird.member.*" %>
 <%
 	if (session.getAttribute("m_id")==null)
 			{
@@ -8,250 +9,257 @@
 		out.println("location.href='./loginform.ak'");
 		out.println("</script>");
 	}
+	
+	MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
+	System.out.println("하트 구매할 아이디 : " + memberVO.getM_id());
 %>
 
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>마이악어새</title>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- 결제 API 시작 -->
-<script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<!-- 결제 API 끝 -->
-<!-- alert창 API 시작 -->
-<script src="resources/js/sweetAlert_J.js"></script>
-<!-- alert창 API 끝 -->
-<style>
-	@font-face{
-			font-family: "NotoSansKR-Bold";
-			src:url('fonts/NotoSansKR-Bold.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Thin";
-		src:url('fonts/NotoSansKR-Thin.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Black";
-		src:url('fonts/NotoSansKR-Black.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Light";
-		src:url('fonts/NotoSansKR-Light.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Medium";
-		src:url('fonts/NotoSansKR-Medium.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Regular";
-		src:url('fonts/NotoSansKR-Regular.otf');
-	}
-	
-	/* 전체 적용 */
-	body {
-		margin: 0;
-		padding: 0;
-		font-family: "NotoSansKR-Regular";
-	}
-	
-	ul li {
-		list-style: none;
-	}
-	/* 전체 적용 */
-	
-	.pay_div {
-		width: 1000px;
-		height: 600px;
-		margin: 100px auto;
-	}
-	
-	.title_zone {
-		width: 150px;
-		height: 40px;
-		margin: 0 auto;
-		text-align: center;
-	}
-	
-	#detail_btn {
-		float: right;
-		margin-top: 6px;
-		cursor: pointer;
-		margin-left: -15px;
-	}
-	
-	.heart_info {
-		width: 500px;
-		height: 110px;
-		margin: 20px auto;
-	}
-	
-	#heart_info_txt {
-		font-size: 18px;
-	}
-	
-	.heart_info_div {
-		width: 500px;
-		height: 60px;
-		border: 1px solid rgb(195, 195, 195);
-		border-radius: 3px;
-		margin-top: 12px;
-	}
-	
-	#heart_icon {
-		float: left;
-		margin-top: 16px;
-    	margin-left: 20px;
-	}
-	
-	.heart_info_div b {
-		line-height: 3.5;
-    	font-family: "NotoSansKR-Light";
-    	margin-left: 5px;
-	}
-	
-	#point_txt {
-		font-family: "NotoSansKR-Black";
-	}
-	
-	#move_info {
-		margin-left: 230px;
-		display: inline-block;
-		background-color: #37B04B;
-		color: white;
-		font-size: 13px;
-		padding: 5px;
-		border-radius: 3px;
-		cursor: pointer;
-	}
-	
-	.charge_zone {
-		width: 500px;
-		height: 400px;
-		margin: 0 auto;
-	}
-	
-	#charge_zone_txt {
-		font-size: 18px;
-	}
-	
-	.heart_buy_div {
-		width: 500px;
-		height: 320px;
-		background-color: #E6E6E6;
-		border-radius: 3px;
-		margin-top: 12px;
-	}
-	
-	.heart_pay_div1 {
-	    width: 300px;
-	    height: 70px;
-	    background-color: white;
-	    border-radius: 3px;
-	    position: absolute;
-	    line-height: 4.2;
-	    margin-left: 100px;
-	    margin-top: 30px;
-	    box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
-	}
-	
-	.heart_pay_div2 {
-	    width: 300px;
-	    height: 70px;
-	    background-color: white;
-	    border-radius: 3px;
-	    position: absolute;
-	    line-height: 4.2;
-	    margin-left: 100px;
-	    margin-top: 125px;
-	    box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
-	}
-	
-	.heart_pay_div3 {
-	    width: 300px;
-	    height: 70px;
-	    background-color: white;
-	    border-radius: 3px;
-	    position: absolute;
-	    line-height: 4.2;
-	    margin-left: 100px;
-	    margin-top: 220px;
-	    box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
-	}
-	
-	#heart_txt {
-		font-size: 15px;
-		color: #37B04B;
-		margin-left: 5px;
-	}
-	
-	#heart_icon2 {
-		float: left;
-		margin-top: 22px;
-    	margin-left: 20px;
-	}
-	
-	.pay_btn {
-		background-color: #37B04B;
-	    color: white;
-	    cursor: pointer;
-	    float: right;
-	    border: 0;
-	    font-family: "NotoSansKR-Medium";
-	    width: 75px;
-	    height: 30px;
-	    margin-right: 25px;
-	    margin-top: 20px;
-	    border-radius: 3px;
-	}
-	
-	.pay_btn:focus {
-		outline: none;	
-	}
-	
-	.terms_zone {
-		width: 500px;
-		height: 240px;
-		margin: 0 auto;
-	}
-	
-	#terms_zone_txt {
-		font-size: 18px;
-	}
-	
-	.content_div {
-		width: 500px;
-		height: 300px;
-		border-radius: 3px;
-		margin: -5px auto;
-	}
-	
-	#content_ul {
-		margin-left: -35px;
-		font-family: "NotoSansKR-Regular";
-	}
-	
-	#m_title {
-		font-size: 20px;
-	}
-	
-	#m_content {
-		font-size: 17px;
-	}
-	
-	.text_div {
-		margin-top: 8px;
-	}
-	
-	.go_btn {
-		font-family: "NotoSansKR-Medium";
-	}
-</style>
+	<meta charset="utf-8" />
+	<title>마이악어새</title>
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<!-- 결제 API 시작 -->
+	<script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!-- 결제 API 끝 -->
+	<!-- alert창 API 시작 -->
+	<script src="resources/js/sweetAlert_J.js"></script>
+	<!-- alert창 API 끝 -->
+	<style>
+		@font-face{
+				font-family: "NotoSansKR-Bold";
+				src:url('fonts/NotoSansKR-Bold.otf');
+		}
+		
+		@font-face{
+			font-family: "NotoSansKR-Thin";
+			src:url('fonts/NotoSansKR-Thin.otf');
+		}
+		
+		@font-face{
+			font-family: "NotoSansKR-Black";
+			src:url('fonts/NotoSansKR-Black.otf');
+		}
+		
+		@font-face{
+			font-family: "NotoSansKR-Light";
+			src:url('fonts/NotoSansKR-Light.otf');
+		}
+		
+		@font-face{
+			font-family: "NotoSansKR-Medium";
+			src:url('fonts/NotoSansKR-Medium.otf');
+		}
+		
+		@font-face{
+			font-family: "NotoSansKR-Regular";
+			src:url('fonts/NotoSansKR-Regular.otf');
+		}
+		
+		/* 전체 적용 */
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "NotoSansKR-Regular";
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
+		ul li {
+			list-style: none;
+		}
+		/* 전체 적용 */
+		
+		.pay_div {
+			width: 1000px;
+			height: 600px;
+			margin: 60px auto;
+		}
+		
+		.title_zone {
+			width: 150px;
+			height: 40px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		#detail_btn {
+			float: right;
+			margin-top: 6px;
+			cursor: pointer;
+			margin-left: -15px;
+		}
+		
+		.heart_info {
+			width: 500px;
+			height: 110px;
+			margin: 20px auto;
+		}
+		
+		#heart_info_txt {
+			font-size: 18px;
+		}
+		
+		.heart_info_div {
+			width: 500px;
+			height: 60px;
+			border: 1px solid rgb(195, 195, 195);
+			border-radius: 3px;
+			margin-top: 12px;
+		}
+		
+		#heart_icon {
+			float: left;
+			margin-top: 16px;
+	    	margin-left: 20px;
+		}
+		
+		.heart_info_div b {
+			line-height: 3.5;
+	    	font-family: "NotoSansKR-Light";
+	    	margin-left: 5px;
+		}
+		
+		#point_txt {
+			font-family: "NotoSansKR-Black";
+		}
+		
+		#move_info {
+			margin-left: 230px;
+			display: inline-block;
+			background-color: #37B04B;
+			color: white;
+			font-size: 13px;
+			padding: 5px;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+		
+		.charge_zone {
+			width: 500px;
+			height: 400px;
+			margin: 0 auto;
+		}
+		
+		#charge_zone_txt {
+			font-size: 18px;
+		}
+		
+		.heart_buy_div {
+			width: 500px;
+			height: 320px;
+			background-color: #E6E6E6;
+			border-radius: 3px;
+			margin-top: 12px;
+		}
+		
+		.heart_pay_div1 {
+		    width: 300px;
+		    height: 70px;
+		    background-color: white;
+		    border-radius: 3px;
+		    position: absolute;
+		    line-height: 4.2;
+		    margin-left: 100px;
+		    margin-top: 30px;
+		    box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
+		}
+		
+		.heart_pay_div2 {
+		    width: 300px;
+		    height: 70px;
+		    background-color: white;
+		    border-radius: 3px;
+		    position: absolute;
+		    line-height: 4.2;
+		    margin-left: 100px;
+		    margin-top: 125px;
+		    box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
+		}
+		
+		.heart_pay_div3 {
+		    width: 300px;
+		    height: 70px;
+		    background-color: white;
+		    border-radius: 3px;
+		    position: absolute;
+		    line-height: 4.2;
+		    margin-left: 100px;
+		    margin-top: 220px;
+		    box-shadow: -3px -3px 7px -3px #d3d3d3, 3px 3px 7px -3px #d3d3d3;
+		}
+		
+		#heart_txt {
+			font-size: 15px;
+			color: #37B04B;
+			margin-left: 5px;
+		}
+		
+		#heart_icon2 {
+			float: left;
+			margin-top: 22px;
+	    	margin-left: 20px;
+		}
+		
+		.pay_btn {
+			background-color: #37B04B;
+		    color: white;
+		    cursor: pointer;
+		    float: right;
+		    border: 0;
+		    font-family: "NotoSansKR-Medium";
+		    width: 75px;
+		    height: 30px;
+		    margin-right: 25px;
+		    margin-top: 20px;
+		    border-radius: 3px;
+		}
+		
+		.pay_btn:focus {
+			outline: none;	
+		}
+		
+		.terms_zone {
+			width: 500px;
+			height: 240px;
+			margin: 0 auto;
+		}
+		
+		#terms_zone_txt {
+			font-size: 18px;
+		}
+		
+		.content_div {
+			width: 500px;
+			height: 300px;
+			border-radius: 3px;
+			margin: -5px auto;
+		}
+		
+		#content_ul {
+			margin-left: -35px;
+			font-family: "NotoSansKR-Regular";
+		}
+		
+		#m_title {
+			font-size: 20px;
+		}
+		
+		#m_content {
+			font-size: 17px;
+		}
+		
+		.text_div {
+			margin-top: 8px;
+		}
+		
+		.go_btn {
+			font-family: "NotoSansKR-Medium";
+		}
+	</style>
 </head>
 <body>
 <!-- header zone -->
@@ -268,7 +276,7 @@
 		<div class="heart_info_div">
 			<svg id="heart_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="23px" height="23px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
 			<b>보유 중인 하트 <strong id="point_txt">${memberVO.getM_heart() }</strong>개</b>
-			<a id="move_info">상세보기</a>
+			<a href="./payList.ak" id="move_info">상세보기</a>
 		</div>
 	</div>
 	<div class="charge_zone">
