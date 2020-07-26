@@ -899,7 +899,7 @@ $(document).ready(function(){
 				<input type="button" class="addr_btn" onclick="sample6_execDaumPostcode()" value="우편번호"><br>
 				<input type="text" class="addr_input" id="m_address_road" name="m_address_road" readonly placeholder="  지번주소를 선택해주세요."><br>
 				<input type="text" class="addr_input" id="m_address_detail" name="m_address_detail" placeholder="  상세주소를 입력해주세요.">
-				<input type="text" class="addr_input" id="m_extraAddress" placeholder="  참고항목">
+				<input type="text" class="addr_input" id="m_extraAddress" placeholder="  참고항목(선택)">
 			</div>
 		</div>
 		<div class="btn_div">

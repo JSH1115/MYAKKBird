@@ -16,11 +16,9 @@
 	<!-- 시간 설정 API 시작 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 	<!-- 시간 설정 API 끝 -->
-	<!-- jquery 모달 API 시작 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="resources/css/jquery_modal.css" />
-	<!-- jquery 모달 API 끝 -->
+	<!-- alert창 API 시작 -->
+	<script src="resources/js/sweetAlert_J.js"></script>
+	<!-- alert창 API 끝 -->
 	<style>
 		/* font 적용 */
 		@font-face {
@@ -399,155 +397,14 @@
 		/* 게시글 style */
 		
 		/* 모달 style */
-		.modal {
-			width: 500px;
-			height: 650px;
+		#m_title {
+			font-size: 20px;
 		}
 		
-		.modal_content_div {
-			width: 500px;
-			height: 500px;
-		}
-		
-		.modal_top {
-			width: 450px;
-			height: 60px;
-			margin-left: -5px;
-			border-radius: 10px;
-			text-align: center;
-		}
-		
-		.modal_d_no {
-			float: left;
-			font-size: 13.5px;
-		}
-		
-		.modal_d_sub {
-			font-size: 18px;
-		}
-		
-		.modal_profile {
-			width: 360px;
-			height: 100px;
-			margin-left: 38px;
-			margin-top: 3px;
-			border: 0.5px solid #E6E6E6;
-			border-radius: 3px;
-			box-shadow: -1px -1px 7px -3px #d3d3d3,
-		                1px 1px 7px -3px #d3d3d3;
-		}
-		
-		.modal_p_left {
-			width: 100px;
-			height: 100px;
-			float: left;
-			border-right: 0.5px solid #E6E6E6;
-		}
-		
-		.modal_myPhoto {
-			width: 50px; 
-			height: 50px;
-			margin-top: 25px;
-			margin-left: 25px;
-			border-radius: 25px;
-			border: 1px solid #d3d3d3;
-			background-color: white;
-		}
-		
-		.modal_p_right {
-			width: 246px;
-			height: 90px;
-			margin-top: 1px;
-			float: right;
-			font-size: 12.5px;
-		}
-		
-		.modal_txt_right {
-			margin-right: 10px;
-			float: right;
-		}
-		
-		.modal_txt_heart {
-			margin-right: 10px;
-			float: right;
-		}
-		
-		.modal_center {
-			width: 360px;
-			height: 350px;
-			margin-top: 20px;
-			margin-left: 38px;
-			border: 0.5px solid #E6E6E6;
-			border-radius: 3px;
-			box-shadow: -1px -1px 7px -3px #d3d3d3,
-		                1px 1px 7px -3px #d3d3d3;
-			clear: both;
-		}
-		
-		.modal_c_top {
-			width: 360px;
-			height: 80px;
-			font-size: 13px;
-			margin-top: 15px;
-			margin-left: 15px;
-		}
-		
-		.modal_c_top b {
-			line-height: 18px;
-		}
-		
-		.modal_cate_txt{
-			float: right;
-			margin-right: 3px;
-		}
-		
-		.modal_cate_img {
-			float: right;
-			width: 25px;
-			height: 25px;
-			margin-top: -3px;
-			margin-right: 30px;
-		}
-		
-		.modal_c_center {
-			width: 360px;
-			height: 200px;
-			font-size: 13px;
-			margin-top: 14px;
-			margin-left: 15px;
-		}
-		
-		.modal_cc_content {
-			width: 330px;
-			height: 200px;
-			border-radius: 5px;
-			margin-top: -5px;
-			background-color: #E6E6E6;
-		}
-		
-		.modal_cc_content p {
-			width: 330px;
-			height: 200px;
-			text-align: justify;
-			overflow: auto;
-		}
-		
-		.modal_btn {
-			display: block;
-			width: 346px;
-			margin-top: 20px;
-			margin-left: 38px;
-			border-radius: 3px;
-			background-color: #37B04B;
-			color: white;
-			text-align: center;
-			text-decoration: none;
-			padding: 8px;
-		}
-		
-		.modal_btn:hover {
-			font-weight: bold;
-			color: white;
+		.go_btn {
+			width: 200px;
+			height: 30px;
+			font-family: "NotoSansKR-Medium";
 		}
 		/* 모달 style */
 		
@@ -784,12 +641,6 @@
 	</div>
 	<!-- top 버튼 -->
 </body>
-<!-- modal -->
-<div id="modal_id" class="modal">
-	<div id="modal_content" class="modal_content_div">
-	</div>
-</div>
-<!-- modal -->
 <script type="text/javascript">
 //전역 변수
 var m_id = '<%=m_id %>';           // 현재 아이디
@@ -1142,7 +993,6 @@ $(document).ready(function(){
 $(document).on("click",'.detail_btn',function() {
 	b_num = $(this).attr('value');
 	
-	$('body').css("overflow-y", "scroll");
 	$('.board_search').hide();
 	$('.delete_list').hide();
 	
@@ -1156,8 +1006,6 @@ $(document).on("click",'.detail_btn',function() {
 			var type = '';
 			var gender = '';
 			var photo = '';
-			
-			$('#modal_content').empty();
 			
 			if(data.m_type === "C") {
 				type = '고객';
@@ -1175,43 +1023,14 @@ $(document).on("click",'.detail_btn',function() {
 			
 			category_list(data);
 			
-			modal += '<div class="modal_top">'
-			modal += '    <span class="modal_d_no">no.'+data.b_num+'</span><br>'
-			modal += '    <b class="modal_d_sub">'+data.b_subject+'</b>'
-			modal += '</div>'
-			modal += '<div class="modal_profile">'
-			modal += '    <div class="modal_p_left">'
-			modal += '        <img class="modal_myPhoto" src="/myakkbird/myakkbirdUpload/'+data.m_photo+'">'
-			modal += '    </div>'
-			modal += '    <div class="modal_p_right">'
-			modal += '        <span><b>이름</b> '+data.m_name+'</span><span class="modal_txt_right"><b>회원유형</b> '+type+'</span><br>'
-			modal += '        <span><b>성별</b> '+gender+'</span><span class="modal_txt_heart"><b>하트개수</b> '+data.m_heart+'개</span><br>'
-			modal += '        <span><b>나이</b> '+data.m_age+'세</span><br>'
-			modal += '        <span><b>이메일</b> '+data.m_email+'</span><br>'
-			modal += '        <span><b>휴대전화</b> '+data.m_phone+'</span><br>'
-			modal += '    </div>'
-			modal += '</div>'
-			modal += '<div class="modal_center">'
-			modal += '    <div class="modal_c_top">'
-			modal += '        <b>주소(지번)</b><span> '+data.b_address_road+'</span>'
-			modal += '        <img class="modal_cate_img" src="./resources/image/'+img_d+'"><span class="modal_cate_txt">'+category_d+'</span><br>'
-			modal += '        <b>주소(상세)</b><span> '+data.b_address_detail+'</span><br>'
-			modal += '        <b>청소시작날짜</b><span> '+start_day+'</span><br>'
-			modal += '        <b>청소종료날짜</b><span> '+end_day+'</span><br>'
-			modal += '        <b>시급</b><span> '+data.b_money+'원</span>'
-			modal += '    </div>'
-			modal += '    <div class="modal_c_center">'
-			modal += '        <b>상세내용</b>'
-			modal += '        <div class="modal_cc_content">'
-			modal += '            <p>'+data.b_content+'</p>'
-			modal += '        </div>'
-			modal += '    </div>'
-			modal += '</div>'
-			modal += '<div modal_btn_div>'
-			modal += '    <a class="modal_btn" href="./BoardDetail.ak?b_num='+data.b_num+'&e_id='+m_id+'">자세히 보러 가기</a>'
-			modal += '</div>'
+			Swal.fire({
+				title: '<strong id="m_title">'+data.b_subject+'</strong>',
+				html: 
+			        '',
+				confirmButtonColor: '#37B04B',
+				confirmButtonText:'<div class="go_btn">자세히 보기</div>',
+			})
 			
-			$('#modal_content').append(modal);
 		},
 		error:function(){
 	        alert("ajax통신 실패!!!");

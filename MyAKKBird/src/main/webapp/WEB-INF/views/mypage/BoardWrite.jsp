@@ -120,7 +120,6 @@
 		
 		.board_sub {
 		    text-align: center; 
-		    color: #444444;
 		}
 		
 		.head_text {
@@ -149,9 +148,17 @@
 	    }
 		
 		/* 카테고리 테이블 */
+		#detail_btn {
+			position: absolute;
+    		margin-top: 3px;
+   			margin-left: 5px;
+   			cursor: pointer;
+		}
+		
 		.category_div {
 			width: 600px;
 			height: 130px;
+			margin-left: 30px;
 		}
 		
 		.category_img_div {
@@ -641,7 +648,7 @@
 			text-align: center;
 		}
 		
-		.m_div1 {
+		.mj_div1 {
 			width: 400px;
 			height: 60px;
 			margin: 0 auto;
@@ -659,7 +666,7 @@
 		    margin-top: 20px;
 		}
 		
-		.m_div2 {
+		.mj_div2 {
 			width: 400px;
 			height: 60px;
 			margin: 0 auto;
@@ -677,7 +684,7 @@
 		    margin-top: 20px;
 		}
 		
-		.m_div3 {
+		.mj_div3 {
 			width: 400px;
 			height: 60px;
 			margin: 0 auto;
@@ -719,6 +726,36 @@
     		float: left;
 		}
 		/* 광고, 찜 관련 style */
+		
+		/* 청소 안내 modal style */
+		#m_title {
+			font-size: 20px;
+		}
+		
+		.m_div1 {
+			width: 330px;
+			height: 40px;
+			margin: 15px auto;
+			border-bottom: 1px solid #888888;
+		}
+		
+		.m_div1 b, .m_div1 span {
+			font-size: 17px;
+			float: left;
+		}
+		
+		.m_div2 {
+			width: 330px;
+			height: 40px;
+			margin: 15px auto;
+			border-bottom: 1px solid #888888;
+		}
+		
+		.m_div2 b, .m_div2 span {
+			float: left;
+			font-size: 17px;
+		}
+		/* 청소 안내 modal style */
 	</style>
 	<script type="text/javascript">
 	</script>
@@ -742,7 +779,7 @@
 			<b class="head_text">청소 종류</b>
 			<table>
 				<tr>
-					<th>종류 선택*</th>
+					<th>종류 선택<svg id="detail_btn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25"><g fill="none" fill-rule="evenodd"><g><circle cx="12.5" cy="12.5" r="12.5" fill="#BDBDBD"/><path fill="#FFF" d="M11.194 14.606c-.402-2.66 2.445-3.717 2.445-5.302 0-.826-.553-1.355-1.424-1.355-.737 0-1.323.38-1.859.925L9 7.652C9.87 6.677 11.06 6 12.517 6 14.527 6 16 7.024 16 9.139c0 2.345-2.914 3.138-2.663 5.467h-2.143zM12.266 19c-.871 0-1.524-.694-1.524-1.586 0-.892.653-1.586 1.524-1.586.887 0 1.54.694 1.54 1.586 0 .892-.653 1.586-1.54 1.586z"/></g><path d="M-176 23h375v30h-375z"/></g></svg></th>
 					<td align="center">
 						<div class="category_div">
 							<div class="category_img_div">
@@ -857,7 +894,7 @@
 								<input type="text" name="b_address_detail" id="sample6_detailAddress"  
 								       class="address_input" placeholder=" 상세주소"><br>
 								<label class="error" id="d_addr" for="sample6_detailAddress" style="margin-left: -100px;"></label><br>
-								<input type="text" id="sample6_extraAddress" class="address_input" placeholder=" 참고항목">
+								<input type="text" id="sample6_extraAddress" class="address_input" placeholder=" 참고항목(선택)">
 								<!-- 다음 주소 API 끝 -->
 							</div>
 							<div class="address_div_default_left">
@@ -1014,6 +1051,34 @@ var sel_files = []; // 업로드한 파일을 저장할 배열
 function fileUploadAction() {
 	$('#img_input').trigger('click');
 }
+//청소 안내 modal
+$('#detail_btn').click(function name() {
+	Swal.fire({
+		title: '<strong id="m_title">※마이악어새가 알려주는 청소 종류</strong>',
+		html: 
+	        '<div class="m_div1">' +
+	        '    <b>정기청소</b><span>&nbsp;&nbsp;집 청소, 음식점 청소 등</span>' +
+	        '</div>' +
+	        '<div class="m_div2">' +
+	        '    <b>특수청소</b><span>&nbsp;&nbsp; 범죄 현장 청소, 폐기물 처리 등</span>' +
+	        '</div>' +
+	        '<div class="m_div2">' +
+	        '    <b>입주청소</b><span>&nbsp;&nbsp; 이사, 리모델링 청소 등</span>' +
+	        '</div>' +
+	        '<div class="m_div2">' +
+	        '    <b>상주청소</b><span>&nbsp;&nbsp; 어르신 집 청소, 회사 청소 등</span>' +
+	        '</div>' +
+	        '<div class="m_div2">' +
+	        '    <b>빌딩청소</b><span>&nbsp;&nbsp; 아파트 외벽, 빌딩 옥상 등</span>' +
+	        '</div>' +
+	        '<div class="m_div2">' +
+	        '    <b>방역청소</b><span>&nbsp;&nbsp; 코로나로 인한 방역</span>' +
+	        '</div>',
+		confirmButtonColor: '#37B04B',
+		confirmButtonText:
+		    '확인'
+	})
+});
 // form 초기화
 function reset_form() {
 	var img_ul = '';
@@ -1371,15 +1436,15 @@ function banner_check() {
 					  title: '<strong>5분안에 회원가입하고</strong>',
 					  html:
 						  '<div class="modal_join">' +
-					      '    <div class="m_div1">' +
+					      '    <div class="mj_div1">' +
 					      '        <svg class="mj_icon1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>' +
 					      '        <b class="mj_txt1">고객의 다양한 게시물을 확인!</b>' +
 					      '    </div>' +
-					      '    <div class="m_div2">' +
+					      '    <div class="mj_div2">' +
 					      '        <svg class="mj_icon2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>' +
 					      '        <b class="mj_txt2">회원이 작성한 리얼 후기 확인!</b>' +
 					      '    </div>' +
-					      '    <div class="m_div3">' +
+					      '    <div class="mj_div3">' +
 					      '        <svg class="mj_icon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="60px" height="60px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' +
 					      '        <b class="mj_txt3">회원가입하면 하트 3개 무료!</b>' +
 					      '    </div>' +
