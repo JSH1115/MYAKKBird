@@ -88,13 +88,13 @@
 	flex-direction: row;
 	justify-content: center;
 	margin:10px;
+	width:1200px;
 }
 .pic{
     width: 520px;
     margin-top:50px;
 }
-#pic_1{
-}
+
 .text{
 	width:40%;
 	padding:18px;
@@ -106,10 +106,16 @@
 .lower_text h1{
 	color: #37b04b;
 }
-#btn_goto{
-	width:175px;
-	height:50px;
-	cursor:pointer;
+.btn_goto{
+    text-align: center;
+    width:60%;
+    font-size: larger;
+    background-color: #89df8f;
+    border-radius:40px;
+    cursor: pointer;
+}
+.btn_goto:hover{
+	background-color: #37b04b;
 }
 #more{
 	display: flex;
@@ -117,26 +123,13 @@
     align-items: center;
     padding-bottom: 30px;
 }
-.starR1{
-    background: url('resources/image/star.png') no-repeat -52px 0;
-    background-size: auto 100%;
-    width: 15px;
-    height: 30px;
-    float:left;
-    text-indent: -9999px;
-    cursor: pointer;
+#more div{
+    background-color: #89df8f;
+    border-radius: 40px;
+    padding: 0 50px;
+    font-weight: bolder;
+    font-size: 22px;	
 }
-.starR2{
-    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0; 
-    background-size: auto 100%;
-    width: 15px;
-    height: 30px;
-    float:left;
-    text-indent: -9999px;
-    cursor: pointer;
-}
-.starR1.on{background-position:0 0;}
-.starR2.on{background-position:-15px 0;}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
@@ -193,7 +186,7 @@ $('.starRev span').click(function(){
 			<p> 청소근무자를 파견하면서 수수료를 받는 타업체와 달리 </p>
 			<p>'마이악어새'는 고객과 근로자가 매칭을 원할 때만 소정의 정보료를 받고 서로 연락처를 오픈해드리는 구조로, 한번 매칭된 이후에는 수수료가 전혀 없어요. </p>
 			<p> 한번 매칭이 된 근로자와 정기 근로계약을 맺을 경우에도 단 한번의 이용권만 이용하시면 됩니다.</p>
-			<div class="lower_text"onclick="location.href='pay.ak'"> <h3>하트 구매하러 가기</h3> </div>
+			<div class="btn_goto" onclick="location.href='pay.ak'"> <h3>하트 구매하러 가기</h3> </div>
 		</div>
 	</div>
 	
@@ -201,19 +194,21 @@ $('.starRev span').click(function(){
 		<div class="text">
 			<div class="lower_text"> <h1>02</h1> </div>
 			<div class="lower_text"> <h2>쉽고 빠르게 구할 수 있어요</h2></div>
-			
-			<div class="lower_text" onclick="location.href='searchProcess.ak?b_address_road='"> <h3>마이악어새 이용하러가기</h3> </div>
+			<p> 청소업체에 연락하여 청소근로자를 파견하는 시간을 기다릴 필요 없이, </p>
+			<p> 청소를 원한다면 언제 어디서든 구인공고문을 올리고, 근로자는 실시간으로 공고문을 확인하여 클릭 한번으로 신청할 수 있습니다.</p> 
+			<div class="btn_goto" onclick="location.href='searchProcess.ak?b_address_road='"> <h3>마이악어새 이용하러가기</h3> </div>
 		</div>
 		<div><img class="pic" id="pic_2" src="resources/image/clean_3.png"> </div>
 	</div>
 	
 	<div  class="benefit">
-		<div class="pic"> </div>
+		<div><img class="pic" id="pic_2" src="resources/image/demanding.png"> </div>
 		<div class="text">
 			<div class="lower_text"> <h1>03</h1> </div>
 			<div class="lower_text"> <h2>다양한 조건을 <br/>직접 선택할 수 있어요</h2></div>
-			<div class="lower_text"> 마이악어새는 각자의 상황마다 다른 다양한 조건을 설정하여<br> 고객의 니즈에 맞는 근로자와 매칭될 수 있도록 연결해줍니다.</div>
-			<div class="lower_text" onclick="location.href='searchProcess.ak?b_address_road='"> <h3>마이악어새 이용하러가기</h3> </div>
+			<p> 이제는 요구사항이 많더라도 눈치보지 마세요! </p>
+			<p> 마이악어새는 다양한 조건을 설정할 수 있도록 하여<br> 고객의 니즈에 맞는 근로자와 매칭될 수 있도록 도와줍니다.</p>
+			<div class="btn_goto" onclick="location.href='searchProcess.ak?b_address_road='"> <h3>마이악어새 이용하러가기</h3> </div>
 		</div>
 	</div>
 	
@@ -224,7 +219,7 @@ $('.starRev span').click(function(){
 </section>
 	<div id="more"> 
 		<h3> 우리 사이트에 대해서 더 알고싶으시다면 </h3>
-		<img src="resources/image/btn_goto.png" id="btn_goto" onclick="location.href='FAQList.ak'">
+		<div class="btn_goto_faq" onclick="location.href='FAQList.ak'">FAQ 바로가기</div>
 	</div>
 </div>
 

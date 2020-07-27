@@ -93,10 +93,14 @@
 	    letter-spacing: 1px;
 	}
 	
+	#total_count div{
+		margin: 0 20px 0 60px;
+	}
+	
 	#total_count span{
-		color: #2d903e;
-	    font-weight: bold;
+		color: #37b04b;
 	    font-size: x-large;
+	    font-weight: bold;
 	}
 	
 	/* ------------------------------------------------ */
@@ -312,6 +316,21 @@
 		width:800px;
 	}
 	
+	#more{
+	    border-radius: 50px;
+	    padding: 7px 20px;
+        margin: 15px 10px 5px 10px;
+	    background-color: #37b04b;
+	    color: white;
+	    cursor:pointer;
+        font-size: larger;
+	}
+	
+	#more:hover{
+		background-color: green;
+	}
+
+	
 	#fold_reviews{
 		position:absolute;
 		bottom:0;
@@ -341,10 +360,17 @@
 	}
 	
 	#btn_goto{
-		width:175px;
-		height:50px;
-		margin-bottom: 40px;
-		cursor:pointer;
+	    border-radius: 30px;
+	    background-color: #37b04b;
+	    color: white;
+        font-size: larger;
+	    padding: 7px 20px;
+	    margin-bottom: 20px;
+	    cursor: pointer;
+	}
+	
+	#btn_goto:hover{
+		background-color: green;
 	}
 	
 	.each_FAQ{
@@ -443,10 +469,10 @@
 	function more(){
 		 if(story.style.display =='none'){
 			 story.style.display ='';
-			 document.getElementById('more').innerHTML ='<img src="resources/image/btn_fold.png">'
+			 document.getElementById('more').innerHTML ='접 기 '
 		 }else{
 			 story.style.display='none';
-			 document.getElementById('more').innerHTML='<img src="resources/image/btn_more.png">'
+			 document.getElementById('more').innerHTML='더 보 기 '
 		 }
 	}
 	
@@ -527,34 +553,47 @@ $(document).ready(function(){
 })
 </script>
  
-<% int totalBoardCount = ((Integer)request.getAttribute("totalBoardCount")).intValue(); %>
+<% int totalBoardCount = ((Integer)request.getAttribute("totalBoardCount")).intValue(); 
+   int countAccept = ((Integer)request.getAttribute("countAccept")).intValue();%>
 <section id="search_container">
 	<div id="total_count"> 
 	<% if (totalBoardCount != 0){ %>
-		마이악어새 게시물  총&nbsp;&nbsp; 
-		<span class="memberCountCon"> 
-		
-		
-		
-		</span> &nbsp;건
+		<div>악어회원 게시물 수 </div> <span id="boardCount"> </span> &nbsp;
+		<div>악어새회원 지원 건수  </div> <span id="countAccept"> </span> &nbsp;
 		
 		<script>		
-		  var memberCountConTxt = <%=totalBoardCount%>;
-		  
-		  $({ val : 0 }).animate({ val : memberCountConTxt }, {
+		  var boardCountConTxt = <%=totalBoardCount%>;
+		  $({ val : 0 }).animate({ val : boardCountConTxt }, {
 		   duration: 2000,
 		  step: function() {
 		    var num = numberWithCommas(Math.floor(this.val));
-		    $(".memberCountCon").text(num);
+		    $("#boardCount").text(num);
 		  },
 		  complete: function() {
 		    var num = numberWithCommas(Math.floor(this.val));
-		    $(".memberCountCon").text(num);
+		    $("#boardCount").text(num);
 		  }
 		});
 		function numberWithCommas(x) {
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
+		
+		  var countAccept = <%=countAccept%>;
+		  $({ val : 0 }).animate({ val : countAccept }, {
+		   duration: 2000,
+		  step: function() {
+		    var num = numberWithCommas(Math.floor(this.val));
+		    $("#countAccept").text(num);
+		  },
+		  complete: function() {
+		    var num = numberWithCommas(Math.floor(this.val));
+		    $("#countAccept").text(num);
+		  }
+		});
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
 		</script>
 	<% } %>
 	</div>
@@ -765,7 +804,7 @@ $(document).ready(function(){
 			
 		</table>
 	</div>
-	<div id="more" onclick="more()"> <img src="resources/image/btn_more.png"></div>
+	<div id="more" onclick="more()"> 더 보 기</div>
 	 <% } 
 	}else{ %>
 	<div>리뷰가 없습니다. 리뷰를 작성해주세요!</div>
@@ -782,20 +821,21 @@ $(document).ready(function(){
 <section id="FAQ_container">
 	<h3>우리 사이트가 궁금하신가요?</h3>
 	<div id="FAQ_category">
-		<div class="each_FAQ" onclick="b()">
+		<div class="each_FAQ" onclick="location.href='FAQList.ak'">
 			<img src="resources/image/dependable.png">
 			<h4>믿을 수 있나요?</h4>
 		</div>
-		<div class="each_FAQ" onclick="b()">
+		<div class="each_FAQ" onclick="location.href='FAQList.ak'">
 			<img src="resources/image/target.png">
 			<h4>매칭은 <br>어떻게 되나요?</h4>
 		</div>
-		<div class="each_FAQ" onclick="b()">
+		<div class="each_FAQ" onclick="location.href='FAQList.ak'">
 			<img src="resources/image/donation.png">
 			<h4>이용권이 <br> 궁금해요!</h4>
 		</div>
 	</div>
-	<img src="resources/image/btn_goto.png" id="btn_goto" onclick="location.href='FAQList.ak'">
+	<!-- <img src="resources/image/btn_goto.png" id="btn_goto" onclick="location.href='FAQList.ak'"> -->
+	<div id="btn_goto" onclick="location.href='FAQList.ak'">FAQ 바로가기</div>
 </section>
 </div> <!-- content_container -->
 <jsp:include page="./footer_container.jsp">

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bit.mapper.AcceptMapper;
 import com.bit.mapper.BoardMapper;
 import com.bit.mapper.MainPointMapper;
 import com.bit.myakkbird.mypage.BoardVO;
@@ -31,4 +32,10 @@ public class MainPointServiceImpl implements MainPointService {
 		return totalBoardCount;
 	}
 
+	@Override
+	public int countAccept() {
+		AcceptMapper acceptMapper = sqlSession.getMapper(AcceptMapper.class);
+		int countAccept = acceptMapper.countAccept();
+		return countAccept;
+	}
 }

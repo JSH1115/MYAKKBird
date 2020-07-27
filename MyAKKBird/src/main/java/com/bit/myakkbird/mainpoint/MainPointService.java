@@ -9,4 +9,5 @@ public interface MainPointService {
 	
 	//지연
 	public int totalBoardCount();	// 총 게시물 받아오기
+	public int countAccept();
 }
