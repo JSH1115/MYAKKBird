@@ -76,11 +76,17 @@ body{
 	text-align:center;
 	width:600px;
 	height:30px;
-	margin:10px;
+	margin:20px;
 	padding:10px;
 	line-height:30px;
 	box-shadow: -5px -5px 10px -5px #d3d3d3, 5px 5px 10px -5px #a9a8a8;
 	cursor: pointer;
+	-webkit-transition-duration: 0.2s; 
+	transition-duration: 0.2s
+}
+
+.eachMenu:hover{
+	background-color: #f5f5f5;
 }
 /* ------------------------------------------------ */
 #profile_container, #review_container{
@@ -363,9 +369,8 @@ body{
 				phone += memberVO.m_phone;
 				$('#m_phone').html(phone);
 				
-				var btn='';
-				
-				$('.button').html(btn);
+				$('.button').css('display','none');
+
 			}
 		})
 	}
@@ -410,7 +415,7 @@ body{
 				$('#m_phone').html(phone);
 	
 				var btn='';
-				btn +='<input type="button" id="btn_modifyProcess" value="확인"/>'
+				btn +='<div id="btn_modifyProcess">확인</div>'
 				$('.button').html(btn);
 				
 				// 프로필 수정 > 파일 선택 클릭한 경우 미리보기로 출력

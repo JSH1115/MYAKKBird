@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<script>
-$(document).ready(function(){
-	$('.eachMenu').hover(function(){
-		$(this).css('border-top','solid 2px #89df8f');
-		$(this).css('border-right','solid 14px #89df8f');
-		$(this).css('border-bottom','solid 2px #89df8f');
-		$(this).css('border-left','solid 14px #89df8f');
-	}, function(){
-		$(this).css('border','none')
-	})
-})
-</script>
 	
 	<% String m_type = (String)request.getAttribute("m_type"); %>
 	
