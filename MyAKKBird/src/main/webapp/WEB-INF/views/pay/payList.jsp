@@ -5,6 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.bit.myakkbird.pay.*" %>
 <%
+	String m_id = (String)session.getAttribute("m_id");
 	ArrayList<PayVO> payList = (ArrayList<PayVO>)request.getAttribute("payList");
 	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 	int nowpage = ((Integer)request.getAttribute("page")).intValue();
@@ -21,10 +22,20 @@
 		if(payList.get(i).getP_pg().equals("K")) {
 			payList.get(i).setP_pg("카카오페이");
 		}
+		
+		if(payList.get(i).getP_price() == 10000) {
+			payList.get(i).setP_info("하트 50개");
+		} else if(payList.get(i).getP_price() == 5000) {
+			payList.get(i).setP_info("하트 25개");
+		} else {
+			payList.get(i).setP_info("하트 5개");
+		}
+		
 		payDay = dateFormat.format(payList.get(i).getP_date());
 		pay = String.format("%,d", payList.get(i).getP_price());
 	}
 	
+	System.out.println("현재 아이디 : " + m_id);
 	System.out.println("결제한 내역 수 : " + listCount);
 %>
 <!DOCTYPE html>
@@ -32,6 +43,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>마이악어새</title>
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<!-- 부트스트랩  -->
+	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap_min.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap_thememin.css">
+  	<!-- 부트스트랩 -->
 	<style>
 		@font-face{
 				font-family: "NotoSansKR-Bold";
@@ -70,6 +86,15 @@
 			font-family: "NotoSansKR-Regular";
 		}
 		
+		h2 {
+			font-size: 25px;
+			font-family: "NotoSansKR-Black";
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
 		table {
 			width: 800px;
 			border-collapse: collapse;
@@ -80,6 +105,7 @@
 			background-color: #37B04B;
 			color: white;
 			font-family: "NotoSansKR-Medium";
+			text-align: center;
 		}
 		
 		tbody #data_tr {
@@ -118,20 +144,33 @@
 			float: right;
 		}
 		
-		.no_data_div {
-			
-		}
-		
 		.pay_list_div {
 			width: 800px;
 			height: auto;
-			margin: 30px auto;
+			margin: 10px auto;
+		}
+		
+		#heart_icon {
+			position: absolute;
+		    margin-left: -28px;
+		    margin-top: -1px;
+		}
+		
+		#point_txt {
+			color: #37B04B;
 		}
 		
 		.num_zone {
 			width: 800px;
-			margin: 20px auto;
+			margin: 0 auto;
 			text-align: center;
+		}
+		
+		#back_btn {
+			cursor: pointer;
+    		position: absolute;
+    		margin-left: -400px;
+    		margin-top: 5px;
 		}
 	</style>
 </head>
@@ -143,19 +182,29 @@
 <!-- header zone -->
 <div class="pay_history_div">
 	<div class="title_zone">
-		<h2>하트 구매내역</h2>
+		<svg id="back_btn" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+		<h2><%=m_id %>님 하트 구매내역</h2>
 	</div>
 	<div class="list_zone">
-		<b id="list_count">결제 총 내역 <%=listCount %>번</b>
+		<%
+			if(payList.size() == 0) {
+		%>
+		<%
+			} else {
+		%>
+			<b id="list_count">결제 총 내역 <%=listCount %>번</b>
+		<%
+			}
+		%>
 	</div>
 	<div class="pay_list_div">
 		<table>
 			<thead>
 				<tr align="center">
 					<th>번호</th>
-					<th>아이디</th>
-					<th>금액</th>
+					<th>결제 정보</th>
 					<th>결제 방식</th>
+					<th>결제 금액</th>
 					<th>결제 날짜</th>
 				</tr>
 			</thead>
@@ -174,19 +223,22 @@
 						for(int i = 0; i < payList.size(); i++) {
 				%>
 						<tr id="data_tr" align="center">
-							<td>
+							<td style="width: 10%">
 								<div><%=num %></div>
 							</td>
-							<td>
-								<div><%=payList.get(i).getM_id() %></div>
+							<td style="width: 35%">
+								<div>
+									<svg id="heart_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="23px" height="23px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+									<%=payList.get(i).getP_info() %>
+								</div>
 							</td>
-							<td>
-								<div><%=pay %>원</div>
-							</td>
-							<td>
+							<td style="width: 20%">
 								<div><b><%=payList.get(i).getP_pg() %></b></div>
 							</td>
-							<td>
+							<td style="width: 20%">
+								<div><b id="point_txt"><%=pay %>원</b></div>
+							</td>
+							<td style="width: 25%">
 								<div><%=payDay %></div>
 							</td>
 						</tr>
@@ -207,25 +259,39 @@
 			} else {
 		%>
 			<div>
-				<%if(nowpage <= 1) { %>
-					<span>&lt;</span>
-				<%} else {%>
-					<a href="./payList.ak?page=<%=nowpage-1%>">&lt;</a>
-				<%} %>
-				
-				<%for(int i = startpage; i <= endpage; i++) { 
-					if(i == nowpage) {%>
-					<span><%=i %></span>
+				<ul class="pagination">
+					<%if(nowpage <= 1) { %>
+						<li>
+							<span class="page-item">&lt;</span>
+						</li>
 					<%} else {%>
-					<a href="./payList.ak?page=<%=i %>">[<%=i %>]</a>
+						<li>
+							<a href="./payList.ak?page=<%=nowpage-1%>" class="page-item">&lt;</a>
+						</li>
 					<%} %>
-				<%} %>
-				
-				<%if(nowpage >= maxpage){ %>
-				<span>&gt;</span>
-				<%} else {%>
-				<a href="./payList.ak?page=<%=nowpage+1%>">&gt;</a>
-				<%} %>
+					
+					<%for(int i = startpage; i <= endpage; i++) { 
+						if(i == nowpage) {%>
+						<li class="active">
+							<span><%=i %></span>
+						</li>
+						<%} else {%>
+						<li>
+							<a href="./payList.ak?page=<%=i %>" class="page-item"><%=i %></a>
+						</li>
+						<%} %>
+					<%} %>
+					
+					<%if(nowpage >= maxpage){ %>
+					<li>
+						<span class="page-item">&gt;</span>
+					</li>
+					<%} else {%>
+					<li>
+						<a href="./payList.ak?page=<%=nowpage+1%>" class="page-item">&gt;</a>
+					</li>
+					<%} %>
+				</ul>
 			</div>
 		<%
 			}
@@ -233,4 +299,9 @@
 	</div>
 </div>	
 </body>
+<script>
+$('#back_btn').click(function() {
+	window.history.back();
+});
+</script>
 </html>

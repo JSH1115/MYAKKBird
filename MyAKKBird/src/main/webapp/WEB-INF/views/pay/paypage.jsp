@@ -76,7 +76,13 @@
 		.pay_div {
 			width: 1000px;
 			height: 600px;
-			margin: 60px auto;
+			margin: 20px auto;
+		}
+		
+		.addClass {
+			width: 500px;
+    		height: 20px;
+    		margin: 20px auto;
 		}
 		
 		.title_zone {
@@ -256,6 +262,11 @@
 			margin-top: 8px;
 		}
 		
+		#back_btn {
+			margin-top: 47px;
+			cursor: pointer;
+		}
+		
 		.go_btn {
 			font-family: "NotoSansKR-Medium";
 		}
@@ -268,6 +279,9 @@
 </jsp:include> 
 <!-- header zone -->
 <div class="pay_div">
+	<div class="addClass">
+		<svg id="back_btn" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+	</div>
 	<div class="title_zone">
 		<h2>하트 충전<svg id="detail_btn" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><g fill="none" fill-rule="evenodd"><g><circle cx="12.5" cy="12.5" r="12.5" fill="#BDBDBD"/><path fill="#FFF" d="M11.194 14.606c-.402-2.66 2.445-3.717 2.445-5.302 0-.826-.553-1.355-1.424-1.355-.737 0-1.323.38-1.859.925L9 7.652C9.87 6.677 11.06 6 12.517 6 14.527 6 16 7.024 16 9.139c0 2.345-2.914 3.138-2.663 5.467h-2.143zM12.266 19c-.871 0-1.524-.694-1.524-1.586 0-.892.653-1.586 1.524-1.586.887 0 1.54.694 1.54 1.586 0 .892-.653 1.586-1.54 1.586z"/></g><path d="M-176 23h375v30h-375z"/></g></svg></h2>
 	</div>
@@ -329,6 +343,13 @@
 </div>
 </body>
 <script>
+
+var m_id = '<%=memberVO.getM_id() %>';
+
+$('#back_btn').click(function() {
+	location.href="./profile.ak?id="+m_id+"";
+});
+
 $('#detail_btn').click(function name() {
 	Swal.fire({
 		title: '<strong id="m_title">※마이악어새 하트란?</strong>',

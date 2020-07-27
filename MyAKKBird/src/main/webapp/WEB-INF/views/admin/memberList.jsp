@@ -677,17 +677,17 @@
 		        	<ul class="pagination">
 				    	<c:if test="${pageVO.pageNo != 0}">
 					        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
-					            <li>
+					            <li class="page-item">
 					            	<a href="javascript:fn_movePage(${pageVO.firstPageNo})">&lt;&lt;</a>
 					            </li>
 					       </c:if>
 					       <c:if test="${pageVO.pageNo != 1}">
-					           <li>
+					           <li class="page-item">
 					               <a href="javascript:fn_movePage(${pageVO.prevPageNo})">&lt;</a>
 					           </li>
 					        </c:if>
 					        <c:if test="${pageVO.pageNo == 1}">
-					           <li>
+					           <li class="page-item">
 					               <a>&lt;</a>
 					           </li>
 					        </c:if>

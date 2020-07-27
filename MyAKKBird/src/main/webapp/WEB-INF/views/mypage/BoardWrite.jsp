@@ -142,8 +142,7 @@
 		.addClass {
 		    width: 900px;
 		    height: 50px;
-		    margin-left: auto;
-		    margin-right: auto;
+		    margin: 0 auto;
 		    background-color: #E6E6E6;
 	    }
 		
@@ -759,6 +758,13 @@
 		}
 		/* 청소 안내 modal style */
 		
+		#back_btn {
+			cursor: pointer;
+   		 	position: absolute;
+    		margin-left: 55px;
+    		margin-top: 85px;
+		}
+		
 		.go_btn {
 			font-family: "NotoSansKR-Medium";
 		}
@@ -774,6 +780,7 @@
 <!-- header zone -->
 <div class="all">
 	<div class="addClass">
+		<svg id="back_btn" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 	</div>
 	<form name="board_form" id="board_form_id" action="board_insertProcess.ak" 
 	      method="post" enctype="multipart/form-data">
@@ -1053,12 +1060,17 @@
 </body>
 <script type="text/javascript">
 var sel_files = []; // 업로드한 파일을 저장할 배열
+var m_id = '<%=m_id %>';
+
+$('#back_btn').click(function() {
+	location.href="./profile.ak?id="+m_id+"";
+});
 // 트리거 이벤트
 function fileUploadAction() {
 	$('#img_input').trigger('click');
 }
 //청소 안내 modal
-$('#detail_btn').click(function name() {
+$('#detail_btn').click(function() {
 	Swal.fire({
 		title: '<strong id="m_title">※마이악어새가 알려주는 청소 종류</strong>',
 		html: 
