@@ -35,4 +35,18 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/ddd.ak")
+	public String test(Model model) {
+		
+		//총 게시물 받아오기
+		int totalBoardCount = mainPointService.totalBoardCount();
+		model.addAttribute("totalBoardCount", totalBoardCount);
+		
+		//리뷰 리스트 받아오기
+		List<ReviewVO> reviewList = reviewService.latestReviews();
+		model.addAttribute("reviewList", reviewList);
+		
+		return "ddd";
+	}
+	
 }

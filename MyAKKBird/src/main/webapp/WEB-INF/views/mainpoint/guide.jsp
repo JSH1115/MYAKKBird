@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="fonts/font.css">
+<!-- <link rel="stylesheet" type="text/css" href="fonts/font.css"> -->
 <style>
 	 @font-face{
 		font-family: "NotoSansKR-Bold";
@@ -46,9 +46,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
     background-color: #89df8f;
-    padding: 40px;
+    padding: 40px 110px 40px 0;
 }
 #highlight{
     border-bottom: solid #ffc720 10px;
@@ -110,12 +109,13 @@
 #btn_goto{
 	width:175px;
 	height:50px;
+	cursor:pointer;
 }
 #more{
 	display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 300px;
+    padding-bottom: 30px;
 }
 .starR1{
     background: url('resources/image/star.png') no-repeat -52px 0;
@@ -138,13 +138,14 @@
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-15px 0;}
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div class="wrap">
 <jsp:include page="../header_container.jsp">
 	<jsp:param value="m_id" name="m_id"/>
 </jsp:include> 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 
 <script>
 $(document).ready(function(){
@@ -161,7 +162,7 @@ $('.starRev span').click(function(){
 <div class="wrap">
 <section id="upper">
 	<div>
-		<div id="upper_1"> 바쁜데 직접 청소하세요? <br/> <span id="highlight">마이악어새</span>가 있는데!</div>
+		<div id="upper_1"> 아직도 바쁜데 직접 청소하세요? <br/> <span id="highlight">마이악어새</span>와 함께하세요!</div>
 		<div class="upper_2"> <h3>마이악어새는 어떤 사이트인가요?</h3></div>
 		<div class="upper_2"> 악어의 이빨을 청소하고 먹이를 얻으면서<br>  서로 이익을 얻는다는 악어와 악어새의 이야기처럼</div>
 		<div><img src="resources/image/fullLogo_removebg.png" id="upper_logo"> <span id="neun">는</span> </div>

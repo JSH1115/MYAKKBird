@@ -55,10 +55,9 @@ public class MemberController {
 			return "member/mypage_menu2";
 		}
 	
-	    // parameter로 받은 id의 프로필창으로 이동
+		// parameter로 받은 id의 프로필창으로 이동
 		@RequestMapping("/profile.ak")
 		public String profile(String id, Model model, HttpSession session) throws Exception {
-			System.out.println("h1");
 			String current_id = (String)session.getAttribute("m_id");
 			
 			if (session.getAttribute("m_id") == null) {
@@ -66,23 +65,21 @@ public class MemberController {
 			}
 			String m_type = memberService.mypage_menu(current_id); // 현재 세션id의 회원 타입 구하기 ( 타입에 따라 메뉴가 다름)
 			model.addAttribute("m_type", m_type);
-			System.out.println("h2");
 			
 			// 해당 id에 대한 정보 (프로필) 불러오기
 			MemberVO memberVO = memberService.profile(id);
 			model.addAttribute("memberVO", memberVO);
-			System.out.println("h3");
 			// 해당 id에 대한 리뷰 불러오기
 			List<ReviewVO> reviewList = reviewService.getReviewList(id);
 			model.addAttribute("reviewList", reviewList);
-			System.out.println("h4");
-			System.out.println("h5");
 	
 			HashMap<String, Object> hashmap = new HashMap<String, Object>();
-			if (reviewList.size() != 0 || reviewList != null) {
+			hashmap.put("watched_id", id); // watched_id : 현재 보여지고 있는 프로필의 id (리뷰 받는사람 r_id) 
+			hashmap.put("current_id", current_id); // current_id : 현재 로그인되어있는 세션 id (리뷰 쓰는 사람 m_id)
+			
+			// 리뷰있을 경우 
+			if (reviewList.size() != 0 && reviewList !=null) {
 				// 각 리뷰마다 현재 세션id가 좋아요 누른 적 있는지 확인
-				hashmap.put("watched_id", id); // watched_id : 현재 보여지고 있는 프로필의 id (리뷰 받는사람 r_id) 
-				hashmap.put("current_id", current_id); // current_id : 현재 로그인되어있는 세션 id (리뷰 쓰는 사람 m_id)
 				for(ReviewVO vo : reviewList) {
 					vo.setL_check(0); 
 					hashmap.put("r_num", vo.getR_num());
@@ -90,12 +87,14 @@ public class MemberController {
 					vo.setL_check(res);
 				}
 				// 해당 id 리뷰 개수 및 총 평점 계산
-				model.addAttribute("countReview", reviewList.size());
-				System.out.println("reviewList.size() : "+ reviewList.size());
-	//					String avgStar = String.format("%.1f", reviewService.getAvgStar(id)); 
-	//					model.addAttribute("avgStar", avgStar);
+				
+				// 평균평점 구하기
+				double avgStar = Math.round((reviewService.getAvgStar(id))*10)/10.0;
+				model.addAttribute("avgStar", avgStar);
+			}else { // 리뷰가 없을 경우
+				model.addAttribute("avgStar", "0");
+				
 			}
-			System.out.println("h6");
 			
 			// 자신의 프로필이 아닌 타인의 프로필을 보고 있을 경우 (리뷰작성 버튼 보여주기)
 			if (!(current_id.equals(id))){
@@ -116,9 +115,7 @@ public class MemberController {
 			}else { // 본인 프로필 보고 있을 경우 (리뷰 작성버튼 X)
 				model.addAttribute("matchedPpl","a");
 				model.addAttribute("hasWritten",0);
-				System.out.println("h7");
 			}
-			System.out.println("h8");
 			return "member/mypage_profile3";
 		}
 		

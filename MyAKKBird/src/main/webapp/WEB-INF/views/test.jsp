@@ -1,39 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.bit.myakkbird.*" %>
 <%@ page import="com.bit.myakkbird.review.*" %>
-    
-    
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<script src="https://kit.fontawesome.com/535c824fa5.js" crossorigin="anonymous"></script>  	
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  <script>
-  $( function() {
-		var availableTags = ["서울 강남구 신사동", "서울 강남구 압구정동", "서울 강남구 논현동",
-            "서울 강남구 삼성동", "서울 강남구 청담동", "서울 강남구 역삼동",
-            "서울 강남구 대치동", "서울 강남구 도곡동", "서울 강남구 개포동",
-            "서울 강남구 일원동", "서울 강남구 수서동", "서울 강남구 세곡동"];
-    $( "#autoText" ).autocomplete({
-      source: availableTags
-    });
-  } );
-  </script>
-
-  	
-<!-- <link rel="stylesheet" type="text/css" href="fonts/font.css"> -->
-<style>
+	<style>
 	 @font-face{
 		font-family: "NotoSansKR-Bold";
 		src:url('fonts/NotoSansKR-Bold.otf');
@@ -119,10 +92,6 @@
 		cursor:pointer;
 	}
 	
-	#search_area span:hover{
-		color:#1e6129;
-	}
-	
 	#search_area input{
 		text-align: center;
 		height:50px;
@@ -201,8 +170,8 @@
 	}
 	
 	#review_container > img{
-	    width: 350px;
-	    height: 120px;
+		width:400px;
+		height:130px;
 	}
 	
 	#btn_container_review{
@@ -326,6 +295,7 @@
 		display: flex;
 	    flex-direction: column;
 	    align-items: center;
+	    padding-bottom: 300px;
 	}
 	
 	#FAQ_container h3{
@@ -439,53 +409,39 @@
 	    text-decoration: none;
     	cursor: pointer;
 </style>
-<script>
-	function more(){
-		 if(story.style.display =='none'){
-			 story.style.display ='';
-			 document.getElementById('more').innerHTML ='<img src="resources/image/btn_fold.png">'
-		 }else{
-			 story.style.display='none';
-			 document.getElementById('more').innerHTML='<img src="resources/image/btn_more.png">'
-		 }
-	}
-	
-	// 슬라이드이미지 
-	$(document).ready(function(){
-		var slideIndex = 0;
-		showSlides();
-		
-		function showSlides() {
-		  var i;
-		  var slides = document.getElementsByClassName("mySlides");
-		  var dots = document.getElementsByClassName("dot");
-		  for (i = 0; i < slides.length; i++) {
-		    slides[i].style.display = "none";
-		  }
-		  slideIndex++;
-		  if (slideIndex > slides.length) {
-			  slideIndex = 1;
-			  }
-		  for (i = 0; i < dots.length; i++) {
-		    dots[i].className = dots[i].className.replace(" active", "");
-		  }
-		  
-		  // 화면에 보여줄 대상 선택
-		  slides[slideIndex - 1].style.display = "block";
-		  dots[slideIndex - 1].className += " active";
-		  setTimeout(showSlides, 2000); // setInterval 사용해도 가능
-		}
-	})
-	
-</script>
+<!--   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  
+  <script>
+  $( function() {
+		var availableTags = ["서울 강남구 신사동", "서울 강남구 압구정동", "서울 강남구 논현동",
+            "서울 강남구 삼성동", "서울 강남구 청담동", "서울 강남구 역삼동",
+            "서울 강남구 대치동", "서울 강남구 도곡동", "서울 강남구 개포동",
+            "서울 강남구 일원동", "서울 강남구 수서동", "서울 강남구 세곡동"];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+  
+  
 </head>
 <body>
 <div class="wrap">
 <jsp:include page="./header_container.jsp">
 	<jsp:param value="m_id" name="m_id"/>
 </jsp:include> 
-<!-- <a href="ddd.ak"> test </a> -->
-	
+	<a href="ddd.ak"> test </a>
+ 
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
 <div id="content_container">
 <section id="ad_container">
 	<div class="slideshow-container">
