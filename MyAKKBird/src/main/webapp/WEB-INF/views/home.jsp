@@ -809,12 +809,6 @@ $(document).ready(function(){
 	}else{ %>
 	<div>리뷰가 없습니다. 리뷰를 작성해주세요!</div>
 	<% } %>
-<script>
-	
-	function b(){
-		alert('h2');
-	}
-</script>
 	
 	<div>&nbsp;</div>
 </section>
