@@ -85,7 +85,7 @@
 		
 		/* 게시글 개수 style */
 		.board_count_div {
-			margin-top: 10px;
+			margin-top: 30px;
 			width: 600px;
 			height: 15px;
 		}
@@ -359,6 +359,12 @@
 		}
 		/* 기타 style */
 		
+		#back_btn {
+			cursor: pointer;
+    		margin-left: 40px;
+    		margin-top: 65px;
+		}
+		
 		.go_btn {
 			font-family: "NotoSansKR-Medium";
 		}
@@ -372,6 +378,7 @@
 	<!-- header zone -->
 	<div id="boardList_div_id" class="boardList_div">
 		<div class="addClass">
+			<svg id="back_btn" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 		</div>
 		<div class="boardList_div_text">
 			<span>찜한 게시글</span>
@@ -415,6 +422,11 @@ var isEmpty = function(val) {
 		return false
 	}
 };
+
+$('#back_btn').click(function() {
+	location.href="./profile.ak?id="+se_id+"";
+});
+
 //찜한 게시글이 없을 경우
 function noData() {
 	$('#count_b').empty();

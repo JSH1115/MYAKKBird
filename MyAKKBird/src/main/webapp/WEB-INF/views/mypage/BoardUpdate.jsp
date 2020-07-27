@@ -829,6 +829,13 @@
 			font-size: 17px;
 		}
 		/* 청소 안내 modal style */
+		#back_btn {
+			cursor: pointer;
+   		 	position: absolute;
+    		margin-left: 55px;
+    		margin-top: 85px;
+		}
+		
 		.go_btn {
 			font-family: "NotoSansKR-Medium";
 		}
@@ -842,6 +849,7 @@
 <!-- header zone -->
 <div class="all">
 	<div class="addClass">
+		<svg id="back_btn" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 	</div>
 	<form name="board_form" id="board_form_id" action="board_updateProcess.ak" 
 	      method="post" enctype="multipart/form-data">
@@ -1395,6 +1403,11 @@ var se_id = '<%=m_id %>';
 var mapContainer;
 var map;
 // 세션 아이디, 맵 생성 관련 전역 변수
+
+$('#back_btn').click(function() {
+	window.history.back();
+});
+
 //맵 생성
 function newMap() {
 	mapContainer = document.getElementById('map'), 

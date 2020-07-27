@@ -8,6 +8,8 @@ public class PayVO {
 	private Date p_date;
 	private int p_price;
 	private String p_pg;
+	private String p_info;
+	
 	public int getP_num() {
 		return p_num;
 	}
@@ -38,4 +40,11 @@ public class PayVO {
 	public void setP_pg(String p_pg) {
 		this.p_pg = p_pg;
 	}
+	public String getP_info() {
+		return p_info;
+	}
+	public void setP_info(String p_info) {
+		this.p_info = p_info;
+	}
+	
 }

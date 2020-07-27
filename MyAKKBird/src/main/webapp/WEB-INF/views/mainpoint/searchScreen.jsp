@@ -731,13 +731,22 @@
 			background-color: white;
 		}
 		
+		#no_data_icon {
+			float: left;
+   	 		margin-left: 140px;
+		}
+		
 		.no_post b {
-			font-size:20px; 
-			margin-top:20px;
+			font-size: 20px;
+    		margin-top: 1px;
+    		float: left;
 		}
 		
 		.no_post span {
-			font-size:15px;
+			font-size: 15px;
+		    float: left;
+		    margin-left: 200px;
+		    margin-top: -15px;
 		}
 		/* 검색 후 데이터가 없을때 style */
 		
@@ -1229,8 +1238,8 @@ function noDataOut() {
 	var output = '';
 	output += '<li>'
 	output += '<div class="no_post"><br><br><br>'
-	output += '    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="black" width="40px" height="40px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>'
-	output += '    <b>검색 결과가 없습니다...</b><br>'
+	output += '    <svg id="no_data_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="black" width="40px" height="40px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>'
+	output += '    <b>검색 결과가 없습니다...</b><br><br>'
 	output += '    <span>다시 검색해주세요!</span>'
 	output += '</div>'
 	output += '</li>'

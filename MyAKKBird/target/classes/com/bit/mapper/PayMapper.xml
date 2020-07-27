@@ -4,6 +4,14 @@
 
 <mapper namespace="com.bit.mapper.PayMapper">
 	
+	<resultMap type="PayVO" id="payResultMap">
+		<result property="p_num" column="p_num"/>
+		<result property="m_id" column="m_id"/>
+		<result property="p_date" column="p_date"/>
+		<result property="p_price" column="p_price"/>
+		<result property="p_pg" column="p_pg"/>
+	</resultMap>
+	
 	<insert id="insertPay" parameterType="hashMap">
 		INSERT INTO pay (m_id,p_date,p_price) VALUES 
 			(#{m_id},sysdate,#{p_price})
@@ -12,5 +20,22 @@
 	<update id="updateHeart" parameterType="hashMap">
 		update member a set m_heart = m_heart+#{m_heart} where m_id=#{m_id}
 	</update>
+	
+	<select id="payListCount" resultType="int">
+		SELECT COUNT(*) FROM PAY WHERE m_id = #{m_id}
+	</select>
+	
+	<select id="payList" parameterType="PayVO" resultMap="payResultMap">
+		SELECT A.*
+        FROM (SELECT ROWNUM AS RNUM1, AA.*
+            FROM (SELECT * FROM PAY
+            	  WHERE m_id = #{m_id}
+		          ORDER BY p_date DESC
+                  ) AA ) A
+        <![CDATA[           
+        WHERE RNUM1 >= #{startrow}
+        AND RNUM1 <= #{endrow}
+        ]]>
+	</select>
 	
 </mapper>
