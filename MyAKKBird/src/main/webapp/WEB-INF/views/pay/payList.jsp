@@ -15,24 +15,25 @@
 	// 날짜 포맷
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 	String payDay = null;
-	// 금액 포맷
+	DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
 	String pay = null;
-		
+	
 	for(int i = 0; i < payList.size(); i++) {
 		if(payList.get(i).getP_pg().equals("K")) {
 			payList.get(i).setP_pg("카카오페이");
 		}
+		payDay = dateFormat.format(payList.get(i).getP_date());
+		payList.get(i).setPay_date(payDay);
+		pay = decimalFormat.format(payList.get(i).getP_price());
+		payList.get(i).setPay_info(pay);
 		
 		if(payList.get(i).getP_price() == 10000) {
-			payList.get(i).setP_info("하트 50개");
+			payList.get(i).setHeart_info("하트 50개");
 		} else if(payList.get(i).getP_price() == 5000) {
-			payList.get(i).setP_info("하트 25개");
-		} else {
-			payList.get(i).setP_info("하트 5개");
+			payList.get(i).setHeart_info("하트 25개");
+		} else if(payList.get(i).getP_price() == 1000){
+			payList.get(i).setHeart_info("하트 5개");
 		}
-		
-		payDay = dateFormat.format(payList.get(i).getP_date());
-		pay = String.format("%,d", payList.get(i).getP_price());
 	}
 	
 	System.out.println("현재 아이디 : " + m_id);
@@ -232,7 +233,7 @@
 								<div>
 									<b id="point_txt">
 										<svg id="heart_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="23px" height="23px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-										<%=payList.get(i).getP_info() %>
+										<%=payList.get(i).getHeart_info() %>
 									</b>
 								</div>
 							</td>
@@ -240,10 +241,10 @@
 								<div><b><%=payList.get(i).getP_pg() %></b></div>
 							</td>
 							<td style="width: 20%">
-								<div><%=pay %>원</div>
+								<div><%=payList.get(i).getPay_info() %>원</div>
 							</td>
 							<td style="width: 25%">
-								<div><%=payDay %></div>
+								<div><%=payList.get(i).getPay_date() %></div>
 							</td>
 						</tr>
 				<%

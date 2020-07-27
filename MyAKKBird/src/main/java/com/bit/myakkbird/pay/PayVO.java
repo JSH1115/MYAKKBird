@@ -8,7 +8,9 @@ public class PayVO {
 	private Date p_date;
 	private int p_price;
 	private String p_pg;
-	private String p_info;
+	private String heart_info;
+	private String pay_info;
+	private String pay_date;
 	
 	public int getP_num() {
 		return p_num;
@@ -40,11 +42,26 @@ public class PayVO {
 	public void setP_pg(String p_pg) {
 		this.p_pg = p_pg;
 	}
-	public String getP_info() {
-		return p_info;
+	
+	public String getHeart_info() {
+		return heart_info;
 	}
-	public void setP_info(String p_info) {
-		this.p_info = p_info;
+	public void setHeart_info(String heart_info) {
+		this.heart_info = heart_info;
 	}
+	
+	public String getPay_info() {
+		return pay_info;
+	}
+	public void setPay_info(String pay_info) {
+		this.pay_info = pay_info;
+	}
+	public String getPay_date() {
+		return pay_date;
+	}
+	public void setPay_date(String pay_date) {
+		this.pay_date = pay_date;
+	}
+	
 	
 }
