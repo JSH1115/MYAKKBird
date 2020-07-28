@@ -55,6 +55,10 @@
 		select e_id from accept where c_id=#{id} and a_apply='Y'
 	</select>
 	
+	<select id="countAccept" resultType="int">
+		select count(a_num) from accept
+	</select>
+	
 	<!-- 승주님 -->
 	<!-- 회원과 근로자가 서로 매칭된 상태인지 체크 -->
  	<select id="isMatched" parameterType="String" resultType="String">

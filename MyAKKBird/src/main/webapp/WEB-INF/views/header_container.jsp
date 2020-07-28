@@ -59,7 +59,7 @@
     	margin-bottom: 25px;
 	}
 	#main_button_mypage{
-		margin-left: 300px;
+		margin-left: 344px;
 	}
 	.header_guide2_svg{
 		width: 30px;

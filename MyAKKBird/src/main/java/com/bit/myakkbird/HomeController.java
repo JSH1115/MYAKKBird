@@ -28,25 +28,15 @@ public class HomeController {
 		int totalBoardCount = mainPointService.totalBoardCount();
 		model.addAttribute("totalBoardCount", totalBoardCount);
 		
+		//총 지원 건수 받아오기
+		int countAccept = mainPointService.countAccept();
+		model.addAttribute("countAccept",countAccept);
+		
 		//리뷰 리스트 받아오기
 		List<ReviewVO> reviewList = reviewService.latestReviews();
 		model.addAttribute("reviewList", reviewList);
 		
 		return "home";
-	}
-	
-	@RequestMapping(value="/ddd.ak")
-	public String test(Model model) {
-		
-		//총 게시물 받아오기
-		int totalBoardCount = mainPointService.totalBoardCount();
-		model.addAttribute("totalBoardCount", totalBoardCount);
-		
-		//리뷰 리스트 받아오기
-		List<ReviewVO> reviewList = reviewService.latestReviews();
-		model.addAttribute("reviewList", reviewList);
-		
-		return "ddd";
 	}
 	
 }
