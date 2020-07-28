@@ -592,7 +592,6 @@ public class MemberController {
 		@RequestMapping(value = "/pay.ak", method = RequestMethod.GET)
 		public String payPage(MemberVO memberVO , Model model,HttpSession session, HttpServletResponse response) throws Exception{
 			String m_id = (String)session.getAttribute("m_id");
-		
 			memberVO.setM_id(m_id);
 		
 			MemberVO vo = memberService.heartCheck(memberVO);

@@ -15,6 +15,7 @@
 	// 날짜 포맷
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
 	String payDay = null;
+	// 금액 포맷	
 	DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
 	String pay = null;
 	

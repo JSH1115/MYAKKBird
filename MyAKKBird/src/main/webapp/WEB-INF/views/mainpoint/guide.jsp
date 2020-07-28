@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,6 +135,7 @@
     padding: 5px 50px;
     font-weight: bolder;
     font-size: 22px;
+    cursor: pointer;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -191,7 +193,12 @@ $('.starRev span').click(function(){
 			<p> 청소근무자를 파견하면서 수수료를 받는 타업체와 달리 </p>
 			<p>'마이악어새'는 고객과 근로자가 매칭을 원할 때만 소정의 정보료를 받고 서로 연락처를 오픈해드리는 구조로,<br/> 한번 매칭된 이후에는 수수료가 전혀 없어요. </p>
 			<p> 한번 매칭이 된 근로자와 정기 근로계약을 맺을 경우에도 단 한번의 이용권만 이용하시면 됩니다.</p>
-			<div class="btn_goto" onclick="location.href='pay.ak'"> <h3>하트 구매하러 가기</h3> </div>
+			<c:if test="${login.m_id == null}">
+				<div class="btn_goto" onclick="location.href='loginform.ak'"> <h3>하트 구매하러 가기</h3> </div>
+			</c:if>
+			<c:if test="${login.m_id != null}">
+				<div class="btn_goto" onclick="location.href='pay.ak'"> <h3>하트 구매하러 가기</h3> </div>
+			</c:if>
 		</div>
 	</div>
 	
