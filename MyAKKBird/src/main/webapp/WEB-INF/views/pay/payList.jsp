@@ -44,12 +44,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>마이악어새</title>
+	<title>마이악어새 결제 리스트</title>
 	<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	<!-- 부트스트랩  -->
-	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap_min.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap_thememin.css">
-  	<!-- 부트스트랩 -->
 	<style>
 		@font-face{
 				font-family: "NotoSansKR-Bold";
@@ -90,7 +86,6 @@
 		
 		h2 {
 			font-size: 25px;
-			font-family: "NotoSansKR-Black";
 		}
 		
 		a {
@@ -169,6 +164,68 @@
 			margin: 0 auto;
 			text-align: center;
 		}
+		
+		/* 부트스트랩 페이징 style */
+		.pagination {
+			display: inline-block;
+			padding-left: 0;
+			margin: 20px 0;
+			border-radius: 4px
+		}
+		
+		.pagination>li {
+			display: inline
+		}
+		
+		.pagination>li>a, .pagination>li>span {
+			position: relative;
+			float: left;
+			padding: 6px 12px;
+			margin-left: -1px;
+			line-height: 1.42857143;
+			color: #37B04B;
+			text-decoration: none;
+			background-color: #fff;
+			border: 1px solid #ddd
+		}
+		
+		.pagination>li:first-child>a, .pagination>li:first-child>span {
+			margin-left: 0;
+			border-top-left-radius: 4px;
+			border-bottom-left-radius: 4px
+		}
+		
+		.pagination>li:last-child>a, .pagination>li:last-child>span {
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px
+		}
+		
+		.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+			.pagination>li>span:hover {
+			color: #37B04B;
+			background-color: #eee;
+			border-color: #ddd
+		}
+		
+		.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+			.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+		{
+			z-index: 2;
+			color: #fff;
+			cursor: pointer;
+			background-color: #37B04B;
+			border-color: #37B04B;
+		}
+		
+		.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover,
+			.pagination>.disabled>span, .pagination>.disabled>span:focus,
+			.pagination>.disabled>span:hover {
+			color: #777;
+			cursor: not-allowed;
+			background-color: #fff;
+			border-color: #ddd
+		}
+		/* 부트스트랩 페이징 style */
 		
 		#back_btn {
 			cursor: pointer;

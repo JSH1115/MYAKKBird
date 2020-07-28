@@ -337,7 +337,7 @@ body{
 </style>
 
 <meta charset="UTF-8">
-<title>mypage_profile3</title>
+<title>마이악어새 마이페이지</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript"> 
 	// 프로필 출력

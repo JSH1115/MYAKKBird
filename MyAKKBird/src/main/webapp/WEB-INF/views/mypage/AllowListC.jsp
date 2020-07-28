@@ -42,7 +42,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>마이악어새</title>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<!-- 시간 설정 API 시작 -->

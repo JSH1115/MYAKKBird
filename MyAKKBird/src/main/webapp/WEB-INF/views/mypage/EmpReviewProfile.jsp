@@ -698,7 +698,7 @@ display: flex;
 }
 	</style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이악어새</title>
 <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
 </head>
 <body>

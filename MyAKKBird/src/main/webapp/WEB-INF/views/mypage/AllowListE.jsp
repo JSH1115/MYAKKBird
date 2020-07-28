@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>마이악어새</title>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <style type="text/css">
 	@media only screen and (min-width:860px) {

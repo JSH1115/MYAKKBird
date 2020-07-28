@@ -11,7 +11,7 @@
 <!-- alert창 API 시작 -->
 <script src="resources/js/sweetAlert_J.js"></script>
 <!-- alert창 API 끝 -->
-	<title>마이악어새</title>
+	<title>마이악어새 고객 회원가입</title>
 	<style>
 	@font-face{
 		font-family: "NotoSansKR-Bold";

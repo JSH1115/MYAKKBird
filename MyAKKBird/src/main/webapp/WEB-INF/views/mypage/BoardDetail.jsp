@@ -296,7 +296,7 @@
 	}	
 	</style>
 <meta charset="UTF-8">
-<title>BoardDetail</title>
+<title>마이악어새 자세히 보기</title>
 </head>
 <jsp:include page="../header_container.jsp"></jsp:include>
 <body>

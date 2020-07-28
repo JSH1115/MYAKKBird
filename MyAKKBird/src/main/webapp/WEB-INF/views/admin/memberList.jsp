@@ -23,7 +23,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>마이 악어새</title>
+	<title>마이악어새 회원목록</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<!-- 부트스트랩  -->
 	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap_min.css">

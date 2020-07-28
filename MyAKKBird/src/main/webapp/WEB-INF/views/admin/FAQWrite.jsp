@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>마이악어새</title>
+	<title>마이악어새 FAQ 쓰기</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<style>
 		/* font 적용 */
@@ -104,7 +104,7 @@
 		
 		.addClass {
 			width: 600px;
-			height: 100px;
+			height: 30px;
 			margin: 0 auto;
 		}
 		
@@ -254,5 +254,8 @@
 			</div>
 		</form>
 	</div>
+	<jsp:include page="../footer_container.jsp">
+		<jsp:param value="" name=""/>
+	</jsp:include>	
 </body>
 </html>

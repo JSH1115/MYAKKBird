@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>마이악어새</title>
+	<title>마이악어새 회원가입</title>
 	<style>
 	@font-face{ 
 		font-family: "NotoSansKR-Bold";

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이악어새</title>
+<title>마이악어새 메일인증</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 	@font-face{

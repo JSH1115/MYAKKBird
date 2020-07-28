@@ -44,7 +44,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이악어새</title>
 	<style type="text/css">
 	@font-face{
 		font-family: "NotoSansKR-Bold";

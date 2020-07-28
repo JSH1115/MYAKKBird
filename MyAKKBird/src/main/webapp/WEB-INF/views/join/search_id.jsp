@@ -10,7 +10,7 @@
 <!-- alert창 API 시작 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- alert창 API 끝 -->
-	<title>마이악어새</title>
+	<title>마이악어새 계정찾기</title>
 	<style>
 	@font-face{
 		font-family: "NotoSansKR-Bold";

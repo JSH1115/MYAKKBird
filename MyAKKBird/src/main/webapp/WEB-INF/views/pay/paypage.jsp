@@ -18,7 +18,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>마이악어새</title>
+	<title>마이악어새 결제</title>
 	<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<!-- 결제 API 시작 -->
 	<script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
