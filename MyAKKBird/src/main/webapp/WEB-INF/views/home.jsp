@@ -101,7 +101,7 @@
 	}
 	
 	#total_count div{
-		margin: 0 20px 0 60px;
+		margin: 0 20px 0 30px;
 	}
 	
 	#total_count span{
@@ -573,10 +573,10 @@
 	function more(){
 		 if(story.style.display =='none'){
 			 story.style.display ='';
-			 document.getElementById('more').innerHTML ='접 기 '
+			 document.getElementById('more').innerHTML ='- 접 기 '
 		 }else{
 			 story.style.display='none';
-			 document.getElementById('more').innerHTML='더 보 기 '
+			 document.getElementById('more').innerHTML='+ 더 보 기 '
 		 }
 	}
 	
@@ -1030,7 +1030,7 @@ function heart_got(se_id) {
 			
 		</table>
 	</div>
-	<div id="more" onclick="more()"> 더 보 기</div>
+	<div id="more" onclick="more()"> + 더 보 기</div>
 	 <% } 
 	}else{ %>
 	<div>리뷰가 없습니다. 리뷰를 작성해주세요!</div>
