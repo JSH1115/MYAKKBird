@@ -84,8 +84,9 @@
 		/* FAQ 게시글 출력 */
 		.faq_div {
 			width: 1000px;
-			height: 1000px;
+			height: auto;
 			margin: 0 auto;
+			margin-bottom: 100px;
 		}
 		
 		.faq_header {
@@ -254,6 +255,9 @@
 			</table>
 		</div>
 	</div>
+	<jsp:include page="../footer_container.jsp">
+		<jsp:param value="" name=""/>
+	</jsp:include> 
 </body>
 <script type="text/javascript">
 var m_id = '<%=m_id %>';          //현재 아이디

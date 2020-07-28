@@ -62,6 +62,7 @@
 	
 	.find_pass_box {
 		margin-top: 130px;
+		margin-bottom: 155px;
 	}
 	
 	.find_pass_div1 {
@@ -148,6 +149,9 @@
 		</form>
 	</center>
 </div>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
 </body>
 <script>
 function check_input() {

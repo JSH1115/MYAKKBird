@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -70,7 +71,7 @@
 	.category_div {
 		width: 600px;
 		height: 600px;
-		margin: 122px auto;
+		margin: 100px auto;
 	}
 	.b_div {
 		width: 400px;
@@ -79,19 +80,19 @@
 	}
 	
 	.b_div b {
-		font-size: 30px;
-		margin-left: 40px;
+		font-size: 25px;
+		margin-left: 70px;
 	}
-	
+		
 	#b_div_txt {
 		margin-left: 125px;
 	}
-	
+		
 	#detail_btn {
 		float: right;
-    	margin-right: 40px;
-    	margin-top: 9px;
-    	cursor: pointer;
+	    margin-right: 58px;
+	    margin-top: 4px;
+	    cursor: pointer;
 	}
 	
 	.c_chk_div1 {

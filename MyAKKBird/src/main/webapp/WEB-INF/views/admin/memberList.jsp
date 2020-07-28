@@ -726,6 +726,9 @@
 	    	</c:otherwise>
 	    </c:choose>
     </form>
+    <jsp:include page="../footer_container.jsp">
+		<jsp:param value="" name=""/>
+	</jsp:include> 
 </body>
 <script type="text/javascript">
 //엔터키 검색 막기
@@ -958,7 +961,6 @@ function numberMotion(items) {
 		counterUp( {num:items[i].num, ele:items[i].ele });
 	 } 
 } 
-
 $(document).ready(function() {
    	
 	var customer; // 고객 수

@@ -61,6 +61,7 @@
 	
 	.find_box {
 		margin-top: 130px;
+		margin-bottom: 328px;
 	}
 	
 	.find_div1 {
@@ -128,5 +129,8 @@
 		</div>
 	</div>
 </center>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
 </body>
 </html>

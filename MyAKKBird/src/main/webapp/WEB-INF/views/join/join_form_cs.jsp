@@ -79,7 +79,23 @@
 	.sign_div {
 		width: 1000px;
     	height: 1300px;
-    	margin: 70px auto;
+    	margin: 50px auto;
+	}
+	
+	.title_div {
+		width: 1000px;
+		height: 80px;
+		text-align: center;
+	}
+	
+	#title_txt1 {
+		font-size: 20px;
+		font-family: "NotoSansKR-Bold";
+	}
+	
+	#title_txt2 {
+		font-size: 22px;
+		font-family: "NotoSansKR-Bold";
 	}
 	
 	.img_div {
@@ -106,6 +122,7 @@
 	.img_profile_div b {
 		float: left;
 		margin-left: 55px;
+		font-family: "NotoSansKR-Regular";
 	}
 	
 	#detail_btn {
@@ -125,6 +142,8 @@
 		float: left;
 		line-height: 1;
 		margin-left: 45px;		
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	input[type="file"] { 
@@ -182,6 +201,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.id_input {
@@ -220,6 +241,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.pass_input {
@@ -242,6 +265,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.pass_chk_input {
@@ -288,6 +313,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.name_input {
@@ -310,6 +337,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.age_input {
@@ -332,6 +361,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.gender_select {
@@ -355,6 +386,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.before {
@@ -424,6 +457,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	.phone_input {
@@ -446,6 +481,8 @@
 		float: left;
 		margin-left: 45px;
 		line-height: 1;
+		font-family: "NotoSansKR-Regular";
+		font-size: 15px;
 	}
 	
 	#why_addr {
@@ -834,6 +871,10 @@ $(document).ready(function(){
 	<form name="joinformcs" method="post" enctype="multipart/form-data" >
 		<input type="hidden" name="m_category" value="<%=va%>">
 		<input type="hidden" name="m_type" value="C" >
+		<div class="title_div">
+			<b id="title_txt1">이제 거의 다 왔어요!</b><br>
+			<b id="title_txt2">마이악어새를 이용하기 위해 정보를 입력해주세요.</b>
+		</div>
 		<div class="img_div">
 			<div class="img_profile_div">
 			 	<img class="profile_img" id="image_section" src="resources/image/crocodile_profile.png"/><br>

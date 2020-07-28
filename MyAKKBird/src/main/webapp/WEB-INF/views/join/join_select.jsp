@@ -53,7 +53,7 @@
 	.join_select_zone {
 		width: 1000px;
 		height: 500px;
-		margin: 150px auto;
+		margin: 100px auto;
 	}
 	
 	.customer_zone {

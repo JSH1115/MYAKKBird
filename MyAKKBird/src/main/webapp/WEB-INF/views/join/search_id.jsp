@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -63,6 +64,7 @@
 	
 	.find_id_box {
 		margin-top: 130px;
+		margin-bottom: 219px;
 	}
 	
 	.find_id_div1 {
@@ -140,6 +142,9 @@
 		</form>
 	</center>
 </div>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
 </body>
 <script>
 function check_input() {

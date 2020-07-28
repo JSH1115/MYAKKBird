@@ -1057,11 +1057,13 @@
 		</div>
 	</form>
 </div>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
 </body>
 <script type="text/javascript">
 var sel_files = []; // 업로드한 파일을 저장할 배열
 var m_id = '<%=m_id %>';
-
 $('#back_btn').click(function() {
 	location.href="./profile.ak?id="+m_id+"";
 });
@@ -1119,7 +1121,6 @@ $(function() {
     });
     $('#textarea_id').keyup();
 });
-
 $(document).ready(function () {
 	
 	$('#img_input').on("change", handleImgFileSelect);

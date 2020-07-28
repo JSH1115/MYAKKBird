@@ -71,6 +71,7 @@
 	
 	.login-box {
 		margin-top: 40px;
+		margin-bottom: 150px;
 	}
 	
 	.login_btn{
@@ -166,6 +167,9 @@
 		</form>
 	</center>
 </div>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include> 
 </body>
 <script>
 function check_input() {

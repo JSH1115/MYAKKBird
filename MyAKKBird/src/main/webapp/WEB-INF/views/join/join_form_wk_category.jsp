@@ -69,7 +69,7 @@
 		.category_div {
 			width: 600px;
 			height: 600px;
-			margin: 122px auto;
+			margin: 100px auto;
 		}
 	
 		.b_div {
@@ -79,8 +79,8 @@
 		}
 		
 		.b_div b {
-			font-size: 30px;
-			margin-left: 40px;
+			font-size: 25px;
+			margin-left: 70px;
 		}
 		
 		#b_div_txt {
@@ -89,9 +89,9 @@
 		
 		#detail_btn {
 			float: right;
-	    	margin-right: 40px;
-	    	margin-top: 9px;
-	    	cursor: pointer;
+		    margin-right: 58px;
+		    margin-top: 4px;
+		    cursor: pointer;
 		}
 		
 		.c_chk_div1 {
