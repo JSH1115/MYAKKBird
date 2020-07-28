@@ -49,6 +49,10 @@
     background-color: #89df8f;
     padding: 40px 110px 40px 0;
 }
+#upper > div{
+	margin-top: 30px;
+}
+
 #highlight{
     border-bottom: solid #ffc720 10px;
 }
@@ -111,9 +115,13 @@
     width:60%;
     font-size: larger;
     background-color: #89df8f;
-    border-radius:40px;
+    border-radius:10px;
     cursor: pointer;
 }
+.btn_goto h3{
+	padding:5px;
+}
+
 .btn_goto:hover{
 	background-color: #37b04b;
 }
@@ -125,10 +133,10 @@
 }
 #more div{
     background-color: #89df8f;
-    border-radius: 40px;
-    padding: 0 50px;
+    border-radius: 10px;
+    padding: 5px 50px;
     font-weight: bolder;
-    font-size: 22px;	
+    font-size: 22px;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -158,7 +166,7 @@ $('.starRev span').click(function(){
 		<div id="upper_1"> 아직도 바쁜데 직접 청소하세요? <br/> <span id="highlight">마이악어새</span>와 함께하세요!</div>
 		<div class="upper_2"> <h3>마이악어새는 어떤 사이트인가요?</h3></div>
 		<div class="upper_2"> 악어의 이빨을 청소하고 먹이를 얻으면서<br>  서로 이익을 얻는다는 악어와 악어새의 이야기처럼</div>
-		<div><img src="resources/image/fullLogo_removebg.png" id="upper_logo"> <span id="neun">는</span> </div>
+		<div class="upper_2">마이악어새는 </div>
 		<div id="upper_3"> 청소 도움이 필요한 고객은 청소근로자를,<br/> 일자리가 필요한 근로자는 일자리를<br/>  언제든지 쉽고 빠르게 찾을 수 있는 서비스를 제공합니다.</div>
 	</div>
 	<div id="upper_pic"> <img src="resources/image/clean_2.png"></div>
@@ -184,7 +192,7 @@ $('.starRev span').click(function(){
 			<div class="lower_text"> <h1>01</h1> </div>
 			<div class="lower_text"> <h2>업체수수료가 없어요</h2></div>
 			<p> 청소근무자를 파견하면서 수수료를 받는 타업체와 달리 </p>
-			<p>'마이악어새'는 고객과 근로자가 매칭을 원할 때만 소정의 정보료를 받고 서로 연락처를 오픈해드리는 구조로, 한번 매칭된 이후에는 수수료가 전혀 없어요. </p>
+			<p>'마이악어새'는 고객과 근로자가 매칭을 원할 때만 소정의 정보료를 받고 서로 연락처를 오픈해드리는 구조로,<br/> 한번 매칭된 이후에는 수수료가 전혀 없어요. </p>
 			<p> 한번 매칭이 된 근로자와 정기 근로계약을 맺을 경우에도 단 한번의 이용권만 이용하시면 됩니다.</p>
 			<div class="btn_goto" onclick="location.href='pay.ak'"> <h3>하트 구매하러 가기</h3> </div>
 		</div>
@@ -195,7 +203,7 @@ $('.starRev span').click(function(){
 			<div class="lower_text"> <h1>02</h1> </div>
 			<div class="lower_text"> <h2>쉽고 빠르게 구할 수 있어요</h2></div>
 			<p> 청소업체에 연락하여 청소근로자를 파견하는 시간을 기다릴 필요 없이, </p>
-			<p> 청소를 원한다면 언제 어디서든 구인공고문을 올리고, 근로자는 실시간으로 공고문을 확인하여 클릭 한번으로 신청할 수 있습니다.</p> 
+			<p> 청소를 원한다면 언제 어디서든 구인공고문을 올리고,<br/> 근로자는 실시간으로 공고문을 확인하여 클릭 한번으로 신청할 수 있습니다.</p> 
 			<div class="btn_goto" onclick="location.href='searchProcess.ak?b_address_road='"> <h3>마이악어새 이용하러가기</h3> </div>
 		</div>
 		<div><img class="pic" id="pic_2" src="resources/image/clean_3.png"> </div>
