@@ -611,7 +611,7 @@
 		/* submit, reset 버튼 */
 		.btn_div {
 			width: 800px;
-			height: 80px;
+			height: 120px;
 		}
 		
 		.down_btn_div {

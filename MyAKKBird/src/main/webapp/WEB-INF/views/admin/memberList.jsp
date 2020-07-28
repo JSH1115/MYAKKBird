@@ -104,13 +104,22 @@
 		.addClass {
 		    margin: 0 auto;
 		    width: 1000px;
+		    height: 30px;
+		}
+		
+		.titleClass {
+			margin: 0 auto;
+		    width: 1000px;
 		    height: 60px;
+		    font-family: "NotoSansKR-Bold";
+		    text-align: center;
 		}
 		
 		.top_div {
 			margin: 0 auto;
 			width: 1000px;
-			height: 300px;
+			height: 400px;
+			margin-bottom: -50px;
 		}
 		
 		/* 운영자 profile style */
@@ -373,7 +382,7 @@
 		.member_zone {
 			width: 1000px;
 			height: auto;
-			margin: 20px auto;
+			margin: -20px auto;
 			margin-top: 80px;
 		}
 		
@@ -392,8 +401,8 @@
 		
 		#num_zone {
 			width: 1000px;
-			height: auto;
-			margin: -30px auto;
+			height: 150px;
+			margin: -5px auto;
 			text-align: center;
 		}
 		
@@ -516,6 +525,9 @@
     <input type="hidden" name="m_typeValue" value="${pageVO.m_typeValue }" /><!-- //검색어 -->
     	<div class="top_div">
     		<div class="addClass">
+			</div>
+			<div class="titleClass">
+				<h3>마이악어새 회원목록</h3>
 			</div>
     		<div class="left_zone">
     			<div class="admin_zone">

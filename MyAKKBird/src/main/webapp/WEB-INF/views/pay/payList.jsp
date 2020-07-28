@@ -124,7 +124,7 @@
 		
 		.pay_history_div {
 			width: 1000px;
-			height: 850px;
+			height: 800px;
 			margin: 60px auto;
 		}
 		
@@ -157,7 +157,7 @@
 		    float: left;
 		}
 		
-		#point_txt {
+		#p_txt {
 			color: #37B04B;
 			float: left;
    			margin-left: 120px;
@@ -231,7 +231,7 @@
 							</td>
 							<td style="width: 35%">
 								<div>
-									<b id="point_txt">
+									<b id="p_txt">
 										<svg id="heart_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="23px" height="23px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
 										<%=payList.get(i).getHeart_info() %>
 									</b>
@@ -302,7 +302,10 @@
 			}
 		%>
 	</div>
-</div>	
+</div>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include>	
 </body>
 <script>
 $('#back_btn').click(function() {

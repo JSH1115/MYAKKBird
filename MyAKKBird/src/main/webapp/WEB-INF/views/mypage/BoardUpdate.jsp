@@ -682,7 +682,7 @@
 		/* submit, reset 버튼 */
 		.btn_div {
 			width: 800px;
-			height: 80px;
+			height: 120px;
 		}
 		
 		.down_btn_div {
@@ -1186,6 +1186,9 @@
 		</div>
 	</form>
 </div>
+<jsp:include page="../footer_container.jsp">
+	<jsp:param value="" name=""/>
+</jsp:include>
 <script type="text/javascript">
 var sel_files = [];
 $('#new_btn_id').click(function() {
