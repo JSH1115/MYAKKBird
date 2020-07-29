@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>마이악어새</title>
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -84,7 +83,7 @@
    }
    /* ------------------------------------------------ */
    #ad_container{
-      height:470px;
+      height:460px;
          
    }
    /* ------------------------------------------------ */   
@@ -102,13 +101,18 @@
    }
    
    #total_count div{
-      margin: 0 20px 0 30px;
+      padding: 0 0 0 30px;
+   }
+   
+   #boardCount{
+       border-right: solid 2px #37b04b50;
    }
    
    #total_count span{
       color: #37b04b;
        font-size: x-large;
        font-weight: bold;
+       padding: 0 40px 0 10px;
    }
    
    /* ------------------------------------------------ */
@@ -118,14 +122,22 @@
       height: 400px;
    }
    
+   .mySlides.fade img{
+      cursor: pointer;
+      width:1024px;
+      height:400px;
+   }
+   /* ------------------------------------------------ */   
    #search_area{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 50px 0 15px;
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       padding: 55px 0 15px;
    }
    
    #search_area span{
+       position: relative;
+       top: 5px;
       color: #37b04b;
       font-size: 50px;
       cursor:pointer;
@@ -270,7 +282,7 @@
    }
    
    .review_star{
-      width:100px;
+      width: 80%;
    }
    
    .each_review div{
@@ -322,13 +334,12 @@
    #more{
        border-radius: 50px;
        padding: 7px 20px;
-       margin: 15px 10px 5px 10px;
+        margin: 15px 10px 5px 10px;
        background-color: #37b04b;
+        box-shadow: 9px 9px 9px -9px #37b04b;
        color: white;
        cursor:pointer;
-       font-size: larger;
-       -webkit-transition-duration: 0.2s; 
-	   transition-duration: 0.2s;
+        font-size: larger;
    }
    
    #more:hover{
@@ -356,10 +367,6 @@
       top:20px;
    }
    
-   #FAQ_container h2 > span {
-      font-family: "NotoSansKR-Medium";
-   }
-   
    #FAQ_category{
       display:flex;
       flex-direction: row;
@@ -375,8 +382,7 @@
        padding: 7px 20px;
        margin-bottom: 40px;
        cursor: pointer;
-       -webkit-transition-duration: 0.2s; 
-	   transition-duration: 0.2s;
+        box-shadow: 9px 9px 9px -9px #7f7b7c;
    }
    
    #btn_goto:hover{
@@ -402,17 +408,6 @@
       height:100px;
    }
    
-   #btn_FAQ{
-      width:100px;
-      height:25px;
-      background-color: #37b04b;
-      border-radius: 10px;
-      margin:20px;
-      margin-bottom:30px;
-      padding:10px;
-      color:white;
-      cursor:pointer;
-   }
    
    /* ------------------------------------------------ */
    
@@ -574,10 +569,10 @@
    function more(){
        if(story.style.display =='none'){
           story.style.display ='';
-          document.getElementById('more').innerHTML ='- 접기 '
+          document.getElementById('more').innerHTML ='- 접 기 '
        }else{
           story.style.display='none';
-          document.getElementById('more').innerHTML='+ 더 보기 '
+          document.getElementById('more').innerHTML='+ 더 보 기 '
        }
    }
    
@@ -606,6 +601,8 @@
         dots[slideIndex - 1].className += " active";
         setTimeout(showSlides, 4000); // setInterval 사용해도 가능
       }
+      
+
    })
    
 </script>
@@ -621,15 +618,15 @@
 <section id="ad_container">
    <div class="slideshow-container">
       <div class="mySlides fade">
-         <img src="resources/image/main_slide1.png" onclick="location.href='searchProcess.ak?b_address_road='" style="cursor: pointer" width="1024" height="400px">
+         <img src="resources/image/main_slide1.png" onclick="location.href='searchProcess.ak?b_address_road='" >
       </div>
       
         <div class="mySlides fade">
-         <img src="resources/image/main_slide2.png" onclick="location.href='FAQList.ak'" style="cursor: pointer" width="1024" height="400px">
+         <img src="resources/image/main_slide2.png" onclick="location.href='FAQList.ak'">
       </div>
       
       <div class="mySlides fade" >
-         <img src="resources/image/main_slide3.png" onclick="banner_check()" style="cursor: pointer" width="1024" height="400px">
+         <img src="resources/image/main_slide3.png" onclick="banner_check()">
       </div>
       
    </div> 
@@ -783,8 +780,8 @@ function heart_got(se_id) {
 <section id="search_container">
    <div id="total_count"> 
    <% if (totalBoardCount != 0){ %>
-      <div>악어회원 게시물 수 </div> <span id="boardCount"> </span> &nbsp;
-      <div> 악어새회원 지원 건수  </div> <span id="countAccept"> </span> &nbsp;
+      <div id="txt_boardCount">악어회원 게시물 수 </div> <span id="boardCount"> </span> &nbsp;
+      <div id="txt_countAccept">악어새회원 지원 건수  </div> <span id="countAccept"> </span> &nbsp;
       
       <script>      
         var boardCountConTxt = <%=totalBoardCount%>;
@@ -1029,7 +1026,7 @@ function heart_got(se_id) {
          
       </table>
    </div>
-   <div id="more" onclick="more()"> + 더 보기</div>
+   <div id="more" onclick="more()"> + 더 보 기</div>
     <% } 
    }else{ %>
    <div>리뷰가 없습니다. 리뷰를 작성해주세요!</div>
@@ -1038,7 +1035,7 @@ function heart_got(se_id) {
    <div>&nbsp;</div>
 </section>
 <section id="FAQ_container">
-   <h2><span>마이악어새</span>가 궁금하신가요?</h2>
+   <h2>마이악어새가 <span>궁금</span>하신가요?</h2>
    <div id="FAQ_category">
       <div class="each_FAQ" onclick="location.href='FAQList.ak'">
          <img src="resources/image/dependable.png">

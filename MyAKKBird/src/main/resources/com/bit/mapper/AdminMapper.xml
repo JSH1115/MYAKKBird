@@ -133,7 +133,8 @@
 	<select id="topAddr" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT m_address_road, COUNT(*), COUNT(*) / SUM (COUNT(*)) OVER() * 100
 		FROM MEMBER
-		GROUP BY m_address_road
+		GROUP BY m_address_road 
+		ORDER BY COUNT(*) DESC
 	</select>
 	
 	<select id="detailMember" parameterType="MasterVO" resultMap="masterResultMap">

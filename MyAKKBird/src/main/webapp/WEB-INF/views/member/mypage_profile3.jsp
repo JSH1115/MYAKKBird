@@ -476,9 +476,6 @@ body{
 
 <div id="content_container">
 
-	<a href="profile.ak?id=ljy7828"> ljy7828프로필 </a>
-	<a href="profile.ak?id=rain1208"> rain1208프로필 </a>
-	
 	<script>
 $(document).ready(function(){
 	$('#modifyForm').hover(function(){
