@@ -1,31 +1,31 @@
 package com.bit.myakkbird.admin;
 
 public class PageVO {
-	private int pageSize;  // 한 페이지에 보여줄 게시글 수
-    private int pageBlock; //페이징 네비[블록] 사이즈
-    private int pageNo;  // 페이지 번호
-    private int startRowNo; //조회 시작 row 번호
-    private int endRowNo; //조회 마지막 now 번호
-    private int firstPageNo; // 첫 번째 페이지 번호
-    private int finalPageNo; // 마지막 페이지 번호
-    private int prevPageNo; // 이전 페이지 번호
-    private int nextPageNo; // 다음 페이지 번호
-    private int startPageNo; // 시작 페이지 (페이징 네비 기준)
-    private int endPageNo; // 끝 페이지 (페이징 네비 기준)
-    private int totalCount; // 게시 글 전체 수
+	private int pageSize;           // 한 페이지에 보여줄 게시글 수
+    private int pageBlock;          // 페이징 네비[블록] 사이즈
+    private int pageNo;             // 페이지 번호
+    private int startRowNo;         // 조회 시작 row 번호
+    private int endRowNo;           // 조회 마지막 now 번호
+    private int firstPageNo;        // 첫 번째 페이지 번호
+    private int finalPageNo;        // 마지막 페이지 번호
+    private int prevPageNo;         // 이전 페이지 번호
+    private int nextPageNo;         // 다음 페이지 번호
+    private int startPageNo;        // 시작 페이지 (페이징 네비 기준)
+    private int endPageNo;          // 끝 페이지 (페이징 네비 기준)
+    private int totalCount;         // 게시 글 전체 수
 
-    private String searchFiled;  //검색 조건
-    private String searchValue;  //검색어
-    private String m_statusFiled; //탈퇴 체크
-    private String m_statusValue; //탈퇴 값
-    private String m_typeFiled; //회원 유형 체크
-    private String m_typeValue; //회원 값
-    private String d_statusFiled; //신고 처리 체크
-    private String d_statusValue; //신고 처리 값
-    private String d_typeFiled; //신고 타입 체크
-    private String d_typeValue; //신고 타입 값
-    private String a_applyFiled; //매칭 타입 체크
-    private String a_applyValue; //매칭 타입 값
+    private String searchFiled;     // 검색 조건
+    private String searchValue;     // 검색어
+    private String m_statusFiled;   // 탈퇴 체크
+    private String m_statusValue;   // 탈퇴 값
+    private String m_typeFiled;     // 회원 유형 체크
+    private String m_typeValue;     // 회원 값
+    private String d_statusFiled;   // 신고 처리 체크
+    private String d_statusValue;   // 신고 처리 값
+    private String d_typeFiled;     // 신고 타입 체크
+    private String d_typeValue;     // 신고 타입 값
+    private String a_applyFiled;    // 매칭 타입 체크
+    private String a_applyValue;    // 매칭 타입 값
 
 	public String getM_typeFiled() {
 		return m_typeFiled;

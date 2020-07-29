@@ -12,19 +12,23 @@
 		<result property="p_pg" column="p_pg"/>
 	</resultMap>
 	
+	<!-- 결제내역 추가 -->
 	<insert id="insertPay" parameterType="hashMap">
 		INSERT INTO pay (m_id,p_date,p_price) VALUES 
 			(#{m_id},sysdate,#{p_price})
 	</insert>
 	
+	<!-- 하트 추가 -->
 	<update id="updateHeart" parameterType="hashMap">
 		update member a set m_heart = m_heart+#{m_heart} where m_id=#{m_id}
 	</update>
 	
+	<!-- 결제내역 횟수 -->
 	<select id="payListCount" resultType="int">
 		SELECT COUNT(*) FROM PAY WHERE m_id = #{m_id}
 	</select>
 	
+	<!-- 결제내역 목록 -->
 	<select id="payList" parameterType="PayVO" resultMap="payResultMap">
 		SELECT A.*
         FROM (SELECT ROWNUM AS RNUM1, AA.*
@@ -38,6 +42,7 @@
         ]]>
 	</select>
 	
+	<!-- 결제내역 회원 확인 -->
 	<select id="checkMember" parameterType="String" resultType="MemberVO">
 		SELECT * FROM MEMBER
 		WHERE m_id = #{m_id}

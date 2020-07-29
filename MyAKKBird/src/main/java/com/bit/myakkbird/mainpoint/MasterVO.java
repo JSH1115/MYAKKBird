@@ -35,8 +35,8 @@ public class MasterVO extends PageVO {
 	private String b_content;         //내용 
 	private String b_org_file;        //첨부 파일명
 	private String b_up_file;         //업로드 파일명 
-	private String b_up_file2;         //업로드 파일명2
-	private String b_up_file3;         //업로드 파일명3
+	private String b_up_file2;        //업로드 파일명2
+	private String b_up_file3;        //업로드 파일명3
 	private int b_readcount;       	  //조회수
 	private Date b_date;              //게시글 올린 날짜
 	private String b_apply;           //게시글 신청 여부

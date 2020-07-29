@@ -17,6 +17,12 @@ public class BannerController {
 		
 		int result = bannerService.checkGotHeartService(m_id);
 		
+		if(result == 1) {
+			System.out.println("이벤트 하트를 받은 회원");
+		} else {
+			System.out.println("이벤트 하트 받지 않은 회원");
+		}
+		
 		return result;
 	}
 	

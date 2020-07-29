@@ -47,11 +47,6 @@ public class SearchServiceImpl implements SearchService {
 	public int BoardDeleteService(int b_num) {
 		SearchMapper searchMapper = sqlSession.getMapper(SearchMapper.class);
 		int result = searchMapper.BoardDelete(b_num);
-		if(result == 1) {
-			System.out.println("삭제 성공!");
-		} else {
-			System.out.println("삭제 실패!");
-		}
 		
 		return result;
 	}

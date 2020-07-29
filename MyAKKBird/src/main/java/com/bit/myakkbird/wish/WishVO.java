@@ -3,11 +3,11 @@ package com.bit.myakkbird.wish;
 import java.sql.Date;
 
 public class WishVO {
-	private int w_num;
-	private String m_id;
-	private int b_num;
-	private Date w_date;
-	private String w_state;
+	private int w_num;      // 찜번호
+	private String m_id;    // 회원 아이디
+	private int b_num;      // 게시글 번호
+	private Date w_date;    // 찜한 날짜
+	private String w_state; // 찜상태  
 	
 	public int getW_num() {
 		return w_num;

@@ -24,6 +24,12 @@ public class WishController {
 		
 		int result = wishService.checkMemberService(m_id);
 		
+		if(result == 1) {
+			System.out.println("회원 O");
+		} else {
+			System.out.println("회원 X");
+		}
+		
 		return result;
 	}
 	
@@ -31,6 +37,12 @@ public class WishController {
 	public int checkWorker(String m_id) {
 		
 		int result = wishService.checkWorkerService(m_id);
+		
+		if(result == 1) {
+			System.out.println("찜하기 근로자 O");
+		} else {
+			System.out.println("찜하기 근로자 X");
+		}
 		
 		return result;
 	}
@@ -40,6 +52,12 @@ public class WishController {
 		
 		int result = wishService.checkLikeReService(b_num, m_id);
 		
+		if(result == 1) {
+			System.out.println(b_num + "번 게시글 찜 추가 된 상태");
+		} else {
+			System.out.println(b_num + "번 게시글 찜 추가 안된 상태");
+		}
+		
 		return result;
 	}
 	
@@ -48,6 +66,12 @@ public class WishController {
 		
 		int result = wishService.insertLikeService(b_num, m_id);
 		
+		if(result == 1) {
+			System.out.println(b_num + "번 게시글 찜 추가 성공!");
+		} else {
+			System.out.println(b_num + "번 게시글 찜 추가 실패!");
+		}
+		
 		return result;
 	}
 	
@@ -55,6 +79,12 @@ public class WishController {
 	public int deleteLike(int b_num, String m_id) {
 		
 		int result = wishService.deleteLikeService(b_num, m_id);
+		
+		if(result == 1) {
+			System.out.println(b_num + "번 게시글 찜 삭제 성공!");
+		} else {
+			System.out.println(b_num + "번 게시글 찜 삭제 실패!");
+		}
 		
 		return result;
 	}

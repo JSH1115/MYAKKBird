@@ -3,14 +3,14 @@ package com.bit.myakkbird.pay;
 import java.util.Date;
 
 public class PayVO {
-	private int p_num;
-	private String m_id;
-	private Date p_date;
-	private int p_price;
-	private String p_pg;
-	private String heart_info;
-	private String pay_info;
-	private String pay_date;
+	private int p_num;          // 결제번호
+	private String m_id;        // 회원 아이디
+	private Date p_date;        // 결제날짜
+	private int p_price;        // 총 결제 금액
+	private String p_pg;        // 결제방식
+	private String heart_info;  // 하트충전 갯수
+	private String pay_info;    // 결제금액
+	private String pay_date;    // 결제날짜포맷
 	
 	public int getP_num() {
 		return p_num;

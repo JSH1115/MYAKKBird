@@ -100,6 +100,10 @@
        box-shadow: 0 9px 10px 0 rgba(0,0,0,.12);
    }
    
+   #txt_boardCount {
+   	  margin-left: 38px;
+   }
+   
    #total_count div{
       padding: 0 0 0 30px;
    }
@@ -570,10 +574,10 @@
    function more(){
        if(story.style.display =='none'){
           story.style.display ='';
-          document.getElementById('more').innerHTML ='- 접 기 '
+          document.getElementById('more').innerHTML ='- 접기 '
        }else{
           story.style.display='none';
-          document.getElementById('more').innerHTML='+ 더 보 기 '
+          document.getElementById('more').innerHTML='+ 더 보기 '
        }
    }
    
@@ -1048,7 +1052,7 @@ function heart_got(se_id) {
          
       </table>
    </div>
-   <div id="more" onclick="more()"> + 더 보 기</div>
+   <div id="more" onclick="more()"> + 더 보기</div>
     <% } 
    }else{ %>
    <div>리뷰가 없습니다. 리뷰를 작성해주세요!</div>

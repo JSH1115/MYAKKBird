@@ -10,20 +10,24 @@
 		<result property="ba_date" column="ba_date"/>
 	</resultMap>
 	
+	<!-- 이벤트 하트 받았는지 체크 -->
 	<select id="checkGotHeart" resultType="int">
 		SELECT COUNT(*) FROM BANNER
 		WHERE m_id = #{m_id}
 		AND ba_got = 'Y'
 	</select>
 	
+	<!-- 이벤트 하트 내역 추가 -->
 	<insert id="insertGotHeart" parameterType="BannerVO">
 		INSERT INTO BANNER (m_id, ba_got, ba_date)
 		VALUES (#{m_id}, 'Y', SYSDATE)
 	</insert>
 	
+	<!-- 이벤트 하트 추가 -->
 	<update id="updateGotHeart" parameterType="MemberVO">
 		UPDATE MEMBER
 		SET m_heart = m_heart+5
 		WHERE m_id = #{m_id}
 	</update>
+	
 </mapper>

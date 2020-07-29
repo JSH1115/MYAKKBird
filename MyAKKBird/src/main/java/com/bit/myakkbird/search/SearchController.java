@@ -42,6 +42,11 @@ public class SearchController {
 	@RequestMapping(value="/board_delete.ak", produces="application/json;charset=UTF-8")
 	public int boardDelete(int b_num) {
 		int result = searchService.BoardDeleteService(b_num);
+		if(result == 1) {
+			System.out.println("내 게시글 삭제 성공!");
+		} else {
+			System.out.println("내 게시글 삭제 실패!");
+		}
 		
 		return result;
 	}

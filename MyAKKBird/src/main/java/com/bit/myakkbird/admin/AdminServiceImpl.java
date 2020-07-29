@@ -145,6 +145,13 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminMapper.faqDetail(f_num);
 	}
+	
+	@Override
+	public FAQVO faqUpdateCall(int f_num) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		return adminMapper.faqUpdateCall(f_num);
+	}
 
 	@Override
 	public int faqUpdateService(FAQVO faqVO) {

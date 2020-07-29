@@ -42,6 +42,8 @@
 	System.out.println("현재 아이디 : " + memberVO.getM_id());
 	System.out.println(memberVO.getM_id() + "의 하트 개수 : " + memberVO.getM_heart() + "개");
 	System.out.println("결제한 내역 수 : " + listCount);
+	System.out.println("현재 페이지 : " + nowpage);
+	
 %>
 <!DOCTYPE html>
 <html>

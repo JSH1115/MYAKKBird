@@ -163,8 +163,8 @@ public class AdminController {
 		int result = adminService.adminCheckService(m_id, m_password);
 		
 		if(result == 1) {
-			
 			adminService.faqInsertService(faqVO);
+			System.out.println("FAQ 추가 완료!");
 			
 			return "redirect:/FAQList.ak";
 		} else {
@@ -207,6 +207,7 @@ public class AdminController {
 		
 		if(result == 1) {
 			adminService.faqUpdateService(faqVO);
+			System.out.println("FAQ 수정 완료!");
 			
 			return "redirect:/FAQList.ak";
 		} else {

@@ -49,7 +49,8 @@
 		<result property="b_delete" column="b_delete"/>
 		<result property="w_state" column="w_state"/>
 	</resultMap>
-
+	
+	<!-- 내 게시글 출력(5개만 출력) -->
 	<select id="CBList" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -70,6 +71,7 @@
         ]]>
 	</select>
 	
+	<!-- 내 게시글 출력(무한 스크롤) -->
 	<select id="CBListInfinite" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -90,16 +92,19 @@
         ]]>
 	</select>
 	
+	<!-- 내 게시글 지원 인원 체크 -->
 	<select id="chkApplyCount" resultType="int">
 		SELECT COUNT(*) FROM ACCEPT WHERE b_num = #{b_num}
 	</select>
 	
-	<update id="BoardDelete" parameterType="BoardVO">
+	<!-- 내 게시글 삭제 -->
+	<delete id="BoardDelete" parameterType="BoardVO">
 		UPDATE BOARD
 		SET b_delete = 'Y'
 		WHERE b_num = #{b_num}
-	</update>
+	</delete>
 	
+	<!-- 내 게시글 검색 출력(5개만 출력) -->
 	<select id="CBSearchList" parameterType="MasterVO" resultMap="masterResultMap"> 
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -135,6 +140,7 @@
         ]]>
 	</select>
 	
+	<!-- 내 게시글 검색 출력(무한 스크롤) -->
 	<select id="CBSInfinite" parameterType="MasterVO" resultMap="masterResultMap"> 
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -170,6 +176,7 @@
         ]]>
 	</select>
 	
+	<!-- 게시글 검색 후 출력(5개만 출력) -->
 	<select id="boardSearch" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -192,6 +199,7 @@
         ]]>
 	</select>
 		
+	<!-- 게시글 검색 후 출력(무한 스크롤) -->
 	<select id="boardInfinite" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -214,6 +222,7 @@
         ]]>
 	</select>
 	
+	<!-- 게시글 조건 검색 후 출력(5개만 출력) -->
 	<select id="searchData" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -249,6 +258,7 @@
         ]]>
 	</select>
 	
+	<!-- 게시글 조건 검색 후 출력(무한 스크롤) -->
 	<select id="searchInfinite" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -284,6 +294,7 @@
         ]]>
 	</select>
 	
+	<!-- 게시글 찜하기 출력(5개만 출력) -->
 	<select id="likeBoardList" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 
@@ -309,6 +320,7 @@
         ]]>
 	</select>
 	
+	<!-- 게시글 찜하기 출력(5개만 출력) -->
 	<select id="likeBListInfinite" parameterType="MasterVO" resultMap="masterResultMap">
 		SELECT A.*
     	FROM (SELECT ROWNUM AS RNUM1, AA.* 

@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>마이악어새 FAQ 쓰기</title>
+	<title>마이악어새 관리자 FAQ 쓰기</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<!-- FAQWrite.css style 파일 -->
 	<link rel="stylesheet" type="text/css" href="./resources/css/admin/FAQWrite.css">
