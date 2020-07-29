@@ -70,7 +70,6 @@ public class PayController {
    		if (endpage>startpage+10-1) endpage=startpage+10-1;
    		
    		model.addAttribute("memberVO", memberVO);
-   		model.addAttribute("m_id", m_id);
 		model.addAttribute("page", page);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("payList", payList);

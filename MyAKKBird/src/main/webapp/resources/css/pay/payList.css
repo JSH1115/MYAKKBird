@@ -1,0 +1,206 @@
+@charset "UTF-8";
+@font-face{
+	font-family: "NotoSansKR-Bold";
+	src:url('fonts/NotoSansKR-Bold.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Thin";
+	src:url('fonts/NotoSansKR-Thin.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Black";
+	src:url('fonts/NotoSansKR-Black.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Light";
+	src:url('fonts/NotoSansKR-Light.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Medium";
+	src:url('fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Regular";
+	src:url('fonts/NotoSansKR-Regular.otf');
+}
+
+/* 전체 적용 */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "NotoSansKR-Regular";
+}
+
+h2 {
+	font-size: 25px;
+}
+
+a {
+	text-decoration: none;
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+}
+
+thead th {
+	height: 41px;
+	background-color: #37B04B;
+	color: white;
+	font-family: "NotoSansKR-Medium";
+	text-align: center;
+}
+
+tbody #data_tr {
+	height: 60px;
+	border-bottom: 1px solid rgb(195, 195, 195);
+	font-family: "NotoSansKR-Regular";
+}
+
+tbody #no_data_tr {
+	height: 60px;
+	font-family: "NotoSansKR-Regular";
+}
+
+/* 전체 적용 */
+
+.pay_history_div {
+	width: 1000px;
+	height: 900px;
+	margin: 60px auto;
+}
+
+.title_zone {
+	width: 800px;
+	height: 35px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.pay_list_info {
+	width: 800px;
+	height: 60px;
+	margin: 50px auto;
+	border: 1px solid rgb(195, 195, 195);
+	border-radius: 3px;
+}
+
+.pay_list_info b {
+	line-height: 3.5;
+   	font-family: "NotoSansKR-Light";
+   	margin-left: 5px;
+}
+
+#heart_info_icon {
+	float: left;
+	margin-top: 16px;
+   	margin-left: 20px;
+}
+
+#v_txt {
+	font-family: "NotoSansKR-Black";
+}
+
+#list_count {
+	float: right;
+	margin-right: 22px;
+}
+
+.pay_list_div {
+	width: 800px;
+	height: auto;
+	margin: -20px auto;
+}
+
+#heart_icon {
+    margin-left: -28px;
+    margin-top: -1px;
+    float: left;
+}
+
+#p_txt {
+	color: #37B04B;
+	float: left;
+ 			margin-left: 120px;
+}
+
+.num_zone {
+	width: 800px;
+	margin: 40px auto;
+	text-align: center;
+}
+
+/* 부트스트랩 페이징 style */
+.pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 20px 0;
+	border-radius: 4px
+}
+
+.pagination>li {
+	display: inline
+}
+
+.pagination>li>a, .pagination>li>span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #37B04B;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
+	.pagination>li>span:hover {
+	color: #37B04B;
+	background-color: #eee;
+	border-color: #ddd
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+{
+	z-index: 2;
+	color: #fff;
+	cursor: pointer;
+	background-color: #37B04B;
+	border-color: #37B04B;
+}
+
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover,
+	.pagination>.disabled>span, .pagination>.disabled>span:focus,
+	.pagination>.disabled>span:hover {
+	color: #777;
+	cursor: not-allowed;
+	background-color: #fff;
+	border-color: #ddd
+}
+/* 부트스트랩 페이징 style */
+
+#back_btn {
+	cursor: pointer;
+	position: absolute;
+	margin-left: -400px;
+	margin-top: 11px;
+}

@@ -303,11 +303,12 @@
    
    #thumbnails{
       position:absolute;
-      left:5px;
+      left:2px;
       bottom:0px;
       display:flex;
       flex-direction: row;
-      height:60px;
+      height:70px;
+      width: 251px;
    }
    
    #thumbnails img{
