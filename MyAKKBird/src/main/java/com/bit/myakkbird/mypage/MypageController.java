@@ -195,7 +195,7 @@ public class MypageController {
         
         boardService.updateBoardService(boardVO);
         
-		return "redirect:/profile.ak?id="+m_id;
+		return "redirect:/BoardLoad.ak";
 		
 	}
 	

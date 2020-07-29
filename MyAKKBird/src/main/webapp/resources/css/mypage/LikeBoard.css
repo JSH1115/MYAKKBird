@@ -1,0 +1,351 @@
+@charset "UTF-8";
+/* font 적용 */
+@font-face {
+	font-family: "NotoSansKR-Bold";
+	src:url('fonts/NotoSansKR-Bold.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Thin";
+	src:url('fonts/NotoSansKR-Thin.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Black";
+	src:url('fonts/NotoSansKR-Black.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Light";
+	src:url('fonts/NotoSansKR-Light.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Medium";
+	src:url('fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Regular";
+	src:url('fonts/NotoSansKR-Regular.otf');
+}
+/* font 적용 */
+
+/* 전체 적용 */	
+html, body {
+ 	width: 100%;
+ 	height: auto;
+ 	margin: 0 auto;
+ 	padding: 0;
+ 	font-family: "NotoSansKR-Regular";
+}
+
+ul li {
+	list-style: none;
+}
+/* 전체 적용 */	
+.addClass {
+	width: 600px;
+	height: 60px;
+	margin: 0 auto;
+}
+
+.boardList_div {
+	margin: 0 auto;
+	padding: 0;
+	width: 600px;
+	height: auto;
+	background-color: #E6E6E6;
+}
+
+.boardList_div_text {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* 게시글 개수 style */
+.board_count_div {
+	margin-top: 30px;
+	width: 600px;
+	height: 15px;
+}
+
+#count_b {
+	font-size: 14px;
+	margin-left: 45px;
+	float: left;
+}
+/* 게시글 개수 style */
+
+/* 핵심기능 이동 txt style */
+#go_mainPoint {
+	font-size: 14px;
+	margin-right: 44px;
+	float: right;
+	text-decoration: none;
+	color: black;
+}
+
+#go_mainPoint:hover {
+	font-weight: bold;
+}
+/* 핵심기능 이동 txt style */
+
+/* 게시글 style */
+.post {
+	width:520px; 
+	height:180px; 
+	border:1px solid #d3d3d3; 
+	border-radius: 10px;
+	margin-left:1px;
+	margin-bottom:15px;
+	background-color: white;
+	box-shadow: -3px -3px 7px -3px #d3d3d3,
+                3px 3px 7px -3px #d3d3d3;
+}
+
+.post_top {
+	text-align: left; 
+	width: 100%;  
+	font-size: 17.5px; 
+	margin-top: 10px;
+}
+
+.post_top strong {
+	padding-left: 20px;
+}
+
+.post_top_span {
+	float: right; 
+	font-size: 15px;
+	margin-top: 3px;
+}
+
+.post_top_img {
+	width:25px; 
+	height:25px;
+	float: right; 
+	margin-top: -3px;
+	margin-right: 17px;
+}
+
+.post_hr {
+	margin-top: 10px; 
+	height: 0.1px;
+	border: solid 0.1px #d3d3d3;
+}
+
+.post_img {
+	float:left; 
+	width:15%; 
+	height: 100px;
+	margin-left: 35px; 
+	margin-top: 10px;
+}
+
+.profile {
+	width:60px;
+	height:60px;
+	border: 1px solid #d3d3d3;
+	border-radius: 30px; 
+} 
+
+.readcount_zone {
+	margin-top: 5px;
+}
+
+.hot_b {
+	color: white;
+	background-color: #37B04B;
+	border: 1px solid #37B04B;
+	border-radius: 15px;
+	font-size: 11px;
+	padding: 5px;
+	margin-left: -2px;
+	box-shadow: -1px -1px 7px -3px #d3d3d3,
+	            1px 1px 7px -3px #d3d3d3;
+}
+
+.post_right {
+	float:right;
+	width:75%; 
+	margin-top: -4px; 
+	margin-left: 10px;
+}
+
+.post_r_sub {
+	font-size: 17px;
+}
+
+.post_r_span {
+	font-size: 14px;
+}
+
+.post_r_id {
+	font-size: 13px; 
+	float: right; 
+	margin-right:32px; 
+	margin-top:2px;
+}
+
+.post_r_id b {
+	color: black; 
+	font-size: 13px;
+}
+
+.post_r_detail {
+	z-index: 999; 
+	position: absolute; 
+	font-size: 14px;
+	margin-top: 3px;
+	color: #37B04B;
+ 	text-decoration: none;
+}
+
+.post_r_detail:hover {
+	color: #268F38;
+	text-decoration: none;
+}
+
+.time_zone {
+	float: right; 
+	margin-right: 30px; 
+	margin-top: -2px; 
+	font-size: 13px;
+}
+
+.favorites {
+	float: right;
+	margin-right: 33px;
+	cursor: pointer;
+}
+
+.move_icon {
+	float: left;
+}
+/* 게시글 style */
+
+/* 찜하러 가기 style */
+#noLikeZone {
+	margin: 0 auto;
+	width: 600px;
+	height: auto;
+}
+
+.noLike_div {
+	margin: 15px auto;
+	width: 550px;
+	height: 180px;
+	background-color: white;
+	text-align: center;
+}
+
+.noLike_txt {
+	width: 550px;
+	height: 120px;
+	margin-top: 60px;
+}
+
+.noLike_b {
+	font-size: 21px;
+}
+
+.noLike_a {
+	margin-top: 15px;
+	margin-left: 120px;
+	width: 300px;
+}
+
+.noLike_a a {
+	color: #37B04B;
+	text-decoration: none;
+}
+
+.noLike_a a:hover {
+	color: #268F38;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.go_b_img {
+	margin-left: 80px;
+	float:left;
+}
+
+.go_B_t {
+	margin-top: 15px;
+	float:left;
+}
+/* 찜하러 가기 style */
+
+/* 데이터 없을 시 출력 style */
+.end_title {
+	margin: -20px auto;
+	padding: 0;
+	width: 600px;
+	height: 100px;
+	background-color: #E6E6E6;
+}
+
+.end_txt {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.end_icon {
+	margin-top: 10px;
+}
+/* 데이터 없을 시 출력 style */
+
+/* Top 스크롤 버튼 style */
+.top {
+	position: fixed;
+	bottom: 70px;
+	display: none;
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+	color: white;
+	background-color: #37B04B;
+	border: 0;
+	text-decoration: none;
+	margin-left: 1800px;
+	box-shadow: -3px -3px 7px -3px #d3d3d3,
+              3px 3px 7px -3px #d3d3d3;
+}
+
+.top:hover {
+	background-color: #268F38;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.top:focus {
+	border: 0;
+	outline: none;
+}
+
+.Top_div {
+	clear: both;
+}
+/* Top 스크롤 버튼 style */
+
+/* 기타 style */
+.div_plus {
+	margin: 0 auto;
+	width: 600px;
+	height: 5px;
+	background-color: #E6E6E6;
+}
+/* 기타 style */
+
+#back_btn {
+	cursor: pointer;
+	margin-left: 40px;
+	margin-top: 65px;
+}
+
+.go_btn {
+	font-family: "NotoSansKR-Medium";
+}

@@ -37,8 +37,6 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	<!-- chart API 끝 -->
 	<style>
-	
-	
 		/* font 적용 */
 		@font-face {
 			font-family: "NotoSansKR-Bold";
@@ -73,17 +71,15 @@
 		/*헤더*/
 		
 		/* 전체 적용 */
-		.wrap {
-		position: relative;
-		min-height:100%;
-	}
-		body,html {
+		body {
 			margin: 0 auto;
-			padding: 0;
 			font-family: "NotoSansKR-Regular";
 		}
 		
 		a {
+			text-decoration: none;
+		}
+		a:focus, a:hover {
 			text-decoration: none;
 		}
 		
@@ -107,12 +103,32 @@
 			background-color: #37B04B;
 			color: white;
 		}
+		table td {
+			height: 62px;
+			vertical-align: middle;
+	}
 		/* 전체 적용 */
+
+		
+		.addClass {
+		    margin: 0 auto;
+		    width: 1000px;
+		    height: 30px;
+		}
+		
+		.titleClass {
+			margin: 0 auto;
+		    width: 1000px;
+		    height: 60px;
+		    font-family: "NotoSansKR-Bold";
+		    text-align: center;
+		}
 		
 		.top_div {
 			margin: 0 auto;
 			width: 1000px;
-			height: 300px;
+			height: 400px;
+			margin-bottom: -50px;
 		}
 		
 		/* 운영자 profile style */
@@ -143,7 +159,7 @@
 			height: 80px;
 			border-radius: 40px;
 			border: 1px solid #d3d3d3;
-			margin-left: 25px;
+			margin-left: 35px;
 			margin-top: 25px;
 		}
 		
@@ -154,7 +170,7 @@
 			padding: 6px;
 			border-radius: 10px;
 			margin-top: 5px;
-			margin-left: 28px;
+			margin-left: 40px;
 			float: left;
 		}
 		
@@ -181,11 +197,10 @@
 		
 		.p_txt {
 			float: left;
-			margin-left: 2px;
+			margin-left: 12px;
 			font-size: 14px;
 		}
 		/* 운영자 profile style */
-		
 		/* 통계 style */
 		.stats_zone {
 			float: right;
@@ -237,7 +252,7 @@
 		.stats_info {
 			width: 280px;
 			height: 115px;
-			margin-top: 12px;
+			margin-top: 22px;
 		}
 		
 		#info_txt {
@@ -297,7 +312,7 @@
 		.m_addr_info {
 			width: 280px;
 			height: 50px;
-			margin-top: 30px;
+			margin-top: 50px;
 		}
 		
 		.m_addr_interval {
@@ -333,6 +348,7 @@
 		#listCounut {
 			float: right;
 			margin-top: 1.5px;
+			margin-right:-10px;
 		}
 		
 		.search_zone {
@@ -373,7 +389,8 @@
 		.member_zone {
 			width: 1000px;
 			height: auto;
-			margin: 20px auto;
+			margin: -20px auto;
+			margin-top: 80px;
 		}
 		
 		.no_zone {
@@ -391,8 +408,8 @@
 		
 		#num_zone {
 			width: 1000px;
-			height: auto;
-			margin: -30px auto;
+			height: 150px;
+			margin: -5px auto;
 			text-align: center;
 		}
 		
@@ -404,7 +421,6 @@
 			margin-top:12px;
 		}
 		/* 게시글 출력 */
-		
 		/* 모달 개인 정보 style */
 		.m_header {
 			width: 300px;
@@ -500,14 +516,11 @@
 	</style>
 </head>
 <body>
-	<div class="wrap">  
-	
-		<jsp:include page="../header_container.jsp">
-			<jsp:param value="m_id" name="m_id"/>
-		</jsp:include> 
-	<div id="content_container">
-	<br/>
-	<br/>
+<!-- header zone -->
+<jsp:include page="../header_container.jsp">
+	<jsp:param value="m_id" name="m_id"/>
+</jsp:include> 
+<!-- header zone -->
 	<form name="frm">
     <input type="hidden" name="pageNo" /><!-- //페이지 번호 -->
     <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
@@ -519,6 +532,11 @@
     <input type="hidden" name="a_applyFiled" value="a_apply" /><!-- //검색어 -->
     <input type="hidden" name="a_applyValue" value="${pageVO.a_applyValue }" /><!-- //검색어 -->	
     	<div class="top_div">
+    		<div class="addClass">
+			</div>
+			<div class="titleClass">
+				<h3>마이악어새 매칭목록</h3>
+			</div>
     		<div class="left_zone">
     			<div class="admin_zone">
 	    			<div class="admin_profile">
@@ -618,23 +636,23 @@
         				</c:when>
 	            		<c:otherwise>
 			            	<c:forEach items="${resultList}" var="resutList">
-				                <tr id="member_list"  align="center">
+				                <tr id="member_list"  align="center" valign="middle">
 				           			
-				                	<td><span><a href="./BoardDetail.ak?b_num=${resutList.b_num}&e_id=${m_id}">${resutList.b_subject}</a></span></td>
-				                	<td onclick="detail_member('${resutList.c_id}');"><span>${resutList.c_id}</span></td>
-				                    <td onclick="detail_member('${resutList.e_id}');"><span>${resutList.e_id}</span></td>
+				                	<td><div class="t_div"><span><a href="./BoardDetail.ak?b_num=${resutList.b_num}&e_id=${m_id}">${resutList.b_subject}</a></span></div></td>
+				                	<td onclick="detail_member('${resutList.c_id}');"><div class="t_div"><b><span>${resutList.c_id}</span></b></div></td>
+				                    <td onclick="detail_member('${resutList.e_id}');"><div class="t_div"><b><span>${resutList.e_id}</span></b></div></td>
 				                    <c:choose>
 				                    	<c:when test="${resutList.a_apply eq 'D'}">
-				                  				<td><span>미확인</span></td>
+				                  				<td><div class="t_div"><span>미확인</span></div></td>
 				                    	</c:when>
 				                    	<c:when test="${resutList.a_apply eq 'Y'}">
-				                  				<td><span>매칭 완료</span></td>
+				                  				<td><div class="t_div"><span>매칭 완료</span></div></td>
 				                    	</c:when>
 				                    	<c:when test="${resutList.a_apply eq 'N'}">
-				                  				<td><span>매칭 전</span></td>
+				                  				<td><div class="t_div"><span>매칭 전</span></div></td>
 				                    	</c:when>
 				                    </c:choose>
-				                    <td><span>${resutList.a_date}</span></td>
+				                    <td><div class="t_div"><span>${resutList.a_date}</span></div></td>
 				                </tr>
 			            	</c:forEach>
 	            		</c:otherwise>
@@ -642,7 +660,7 @@
 	            </tbody>
 	        </table>
         </div>
-  <c:choose>
+   <c:choose>
 	    	<c:when test="${empty resultList}">
 	    		<div class="container" id="num_zone">
 	    		</div>
@@ -652,39 +670,47 @@
 		        	<ul class="pagination">
 				    	<c:if test="${pageVO.pageNo != 0}">
 					        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
-					            <li>
-					            	<a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">&lt;&lt;</a>
+					            <li class="page-item">
+					            	<a href="javascript:fn_movePage(${pageVO.firstPageNo})">&lt;&lt;</a>
 					            </li>
 					       </c:if>
 					       <c:if test="${pageVO.pageNo != 1}">
-					           <li>
-					               <a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;">&lt;</a>
+					           <li class="page-item">
+					               <a href="javascript:fn_movePage(${pageVO.prevPageNo})">&lt;</a>
+					           </li>
+					        </c:if>
+					        <c:if test="${pageVO.pageNo == 1}">
+					           <li class="page-item">
+					               <a>&lt;</a>
 					           </li>
 					        </c:if>
 					            <c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
 					                <c:choose>
 					                    <c:when test="${i eq pageVO.pageNo}">
-					                        <li class="page-item">
-					                        	<a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
-					                            	<font style="font-weight: bold;">${i}</font>
-					                        	</a>
+					                        <li class="active">
+					                        	<a href="javascript:fn_movePage(${i})">${i}</a>
 					                        </li>
 					                    </c:when>
 					                    <c:otherwise>
 					                        <li class="page-item">
-					                        	<a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a>
+					                        	<a href="javascript:fn_movePage(${i})">${i}</a>
 					                        </li>
 					                    </c:otherwise>
 					                </c:choose>
 					            </c:forEach>
+					        <c:if test="${pageVO.pageNo == pageVO.finalPageNo }">
+					            <li class="page-item">
+					            	<a>&gt;</a>
+					            </li>
+					        </c:if>
 					        <c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
 					            <li class="page-item">
-					            	<a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;">&gt;</a>
+					            	<a href="javascript:fn_movePage(${pageVO.nextPageNo})">&gt;</a>
 					            </li>
 					        </c:if>
 					        <c:if test="${pageVO.endPageNo < pageVO.finalPageNo }">
 					            <li class="page-item">
-					            	<a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">&gt;&gt;</a>
+					            	<a href="javascript:fn_movePage(${pageVO.finalPageNo})">&gt;&gt;</a>
 					            </li>
 					        </c:if>
 				    	</c:if>
@@ -693,8 +719,9 @@
 	    	</c:otherwise>
 	    </c:choose>
     </form>
-		</div>		<!-- content -->
-	</div><!-- wrap -->
+		 <jsp:include page="../footer_container.jsp">
+		<jsp:param value="" name=""/>
+	</jsp:include> 
 </body>
 <script type="text/javascript">
 //엔터키 검색 막기
@@ -869,6 +896,7 @@ function detail_member(m_id) {
 	    }
 	});
 }
+//숫자 카운팅
 function counterUp(settings) { 
 	var $settings = settings; 
 	var $target =$settings.ele; 
@@ -920,55 +948,16 @@ function numberMotion(items) {
 	 } 
 } 
 $(document).ready(function() {
-   	
-	var customer; // 고객 수
-	var worker;   // 근로자 수 
-	var status_n; // 활동중 체크
-	var status_y; // 탈퇴 체크
+
 	var accept_d;
 	var accept_y;
 	var accept_n;
 	
-	type_C();
-	status_N();
+
 	top_addr();
 	accept_D();
 	
-	// 고객 수 구하기
-	function type_C() {
-		
-		$.ajax({
-			url: '/myakkbird/type_C.ak',
-			dataType : "json",
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(data) {
-				customer = data;
-				
-				type_E(customer);
-				
-			},
-			error:function(){
-		        alert("ajax통신 실패!!!");
-		    }
-		});
-	}
 	
-	// 근로자 수 구하기
-	function type_E(customer) {
-		
-		$.ajax({
-			url: '/myakkbird/type_E.ak',
-			dataType : "json",
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(data) {
-				worker = data;
-				
-			},
-			error:function(){
-		        alert("ajax통신 실패!!!");
-		    }
-		});
-	}
 	
 	//매칭 미확인 수 구하기
 	function accept_D() {
@@ -1069,7 +1058,7 @@ $(document).ready(function() {
 		
 		$('#if_m').html(if_m);
 		
-		var all_num = accept_d+accept_y,accept_n;
+		var all_num = accept_d + accept_y + accept_n;
 		var s_accept_d = String(accept_d);
 		var s_accept_y = String(accept_y);
 		var s_accept_n = String(accept_n);
@@ -1079,53 +1068,13 @@ $(document).ready(function() {
 			{num:s_accept_d, ele:$('#d_num')},
 			{num:s_accept_y, ele:$('#y_num')},
 			{num:s_accept_n, ele:$('#n_num')},
-			{num:all, ele:$('#all_num')},
+			{num:all, ele:$('#all_num')}
 		]);
+		console.log(all);
+		console.log(s_accept_y);
 	}
 	
-	// 활동중 체크
-	function status_N() {
-		
-		$.ajax({
-			url: '/myakkbird/status_N.ak',
-			dataType : "json",
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(data) {
-				status_n = data;
-				
-				status_Y(status_n);
-			},
-			error:function(){
-		        alert("ajax통신 실패!!!");
-		    }
-		});
-		
-	}
-	
-	// 탈퇴 체크
-	function status_Y(status_n) {
-		
-		$.ajax({
-			url: '/myakkbird/status_Y.ak',
-			dataType : "json",
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(data) {
-				status_y = data;
-				
-				var s_status_n = String(status_n);
-				var s_status_y = String(status_y);
-				
-				numberMotion([ 
-					{num:s_status_n, ele:$('#mn_num')}, 
-					{num:s_status_y, ele:$('#my_num')},
-				]);
-			},
-			error:function(){
-		        alert("ajax통신 실패!!!");
-		    }
-		});
-	}
-	
+
 	// 가장 많이 사는 주소 구하기
 	function top_addr() {
 		 

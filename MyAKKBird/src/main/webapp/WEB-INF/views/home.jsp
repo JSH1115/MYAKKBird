@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>마이악어새</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
 <script src="https://kit.fontawesome.com/535c824fa5.js" crossorigin="anonymous"></script>     
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -420,9 +420,9 @@
    } */
    
    /* The dots */
-   .dot {height: 15px; width: 15px; margin: 0px 0px 2px 2px;
+   .dot {height: 20px; width: 20px; margin: 0px 0px 20px 5px;
      background-color: #89df8f; border-radius: 50%; display: inline-block;
-     transition: background-color 0.6s ease;}/*  ease말고도 많음(linear..) */
+     transition: background-color 0.6s ease; cursor: pointer;}/*  ease말고도 많음(linear..) */
    .active {  background-color: #37b04b;}
    
    /* Fading animation 해당브라우저 타입 (엔진 종류)명시해주는게 앞2개, 뒤2개는 표준 */
@@ -591,7 +591,7 @@
         slideIndex++;
         if (slideIndex > slides.length) {
            slideIndex = 1;
-           }
+        }
         for (i = 0; i < dots.length; i++) {
           dots[i].className = dots[i].className.replace(" active", "");
         }
@@ -602,8 +602,29 @@
         setTimeout(showSlides, 4000); // setInterval 사용해도 가능
       }
       
-
    })
+   
+var slideIndex = 1;
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
    
 </script>
 </head>
@@ -631,10 +652,10 @@
       
    </div> 
    <br>
-   <div style="text-align:center">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+   <div style="text-align:center; margin-top: -12px;">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
    </div>
 </section>
 <script>
