@@ -526,10 +526,6 @@
 			margin-left: -86px;
 			width:500px;
 			height: 280px;
-			background-image: url("./resources/image/back_cro1.png");
-			background-repeat: no-repeat;
-			background-position: 380px 120px;
-			background-size: 120px 130px;
 			font-family: "NotoSansKR-Regular";
 			font-size: 14px;
 			border-radius: 2px;
