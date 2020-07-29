@@ -45,6 +45,9 @@
 <head>
 <meta charset="UTF-8">
 <title>마이악어새</title>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<style type="text/css">
 	@font-face{
 		font-family: "NotoSansKR-Bold";

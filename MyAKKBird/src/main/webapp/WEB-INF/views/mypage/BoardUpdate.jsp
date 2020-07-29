@@ -32,9 +32,10 @@
 <head>
 <meta charset="UTF-8">
 	<title>마이악어새 게시글 수정</title>
-	<!-- jquery -->
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<!-- jquery -->
 	<!-- alert창 API 시작 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<!-- alert창 API 끝 -->

@@ -25,6 +25,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- favicon 적용 -->
+<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+<!-- favicon 적용 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="fonts/font.css">
   

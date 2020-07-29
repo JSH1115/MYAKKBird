@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이악어새 처음 오셨나요?</title>
+<!-- favicon 적용 -->
+<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+<!-- favicon 적용 -->
 <!-- <link rel="stylesheet" type="text/css" href="fonts/font.css"> -->
 <style>
     @font-face{

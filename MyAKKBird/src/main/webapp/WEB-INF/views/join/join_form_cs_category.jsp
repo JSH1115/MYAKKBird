@@ -7,6 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>마이악어새 고객 회원가입</title>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<!-- alert창 API 시작 -->
 	<script src="resources/js/sweetAlert_J.js"></script>

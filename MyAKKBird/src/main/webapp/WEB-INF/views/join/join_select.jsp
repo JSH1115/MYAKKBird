@@ -6,6 +6,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>마이악어새 회원가입</title>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<!-- join_select.css style 파일 -->
 	<link rel="stylesheet" type="text/css" href="./resources/css/join/join_select.css">
 	<!-- join_select.css style 파일 -->

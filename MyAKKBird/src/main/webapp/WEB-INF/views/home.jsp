@@ -10,6 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>마이악어새</title>
+<!-- favicon 적용 -->
+<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+<!-- favicon 적용 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://kit.fontawesome.com/535c824fa5.js" crossorigin="anonymous"></script>     
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

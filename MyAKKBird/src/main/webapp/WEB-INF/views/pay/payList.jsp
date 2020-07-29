@@ -50,6 +50,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>마이악어새 결제 리스트</title>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<!-- payList.css style 파일 -->
 	<link rel="stylesheet" type="text/css" href="./resources/css/pay/payList.css">

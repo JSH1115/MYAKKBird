@@ -12,6 +12,9 @@
 <head>
 <meta charset="UTF-8">
 <title>마이악어새 게시글 신고</title>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<script src="resources/js/sweetAlert.js"></script>  <!-- 모달창 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 <style type="text/css">

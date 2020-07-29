@@ -51,6 +51,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mypage/detailStyle.css"> --%>
 	<!-- <link rel="stylesheet" type="text/css" href="css/mypage/detailStyle.css"> --> <!-- 디테일페이지 css -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>  --> <!-- 모달창 -->

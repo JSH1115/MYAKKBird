@@ -6,6 +6,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>마이악어새 계정찾기</title>
+	<!-- favicon 적용 -->
+	<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
+	<!-- favicon 적용 -->
 	<!-- search_form.css style 파일 -->
 	<link rel="stylesheet" type="text/css" href="./resources/css/join/search_form.css">
 	<!-- search_form.css style 파일 -->
