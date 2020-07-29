@@ -123,7 +123,7 @@
 		
 		.pay_history_div {
 			width: 1000px;
-			height: auto;
+			height: 900px;
 			margin: 60px auto;
 		}
 		

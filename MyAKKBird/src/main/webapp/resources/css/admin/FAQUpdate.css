@@ -1,0 +1,157 @@
+@charset "UTF-8";
+/* font 적용 */
+@font-face {
+	font-family: "NotoSansKR-Bold";
+	src:url('fonts/NotoSansKR-Bold.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Thin";
+	src:url('fonts/NotoSansKR-Thin.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Black";
+	src:url('fonts/NotoSansKR-Black.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Light";
+	src:url('fonts/NotoSansKR-Light.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Medium";
+	src:url('fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+	font-family: "NotoSansKR-Regular";
+	src:url('fonts/NotoSansKR-Regular.otf');
+}
+/* font 적용 */
+
+/* 전체 적용 */
+body {
+	margin: 0 auto;
+	font-family: "NotoSansKR-Regular";
+}
+
+a {
+	text-decoration: none;
+}
+
+table {
+	width: 500px;
+	margin: 0 auto;
+	margin-left: -50px;
+}
+
+table th {
+	width: 100px;
+}
+
+table td {	
+	width: 400px;
+}
+
+input[type="text"] {
+	width: 350px;
+	height: 30px;
+	font-family: "NotoSansKR-Regular";
+}
+
+textarea {
+	font-family: "NotoSansKR-Regular";
+}
+
+hr {
+	border: solid 0.1px #d3d3d3;
+}
+/* 전체 적용 */
+
+.faq_write_div {
+	width: 600px;
+	margin: 80px auto;
+	text-align: center;
+}
+
+.back_list {
+	cursor: pointer;
+}
+
+#back_icon {
+	float: left;
+	margin-top: 10px;
+}
+
+.faq_write_header {
+	width: 600px;
+	height: 30px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.faq_write_content {
+	width: 500px;
+	height: auto;
+	margin: 30px auto;
+	text-align: center;
+}
+
+.faq_sub_div {
+	margin-left: 15px;
+}
+
+.faq_c_s_div {
+	margin-left: 15px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.faq_c_div {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#faq_content {
+	width: 350px;
+	height: 250px;
+}
+
+.faq_p_s_div {
+	margin-left: 15px;
+	margin-bottom: 30px;
+}
+
+#faq_password {
+	margin-bottom: 30px;
+}
+
+.faq_write_footer {
+	width: 600px;
+	height: auto;
+	margin: 30px auto;
+	text-align: center;
+}
+
+#sub_btn {
+	font-size: 15px;
+	background-color: #37B04B;
+	color: white;
+	border: 0;
+	padding: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#reset_btn {
+	font-size: 15px;
+	background-color: #37B04B;
+	color: white;
+	border: 0;
+	padding: 8px;
+	border-radius: 5px;
+	cursor: pointer;
+}
