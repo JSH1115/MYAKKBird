@@ -71,7 +71,7 @@
 	
 	.login-box {
 		margin-top: 40px;
-		margin-bottom: 150px;
+		margin-bottom: 250px;
 	}
 	
 	.login_btn{
@@ -230,4 +230,4 @@ function check_input() {
 	loginform.submit();
 }
 </script>
-</html>
+</html>	

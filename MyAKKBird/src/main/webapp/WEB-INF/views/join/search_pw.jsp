@@ -62,7 +62,7 @@
 	
 	.find_pass_box {
 		margin-top: 130px;
-		margin-bottom: 155px;
+		margin-bottom: 256px;
 	}
 	
 	.find_pass_div1 {

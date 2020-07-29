@@ -61,7 +61,7 @@
 	
 	.find_box {
 		margin-top: 130px;
-		margin-bottom: 328px;
+		margin-bottom: 430px;
 	}
 	
 	.find_div1 {

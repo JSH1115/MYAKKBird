@@ -1,4 +1,3 @@
-  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -64,7 +63,7 @@
 	
 	.find_id_box {
 		margin-top: 130px;
-		margin-bottom: 219px;
+		margin-bottom: 320px;
 	}
 	
 	.find_id_div1 {

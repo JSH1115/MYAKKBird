@@ -86,15 +86,9 @@
 		}
 		/* 전체 적용 */
 		
-		.addClass {
-			width: 600px;
-			height: 30px;
-			margin: 0 auto;
-		}
-		
 		.faq_write_div {
 			width: 600px;
-			margin: 0 auto;
+			margin: 80px auto;
 			text-align: center;
 		}
 		
@@ -212,8 +206,6 @@
 	</jsp:include>
 	<!-- header zone -->
 	<div class="faq_write_div">
-		<div class="addClass">
-		</div>
 		<div class="back_list" onclick="location.href='./FAQList.ak'">
 			<svg id="back_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
 			<b id="back_txt">돌아가기</b>
