@@ -1,0 +1,304 @@
+@charset "UTF-8";
+@font-face{
+	font-family: "NotoSansKR-Bold";
+	src:url('fonts/NotoSansKR-Bold.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Thin";
+	src:url('fonts/NotoSansKR-Thin.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Black";
+	src:url('fonts/NotoSansKR-Black.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Light";
+	src:url('fonts/NotoSansKR-Light.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Medium";
+	src:url('fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Regular";
+	src:url('fonts/NotoSansKR-Regular.otf');
+}
+
+/* 전체 적용 */
+body {
+	margin: 0 auto;
+	padding: 0;
+	font-family: "NotoSansKR-Regular";
+}
+
+ul li {
+	list-style: none;
+}
+
+a {
+	text-decoration:none;
+}
+
+input[type="checkbox"] {
+	display:none;
+}
+
+label {
+	width:200px;
+	height:150px;
+}
+/* 전체 적용 */
+.category_div {
+	width: 600px;
+	height: 600px;
+	margin: 125px auto;
+}
+
+.b_div {
+	width: 400px;
+	height: 75px;
+	margin: 0 auto;
+}
+
+.b_div b {
+	font-size: 25px;
+	margin-left: 70px;
+}
+
+#b_div_txt {
+	margin-left: 125px;
+}
+
+#detail_btn {
+	float: right;
+    margin-right: 58px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.c_chk_div1 {
+	width: 600px;
+	height: 150px;
+	margin-top: 20px;
+}
+
+#c_chk_div1_img {
+	margin-left: -60px;
+}
+
+#c_chk_div1_img li {
+	display: inline-block;
+	padding-left: 80px;
+}
+
+.c_chk_div2 {
+	width: 600px;
+	height: 150px;
+	margin-top: 20px;
+}
+
+#c_chk_div2_img {
+	margin-left: -60px;
+}
+
+#c_chk_div2_img li {
+	display: inline-block;
+	padding-left: 80px;
+}
+
+#chk_txt1 {
+	position: absolute;
+	margin-top: 20px;
+   	margin-left: 20px;
+   	font-size: 17px;
+   	font-family: "NotoSansKR-Bold";
+   	cursor: pointer;
+}
+
+#chk_txt2 {
+	position: absolute;
+	margin-top: 20px;
+   	margin-left: 20px;
+   	font-size: 17px;
+   	font-family: "NotoSansKR-Bold";
+   	cursor: pointer;
+}
+
+#chk_txt3 {
+	position: absolute;
+	margin-top: 20px;
+   	margin-left: 20px;
+   	font-size: 17px;
+   	font-family: "NotoSansKR-Bold";
+   	cursor: pointer;
+}
+
+#chk_txt4 {
+	position: absolute;
+	margin-top: 20px;
+   	margin-left: 20px;
+   	font-size: 17px;
+   	font-family: "NotoSansKR-Bold";
+   	cursor: pointer;
+}
+
+#chk_txt5 {
+	position: absolute;
+	margin-top: 20px;
+   	margin-left: 20px;
+   	font-size: 17px;
+   	font-family: "NotoSansKR-Bold";
+   	cursor: pointer;
+}
+
+#chk_txt6 {
+	position: absolute;
+	margin-top: 20px;
+   	margin-left: 20px;
+   	font-size: 17px;
+   	font-family: "NotoSansKR-Bold";
+   	cursor: pointer;
+}
+
+input[type="checkbox"] + label .chk_img {
+	width: 100px;
+	height:100px;
+	background:url("../../image/vacuum.png")no-repeat;
+	background-size:100px 100px;
+	cursor:pointer;  
+}
+
+input[type="checkbox"]:checked + label .chk_img {
+	background:url("../../image/vacuum_check1.png")no-repeat;
+	background-size:100px 100px;
+} 
+
+input[type="checkbox"] + label .chk2_img {
+	width: 100px;
+	height:100px;
+	background:url("../../image/cleaning-tools.png")no-repeat;
+	background-size:100px 100px;
+	cursor:pointer;  
+}
+
+input[type="checkbox"]:checked + label .chk2_img {
+	background:url("../../image/cleaning-tools_check.png")no-repeat;
+	background-size:100px 100px;
+} 
+
+input[type="checkbox"] + label .chk3_img {
+	width: 100px;
+	height:100px;
+	background:url("../../image/kitchen.png")no-repeat;
+	background-size:100px 100px;
+	cursor:pointer;  
+}
+
+input[type="checkbox"]:checked + label .chk3_img {
+	background:url("../../image/kitchen_check.png")no-repeat;
+	background-size:100px 100px;
+} 
+
+input[type="checkbox"] + label .chk4_img {
+	width: 100px;
+	height: 100px;
+	background:url("../../image/maid.png")no-repeat;
+	background-size:100px 100px;
+	cursor:pointer;  
+}
+
+input[type="checkbox"]:checked + label .chk4_img {
+	background:url("../../image/maid_check.png")no-repeat;
+	background-size:100px 100px; 
+} 
+
+input[type="checkbox"] + label .chk5_img {
+	width: 100px;
+	height: 100px;
+	background:url("../../image/apartment.png")no-repeat;
+	background-size:100px 100px;
+	cursor:pointer;  
+}
+
+input[type="checkbox"]:checked + label .chk5_img {
+	background:url("../../image/apartment_check.png")no-repeat;
+	background-size:100px 100px; 
+} 
+
+input[type="checkbox"] + label .chk6_img {
+	width: 100px;
+	height: 100px;
+	background:url("../../image/coronavirus.png")no-repeat;
+	background-size:100px 100px;
+	cursor:pointer;  
+}
+
+input[type="checkbox"]:checked + label .chk6_img {
+	background:url("../../image/coronavirus_check.png")no-repeat;
+	background-size:100px 100px; 
+} 
+
+.btn_div {
+	width: 600px;
+	height: 38px;
+	margin-top: 40px;
+}
+
+.btn_sub {
+	border-radius: 4px;
+    width: 470px;
+    height: 40px;
+    border: 0px;
+    background: #37b04b;
+    text-decoration: none;
+    color: white;
+    margin-left: 55px;
+    font-size: 16px;
+    font-family: "NotoSansKR-Black";
+    cursor: pointer;
+}
+
+.btn_sub:focus {
+	outline: none;
+}
+
+#alert_id_txt {
+	font-size: 20px;
+}
+
+#m_title {
+	font-size: 20px;
+}
+
+.m_div1 {
+	width: 330px;
+	height: 40px;
+	margin: 15px auto;
+	border-bottom: 1px solid #888888;
+}
+
+.m_div1 b, .m_div1 span {
+	font-size: 17px;
+	float: left;
+}
+
+.m_div2 {
+	width: 330px;
+	height: 40px;
+	margin: 15px auto;
+	border-bottom: 1px solid #888888;
+}
+
+.m_div2 b, .m_div2 span {
+	float: left;
+	font-size: 17px;
+}
+
+.go_btn {
+	font-family: "NotoSansKR-Medium";
+}

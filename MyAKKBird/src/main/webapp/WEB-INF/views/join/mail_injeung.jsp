@@ -62,8 +62,8 @@
 	
 	#mail_txt {
 		font-size: 16px;
-    	font-family: "NotoSansKR-Medium";
-    	margin-left: 44px;
+	   	font-family: "NotoSansKR-Medium";
+	   	margin-left: 44px;
 	}
 	
 	#input_num {
@@ -76,7 +76,7 @@
 		font-family: "NotoSansKR-Medium";
 	}
 	
-	.go_btn{
+	.go_btn {
 	 	width: 100px;
 		height: 45px;
 		background-color: #37B04B;
@@ -103,6 +103,7 @@
 </div>
 </body>
 <script>
+// 메일 인증 체크
 function check(){
 	var form = document.authenform;
 	var num = ${num};
@@ -111,7 +112,7 @@ function check(){
 		return false;
 	}
 	if(form.num.value!=num){
-		alert("틀린 인증번호입니다. 인증번호를 다시  입력하세요");
+		alert("틀린 인증번호입니다. 인증번호를 다시 입력하세요");
 		return false;
 	}
 	if(form.num.value==num){

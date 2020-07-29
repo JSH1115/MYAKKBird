@@ -13,7 +13,6 @@
 	System.out.println("하트 구매할 아이디 : " + memberVO.getM_id());
 	System.out.println(memberVO.getM_id() + "의 하트 개수 : " + memberVO.getM_heart() + "개");
 %>
-
 <!doctype html>
 <html>
 <head>

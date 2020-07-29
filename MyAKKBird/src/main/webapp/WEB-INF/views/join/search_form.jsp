@@ -4,111 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<meta charset="UTF-8">
 	<title>마이악어새 계정찾기</title>
-	<style>
-	@font-face{
-		font-family: "NotoSansKR-Bold";
-		src:url('fonts/NotoSansKR-Bold.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Thin";
-		src:url('fonts/NotoSansKR-Thin.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Black";
-		src:url('fonts/NotoSansKR-Black.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Light";
-		src:url('fonts/NotoSansKR-Light.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Medium";
-		src:url('fonts/NotoSansKR-Medium.otf');
-	}
-	
-	@font-face{
-		font-family: "NotoSansKR-Regular";
-		src:url('fonts/NotoSansKR-Regular.otf');
-	}
-	
-	/* 전체 적용 */
-	body {
-		margin: 0 auto;
-		padding: 0;
-		background-color: #F6F6F6;
-		font-family: "NotoSansKR-Regular";
-	}
-	
-	h2 {
-		font-family: "NotoSansKR-Bold";
-	}
-	
-	a {
-		display:inline-block;
-	}
-	
-	a:hover {
-		text-decoration: none;
-	}
-	/* 전체 적용 */
-	
-	.find_box {
-		margin-top: 130px;
-		margin-bottom: 430px;
-	}
-	
-	.find_div1 {
-		margin-top: -15px;
-	}
-	
-	#search_txt1 {
-		font-size: 15px;
-	}
-	
-	.find_id_btn {
-		margin-top: 15px;
-		width: 300px;
-		height: 50px;
-		background-color: #37B04B;
-		color: white;
-		font-size: 15px;
-		font-family: "NotoSansKR-Black";
-		border-radius: 4px;
-		text-decoration: none;
-	}
-	
-	.find_id_btn:hover {
-		color: white;
-	}
-	.find_div2 {
-		margin-top: 15px;
-	}
-	
-	.find_pass_btn {
-		margin-top: 15px;
-		width:300px; 
-		height:50px;
-		color: #37B04B;
-		font-size: 15px;
-		font-family: "NotoSansKR-Black";
-		border: 1px solid #37B04B;
-		border-radius: 4px;
-		background-color: white;
-		text-decoration: none;
-	}
-	
-	.find_pass_btn:hover {
-		color: #37B04B;
-	}
-	
-</style>
+	<!-- search_form.css style 파일 -->
+	<link rel="stylesheet" type="text/css" href="./resources/css/join/search_form.css">
+	<!-- search_form.css style 파일 -->
 </head>
 <body>
 <!-- header zone -->
@@ -129,8 +29,10 @@
 		</div>
 	</div>
 </center>
+<!-- footer zone -->
 <jsp:include page="../footer_container.jsp">
 	<jsp:param value="" name=""/>
 </jsp:include> 
+<!-- footer zone -->
 </body>
 </html>

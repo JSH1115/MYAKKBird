@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@font-face{ 
+	font-family: "NotoSansKR-Bold";
+	src:url('fonts/NotoSansKR-Bold.otf');
+}
+	
+@font-face{
+	font-family: "NotoSansKR-Thin";
+	src:url('fonts/NotoSansKR-Thin.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Black";
+	src:url('fonts/NotoSansKR-Black.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Light";
+	src:url('fonts/NotoSansKR-Light.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Medium";
+	src:url('fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face{
+	font-family: "NotoSansKR-Regular";
+	src:url('fonts/NotoSansKR-Regular.otf');
+}
+	
+/* 전체 적용 */
+body {
+	margin: 0 auto;
+	padding: 0;
+	font-family: "NotoSansKR-Regular";
+}
+
+h3 {
+	font-size: 21px;
+	text-align: left;
+}
+/* 전체 적용 */
+
+.join_select_zone {
+	width: 1000px;
+	height: 500px;
+	margin: 125px auto;
+}
+
+.customer_zone {
+	width: 700px;
+	height: 210px;
+	border-bottom: 1px solid rgb(195, 195, 195);
+	margin: 0 auto;
+	text-align: center;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; 
+	transition-duration: 0.4s
+}
+
+.customer_zone:hover {
+	background-color: #f5f5f5;
+}
+
+.c_img {
+	margin-left: 130px;
+	margin-top: 40px;
+}
+
+.c_z_right {
+	width: 190px;
+	height: 97px;
+	float: right;
+	margin-right: 170px;
+  	 	margin-top: 40px;
+}
+
+.worker_zone {
+	width: 700px;
+	height: 210px;
+	margin: 0 auto;
+	border-bottom: 1px solid rgb(195, 195, 195);
+	text-align: center;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; 
+	transition-duration: 0.4s
+}
+
+.worker_zone:hover {
+	background-color: #f5f5f5;
+}
+
+.w_img {
+	margin-left: 130px;
+	margin-top: 40px;
+}
+
+.w_z_right {
+	width: 190px;
+	height: 97px;
+	float: right;
+	margin-right: 170px;
+  	 	margin-top: 40px;
+}
+
+#txt_go1 {
+	float: left;
+	color: #888888;
+	font-family: "NotoSansKR-Medium";
+	margin-top: -15px;
+}
+
+#txt_go2 {
+	float: left;
+	color: #888888;
+	font-family: "NotoSansKR-Medium";
+	margin-top: -15px;
+}
+
+.login_zone {
+	width: 700px;
+	height: 80px;
+	margin: 30px auto;
+	text-align: center;
+}
+
+#txt1 {
+	font-family: "NotoSansKR-Bold";
+	color: #888888;
+}
+
+#login_txt {
+	font-family: "NotoSansKR-Bold";
+	text-decoration: underline;
+	color: #313131;
+	line-height: 2;
+}
