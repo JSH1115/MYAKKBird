@@ -131,15 +131,9 @@
 	</select>
 	
 	<select id="topAddr" parameterType="MasterVO" resultMap="masterResultMap">
-		SELECT * 
-		FROM (SELECT m_address_road, CEIL(RATIO_TO_REPORT(COUNT(*)) OVER() * 100) percent
-              FROM MEMBER
-              GROUP BY m_address_road
-		      ORDER BY m_address_road DESC)		  
-		<![CDATA[  
-		WHERE ROWNUM >= 1
-		AND ROWNUM <= 3
-		]]>
+		SELECT m_address_road, COUNT(*), COUNT(*) / SUM (COUNT(*)) OVER() * 100
+		FROM MEMBER
+		GROUP BY m_address_road
 	</select>
 	
 	<select id="detailMember" parameterType="MasterVO" resultMap="masterResultMap">
@@ -204,28 +198,49 @@
 	
 	<!-- 호준님 (신고, 매칭) -->
 	<select id="matchCount" resultType="int">
-		SELECT COUNT(*) FROM accept where a_apply = 'Y'
-		<choose>
-			<when test="searchFiled != null and searchFiled != ''">
+		SELECT COUNT(*) FROM accept where 1=1
+			<if test="searchFiled != null and searchFiled == 'b_subject'">
+				and  b_num in (select b_num from board where ${searchFiled} like '%'||#{searchValue}||'%')
+	        </if>
+			<if test="searchFiled != null and searchFiled != '' and searchFiled != 'b_subject'">
 	            and ${searchFiled} like '%'||#{searchValue}||'%' 
-	        </when>
-		</choose>
+	        </if>
+	        <if test='a_applyValue == "Y"'>
+			  and ${a_applyFiled} = #{a_applyValue}
+     		</if>
+     		<if test='a_applyValue == "D"'>
+			  and ${a_applyFiled} = #{a_applyValue}
+     		</if>
+     		<if test='a_applyValue == "N"'>
+			  and ${a_applyFiled} = #{a_applyValue}
+     		</if>
+
 	</select>
 	
 	<select id="matchList" parameterType="MasterVO" resultMap="matchResultMap">
 	    SELECT x.*
         FROM (SELECT ROWNUM AS RNUM1, AA.*
-            FROM (SELECT accept.*,board.b_subject FROM accept 
-            inner join board on accept.b_num = board.b_num
-             where a_apply='Y'
-                  <choose>
-				    <when test="searchFiled != null and searchFiled != ''">
+            FROM (SELECT a.*,b.b_subject FROM accept a,board b
+           where a.b_num = b.b_num 
+            
+           
+				    <if test="searchFiled != null and searchFiled != ''">
 			             and ${searchFiled} like '%'||#{searchValue}||'%'
-			          </when>
-			          <otherwise>
-			          		 order by b_subject desc
-			          </otherwise>
-				  </choose>
+			          </if>
+			          <if test="searchFiled != '' and searchFiled == 'b_subject'">
+			             and b.${searchFiled} like '%'||#{searchValue}||'%'
+			          </if>
+			           <if test='a_applyValue == "Y"'>
+						  and ${a_applyFiled} = #{a_applyValue}
+			     		</if>
+			     		<if test='a_applyValue == "D"'>
+						  and ${a_applyFiled} = #{a_applyValue}
+			     		</if>
+			     		<if test='a_applyValue == "N"'>
+						  and ${a_applyFiled} = #{a_applyValue}
+			     		</if>
+			     		
+
                   ) AA ) x
         <![CDATA[           
         WHERE RNUM1 >= #{startRowNo}
@@ -233,39 +248,158 @@
         ]]>
 	</select>
 	
-	<select id="dangerCount" resultType="int">
+	<select id="dangerCount" resultType="int" >
 		SELECT COUNT(*) FROM danger
-		<choose>
-			<when test="searchFiled != null and searchFiled != ''">
-	            where ${searchFiled} like '%'||#{searchValue}||'%' 
-	        </when>
-		</choose>
+				where 1=1
+			<if test="searchFiled != null and searchFiled == 'b_subject'">
+				and  b_num in (select b_num from board where ${searchFiled} like '%'||#{searchValue}||'%')
+	        </if>
+			<if test="searchFiled != null and searchFiled != '' and searchFiled != 'b_subject'">
+	            and ${searchFiled} like '%'||#{searchValue}||'%' 
+	        </if>
+			<if test='d_statusValue == "X"'>
+			  and ${d_statusFiled} = #{d_statusValue}
+     		</if>
+     		<if test='d_statusValue == "D"'>
+			  and ${d_statusFiled} = #{d_statusValue}
+     		</if>
+     		<if test='d_statusValue == "O"'>
+			  and ${d_statusFiled} = #{d_statusValue}
+     		</if>
+     		<if test='d_typeValue == "A"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+     		</if>
+     		<if test='d_typeValue == "B"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+     		</if>
+     		<if test='d_typeValue == "C"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+     		</if>
+     		<if test='d_typeValue == "D"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+     		</if>
+     		<if test='d_typeValue == "E"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+     		</if>
+
 	</select>
 	
-	<select id="dangerList" parameterType="MasterVO" resultMap="dangerResultMap">
-	    SELECT A.*
-        FROM (SELECT ROWNUM AS RNUM1, AA.*
-            FROM (SELECT danger.*,board.b_subject FROM danger
-                  inner join board on danger.b_num = board.b_num
-                  <choose>
-				      <when test="searchFiled != null and searchFiled != ''">
-			              WHERE ${searchFiled} like '%'||#{searchValue}||'%'
-			          </when>
-
-				  </choose>
-                  ) AA ) A
-        <![CDATA[           
-        WHERE RNUM1 >= #{startRowNo}
-        AND RNUM1 <= #{endRowNo}
-        ]]>
+	<select id="dangerList" resultMap="dangerResultMap" parameterType="MasterVO">
+		SELECT A.*FROM (SELECT ROWNUM AS RNUM1, AA.*FROM 
+		(SELECT d.*,b.b_subject FROM danger d,board b
+	                 where d.b_num = b.b_num 
+		<choose>
+			<when test="searchFiled != '' and searchFiled=='m_id'  and searchFiled !='b_subject'">
+			and d.${searchFiled} like '%'||#{searchValue}||'%' 
+			</when>
+			<when test="searchFiled != null and searchFiled != ''  and searchFiled !='b_subject' ">
+			and ${searchFiled} like '%'||#{searchValue}||'%' 
+			</when>
+			<when test="searchFiled != null and searchFiled =='b_subject' ">
+			and b.${searchFiled} like '%'||#{searchValue}||'%' 
+			</when>
+			<when test='d_statusValue == "Y"'>
+			  and ${d_statusFiled} = #{d_statusValue}
+	    		</when>
+	    		<when test='d_statusValue == "D"'>
+			  and ${d_statusFiled} = #{d_statusValue}
+	    		</when>
+	    		<when test='d_statusValue == "O"'>
+			  and ${d_statusFiled} = #{d_statusValue}
+	    		</when>
+	    		<when test='d_typeValue == "A"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+	    		</when>
+	    		<when test='d_typeValue == "B"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+	    		</when>
+	    		<when test='d_typeValue == "C"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+	    		</when>
+	    		<when test='d_typeValue == "D"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+	    		</when>
+	    		<when test='d_typeValue == "E"'>
+			  and ${d_typeFiled} = #{d_typeValue}
+	    		</when>
+			
+	
+		</choose>
+					) AA ) A 
+		<![CDATA[           
+	       WHERE RNUM1 >= #{startRowNo}
+	       AND RNUM1 <= #{endRowNo}
+	       ]]>
 	</select>
+
 	
 	<update id="dangerOK" parameterType="String">
-		update danger set d_status = 'O' where d_id = #{d_id}
+		update danger set d_status = 'O', d_s_date= sysdate where d_id = #{d_id}
 	</update>
 
 	<update id="dangerNO" parameterType="String">
-		update danger set d_status = 'X' where d_id = #{d_id}
+		update danger set d_status = 'X' , d_s_date= sysdate where d_id = #{d_id}
 	</update>
+	
+	<select id="dStatusDCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_status = 'D'
+	</select>
+	<select id="dStatusOCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_status = 'O'
+	</select>
+	<select id="dStatusXCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_status = 'X'
+	</select>
+	
+	
+	<select id="dangerACount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_type = 'A'
+	</select>
+	<select id="dangerBCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_type = 'B'
+	</select>
+	<select id="dangerCCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_type = 'C'
+	</select>
+	<select id="dangerDCount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_type = 'D'
+	</select>
+	<select id="dangerECount" resultType="int">
+		SELECT COUNT(*) FROM danger
+		WHERE d_type = 'E'
+	</select>
+	
+	<select id="acceptDCount" resultType="int">
+		SELECT COUNT(*) FROM accept
+		WHERE a_apply = 'D'
+	</select>
+	<select id="acceptYCount" resultType="int">
+		SELECT COUNT(*) FROM accept
+		WHERE a_apply = 'Y'
+	</select>
+	<select id="acceptNCount" resultType="int">
+		SELECT COUNT(*) FROM accept
+		WHERE a_apply = 'N'
+	</select>
+	
+	
+	<select id="topAddrMatch" parameterType="MasterVO" resultMap="masterResultMap">
+	SELECT * 
+	FROM (SELECT b.b_address_road, CEIL(RATIO_TO_REPORT(COUNT(*)) OVER() * 100) percent
+             FROM board b,accept a where a.b_num = b.b_num and a.a_apply= 'Y'
+             GROUP BY b.b_address_road
+	      ORDER BY b.b_address_road DESC)		  
+	<![CDATA[  
+	WHERE ROWNUM >= 1
+	AND ROWNUM <= 3
+	]]>
+	</select>
 	
 </mapper>

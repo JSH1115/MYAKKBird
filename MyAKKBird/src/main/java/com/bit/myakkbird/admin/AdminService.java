@@ -42,4 +42,21 @@ public interface AdminService {
 	
 	public void dangerOKService(String d_id);
 	public void dangerNOService(String d_id);
+	
+	
+	public int dStatusDCountService();
+	public int dStatusOCountService();
+	public int dStatusXCountService();
+	
+	public int dangerACountService();
+	public int dangerBCountService();
+	public int dangerCCountService();
+	public int dangerDCountService();
+	public int dangerECountService();
+	
+	public int acceptDCountService();
+	public int acceptYCountService();
+	public int acceptNCountService();
+	
+	public ArrayList<MasterVO> topAddrMatchService();
 }

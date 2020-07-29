@@ -46,4 +46,20 @@ public interface AdminMapper {
 
 	public void dangerOK(String d_id);
 	public void dangerNO(String d_id);
+	
+	public int dStatusDCount();
+	public int dStatusOCount();
+	public int dStatusXCount();
+	
+	public int dangerACount();
+	public int dangerBCount();
+	public int dangerCCount();
+	public int dangerECount();
+	public int dangerDCount();
+	
+	public int acceptDCount();
+	public int acceptYCount();
+	public int acceptNCount();
+	
+	public ArrayList<MasterVO> topAddrMatch();
 }

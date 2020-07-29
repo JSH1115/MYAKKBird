@@ -210,5 +210,97 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.dangerNO(d_id);
 		
 	}
+	
+
+	@Override
+	public int dStatusOCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dStatusOCount();
+		
+		return result;
+	}
+
+	@Override
+	public int dStatusDCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dStatusDCount();
+		
+		return result;
+	}
+	
+
+	@Override
+	public int dStatusXCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dStatusXCount();
+		
+		return result;
+	}
+	//신고 타입 수 구하기 a~e
+	@Override
+	public int dangerACountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dangerACount();
+		
+		return result;
+	}
+	@Override
+	public int dangerBCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dangerBCount();
+		
+		return result;
+	}
+	@Override
+	public int dangerCCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dangerCCount();
+		
+		return result;
+	}
+	@Override
+	public int dangerDCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dangerDCount();
+		
+		return result;
+	}
+	@Override
+	public int dangerECountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.dangerECount();
+		
+		return result;
+	}
+	
+	@Override
+	public int acceptDCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.acceptDCount();
+		
+		return result;
+	}
+	@Override
+	public int acceptYCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.acceptYCount();
+		
+		return result;
+	}
+	@Override
+	public int acceptNCountService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		int result = adminMapper.acceptNCount();
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<MasterVO> topAddrMatchService() {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		ArrayList<MasterVO> addrList = adminMapper.topAddrMatch();
+		
+		return addrList;
+	}
 
 }

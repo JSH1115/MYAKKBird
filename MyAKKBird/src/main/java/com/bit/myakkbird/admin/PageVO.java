@@ -20,6 +20,12 @@ public class PageVO {
     private String m_statusValue; //탈퇴 값
     private String m_typeFiled; //회원 유형 체크
     private String m_typeValue; //회원 값
+    private String d_statusFiled; //신고 처리 체크
+    private String d_statusValue; //신고 처리 값
+    private String d_typeFiled; //신고 타입 체크
+    private String d_typeValue; //신고 타입 값
+    private String a_applyFiled; //매칭 타입 체크
+    private String a_applyValue; //매칭 타입 값
 
 	public String getM_typeFiled() {
 		return m_typeFiled;
@@ -165,8 +171,56 @@ public class PageVO {
     public void setSearchValue(String searchValue) {
         this.searchValue = searchValue;
     }
+    
+    public String getD_statusFiled() {
+		return d_statusFiled;
+	}
 
-    private void makePaging() {
+	public void setD_statusFiled(String d_statusFiled) {
+		this.d_statusFiled = d_statusFiled;
+	}
+
+	public String getD_statusValue() {
+		return d_statusValue;
+	}
+
+	public void setD_statusValue(String d_statusValue) {
+		this.d_statusValue = d_statusValue;
+	}
+
+	public String getD_typeFiled() {
+		return d_typeFiled;
+	}
+
+	public void setD_typeFiled(String d_typeFiled) {
+		this.d_typeFiled = d_typeFiled;
+	}
+
+	public String getD_typeValue() {
+		return d_typeValue;
+	}
+
+	public void setD_typeValue(String d_typeValue) {
+		this.d_typeValue = d_typeValue;
+	}
+
+	public String getA_applyFiled() {
+		return a_applyFiled;
+	}
+
+	public void setA_applyFiled(String a_applyFiled) {
+		this.a_applyFiled = a_applyFiled;
+	}
+
+	public String getA_applyValue() {
+		return a_applyValue;
+	}
+
+	public void setA_applyValue(String a_applyValue) {
+		this.a_applyValue = a_applyValue;
+	}
+
+	private void makePaging() {
   
         // 기본 값 설정
         if (this.totalCount == 0) return; 
