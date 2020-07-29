@@ -4,8 +4,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.bit.myakkbird.pay.*" %>
+<%@ page import="com.bit.myakkbird.member.*" %>
 <%
 	String m_id = (String)session.getAttribute("m_id");
+	MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
 	ArrayList<PayVO> payList = (ArrayList<PayVO>)request.getAttribute("payList");
 	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 	int nowpage = ((Integer)request.getAttribute("page")).intValue();
@@ -37,7 +39,8 @@
 		}
 	}
 	
-	System.out.println("현재 아이디 : " + m_id);
+	System.out.println("현재 아이디 : " + memberVO.getM_id());
+	System.out.println(memberVO.getM_id() + "의 하트 개수 : " + memberVO.getM_heart() + "개");
 	System.out.println("결제한 내역 수 : " + listCount);
 %>
 <!DOCTYPE html>
@@ -120,7 +123,7 @@
 		
 		.pay_history_div {
 			width: 1000px;
-			height: 800px;
+			height: auto;
 			margin: 60px auto;
 		}
 		
@@ -131,20 +134,39 @@
 			text-align: center;
 		}
 		
-		.list_zone {
+		.pay_list_info {
 			width: 800px;
-			height: 30px;
-			margin: 5px auto;
+			height: 60px;
+			margin: 50px auto;
+			border: 1px solid rgb(195, 195, 195);
+			border-radius: 3px;
+		}
+		
+		.pay_list_info b {
+			line-height: 3.5;
+	    	font-family: "NotoSansKR-Light";
+	    	margin-left: 5px;
+		}
+		
+		#heart_info_icon {
+			float: left;
+			margin-top: 16px;
+	    	margin-left: 20px;
+		}
+		
+		#v_txt {
+			font-family: "NotoSansKR-Black";
 		}
 		
 		#list_count {
 			float: right;
+			margin-right: 22px;
 		}
 		
 		.pay_list_div {
 			width: 800px;
 			height: auto;
-			margin: 10px auto;
+			margin: -20px auto;
 		}
 		
 		#heart_icon {
@@ -161,7 +183,7 @@
 		
 		.num_zone {
 			width: 800px;
-			margin: 0 auto;
+			margin: 40px auto;
 			text-align: center;
 		}
 		
@@ -231,7 +253,7 @@
 			cursor: pointer;
     		position: absolute;
     		margin-left: -400px;
-    		margin-top: 5px;
+    		margin-top: 11px;
 		}
 	</style>
 </head>
@@ -246,17 +268,10 @@
 		<svg id="back_btn" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 		<h2><%=m_id %>님 하트 구매내역</h2>
 	</div>
-	<div class="list_zone">
-		<%
-			if(payList.size() == 0) {
-		%>
-		<%
-			} else {
-		%>
-			<b id="list_count">결제 총 내역 <%=listCount %>번</b>
-		<%
-			}
-		%>
+	<div class="pay_list_info">
+		<svg id="heart_info_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#37B04B" width="23px" height="23px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+		<b>보유 중인 하트 <strong id="v_txt"><%=memberVO.getM_heart() %></strong>개</b>
+		<b id="list_count">결제 총 내역 <strong id="v_txt"><%=listCount %></strong>번</b>
 	</div>
 	<div class="pay_list_div">
 		<table>

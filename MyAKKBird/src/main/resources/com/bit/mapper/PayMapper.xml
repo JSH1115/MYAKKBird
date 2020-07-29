@@ -38,4 +38,9 @@
         ]]>
 	</select>
 	
+	<select id="checkMember" parameterType="String" resultType="MemberVO">
+		SELECT * FROM MEMBER
+		WHERE m_id = #{m_id}
+	</select>
+	
 </mapper>

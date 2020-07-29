@@ -985,7 +985,7 @@ $('#why').click(function() {
 });
 $('#why_addr').click(function() {
 	Swal.fire({
-		html: '<b>마이악어새는 정확한 주소 위치를 확인하기 위해</b><br>' +
+		html: '<b>마이악어새는 정확한 위치를 확인하기 위해</b><br>' +
 		      '<b>지번주소가 필요합니다!</b>',
 		confirmButtonColor: '#37B04B',
 		confirmButtonText:

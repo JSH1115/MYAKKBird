@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.bit.mapper.PayMapper;
+import com.bit.myakkbird.member.MemberVO;
 
 @Service("payService")
 public class PayServiceImpl implements PayService{
@@ -50,6 +51,14 @@ public class PayServiceImpl implements PayService{
 				payMapper.payList(m_id, startrow, endrow);
 		
 		return payList;
+	}
+
+	@Override
+	public MemberVO checkMemberService(String m_id) {
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		MemberVO memberVO = payMapper.checkMember(m_id);
+		
+		return memberVO;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.bit.myakkbird.member.MemberVO;
 import com.bit.myakkbird.pay.PayVO;
 
 public interface PayMapper {
@@ -16,4 +17,5 @@ public interface PayMapper {
 			@Param("m_id") String m_id, 
 			@Param("startrow") int startrow, 
 			@Param("endrow") int endrow);
+	public MemberVO checkMember(String m_id);
 }

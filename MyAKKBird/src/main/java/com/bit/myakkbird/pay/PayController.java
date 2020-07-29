@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bit.myakkbird.member.MemberVO;
+
 
 @Controller
 public class PayController {
@@ -50,6 +52,8 @@ public class PayController {
 			defaultValue="1") int page) {
 		
 		String m_id = (String)session.getAttribute("m_id");
+		MemberVO memberVO = payService.checkMemberService(m_id);
+		
 		int limit = 10;
 		
 		int startrow = (page-1)*10+1;
@@ -65,6 +69,7 @@ public class PayController {
    		
    		if (endpage>startpage+10-1) endpage=startpage+10-1;
    		
+   		model.addAttribute("memberVO", memberVO);
    		model.addAttribute("m_id", m_id);
 		model.addAttribute("page", page);
 		model.addAttribute("listCount", listCount);
