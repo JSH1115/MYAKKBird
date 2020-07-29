@@ -98,13 +98,9 @@
 		
 		#back_icon {
 			float: left;
+			margin-top: 10px;
 		}
 		
-		#back_txt {
-			float: left;
-			margin-top: 4px;
-		}
-	
 		.faq_write_header {
 			width: 600px;
 			height: 30px;
@@ -207,8 +203,7 @@
 	<!-- header zone -->
 	<div class="faq_write_div">
 		<div class="back_list" onclick="location.href='./FAQList.ak'">
-			<svg id="back_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="30px" height="30px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-			<b id="back_txt">돌아가기</b>
+			<svg id="back_icon" viewBox="0 0 24 24" style="display: inline-block; color: rgba(0, 0, 0, 0.87); fill: black; height: 24px; width: 24px; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 		</div>
 		<div class="faq_write_header">
 			<h2>FAQ <%=faqVO.getF_num() %>번 게시글 수정</h2>

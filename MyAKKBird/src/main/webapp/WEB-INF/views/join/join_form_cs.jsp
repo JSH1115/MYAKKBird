@@ -79,7 +79,7 @@
 	.sign_div {
 		width: 1000px;
     	height: 1300px;
-    	margin: 50px auto;
+    	margin: 70px auto;
 	}
 	
 	.title_div {

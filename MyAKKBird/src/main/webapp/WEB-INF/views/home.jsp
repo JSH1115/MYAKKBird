@@ -356,6 +356,10 @@
       top:20px;
    }
    
+   #FAQ_container h2 > span {
+      font-family: "NotoSansKR-Medium";
+   }
+   
    #FAQ_category{
       display:flex;
       flex-direction: row;
@@ -1034,7 +1038,7 @@ function heart_got(se_id) {
    <div>&nbsp;</div>
 </section>
 <section id="FAQ_container">
-   <h2>마이악어새가 <span>궁금</span>하신가요?</h2>
+   <h2><span>마이악어새</span>가 궁금하신가요?</h2>
    <div id="FAQ_category">
       <div class="each_FAQ" onclick="location.href='FAQList.ak'">
          <img src="resources/image/dependable.png">

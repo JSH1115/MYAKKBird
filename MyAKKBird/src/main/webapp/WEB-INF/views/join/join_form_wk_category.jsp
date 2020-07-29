@@ -69,7 +69,7 @@
 		.category_div {
 			width: 600px;
 			height: 600px;
-			margin: 100px auto;
+			margin: 125px auto;
 		}
 	
 		.b_div {
