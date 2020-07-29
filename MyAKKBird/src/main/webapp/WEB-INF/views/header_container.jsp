@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
 <style>
 	@font-face{font-family: "NotoSansKR-Bold";src:url('fonts/NotoSansKR-Bold.otf');}
 	@font-face{font-family: "NotoSansKR-Thin";src:url('fonts/NotoSansKR-Thin.otf');}
@@ -17,7 +16,7 @@
 	#main_div {
 		margin: 0 auto;
 		height: 80px;
-		 width: auto;
+		width: auto;
 		background-color: white;
 		border-bottom: 1px solid #d3d3d3;
 	}
@@ -55,6 +54,7 @@
 	#p_logo_txt {
 		font-family: "NotoSansKR-Medium";
 	}
+	
 	#main_text{
     	float: left;
     	margin-left: 30px;
@@ -64,29 +64,36 @@
     	margin-top: 25px;
     	margin-bottom: 25px;
 	}
+	
 	#main_button_mypage{
 		margin-left: 310px;
 	}
+	
 	.header_guide1_svg {
 		float: left;
 	}
+	
 	.header_guide2_svg{
 		float: left;
 		width: 30px;
 		height: 30px;
 		margin-left: 20px;
 	}
+	
 	.header_guide1{
 		cursor: pointer;
 	}
+	
 	.header_guide2{
 		cursor: pointer;
 	}
+	
 	#l_txt {
 		float: left;
 		margin-top: 2px;
 		margin-left: 6px;
 	}
+	
 	.btn_header1{
 		border: 1px solid #37b04b;
 	    height: 38px;
@@ -99,6 +106,7 @@
 	    font-family: "NotoSansKR-Medium";
     	font-size: 14px;
 	}
+	
 	.btn_header2{
 		margin-left: 10px;
 		border: 1px solid #37b04b;
@@ -114,6 +122,7 @@
    	 	-webkit-transition-duration: 0.2s; 
 		transition-duration: 0.2s
 	}
+	
 	.btn_header2:hover{
 		color: white;
     	background-color: #37b04b4d;
@@ -124,9 +133,7 @@
 		outline: none;
 	}
 </style>
-
-
-<section id="header_container"><!-- header -->
+<section id="header_container">
 	<div id="main_div">
 		<div id="main_content">
 			<div id="main_logo">
@@ -153,7 +160,6 @@
 					</span>
 				</c:if>
 			</div>
-			
 			<c:if test="${login.m_id == null}">
 			<div id="main_button_mypage">
 				<button class="btn_header1" onclick="location.href='loginform.ak'">로그인</button>
@@ -169,4 +175,4 @@
 			</c:if>
 		</div>
 	</div>
-</section><!-- header -->
+</section>
