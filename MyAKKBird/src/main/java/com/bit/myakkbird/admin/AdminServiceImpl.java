@@ -205,19 +205,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public void dangerOKService(String d_id) {
+	public void dangerOKService(String d_num) {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-		adminMapper.dangerOK(d_id);
+		adminMapper.dangerOK(d_num);
 		
 	}
 	
 	@Override
-	public void dangerNOService(String d_id) {
+	public void dangerNOService(String d_num) {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-		adminMapper.dangerNO(d_id);
+		adminMapper.dangerNO(d_num);
 		
 	}
-	
 
 	@Override
 	public int dStatusOCountService() {
@@ -234,7 +233,6 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
-	
 
 	@Override
 	public int dStatusXCountService() {
@@ -243,6 +241,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	//신고 타입 수 구하기 a~e
 	@Override
 	public int dangerACountService() {
@@ -251,6 +250,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	@Override
 	public int dangerBCountService() {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -258,6 +258,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	@Override
 	public int dangerCCountService() {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -265,6 +266,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	@Override
 	public int dangerDCountService() {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -272,6 +274,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	@Override
 	public int dangerECountService() {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -287,6 +290,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	@Override
 	public int acceptYCountService() {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
@@ -294,6 +298,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
 	@Override
 	public int acceptNCountService() {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);

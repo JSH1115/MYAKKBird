@@ -51,6 +51,7 @@ public interface AdminService {
 	// FAQ 삭제
 	public int faqDeleteService(int f_num);
 	
+
 	//호준님 (신고, 매칭)
 	public int matchCountService(MasterVO masterVO);
 	public ArrayList<MasterVO> matchListService(MasterVO masterVO);
@@ -58,9 +59,8 @@ public interface AdminService {
 	public int dangerCountService(MasterVO masterVO);
 	public ArrayList<MasterVO> dangerListService(MasterVO masterVO);
 	
-	public void dangerOKService(String d_id);
-	public void dangerNOService(String d_id);
-	
+	public void dangerOKService(String d_num);
+	public void dangerNOService(String d_num);
 	
 	public int dStatusDCountService();
 	public int dStatusOCountService();

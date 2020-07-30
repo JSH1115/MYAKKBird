@@ -40,6 +40,8 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	<!-- chart API 끝 -->
 	<style>
+	
+	
 		/* font 적용 */
 		@font-face {
 			font-family: "NotoSansKR-Bold";
@@ -111,7 +113,6 @@
 			vertical-align: middle;
 	}
 		/* 전체 적용 */
-
 		
 		.addClass {
 		    margin: 0 auto;
@@ -951,12 +952,10 @@ function numberMotion(items) {
 	 } 
 } 
 $(document).ready(function() {
-
 	var accept_d;
 	var accept_y;
 	var accept_n;
 	
-
 	top_addr();
 	accept_D();
 	
@@ -1077,7 +1076,6 @@ $(document).ready(function() {
 		console.log(s_accept_y);
 	}
 	
-
 	// 가장 많이 사는 주소 구하기
 	function top_addr() {
 		 

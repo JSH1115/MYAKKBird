@@ -290,41 +290,44 @@
 		(SELECT d.*,b.b_subject FROM danger d,board b
 	                 where d.b_num = b.b_num 
 		<choose>
-			<when test="searchFiled != '' and searchFiled=='m_id'  and searchFiled !='b_subject'">
-			and d.${searchFiled} like '%'||#{searchValue}||'%' 
-			</when>
-			<when test="searchFiled != null and searchFiled != ''  and searchFiled !='b_subject' ">
-			and ${searchFiled} like '%'||#{searchValue}||'%' 
-			</when>
-			<when test="searchFiled != null and searchFiled =='b_subject' ">
-			and b.${searchFiled} like '%'||#{searchValue}||'%' 
-			</when>
-			<when test='d_statusValue == "Y"'>
-			  and ${d_statusFiled} = #{d_statusValue}
+				<when test='d_statusValue == "X"'>
+				 	  and d.${d_statusFiled} = #{d_statusValue}
 	    		</when>
 	    		<when test='d_statusValue == "D"'>
-			  and ${d_statusFiled} = #{d_statusValue}
+			  		  and d.${d_statusFiled} = #{d_statusValue}
 	    		</when>
 	    		<when test='d_statusValue == "O"'>
-			  and ${d_statusFiled} = #{d_statusValue}
+			  and d.${d_statusFiled} = #{d_statusValue}
 	    		</when>
 	    		<when test='d_typeValue == "A"'>
-			  and ${d_typeFiled} = #{d_typeValue}
+			  and d.${d_typeFiled} = #{d_typeValue}
 	    		</when>
 	    		<when test='d_typeValue == "B"'>
-			  and ${d_typeFiled} = #{d_typeValue}
+			  and d.${d_typeFiled} = #{d_typeValue}
 	    		</when>
 	    		<when test='d_typeValue == "C"'>
-			  and ${d_typeFiled} = #{d_typeValue}
+			  and d.${d_typeFiled} = #{d_typeValue}
 	    		</when>
 	    		<when test='d_typeValue == "D"'>
-			  and ${d_typeFiled} = #{d_typeValue}
+			  and d.${d_typeFiled} = #{d_typeValue}
 	    		</when>
 	    		<when test='d_typeValue == "E"'>
-			  and ${d_typeFiled} = #{d_typeValue}
+			  and d.${d_typeFiled} = #{d_typeValue}
 	    		</when>
-			
-	
+	    		<when test="searchFiled != null and searchFiled == 'b_subject'">
+	    		  and b.${searchFiled} like '%'||#{searchValue}||'%' 
+	    		</when>
+	    		<when test="searchFiled == 'm_id'">
+	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
+	    		</when>
+	    		<when test="searchFiled == 'd_date'">
+	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
+	    		</when>
+	    		<when test="searchFiled == 'c_id'">
+	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
+	    		</when>
+
+
 		</choose>
 					) AA ) A 
 		<![CDATA[           
@@ -332,14 +335,13 @@
 	       AND RNUM1 <= #{endRowNo}
 	       ]]>
 	</select>
-
 	
 	<update id="dangerOK" parameterType="String">
-		update danger set d_status = 'O', d_s_date= sysdate where d_id = #{d_id}
+		update danger set d_status = 'O', d_s_date= sysdate where  d_num=#{d_num}
 	</update>
 
 	<update id="dangerNO" parameterType="String">
-		update danger set d_status = 'X' , d_s_date= sysdate where d_id = #{d_id}
+		update danger set d_status = 'X' , d_s_date= sysdate where d_num=#{d_num}
 	</update>
 	
 	<select id="dStatusDCount" resultType="int">
@@ -354,7 +356,6 @@
 		SELECT COUNT(*) FROM danger
 		WHERE d_status = 'X'
 	</select>
-	
 	
 	<select id="dangerACount" resultType="int">
 		SELECT COUNT(*) FROM danger
@@ -389,7 +390,6 @@
 		SELECT COUNT(*) FROM accept
 		WHERE a_apply = 'N'
 	</select>
-	
 	
 	<select id="topAddrMatch" parameterType="MasterVO" resultMap="masterResultMap">
 	SELECT * 

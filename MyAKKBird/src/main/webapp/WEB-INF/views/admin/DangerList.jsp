@@ -42,6 +42,7 @@
 	<style>
 	
 	
+		<style>
 		/* font 적용 */
 		@font-face {
 			font-family: "NotoSansKR-Bold";
@@ -73,16 +74,10 @@
 			src:url('fonts/NotoSansKR-Regular.otf');
 		}
 		/* font 적용 */
-		/*헤더*/
 		
 		/* 전체 적용 */
-		.wrap {
-		position: relative;
-		min-height:100%;
-	}
-		body,html {
+		body {
 			margin: 0 auto;
-			padding: 0;
 			font-family: "NotoSansKR-Regular";
 		}
 		
@@ -110,12 +105,30 @@
 			background-color: #37B04B;
 			color: white;
 		}
+		table td {
+			height:62px;
+		}
 		/* 전체 적용 */
+		
+		.addClass {
+		    margin: 0 auto;
+		    width: 1000px;
+		    height: 30px;
+		}
+		
+		.titleClass {
+			margin: 0 auto;
+		    width: 1000px;
+		    height: 60px;
+		    font-family: "NotoSansKR-Bold";
+		    text-align: center;
+		}
 		
 		.top_div {
 			margin: 0 auto;
 			width: 1000px;
-			height: 300px;
+			height: 400px;
+			margin-bottom: -50px;
 		}
 		
 		/* 운영자 profile style */
@@ -146,7 +159,7 @@
 			height: 80px;
 			border-radius: 40px;
 			border: 1px solid #d3d3d3;
-			margin-left: 25px;
+			margin-left: 35px;
 			margin-top: 25px;
 		}
 		
@@ -157,7 +170,7 @@
 			padding: 6px;
 			border-radius: 10px;
 			margin-top: 5px;
-			margin-left: 28px;
+			margin-left: 40px;
 			float: left;
 		}
 		
@@ -184,11 +197,10 @@
 		
 		.p_txt {
 			float: left;
-			margin-left: 2px;
+			margin-left: 12px;
 			font-size: 14px;
 		}
 		/* 운영자 profile style */
-		
 		/* 통계 style */
 		.stats_zone {
 			float: right;
@@ -377,7 +389,8 @@
 		.member_zone {
 			width: 1000px;
 			height: auto;
-			margin: 20px auto;
+			margin: -20px auto;
+			margin-top: 80px;
 		}
 		
 		.no_zone {
@@ -395,8 +408,8 @@
 		
 		#num_zone {
 			width: 1000px;
-			height: auto;
-			margin: -30px auto;
+			height: 150px;
+			margin: -5px auto;
 			text-align: center;
 		}
 		
@@ -409,6 +422,9 @@
 		}
 		/* 게시글 출력 */
 		
+		.swal2-modal .swal2-content {
+			text-align:center;
+		}
 		/* 모달 개인 정보 style */
 		.m_header {
 			width: 300px;
@@ -504,14 +520,10 @@
 	</style>
 </head>
 <body>
-	<div class="wrap">  
-	
 		<jsp:include page="../header_container.jsp">
 			<jsp:param value="m_id" name="m_id"/>
 		</jsp:include> 
-	<div id="content_container">
-	<br/>
-	<br/>
+
 	<form name="frm">
     <input type="hidden" name="pageNo" /><!-- //페이지 번호 -->
     <input type="hidden" name="searchFiled" value="${pageVO.searchFiled }" /><!-- //검색조건 -->
@@ -520,7 +532,12 @@
     <input type="hidden" name="d_statusValue" value="${pageVO.d_statusValue }" /><!-- //검색어 -->
 	<input type="hidden" name="d_typeFiled" value="d_type" /><!-- //검색어 -->
     <input type="hidden" name="d_typeValue" value="${pageVO.d_typeValue }" /><!-- //검색어 -->
-    	<div class="top_div">
+    		<div class="top_div">
+    		<div class="addClass">
+			</div>
+			<div class="titleClass">
+				<h3>마이악어새 신고목록</h3>
+			</div>
     		<div class="left_zone">
     			<div class="admin_zone">
 	    			<div class="admin_profile">
@@ -565,8 +582,8 @@
    					</div>
 	    			<div class="search_zone">
 				        <select id="searchS">
-						    <option value="m_id">신고자ID</option>
 				            <option value="d_id">피신고자ID</option>
+				            <option value="m_id">신고자ID</option>
 				            <option value="d_date">신고 날짜</option>
 				            <option value="b_subject">제목</option>
 				        </select>
@@ -647,29 +664,40 @@
 	            		<c:otherwise>
 			            	<c:forEach items="${resultList}" var="resutList">
 				                <tr id="member_list"  align="center">
-				                	<td ><span>${resutList.d_date}</span></td>
+				                	<td ><div class="t_div"><span>${resutList.d_date}</span></div></td>
 				                	<c:choose>
 				                    	<c:when test="${resutList.d_type eq 'A'}">
-				                  				<td><span>허위정보</span></td>
+				                  				<td><div class="t_div"><span>허위정보</span></div></td>
 				                    	</c:when>
 				                    	<c:when test="${resutList.d_type eq 'B'}">
-				                  				<td><span>음란성</span></td>
+				                  				<td><div class="t_div"><span>음란성</span></div></td>
 				                    	</c:when>
 				                    	<c:when test="${resutList.d_type eq 'C'}">
-				                  				<td><span>도배/홍보</span></td>
+				                  				<td><div class="t_div"><span>도배/홍보</span></div></td>
 				                    	</c:when>
 				                    	<c:when test="${resutList.d_type eq 'D'}">
-				                  				<td><span>규정위반</span></td>
+				                  				<td><div class="t_div"><span>규정위반</span></div></td>
 				                    	</c:when>
 				                    	<c:when test="${resutList.d_type eq 'E'}">
-				                  				<td><span>기타</span></td>
+				                  				<td><div class="t_div"><span>기타</span></div></td>
 				                    	</c:when>
 				                    </c:choose>
-				                    <td onclick="detail_member('${resutList.m_id}');"><span>${resutList.m_id}</span></td>
-				                    <td onclick="detail_member('${resutList.d_id}');"><span>${resutList.d_id}</span></td>
-				                    <td><span><a href="./BoardDetail.ak?b_num=${resutList.b_num}&e_id=${m_id}">${resutList.b_subject}</a></span></td>
-				                    <td><span>${resutList.d_con}</span></td>
-				                    <td onclick="danger_status('${resutList.d_id}');"><span>${resutList.d_status}</span></td>
+				                    <td onclick="detail_member('${resutList.m_id}');"><div class="t_div"><span>${resutList.m_id}</span></div></td>
+				                    <td onclick="detail_member('${resutList.d_id}');"><div class="t_div"><span>${resutList.d_id}</span></div></td>
+				                    <td><div class="t_div"><span><a href="./BoardDetail.ak?b_num=${resutList.b_num}&e_id=${m_id}">${resutList.b_subject}</a></span></div></td>
+				                    <td><div class="t_div"><span>${resutList.d_con}</span></div></td>
+				                    
+				                	<c:choose>
+				                    	<c:when test="${resutList.d_status eq 'D'}">
+				                  				<td onclick="danger_status('${resutList.d_id}','${resutList.d_num}');"><div class="t_div"><span>대기중</span></div></td>
+				                    	</c:when>
+				                    	<c:when test="${resutList.d_status eq 'O'}">
+				                  				<td onclick="danger_status('${resutList.d_id}','${resutList.d_num}');"><div class="t_div"><span>완료</span></div></td>
+				                    	</c:when>
+				                    	<c:when test="${resutList.d_status eq 'X'}">
+				                  				<td onclick="danger_status('${resutList.d_id}','${resutList.d_num}');"><div class="t_div"><span>취소</span></div></td>
+				                    	</c:when>
+				                    </c:choose>
 				                </tr>
 			            	</c:forEach>
 	            		</c:otherwise>
@@ -677,7 +705,7 @@
 	            </tbody>
 	        </table>
         </div>
-  <c:choose>
+   <c:choose>
 	    	<c:when test="${empty resultList}">
 	    		<div class="container" id="num_zone">
 	    		</div>
@@ -687,39 +715,47 @@
 		        	<ul class="pagination">
 				    	<c:if test="${pageVO.pageNo != 0}">
 					        <c:if test="${pageVO.pageNo > pageVO.pageBlock}">
-					            <li>
-					            	<a href="javascript:fn_movePage(${pageVO.firstPageNo})" style="text-decoration: none;">&lt;&lt;</a>
+					            <li class="page-item">
+					            	<a href="javascript:fn_movePage(${pageVO.firstPageNo})">&lt;&lt;</a>
 					            </li>
 					       </c:if>
 					       <c:if test="${pageVO.pageNo != 1}">
-					           <li>
-					               <a href="javascript:fn_movePage(${pageVO.prevPageNo})" style="text-decoration: none;">&lt;</a>
+					           <li class="page-item">
+					               <a href="javascript:fn_movePage(${pageVO.prevPageNo})">&lt;</a>
+					           </li>
+					        </c:if>
+					        <c:if test="${pageVO.pageNo == 1}">
+					           <li class="page-item">
+					               <a>&lt;</a>
 					           </li>
 					        </c:if>
 					            <c:forEach var="i" begin="${pageVO.startPageNo}" end="${pageVO.endPageNo}" step="1">
 					                <c:choose>
 					                    <c:when test="${i eq pageVO.pageNo}">
-					                        <li class="page-item">
-					                        	<a href="javascript:fn_movePage(${i})" style="text-decoration: none;">
-					                            	<font style="font-weight: bold;">${i}</font>
-					                        	</a>
+					                        <li class="active">
+					                        	<a href="javascript:fn_movePage(${i})">${i}</a>
 					                        </li>
 					                    </c:when>
 					                    <c:otherwise>
 					                        <li class="page-item">
-					                        	<a href="javascript:fn_movePage(${i})" style="text-decoration: none;">${i}</a>
+					                        	<a href="javascript:fn_movePage(${i})">${i}</a>
 					                        </li>
 					                    </c:otherwise>
 					                </c:choose>
 					            </c:forEach>
+					        <c:if test="${pageVO.pageNo == pageVO.finalPageNo }">
+					            <li class="page-item">
+					            	<a>&gt;</a>
+					            </li>
+					        </c:if>
 					        <c:if test="${pageVO.pageNo != pageVO.finalPageNo }">
 					            <li class="page-item">
-					            	<a href="javascript:fn_movePage(${pageVO.nextPageNo})" style="text-decoration: none;">&gt;</a>
+					            	<a href="javascript:fn_movePage(${pageVO.nextPageNo})">&gt;</a>
 					            </li>
 					        </c:if>
 					        <c:if test="${pageVO.endPageNo < pageVO.finalPageNo }">
 					            <li class="page-item">
-					            	<a href="javascript:fn_movePage(${pageVO.finalPageNo})" style="text-decoration: none;">&gt;&gt;</a>
+					            	<a href="javascript:fn_movePage(${pageVO.finalPageNo})">&gt;&gt;</a>
 					            </li>
 					        </c:if>
 				    	</c:if>
@@ -728,8 +764,9 @@
 	    	</c:otherwise>
 	    </c:choose>
     </form>
-		</div>		<!-- content -->
-	</div><!-- wrap -->
+    <jsp:include page="../footer_container.jsp">
+		<jsp:param value="" name=""/>
+	</jsp:include> 
 </body>
 <script type="text/javascript">
 //엔터키 검색 막기
@@ -1220,10 +1257,10 @@ function detail_member(m_id) {
 	    }
 	});
 }
-function danger_status(d_id) {
+function danger_status(d_id,d_num) {
 	Swal.fire({
 		  title: d_id,
-		  text : '제재 하시겠습니다?',
+		  text : '해당 피신고자를 제재 하시겠습니다?',
 		  icon : 'info',
 		  showCancelButton: true,
 		  confirmButtonText: '예',
@@ -1231,20 +1268,20 @@ function danger_status(d_id) {
 		  cancelButtonText: '아니요'			
 	}).then((result) => {
 		  if (result.value) {
-			  	dangerOK(d_id);	
+			  	dangerOK(d_num);	
 			  	reload(); 
 			  } else if (result.dismiss === Swal.DismissReason.cancel) {
-			    dangerNO(d_id);
+			    dangerNO(d_num);
 			    reload(); 
 			  }
 			}) 
 }
  
-function dangerOK(d_id){
-	  var data = d_id;
+function dangerOK(d_num){
+	var data = d_num;
 	 
 	 jQuery.ajax({
-          url: "./danger_OK.ak", 
+          url: "/myakkbird/danger_OK.ak", 
           method: "POST",
           dataType : 'json',
           contentType: "application/json",
@@ -1259,15 +1296,14 @@ function dangerOK(d_id){
         	  }
 	  })
 }
-	function dangerNO(d_id){
-		  var data = d_id;
- 	 
+	function dangerNO(d_num){
+	var data = d_num;
  	 jQuery.ajax({
-	          url: "./danger_NO.ak", 
+	          url: "/myakkbird/danger_NO.ak", 
 	          method: "POST",
 	          dataType : 'json',
 	          contentType: "application/json",
-	          data: data,
+	          data:  data,
 	          success: function(retVal){
 	        	 if (retVal.res == "OK"){
         	

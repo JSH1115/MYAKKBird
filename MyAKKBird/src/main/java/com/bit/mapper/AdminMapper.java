@@ -61,8 +61,8 @@ public interface AdminMapper {
 	public int dangerCount(MasterVO masterVO);
 	public ArrayList<MasterVO> dangerList(MasterVO masterVO);
 
-	public void dangerOK(String d_id);
-	public void dangerNO(String d_id);
+	public void dangerOK(String d_num);
+	public void dangerNO(String d_num);
 	
 	public int dStatusDCount();
 	public int dStatusOCount();

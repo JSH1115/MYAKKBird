@@ -270,13 +270,12 @@ public class AdminController {
 		
 		int listcount = adminService.dangerCountService(masterVO);
 
-		
-		System.out.println(listcount);
 		masterVO.setTotalCount(listcount);
 		
 		ArrayList<MasterVO> dangerList = 
 				adminService.dangerListService(masterVO);
 		
+
 		
 		model.addAttribute("pageVO", masterVO);
 		model.addAttribute("resultList", dangerList);
@@ -288,9 +287,9 @@ public class AdminController {
 
 	@RequestMapping(value="/danger_OK.ak")
 	public String dangerOK(Model model,
-			@RequestBody String d_id) throws Exception{
+			@RequestBody String d_num) throws Exception{
 
-		adminService.dangerOKService(d_id);
+		adminService.dangerOKService(d_num);
 		
 		model.addAttribute("res","OK");
 		
@@ -299,12 +298,12 @@ public class AdminController {
 
 	@RequestMapping(value="/danger_NO.ak")
 	public Map<String, Object> dangerNO(Model model,
-			@RequestBody String d_id) throws Exception{
+			@RequestBody String d_num) throws Exception{
 		Map<String, Object> retVal = new HashMap<String, Object>();
 		
 
 		try{
-			adminService.dangerNOService(d_id);
+			adminService.dangerNOService(d_num);
 			retVal.put("res", "OK");
 		}
 		catch (Exception e)
@@ -399,7 +398,7 @@ public class AdminController {
 	@ResponseBody
 	public int accpetYCount() {
 		
-		int result = adminService.acceptDCountService();
+		int result = adminService.acceptYCountService();
 		
 		return result;
 	}
@@ -420,5 +419,5 @@ public class AdminController {
 		
 		return addrList;
 	}
-	
+
 }
