@@ -99,7 +99,7 @@
 				<b>성별</b><br>
 				<select class="gender_select" name="m_gender">
 					<option value="M">&nbsp;남자</option>
-					<option value="W">&nbsp;여자</option>
+					<option value="F">&nbsp;여자</option>
 				</select>
 			</div>
 			<div class="email_div">

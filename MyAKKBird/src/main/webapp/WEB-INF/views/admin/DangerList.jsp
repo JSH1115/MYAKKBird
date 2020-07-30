@@ -809,7 +809,7 @@ function data_member(data) {
 	
 	if(data.m_gender === "M") {
 		gender = '남';
-	} else if(data.m_gender === "W") {
+	} else {
 		gender = '여';
 	}
 	

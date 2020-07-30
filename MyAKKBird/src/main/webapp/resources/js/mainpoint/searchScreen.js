@@ -233,7 +233,7 @@ function list_index(index, item, startNo) {
 	// 성별 체크
 	if(item.m_gender === 'M') {
 		gender = '남';
-	} else if(item.m_gender === 'W') {
+	} else {
 		gender = '여';
 	}
 	

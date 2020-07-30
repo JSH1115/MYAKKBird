@@ -67,6 +67,19 @@ $(function() {
       //userid 를 param.
       var userid =  $("#m_id").val(); 
       
+      if($("#m_id").val()==""){
+			Swal.fire({
+ 			  html: 
+ 		        '<b id="alert_id_txt">아이디를 입력해주세요.</b>',
+ 			  timer: 1500,
+ 			  confirmButtonColor: '#37B04B',
+ 			  confirmButtonText:
+ 				 '<div class="go_btn">확인</div>'
+		  	})
+			$("#m_id").focus();
+			return false;
+	  } 
+      
       $.ajax({
           async: true,
           type : 'POST',
