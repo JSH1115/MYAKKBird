@@ -206,10 +206,8 @@
 	</div>
 	<!-- Top 버튼 -->
 <script>
-// 전역 변수
 var se_id = '<%=m_id %>'; // 세션 아이디
 var addr = '<%=addr %>';  // 검색한 주소
-//전역 변수
 </script>
 <!-- searchScreen.js 파일 -->
 <script type="text/javascript" src="./resources/js/mainpoint/searchScreen.js"></script>

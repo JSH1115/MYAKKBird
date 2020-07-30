@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* font 적용 */
 @font-face{
 		font-family: "NotoSansKR-Bold";
 		src:url('fonts/NotoSansKR-Bold.otf');
@@ -28,6 +29,7 @@
 	font-family: "NotoSansKR-Regular";
 	src:url('fonts/NotoSansKR-Regular.otf');
 }
+/* font 적용 */
 
 /* 전체 적용 */
 body {
@@ -53,8 +55,8 @@ ul li {
 
 .addClass {
 	width: 500px;
-  		height: 20px;
-  		margin: 20px auto;
+	height: 20px;
+	margin: 20px auto;
 }
 
 .title_zone {
@@ -234,6 +236,7 @@ ul li {
 	margin-top: 8px;
 }
 
+/* 기타 style */
 #back_btn {
 	margin-top: 47px;
 	cursor: pointer;
@@ -242,3 +245,4 @@ ul li {
 .go_btn {
 	font-family: "NotoSansKR-Medium";
 }
+/* 기타 style */

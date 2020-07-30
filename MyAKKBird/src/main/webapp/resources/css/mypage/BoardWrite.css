@@ -112,14 +112,14 @@ input:focus, textarea:focus {
     height: 50px;
     margin: 0 auto;
     background-color: #E6E6E6;
-   }
+}
 
 /* 카테고리 테이블 */
 #detail_btn {
 	position: absolute;
-  		margin-top: 3px;
- 			margin-left: 5px;
- 			cursor: pointer;
+	margin-top: 3px;
+	margin-left: 5px;
+	cursor: pointer;
 }
 
 .category_div {
@@ -722,6 +722,7 @@ input[type="file"] {
 }
 /* 청소 안내 modal style */
 
+/* 기타 style */
 #back_btn {
 	cursor: pointer;
  		 	position: absolute;
@@ -732,3 +733,4 @@ input[type="file"] {
 .go_btn {
 	font-family: "NotoSansKR-Medium";
 }
+/* 기타 style */

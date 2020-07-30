@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* font 적용 */
 @font-face{
 	font-family: "NotoSansKR-Bold";
 	src:url('fonts/NotoSansKR-Bold.otf');
@@ -28,8 +29,9 @@
 	font-family: "NotoSansKR-Regular";
 	src:url('fonts/NotoSansKR-Regular.otf');
 }
+/* font 적용 */
 	
-	/* 전체 적용 */
+/* 전체 적용 */
 body {
 	margin: 0 auto;
 	padding: 0;
@@ -104,6 +106,8 @@ input:focus {outline:none;}
 	font-size: 15px;
 }
 
+/* modal 폰트 조정 */
 .go_btn {
 	font-family: "NotoSansKR-Medium";
 }
+/* modal 폰트 조정 */

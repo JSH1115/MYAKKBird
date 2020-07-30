@@ -338,7 +338,6 @@ ul li {
 	height: 5px;
 	background-color: #E6E6E6;
 }
-/* 기타 style */
 
 #back_btn {
 	cursor: pointer;
@@ -349,3 +348,4 @@ ul li {
 .go_btn {
 	font-family: "NotoSansKR-Medium";
 }
+/* 기타 style */

@@ -70,6 +70,7 @@ hr {
 }
 /* 전체 적용 */
 
+/* faq 작성 style */
 .faq_write_div {
 	width: 600px;
 	margin: 80px auto;
@@ -155,3 +156,4 @@ hr {
 	border-radius: 5px;
 	cursor: pointer;
 }
+/* faq 작성 style */

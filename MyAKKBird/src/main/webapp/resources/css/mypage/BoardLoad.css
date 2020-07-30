@@ -47,8 +47,8 @@ ul li {
 
 .addClass {
 	width: 600px;
- 	 		height: 60px;
-  		margin: 0 auto;
+	height: 60px;
+	margin: 0 auto;
 }
 
 .boardList_div {
@@ -375,42 +375,6 @@ input[type="radio"]:checked + label .a2 {
 }
 /* 게시글 style */
 
-/* 모달 style */
-#m_num_id {
-	font-size: 12px;
-    position: absolute;
-    margin-top: -10px;
-    margin-left: -70px;
-}
-
-#m_title {
-	font-size: 22px;
-}
-
-.modal_div {
-	width: 400px;
-	height: 500px;
-	margin: 0 auto;
-}
-
-.modal_div1 {
-	width: 350px;
-	height: 30px;
-	text-align: left;
-	font-size: 15px;
-	margin: 10px auto;
-}
-
-.modal_div2 {
-	width: 350px;
-	height: 30px;
-	text-align: left;
-	font-size: 15px;
-	margin: 5px auto;
-}
-
-/* 모달 style */
-
 /* 게시물 등록하러가기 style */
 #noDataZone {
 	margin: 0 auto;
@@ -581,9 +545,10 @@ input[type="radio"]:checked + label .a2 {
 	height: 5px;
 	background-color: #E6E6E6;
 }
-/* 기타 style */
+
 #back_btn {
 	cursor: pointer;
 	margin-left: 25px;
 	margin-top: 65px;
 }
+/* 기타 style */

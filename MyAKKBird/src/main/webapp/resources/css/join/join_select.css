@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* font 적용 */
 @font-face{ 
 	font-family: "NotoSansKR-Bold";
 	src:url('fonts/NotoSansKR-Bold.otf');
@@ -28,6 +29,7 @@
 	font-family: "NotoSansKR-Regular";
 	src:url('fonts/NotoSansKR-Regular.otf');
 }
+/* font 적용 */
 	
 /* 전체 적용 */
 body {
@@ -73,7 +75,7 @@ h3 {
 	height: 97px;
 	float: right;
 	margin-right: 170px;
-  	 	margin-top: 40px;
+	margin-top: 40px;
 }
 
 .worker_zone {
@@ -101,7 +103,7 @@ h3 {
 	height: 97px;
 	float: right;
 	margin-right: 170px;
-  	 	margin-top: 40px;
+ 	margin-top: 40px;
 }
 
 #txt_go1 {

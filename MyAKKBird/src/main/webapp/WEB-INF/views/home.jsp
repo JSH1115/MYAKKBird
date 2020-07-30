@@ -348,6 +348,8 @@
        color: white;
        cursor:pointer;
         font-size: larger;
+       -webkit-transition-duration: 0.4s; 
+		transition-duration: 0.4s
    }
    
    #more:hover{
@@ -391,6 +393,8 @@
        margin-bottom: 40px;
        cursor: pointer;
         box-shadow: 9px 9px 9px -9px #7f7b7c;
+        -webkit-transition-duration: 0.4s; 
+		transition-duration: 0.4s
    }
    
    #btn_goto:hover{

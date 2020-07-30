@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* font 적용 */
 @font-face{
 	font-family: "NotoSansKR-Bold";
 	src:url('fonts/NotoSansKR-Bold.otf');
@@ -28,6 +29,7 @@
 	font-family: "NotoSansKR-Regular";
 	src:url('fonts/NotoSansKR-Regular.otf');
 }
+/* font 적용 */
 
 /* 전체 적용 */
 body {
@@ -198,9 +200,11 @@ tbody #no_data_tr {
 }
 /* 부트스트랩 페이징 style */
 
+/* 기타 style */
 #back_btn {
 	cursor: pointer;
 	position: absolute;
 	margin-left: -400px;
 	margin-top: 11px;
 }
+/* 기타 style */

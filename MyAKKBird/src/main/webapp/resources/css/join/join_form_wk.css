@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* font 적용 */
 @font-face{ 
 	font-family: "NotoSansKR-Bold";
 	src:url('fonts/NotoSansKR-Bold.otf');
@@ -28,6 +29,7 @@
 	font-family: "NotoSansKR-Regular";
 	src:url('fonts/NotoSansKR-Regular.otf');
 }
+/* font 적용 */
 
 /* 전체 적용 */
 body {
@@ -68,6 +70,7 @@ select:focus {
 	font-family: "NotoSansKR-Bold";
 }
 
+/* 프로필 이미지 업로드 style */
 .img_div {
 	width: 1000px;
 	height: 230px;
@@ -155,6 +158,7 @@ input[type="file"] {
 	cursor: pointer; 
 	line-height: 3.1;
 }
+/* 프로필 이미지 업로드 style */
 
 .sign_info_div {
 	width: 1000px;
@@ -361,7 +365,7 @@ input[type="file"] {
 }
 
 .before {
-		background-color: transparent;
+	background-color: transparent;
     border: 0;
     width: 70px;
     color: red;
@@ -370,19 +374,19 @@ input[type="file"] {
     margin-top: -2px;
     font-family: "NotoSansKR-Medium";
     outline: none;
-	}
+}
 	
-	.after {
-		background-color: transparent;
-		border: 0;
-		width: 70px;
-		color: #37b04b;
-		position: absolute;
+.after {
+	background-color: transparent;
+	border: 0;
+	width: 70px;
+	color: #37b04b;
+	position: absolute;
     margin-left: 5px;
     margin-top: -2px;
     font-family: "NotoSansKR-Medium";
     outline: none;
-	}
+}
 
 .email_input {
 	width: 290px;
@@ -578,6 +582,8 @@ input[type="file"] {
 	font-size: 20px;
 }
 
+/* modal 폰트 조정 */
 .go_btn {
 	font-family: "NotoSansKR-Medium";
 }
+/* modal 폰트 조정 */
