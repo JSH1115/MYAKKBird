@@ -9,11 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이악어새</title>
-<!-- favicon 적용 -->
-<link type="image/x-icon" rel="icon" href="./resources/image/akk_favicon.png">
-<!-- favicon 적용 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script src="https://kit.fontawesome.com/535c824fa5.js" crossorigin="anonymous"></script>     
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -101,10 +98,6 @@
        letter-spacing: 1px;
            -webkit-box-shadow: 0 9px 10px 0 rgba(0,0,0,.12);
        box-shadow: 0 9px 10px 0 rgba(0,0,0,.12);
-   }
-   
-   #txt_boardCount {
-   	  margin-left: 38px;
    }
    
    #total_count div{
@@ -306,16 +299,38 @@
    .each_review .content{
       position:relative;
       width:252px;
+      overflow:auto;
+   }
+   
+   .each_review .content::-webkit-scrollbar{
+      width:5px;
+   }
+   
+   .each_review .content::-webkit-scrollbar-track{
+      background-color:#c1c1c1;
+      border-radius: 30px;
+   }
+   
+   .each_review .content::-webkit-scrollbar-thumb{
+      background-color:#929292;
+      border-radius: 10px;
+   }
+   .each_review .content::-webkit-scrollbar-thumb:hover{
+      background: #3a3a3a;    
+   }
+   
+   .each_review .content::-webkit-scrollbar-thumb::-webkit-scrollbar-thumb:active{
+      background: #3a3a3a; 
    }
    
    #thumbnails{
       position:absolute;
-      left:2px;
+      left:5px;
       bottom:0px;
       display:flex;
       flex-direction: row;
-      height:70px;
-      width: 251px;
+      width:50px;
+      height:50px;
    }
    
    #thumbnails img{
@@ -325,7 +340,7 @@
    
    .each_pic{
       position:absolute;
-      right:10px;
+      /* right:10px; */
    }
    
    #more_reviews{
@@ -348,8 +363,6 @@
        color: white;
        cursor:pointer;
         font-size: larger;
-       -webkit-transition-duration: 0.4s; 
-		transition-duration: 0.4s
    }
    
    #more:hover{
@@ -393,8 +406,6 @@
        margin-bottom: 40px;
        cursor: pointer;
         box-shadow: 9px 9px 9px -9px #7f7b7c;
-        -webkit-transition-duration: 0.4s; 
-		transition-duration: 0.4s
    }
    
    #btn_goto:hover{
@@ -430,6 +441,7 @@
       background-position: center;
       background-color: #FDFDFD;
    } */
+
    
    /* The dots */
    .dot {height: 20px; width: 20px; margin: 0px 0px 20px 5px;
@@ -453,7 +465,7 @@
    
    /* ------------------------------------------------ */
    
-   .modal {
+    .modal {
        display: none; /* Hidden by default */
        position: fixed; /* Stay in place */
        z-index: 1; /* Sit on top :  숫자가 클수록 상단에 위치 */
@@ -948,11 +960,11 @@ function heart_got(se_id) {
                   <div class="content"><%=vo.getR_content() %> 
                   <% if (vo.getR_up_file() != null){
                      String[] files = vo.getR_up_file().split(","); %>
-                     <div id =thumbnails>
+                     <%-- <div id =thumbnails>
                         <% for (String a : files){ %>
                            <img src="/myakkbird/myakkbirdUpload/<%=a%>" class="each_pic">
                         <% } %>
-                     </div>
+                     </div> --%>
                   <% } %>
                   </div>
                </td>
@@ -998,11 +1010,11 @@ function heart_got(se_id) {
                   <div class="content"><%=vo.getR_content() %> 
                   <% if (vo.getR_up_file() != null){
                      String[] files = vo.getR_up_file().split(","); %>
-                     <div id =thumbnails>
+                     <%-- <div id =thumbnails>
                         <% for (String a : files){ %>
                            <img src="/myakkbird/myakkbirdUpload/<%=a%>" class="each_pic">
                         <% } %>
-                     </div>
+                     </div> --%>
                   <% } %>
                   </div>
                </td>
@@ -1046,11 +1058,11 @@ function heart_got(se_id) {
                   <div class="content"><%=vo.getR_content() %> 
                   <% if (vo.getR_up_file() != null){
                      String[] files = vo.getR_up_file().split(","); %>
-                     <div id =thumbnails>
+                     <%-- <div id =thumbnails>
                         <% for (String a : files){ %>
                            <img src="/myakkbird/myakkbirdUpload/<%=a%>" class="each_pic">
                         <% } %>
-                     </div>
+                     </div> --%>
                   <% } %>
                   </div>
                </td>

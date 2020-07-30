@@ -2,7 +2,9 @@ package com.bit.myakkbird.danger;
 
 import java.sql.Date;
 
-public class DangerVO {
+import com.bit.myakkbird.admin.PageVO;
+
+public class DangerVO extends PageVO {
 	private int d_num;			//신고 번호 
 	private int b_num;			//게시글 번호 
 	private int c_num;			//댓글 번호 

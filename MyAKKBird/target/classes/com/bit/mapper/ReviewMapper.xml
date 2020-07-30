@@ -53,11 +53,12 @@
 	
 	<!-- 메인에 뿌려줄 리뷰 최신순으로 최대 9개 불러오기 -->
 	<select id="latestReviews" resultType="ReviewVO">
-		<![CDATA[select * from 
+		        select * from 
 			(select R.r_num, R.m_id, R.r_id, R.r_content, R.r_date, R.r_star, R.r_up_file, M.m_photo 
 			from member M, review R  
-			where M.m_id = R.m_id  order by r_num desc)
-		 where rownum <=9]]>	
+			where M.m_id = R.r_id
+            AND R.r_num in(20, 37, 73, 950, 1004, 318, 335, 360, 419)
+            order by R.r_star desc)	
 	</select>
 	
 	<!-- 좋아요 테이블에 열 삽입 -->
