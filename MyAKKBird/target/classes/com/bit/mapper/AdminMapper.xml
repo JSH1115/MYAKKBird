@@ -287,48 +287,46 @@
 	
 	<select id="dangerList" resultMap="dangerResultMap" parameterType="MasterVO">
 		SELECT A.*FROM (SELECT ROWNUM AS RNUM1, AA.*FROM 
-		(SELECT d.*,b.b_subject FROM danger d,board b
-	                 where d.b_num = b.b_num 
-		<choose>
-				<when test='d_statusValue == "X"'>
+		(select d.*,b.b_subject,c.c_content,c.b_num as bnum from danger d left outer join board b on b.b_num=d.b_num  
+                                    left outer join comments c on c.c_num=d.c_num
+				<where>
+				<if test='d_statusValue == "X"'>
 				 	  and d.${d_statusFiled} = #{d_statusValue}
-	    		</when>
-	    		<when test='d_statusValue == "D"'>
+	    		</if>
+	    		<if test='d_statusValue == "D"'>
 			  		  and d.${d_statusFiled} = #{d_statusValue}
-	    		</when>
-	    		<when test='d_statusValue == "O"'>
+	    		</if>
+	    		<if test='d_statusValue == "O"'>
 			  and d.${d_statusFiled} = #{d_statusValue}
-	    		</when>
-	    		<when test='d_typeValue == "A"'>
+	    		</if>
+	    		<if test='d_typeValue == "A"'>
 			  and d.${d_typeFiled} = #{d_typeValue}
-	    		</when>
-	    		<when test='d_typeValue == "B"'>
+	    		</if>
+	    		<if test='d_typeValue == "B"'>
 			  and d.${d_typeFiled} = #{d_typeValue}
-	    		</when>
-	    		<when test='d_typeValue == "C"'>
+	    		</if>
+	    		<if test='d_typeValue == "C"'>
 			  and d.${d_typeFiled} = #{d_typeValue}
-	    		</when>
-	    		<when test='d_typeValue == "D"'>
+	    		</if>
+	    		<if test='d_typeValue == "D"'>
 			  and d.${d_typeFiled} = #{d_typeValue}
-	    		</when>
-	    		<when test='d_typeValue == "E"'>
+	    		</if>
+	    		<if test='d_typeValue == "E"'>
 			  and d.${d_typeFiled} = #{d_typeValue}
-	    		</when>
-	    		<when test="searchFiled != null and searchFiled == 'b_subject'">
-	    		  and b.${searchFiled} like '%'||#{searchValue}||'%' 
-	    		</when>
-	    		<when test="searchFiled == 'm_id'">
+	    		</if>
+	    		<if test="searchFiled != null and searchFiled != ''">
 	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
-	    		</when>
-	    		<when test="searchFiled == 'd_date'">
+	    		</if>
+	    		<if test="searchFiled == 'm_id'">
 	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
-	    		</when>
-	    		<when test="searchFiled == 'c_id'">
+	    		</if>
+	    		<if test="searchFiled == 'd_date'">
 	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
-	    		</when>
-
-
-		</choose>
+	    		</if>
+	    		<if test="searchFiled == 'c_id'">
+	    		  and d.${searchFiled} like '%'||#{searchValue}||'%' 
+	    		</if>
+				</where>
 					) AA ) A 
 		<![CDATA[           
 	       WHERE RNUM1 >= #{startRowNo}

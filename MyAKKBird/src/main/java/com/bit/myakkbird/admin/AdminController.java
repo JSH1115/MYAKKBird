@@ -264,10 +264,6 @@ public class AdminController {
 		String id = (String)session.getAttribute("m_id");
 		MasterVO profile_M = adminService.adminProfileService(id);
 		
-		System.out.println(masterVO.getD_statusValue());
-		System.out.println(masterVO.getD_typeValue());
-		
-		
 		int listcount = adminService.dangerCountService(masterVO);
 
 		masterVO.setTotalCount(listcount);
@@ -275,7 +271,6 @@ public class AdminController {
 		ArrayList<MasterVO> dangerList = 
 				adminService.dangerListService(masterVO);
 		
-
 		
 		model.addAttribute("pageVO", masterVO);
 		model.addAttribute("resultList", dangerList);

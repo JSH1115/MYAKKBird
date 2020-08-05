@@ -70,6 +70,9 @@ public class MasterVO extends PageVO {
 	private Date d_date;		//신고일자 
 	private Date d_s_date;		//처리일자 
 	
+	private String c_content;   //댓글 신고내용
+	private String bnum;        //게시글 번호(join)
+	
 	public String getM_password() {
 		return m_password;
 	}
@@ -411,6 +414,18 @@ public class MasterVO extends PageVO {
 	}
 	public void setR_cnt(int r_cnt) {
 		this.r_cnt = r_cnt;
+	}
+	public String getC_content() {
+		return c_content;
+	}
+	public void setC_content(String c_content) {
+		this.c_content = c_content;
+	}
+	public String getBnum() {
+		return bnum;
+	}
+	public void setBnum(String bnum) {
+		this.bnum = bnum;
 	}
 	
 }

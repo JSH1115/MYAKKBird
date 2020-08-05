@@ -585,7 +585,6 @@
 				            <option value="d_id">피신고자ID</option>
 				            <option value="m_id">신고자ID</option>
 				            <option value="d_date">신고 날짜</option>
-				            <option value="b_subject">제목</option>
 				        </select>
 				        <input type="button" id="s_btn" value="검색" onclick="fn_search();"/>
 				        <input type="text" id="searchI"/>
@@ -648,10 +647,9 @@
 	                    <th>구분</th>
 	                    <th>신고자 ID</th>
 	                    <th>피신고자 ID</th>
-	                    <th>신고 게시물</th>
+	                    <th>신고 게시물&댓글</th>
 	                    <th>신고 내용</th>
 	                    <th>처리 여부</th>
-	                    
 	                </tr>
 	            </thead>
 	            <tbody>
@@ -684,7 +682,18 @@
 				                    </c:choose>
 				                    <td onclick="detail_member('${resutList.m_id}');"><div class="t_div"><span>${resutList.m_id}</span></div></td>
 				                    <td onclick="detail_member('${resutList.d_id}');"><div class="t_div"><span>${resutList.d_id}</span></div></td>
-				                    <td><div class="t_div"><span><a href="./BoardDetail.ak?b_num=${resutList.b_num}&e_id=${m_id}">${resutList.b_subject}</a></span></div></td>
+				                    
+				                    <c:choose>
+				                   		<c:when test="${resutList.bnum ne null}">
+				                  			<td><div class="t_div"><span><a href="./BoardDetail.ak?b_num=${resutList.bnum}&e_id=${m_id}">${resutList.c_content}</a></span></div></td>
+				                    	</c:when>
+				                    	<c:when test="${resutList.b_num ne null}">
+				                    		<td><div class="t_div"><span><a href="./BoardDetail.ak?b_num=${resutList.b_num}&e_id=${m_id}">${resutList.b_subject}</a></span></div></td>
+				                    	</c:when>
+				                    </c:choose>
+				                    
+				                    
+				                    
 				                    <td><div class="t_div"><span>${resutList.d_con}</span></div></td>
 				                    
 				                	<c:choose>
@@ -705,7 +714,7 @@
 	            </tbody>
 	        </table>
         </div>
-   <c:choose>
+  <c:choose>
 	    	<c:when test="${empty resultList}">
 	    		<div class="container" id="num_zone">
 	    		</div>
@@ -777,9 +786,9 @@ $('input[type="text"]').keydown(function() {
 });
 //페이지 이동
 function fn_movePage(val){
-    jQuery("input[name=pageNo]").val(val);
-    jQuery("form[name=frm]").attr("method", "post");
-    jQuery("form[name=frm]").attr("action","").submit();
+   jQuery("input[name=pageNo]").val(val);
+   jQuery("form[name=frm]").attr("method", "post");
+   jQuery("form[name=frm]").attr("action","").submit();
 }
 //검색 버튼
 function fn_search(){
@@ -809,7 +818,7 @@ function data_member(data) {
 	
 	if(data.m_gender === "M") {
 		gender = '남';
-	} else {
+	} else if(data.m_gender === "W") {
 		gender = '여';
 	}
 	
