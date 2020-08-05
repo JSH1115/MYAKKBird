@@ -1,0 +1,477 @@
+@charset "UTF-8";
+
+		<style>
+		/* font 적용 */
+		@font-face {
+			font-family: "NotoSansKR-Bold";
+			src:url('fonts/NotoSansKR-Bold.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Thin";
+			src:url('fonts/NotoSansKR-Thin.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Black";
+			src:url('fonts/NotoSansKR-Black.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Light";
+			src:url('fonts/NotoSansKR-Light.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Medium";
+			src:url('fonts/NotoSansKR-Medium.otf');
+		}
+		
+		@font-face {
+			font-family: "NotoSansKR-Regular";
+			src:url('fonts/NotoSansKR-Regular.otf');
+		}
+		/* font 적용 */
+		
+		/* 전체 적용 */
+		body {
+			margin: 0 auto;
+			font-family: "NotoSansKR-Regular";
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
+		label {
+			font-weight: normal;	
+			cursor: pointer;
+		}
+		
+		ul li {
+			list-style: none;
+		}
+		
+		table {
+			width: 1000px;
+			margin: 0 auto;
+		}
+		
+		table thead th {
+			text-align: center;
+			font-size: 15px; 
+			background-color: #37B04B;
+			color: white;
+		}
+		table td {
+			height:62px;
+		}
+		/* 전체 적용 */
+		
+		.addClass {
+		    margin: 0 auto;
+		    width: 1000px;
+		    height: 30px;
+		}
+		
+		.titleClass {
+			margin: 0 auto;
+		    width: 1000px;
+		    height: 60px;
+		    font-family: "NotoSansKR-Bold";
+		    text-align: center;
+		}
+		
+		.top_div {
+			margin: 0 auto;
+			width: 1000px;
+			height: 400px;
+			margin-bottom: -50px;
+		}
+		
+		/* 운영자 profile style */
+		.left_zone {
+			float: left;
+			width: 420px;
+			height: 300px;
+		}
+		
+		.admin_zone {
+			float: left;
+			width: 420px;
+			height: 170px;
+			border: 1px solid #d3d3d3;
+			box-shadow: -3px -3px 7px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
+			border-radius: 5px;
+		}
+		
+		.admin_profile {
+			float: left;
+			width: 30%;
+			height: 180px;
+		}
+		
+		.admin_img {
+			width: 80px;
+			height: 80px;
+			border-radius: 40px;
+			border: 1px solid #d3d3d3;
+			margin-left: 35px;
+			margin-top: 25px;
+		}
+		
+		.admin_txt {
+			color: white;
+			font-size: 15px;
+			background-color: #37B04B;
+			padding: 6px;
+			border-radius: 10px;
+			margin-top: 5px;
+			margin-left: 40px;
+			float: left;
+		}
+		
+		.admin_post {
+			float: right;
+			width: 68%;
+			height: 300px;
+		}
+		
+		.wel_txt {
+			float: left;
+			font-size: 17px;
+			margin-top: 15px;
+			margin-left: 13px;
+		}
+		
+		#p_w_txt {
+			color: #37B04B;
+		}
+		
+		.a_post_detail {
+			margin-top: 6px;
+		}
+		
+		.p_txt {
+			float: left;
+			margin-left: 12px;
+			font-size: 14px;
+		}
+		/* 운영자 profile style */
+		/* 통계 style */
+		.stats_zone {
+			float: right;
+			width: 550px;
+			height: 300px;
+			border: 1px solid #d3d3d3;
+			box-shadow: -3px -3px 7px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
+			border-radius: 5px;
+		}
+		
+		.stats_left {
+			width: 260px;
+			height: 300px;
+			float: left;
+		}
+		
+		.stats_right {
+			width: 280px;
+			height: 300px;
+			float: right;
+		}
+		
+		#chart_txt {
+			margin-left: 44px;
+			margin-top: 12px;
+			font-size: 18px;
+			float: left;
+		}
+		
+		.stats_chart {
+			width: 250px;
+			height: 250px;
+			position: absolute;
+		}
+		
+		#myChart {
+			
+			margin-top: 18px;
+			position: absolute;
+		}
+		
+		#if_m {
+			   float: left;
+    		margin-top: 230px;
+    		margin-left: 60px;
+		}
+		
+		.stats_info {
+			width: 280px;
+			height: 115px;
+			margin-top: 12px;
+		}
+		
+		#info_txt {
+			font-size: 15.5px;
+		}
+		
+		.stats_interval {
+			margin-top: 5px;
+		}
+		
+		.stats_img {
+			width: 26px;
+			height: 26px;
+			margin-left: 6px;
+		}
+		
+		.stats_info b {
+			font-size: 14px;
+		}
+		
+		.stats_info span {
+			font-size: 14px;
+		}
+		
+		.m_status_info {
+			width: 280px;
+			height: 50px;
+			margin-top:80px;
+		}
+		
+		.m_status_interval {
+			margin-top: 5px;
+			margin-left: 6px;
+			font-size: 15px;
+		}
+		
+		.m_status_img {
+			float: left;
+		}
+		
+		.m_status_img2 {
+			float: left;
+			margin-left: 5px;
+		}
+		
+		.m_status_txt {
+			float: left;
+			margin-top: 2px;
+			margin-left: 5px;
+		}
+		
+		.m_status_txt2 {
+			float: left;
+			margin-top: 2px;
+		}
+		
+		.m_addr_info {
+			width: 280px;
+			height: 50px;
+			margin-top: 10px;
+		}
+		
+		.m_addr_interval {
+			margin-top: 5px;
+			margin-left: -23px;
+		}
+		/* 통계 style */
+		
+		/* 검색 기능 style */
+		.search_div {
+			border: 1px solid #d3d3d3;
+			box-shadow: -3px -3px 7px -3px #d3d3d3,
+		                3px 3px 7px -3px #d3d3d3;
+			border-radius: 5px;
+			width: 420px;
+			height: 110px;
+			float: left;
+			margin-top: 20px;
+		}
+		
+		.check_zone {
+			width: 450px;
+			height: 30px;
+			float: left;
+			margin-top: 10px;
+			margin-left: 10px;
+		}
+		
+		.check_zone2 {
+			width: 400px;
+			margin-top: -5px;
+		}
+		
+		#listCounut {
+			float: right;
+			margin-top: 1.5px;
+		}
+		
+		.search_zone {
+			width: 315px;
+			height: 30px;
+			float: left;
+			margin-top: 20px;
+			margin-left: 20px;
+		}
+		
+		#searchS {
+			height: 30px;
+			margin-left: -5px;
+		}
+		
+		#searchI {
+			width: 220px;
+			height: 30px;
+			float: right;
+			margin-left: 10px;
+			position: absolute;
+		}
+		
+		#s_btn {
+			background-color: #37B04B;
+			color: white;
+			width: 60px;
+			height: 30px;
+			border: 0;
+			border-radius: 3px;
+			float: right;
+			position: absolute;
+			margin-left: 240px;
+		}
+		/* 검색 기능 style */
+		
+		/* 게시글 출력 */
+		.member_zone {
+			width: 1000px;
+			height: auto;
+			margin: -20px auto;
+			margin-top: 80px;
+		}
+		
+		.no_zone {
+			text-align: center;
+			font-size: 17px;
+			margin-top: 12px;
+		}
+		
+		.profile_img {
+			width:45px; 
+			height:45px;
+			border-radius: 22.5px;
+			border: 1px solid #d3d3d3;
+		}
+		
+		#num_zone {
+			width: 1000px;
+			height: 150px;
+			margin: -5px auto;
+			text-align: center;
+		}
+		
+		#member_list {
+			cursor: pointer;
+		}
+		
+		.t_div {
+			margin-top:12px;
+		}
+		/* 게시글 출력 */
+		
+		.swal2-modal .swal2-content {
+			text-align:center;
+		}
+		/* 모달 개인 정보 style */
+		.m_header {
+			width: 300px;
+			height: 120px;
+			margin-top: 10px;
+		}
+		
+		.m_photo {
+			float: left;
+			width: 100px;
+			height: 100px;
+		}
+		
+		.m_img {
+			width:50px; 
+			height:50px;
+			border-radius: 25px;
+			border: 1px solid #d3d3d3;
+			margin-top: 20px;
+			margin-left: 40px;
+		}
+		
+		.m_type_div {
+			text-align: center;
+			margin-top: 8px;
+			margin-left: 30px;
+		}
+		
+		.m_t_zone {
+			background-color: #37B04B;
+			color: white;
+			padding: 6px;
+			border-radius: 15px;
+			font-size: 12px;
+		}
+		
+		.m_profile {
+			float: right;
+			width: 200px;
+			height: 120px;
+			line-height: 1.5;
+			font-size: 13px;
+		}
+		
+		.m_p_b {
+			float: left;
+			margin-left: 15px;
+		}
+		
+		.m_p_span {
+			margin-left: 4px;
+		}
+		
+		.m_content {
+			width: 300px;
+			height: 170px;
+			margin-top: 5px;
+			line-height: 1.7;
+			font-size: 13px;
+			text-align: center;
+		}
+		
+		.cate_img {
+			width: 20px;
+			height: 20px;
+		}
+		
+		.m_category_div {
+			width: 240px;
+			height: 80px;
+			margin: 0 auto;
+			text-align: center;
+		} 
+		
+		#m_btn_txt {
+			font-size: 13px;
+		}
+		
+		/* 모달 개인 정보 style */
+		
+		/* best 주소 출력 style */
+		.best_img {
+		
+			float: left;
+			margin-left: -8px;
+		}
+		
+		.23best_txt {
+			float: left;
+			margin-left: 20px;
+		}
+		/* best 주소 출력 style */
